@@ -1,0 +1,29 @@
+.section.section-gray {
+  background: #f1f1f1;
+}
+.section {
+  padding: 20px;
+  ion-button {
+    --height: 75px !important;
+    height: 75px;
+  }
+}
+h1 {
+  margin-top: 20px;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666666;
+}
+ion-toolbar {
+  // padding: 7px !important;
+  .bell-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+  }
+  img.back-icon {
+    width: 30px;
+    height: 30px;
+  }
+}

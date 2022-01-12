@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img (click)="openMenu()" class="back-icon" src="assets/img/menu.png">
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <img class="bell-icon" src="assets/img/bell.png">
+      <ion-avatar>
+        <img src="assets/img/profile.png">
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1>{{'AREA_OF_INTEREST.TITLE' | translate}}</h1>
+  <div class="section section-gray">
+    <ion-button class="btn" color="danger" expand="block" (click)="openPersonalized()">
+      {{'AREA_OF_INTEREST.PERSONALIZED_BTN' | translate}}</ion-button>
+    <p>{{'AREA_OF_INTEREST.PERSONALIZED_TEXT' | translate}}</p>
+  </div>
+  <div class="section">
+    <ion-button class="btn" color="danger" expand="block" (click)="openIntelligent()">
+      {{'AREA_OF_INTEREST.INTELIGENT_BTN' | translate}}</ion-button>
+    <p>{{'AREA_OF_INTEREST.INTELIGENT_TEXT' | translate}}</p>
+  </div>
+  <div class="section section-gray">
+    <ion-button class="btn" color="danger" expand="block" (click)="openPartnership()">
+      {{'AREA_OF_INTEREST.PARTNERSHIP_BTN' | translate}}</ion-button>
+    <p>{{'AREA_OF_INTEREST.PARTNERSHIP_TEXT' | translate}}</p>
+  </div>
+</ion-content>

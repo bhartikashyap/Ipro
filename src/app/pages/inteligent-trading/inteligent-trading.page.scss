@@ -1,0 +1,44 @@
+h1 {
+  margin-top: 30px;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666666;
+}
+.register-img {
+  display: block;
+  background: url(../../../assets/img/register.jpeg);
+  width: 325px;
+  height: 170px;
+  border-radius: 15px;
+  margin: 30px auto 20px auto;
+  background-position: center;
+}
+
+.content-wrap {
+  padding: 20px;
+  p {
+    font-size: 18px;
+    text-align: left;
+    color: #000000;
+    margin: 0px;
+  }
+}
+.mt30 {
+  margin-top: 30px !important;
+}
+.mb30 {
+  margin-bottom: 30px !important;
+}
+ion-toolbar {
+  // padding: 7px !important;
+  .bell-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+  }
+  img.back-icon {
+    width: 30px;
+    height: 30px;
+  }
+}

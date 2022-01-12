@@ -1,0 +1,6 @@
+{
+	"appId": "com.ipro.app",
+	"appName": "iPro",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

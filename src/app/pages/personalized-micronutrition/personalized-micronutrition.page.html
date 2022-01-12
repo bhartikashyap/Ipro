@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img (click)="goBack()" class="back-icon" src="assets/img/back.png"> 
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons  slot="end">
+      <img class="bell-icon" src="assets/img/bell.png">
+      <ion-avatar>
+        <img src="assets/img/profile.png">
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h1>{{'PERSONALIZED_MICRO.TITLE' | translate}}</h1>
+  <div class="register-img">
+
+  </div>
+  <div class="content-wrap">
+  <p class="mb30">{{'PERSONALIZED_MICRO.PERSONALIZED_MICRO_TXT1' | translate}}</p>
+  <ion-button class="btn" color="danger" expand="block" (click)="openBookingAnalysis()">
+    {{'PERSONALIZED_MICRO.PERSONALIZED_MICRO_BTN' | translate}}
+  </ion-button>
+  <p class="mt30 mb30">{{'PERSONALIZED_MICRO.PERSONALIZED_MICRO_TXT2' | translate}}</p>
+  </div>
+</ion-content>

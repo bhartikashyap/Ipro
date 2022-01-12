@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="login-img-layer">
+    <img src="assets/img/logo.png">
+  </div>
+  <div class="login-header">
+    <h1>{{'LOGIN.TITLE' | translate}}</h1>
+  </div>
+  <form [formGroup]="form">
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="email" position="floating">{{'LOGIN.EMAIL' | translate}}</ion-label> -->
+      <ion-input inputmode="email" id="email" formControlName="email" placeholder="{{'LOGIN.EMAIL' | translate}}"
+        autocapitalize="off">
+      </ion-input>
+      
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.email">
+      <div *ngIf="submitted && formControls['email'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControls['email'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding  password-input">
+       <!-- <ion-label for="password" position="floating">{{'LOGIN.PASSWORD' | translate}}</ion-label> -->
+       <ion-input id="password" formControlName="password" placeholder="{{'LOGIN.PASSWORD' | translate}}"
+         autocapitalize="off" [type]="type">
+       </ion-input>
+       <ion-icon *ngIf="type === 'password'" (click)="changeType()" name="eye-outline">
+       </ion-icon>
+       <ion-icon *ngIf="type === 'text'" (click)="changeType()" name="eye-off-outline">
+       </ion-icon>
+       
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.password">
+      <div *ngIf="submitted && formControls['password'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControls['password'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+     <a class="forgot-password" [routerLink]="['/forgotpassword']">{{'LOGIN.FORGOT_PASSWORD' | translate}}</a>
+     <ion-button class="btn" (click)="login()" color="danger" expand="block">{{'LOGIN.TITLE' | translate}}
+     </ion-button>
+     <a class="dont-know">{{'LOGIN.DONT_HAVE_ACCOUNT' | translate}} <span
+         [routerLink]="['/register']">{{'LOGIN.SIGNUP' | translate}}</span></a>
+  </form>
+</ion-content>

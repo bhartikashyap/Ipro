@@ -1,0 +1,18 @@
+ 
+<ion-content fullscreen>
+    <form>
+        <ion-item lines="none" class="form-group ion-no-padding">
+            <ion-label for="firstname" position="floating">Firstname</ion-label>
+            <ion-input inputmode="text" id="firstname" autocapitalize="off"></ion-input>
+        </ion-item>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">Find Now</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button (click)="closeModal()" class="btn" color="dark" expand="block">Close</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+
+</ion-content>

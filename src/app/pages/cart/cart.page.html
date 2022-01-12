@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img (click)="goBack()" class="back-icon" src="assets/img/back.png">
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+    <ion-buttons slot="end">
+      <img class="bell-icon" src="assets/img/bell.png">
+      <ion-avatar>
+        <img src="assets/img/profile.png">
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form>
+    <ion-row>
+      <ion-item lines="none" class="form-group ion-no-padding">
+        <ion-label for="promo code (If available)" position="floating">Promo code (If available)</ion-label>
+        <ion-input inputmode="number" id="promo code (If available)" autocapitalize="off"></ion-input>
+      </ion-item>
+      <ion-col>
+        <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">Apply</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+  <div class="form-cart">
+    <ion-row class="net-amount-wrap">
+      <ion-col class="formcart-title net-amount-title">Item</ion-col>
+      <ion-col class="formcart-value net-amount-value">Netto Amount</ion-col>
+    </ion-row>
+    <ion-row class="admssion-fee-wrap">
+      <ion-col class="formcart-title admssion-fee-title">Admission Fee</ion-col>
+      <ion-col class="formcart-value admssion-fee-value">99,00 €</ion-col>
+    </ion-row>
+    <ion-row class="itrading-box-wrap">
+      <ion-col class="formcart-title itrading-box-title">iTrading Box</ion-col>
+      <ion-col class="formcart-value itrading-box-value">59,00 €</ion-col>
+    </ion-row>
+    <ion-row class="delivery-box-wrap">
+      <ion-col class="formcart-title delivery-title">Delivery</ion-col>
+      <ion-col class="formcart-value delivery-value">0,00 €</ion-col>
+    </ion-row>
+    <ion-row class="total net-box-wrap">
+      <ion-col class="formcart-title total net-title">Total Net Amount</ion-col>
+      <ion-col class="formcart-value total net-value">0,00 €</ion-col>
+    </ion-row>
+    <ion-row class="vat-box-wrap">
+      <ion-col class="formcart-title vat-title">VAT</ion-col>
+      <ion-col class="formcart-value vat-value">0.00 €</ion-col>
+    </ion-row>
+    <ion-row class="total-box-wrap">
+      <ion-col class="formcart-title total-title">Total</ion-col>
+      <ion-col class="formcart-value total-value">158,00 €</ion-col>
+    </ion-row>
+ 
+  <ion-item lines="none" class="form-group ion-no-padding">
+    <ion-checkbox slot="start" mode="md"></ion-checkbox>
+    <ion-label>I Agree to Terms and Conditions</ion-label>
+  </ion-item>
+  <ion-item lines="none" class="form-group ion-no-padding">
+    <ion-checkbox slot="start" mode="md"></ion-checkbox>
+    <ion-label>I Agree to the Privacy Policy</ion-label>
+  </ion-item>
+
+<ion-button (click)="openCart()" class="btn" color="danger" expand="block">BUY NOW</ion-button>
+
+</div>
+</ion-content>
