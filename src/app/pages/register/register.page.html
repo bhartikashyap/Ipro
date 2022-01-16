@@ -25,7 +25,9 @@
       </div>
     </div>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <ionic-selectable [items]="countires" formControlName="country" placeholder="Country"  [(ngModel)]="country"
+      <ionic-selectable [items]="countires" 
+      formControlName="country" placeholder="Country"  
+      [(ngModel)]="country"
         [ngModelOptions]="{standalone: true}" [hasVirtualScroll]="true" 
         (ngModelChange)="countryChange($event)" 
         itemValueField="countryId" itemTextField="countryName" [canSearch]="true">
