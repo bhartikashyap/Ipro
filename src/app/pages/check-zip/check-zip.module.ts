@@ -4,13 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { BookAnalysisPageRoutingModule } from './book-analysis-routing.module';
+import { CheckZipPageRoutingModule } from './check-zip-routing.module';
 
-import { BookAnalysisPage } from './book-analysis.page';
+import { CheckZipPage } from './check-zip.page';
 import { HttpClient } from '@angular/common/http';
-import { Globalization } from '@ionic-native/globalization/ngx';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -19,17 +18,17 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CommonModule,
     FormsModule,
-    TranslateModule.forChild({
+     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
     }),
+    ReactiveFormsModule,
     IonicModule,
-    BookAnalysisPageRoutingModule,
-    ReactiveFormsModule
+    CheckZipPageRoutingModule
   ],
-  declarations: [BookAnalysisPage],
+  declarations: [CheckZipPage]
 })
-export class BookAnalysisPageModule {}
+export class CheckZipPageModule {}

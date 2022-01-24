@@ -1,92 +1,185 @@
 <ion-header>
   <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <img (click)="goBack()" class="back-icon" src="assets/img/back.png">
+      <img (click)="goBack()" class="back-icon" src="assets/img/back.png" />
     </ion-buttons>
     <ion-title>{{'BOOKING_ANALYSIS.HEADER_TITLE' | translate}}</ion-title>
     <ion-buttons slot="end">
-      <img class="bell-icon" src="assets/img/bell.png">
+      <img class="bell-icon" src="assets/img/bell.png" />
       <ion-avatar>
-        <img src="assets/img/profile.png">
+        <img src="assets/img/profile.png" />
       </ion-avatar>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-<div class="register-header">
-  <h1>{{'BOOKING_ANALYSIS.TITLE' | translate}}</h1>
-</div>
-<form>
-
-  <ion-row>
-<ion-item lines="none" class="form-group ion-no-padding">
-  <ion-checkbox slot="start" mode="md"></ion-checkbox>
-  <ion-label>{{'BOOKING_ANALYSIS.PRIVATE' | translate}}</ion-label>
-</ion-item>
-<ion-item lines="none" class="form-group ion-no-padding">
-  <ion-checkbox slot="start" mode="md"></ion-checkbox>
-  <ion-label>{{'BOOKING_ANALYSIS.COMPANY' | translate}}</ion-label>
-</ion-item> 
-</ion-row>
- 
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-label for="email" position="floating">{{'BOOKING_ANALYSIS.EMAIL' | translate}}</ion-label>
-    <ion-input inputmode="email" id="email" autocapitalize="off"></ion-input>
-  </ion-item>
-  <ion-row>
-    <ion-col size="3">
-      <ion-item lines="none" class="form-group ion-no-padding country-group">
-        <img src="assets/img/picture.png" class="country-icon">
-        <ion-label class="country-label">+91</ion-label>
-      </ion-item>
-    </ion-col>
-    <ion-col size="9">
+  <div class="register-header">
+    <h1>{{'BOOKING_ANALYSIS.TITLE' | translate}}</h1>
+  </div>
+  <form [formGroup]="form">
+    <ion-row>
       <ion-item lines="none" class="form-group ion-no-padding">
-        <ion-label for="mobile-number" position="floating">{{'BOOKING_ANALYSIS.MOBILE' | translate}}</ion-label>
-        <ion-input inputmode="number" id="mobile-number" autocapitalize="off"></ion-input>
+        <ion-checkbox slot="start" mode="md"></ion-checkbox>
+        <ion-label>{{'BOOKING_ANALYSIS.PRIVATE' | translate}}</ion-label>
       </ion-item>
-    </ion-col>
-  </ion-row>
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-label for="birthday" position="floating">{{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}</ion-label>
-    <ion-input inputmode="birthday" id="birthday" autocapitalize="off"></ion-input>
-  </ion-item>
+      <ion-item lines="none" class="form-group ion-no-padding">
+        <ion-checkbox slot="start" mode="md"></ion-checkbox>
+        <ion-label>{{'BOOKING_ANALYSIS.COMPANY' | translate}}</ion-label>
+      </ion-item>
+    </ion-row>
 
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-label for="street name" position="floating">{{'BOOKING_ANALYSIS.STREET_NAME' | translate}}</ion-label>
-    <ion-input inputmode="text" id="street name" autocapitalize="off"></ion-input>
-  </ion-item>
-
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-label for="house number" position="floating">{{'BOOKING_ANALYSIS.HOUSE_NUMBER' | translate}}</ion-label>
-    <ion-input inputmode="text" id="house-number" autocapitalize="off"></ion-input>
-  </ion-item>
-
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-label for="Additional adress" position="floating">{{'BOOKING_ANALYSIS.ADDITION_ADDRESS' | translate}}
-    </ion-label>
-    <ion-input inputmode="text" id="additional-adress" autocapitalize="off"></ion-input>
-  </ion-item>
-
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-label for="zip" position="floating">{{'BOOKING_ANALYSIS.ZIP' | translate}}</ion-label>
-    <ion-input inputmode="text" id="zip" autocapitalize="off"></ion-input>
-  </ion-item>
-
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-label for="city" position="floating">{{'BOOKING_ANALYSIS.CITY' | translate}}</ion-label>
-    <ion-input inputmode="text" id="city" autocapitalize="off"></ion-input>
-  </ion-item>
-
-
-
-  <ion-item lines="none" class="form-group ion-no-padding">
-    <ion-checkbox slot="start" mode="md"></ion-checkbox>
-    <ion-label>{{'BOOKING_ANALYSIS.DELIVERY_ADDRESS_SAME' | translate}}</ion-label>
-  </ion-item> 
-  <ion-button (click)="openCart()" class="btn" color="danger" expand="block">
-    {{'BOOKING_ANALYSIS.SUBMIT_BUTTON' | translate}}</ion-button>
-</form>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="email" position="floating"
+        >{{'BOOKING_ANALYSIS.EMAIL' | translate}}</ion-label
+      > -->
+      <ion-input inputmode="email" placeholder="{{'BOOKING_ANALYSIS.EMAIL' | translate}}" formControlName="email" id="email" autocapitalize="off"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.email">
+      <div *ngIf="submitted && formControl['email'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['email'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-row>
+      <ion-col size="3">
+        <ion-item lines="none" class="form-group ion-no-padding country-group">
+          <img src="assets/img/picture.png" class="country-icon" />
+          <ion-label class="country-label">+91</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="9">
+        <ion-item lines="none" class="form-group ion-no-padding" >
+          <!-- <ion-label for="mobile-number" position="floating"
+            >{{'BOOKING_ANALYSIS.MOBILE' | translate}}</ion-label
+          > -->
+          <ion-input formControlName="mobile"
+            inputmode="number"
+            id="mobile-number"
+            autocapitalize="off"
+            placeholder="{{'BOOKING_ANALYSIS.MOBILE' | translate}}"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validationMessage.mobile">
+          <div *ngIf="submitted && formControl['mobile'].errors" class="validation-message">
+            <div class="error-message text-red " *ngIf="formControl['mobile'].errors[validation.type]">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="birthday" position="floating"
+        >{{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}</ion-label
+      > -->
+      <ion-input formControlName="dob"
+        placeholder="{{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}"
+        inputmode="birthday"
+        id="birthday"
+        autocapitalize="off"
+      ></ion-input>
+      <ion-modal trigger="birthday">
+        <ng-template>
+          <ion-content>
+            <ion-datetime></ion-datetime>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.dob">
+    <div *ngIf="submitted && formControl['dob'].errors" class="validation-message">
+      <div class="error-message text-red " *ngIf="formControl['dob'].errors[validation.type]">
+        {{ validation.message }}
+      </div>
+    </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="street name" position="floating"
+        >{{'BOOKING_ANALYSIS.STREET_NAME' | translate}}</ion-label
+      > -->
+      <ion-input
+        inputmode="text"
+        id="street name"
+        autocapitalize="off" formControlName="stritName"  placeholder="{{'BOOKING_ANALYSIS.STREET_NAME' | translate}}"
+      ></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.stritName">
+      <div *ngIf="submitted && formControl['stritName'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['stritName'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="house number" position="floating"
+        >{{'BOOKING_ANALYSIS.HOUSE_NUMBER' | translate}}</ion-label
+      > -->
+      <ion-input  formControlName="houseNumber"  placeholder="{{'BOOKING_ANALYSIS.HOUSE_NUMBER' | translate}}"
+        inputmode="text"
+        id="house-number"
+        autocapitalize="off"
+      ></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.houseNumber">
+      <div *ngIf="submitted && formControl['houseNumber'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['houseNumber'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="Additional adress" position="floating"
+        >{{'BOOKING_ANALYSIS.ADDITION_ADDRESS' | translate}}
+      </ion-label> -->
+      <ion-input
+        inputmode="text"
+        id="additional-adress"
+        autocapitalize="off" formControlName="additionalAddress"  placeholder="{{'BOOKING_ANALYSIS.ADDITION_ADDRESS' | translate}}"
+      ></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.additionalAddress">
+      <div *ngIf="submitted && formControl['additionalAddress'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['additionalAddress'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="zip" position="floating"
+        >{{'BOOKING_ANALYSIS.ZIP' | translate}}</ion-label
+      > -->
+      <ion-input formControlName="zip"  placeholder="{{'BOOKING_ANALYSIS.ZIP' | translate}}" inputmode="text" id="zip" autocapitalize="off"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.zip">
+      <div *ngIf="submitted && formControl['zip'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['zip'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <!-- <ion-label for="city" position="floating"
+        >{{'BOOKING_ANALYSIS.CITY' | translate}}</ion-label
+      > -->
+      <ion-input formControlName="city"  placeholder="{{'BOOKING_ANALYSIS.CITY' | translate}}" inputmode="text" id="city" autocapitalize="off"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.city">
+      <div *ngIf="submitted && formControl['city'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['city'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <ion-checkbox slot="start" mode="md"></ion-checkbox>
+      <ion-label
+        >{{'BOOKING_ANALYSIS.DELIVERY_ADDRESS_SAME' | translate}}</ion-label
+      >
+    </ion-item>
+    <ion-button (click)="submit()" class="btn" color="danger" expand="block">
+      {{'BOOKING_ANALYSIS.SUBMIT_BUTTON' | translate}}</ion-button
+    >
+  </form>
 </ion-content>

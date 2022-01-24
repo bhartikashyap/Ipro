@@ -19,6 +19,6 @@ export class PersonalizedMicronutritionPage implements OnInit {
   }
 
   openBookingAnalysis(){
-    this.router.navigate(['/book-analysis'])
+    this.router.navigate(['/check-zip'])
   }
 }

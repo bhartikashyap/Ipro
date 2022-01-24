@@ -45,7 +45,11 @@ const routes: Routes = [
   {
     path: 'question',
     loadChildren: () => import('./pages/question/question.module').then( m => m.QuestionPageModule)
+  },  {
+    path: 'check-zip',
+    loadChildren: () => import('./pages/check-zip/check-zip.module').then( m => m.CheckZipPageModule)
   }
+
 ];
 
 @NgModule({

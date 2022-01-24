@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <img (click)="goBack()" class="back-icon" src="assets/img/back.png">
+    </ion-buttons>
+    <ion-title>Check ZIP</ion-title>
+    <ion-buttons slot="end">
+      <img class="bell-icon" src="assets/img/bell.png">
+      <ion-avatar>
+        <img src="assets/img/profile.png">
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="register-header">
+    <h1>Check ZIP</h1>
+  </div>
+  <form  [formGroup]="form">
+    <ion-item lines="none" class="form-group ion-no-padding"> 
+      <ion-input inputmode="text" id="zip" formControlName="zip" placeholder="Zip" autocapitalize="off"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.zip">
+      <div *ngIf="submitted && formControls['zip'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControls['zip'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-button (click)="submit()" class="btn" color="danger" expand="block">
+      {{'BOOKING_ANALYSIS.SUBMIT_BUTTON' | translate}}</ion-button>
+  </form>
+</ion-content>
