@@ -37,6 +37,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "cordova-plugin-globalization": "^1.11.0",
+    "date-fns": "^2.28.0",
     "flag-icon-css": "^4.1.7",
     "google-libphonenumber": "^3.2.26",
     "ion-intl-tel-input": "^1.0.5",

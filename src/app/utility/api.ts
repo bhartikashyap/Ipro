@@ -3,3 +3,7 @@ export const FORGOT_PASSWORD = 'ipro_forgot_password';
 export const REGISTER = 'ipro_register';
 export const GET_QUESTION = 'questions';
 export const GET_COUNTRY = 'countries';
+export const CHECK_ZIP = "ipro_check_zipcode";
+export const GET_PROFILE = "ipro_profile";
+export const UPDATE_PROFILE = "ipro_update_profile";
+export const GET_PLAN = "ipro_get_plan_details";

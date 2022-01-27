@@ -4,7 +4,7 @@ import { EnvironmentService } from './environment.service';
 import * as api from '../utility/api';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ApiService extends EnvironmentService {
   constructor(private http: HttpClient) {
@@ -31,5 +31,21 @@ export class ApiService extends EnvironmentService {
 
   async getCountryList() {
     return await this.http.get(this.apiUrl + api.GET_COUNTRY).toPromise();
+  }
+
+  async getProfile() {
+    return await this.http.get(this.apiUrl + api.GET_PROFILE).toPromise();
+  }
+
+  async checkZip(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.CHECK_ZIP, body).toPromise();
+  }
+
+  async updateProfile(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.UPDATE_PROFILE, body).toPromise();
+  }
+
+  async getPlanDetail() {
+     return await this.http.get(this.apiUrl + api.GET_PLAN).toPromise();
   }
 }

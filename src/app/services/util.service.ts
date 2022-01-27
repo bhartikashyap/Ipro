@@ -3,8 +3,9 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { Network } from '@capacitor/network';
 import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
+import { session } from '../utility/message';
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UtilService {
   constructor(
@@ -25,7 +26,7 @@ export class UtilService {
   async presentAlert(header, subHeader, message, buttons) {
     const alert = await this.alertController.create({
       header: header,
-      mode: 'ios',
+      mode: "ios",
       subHeader: subHeader,
       message: message,
       buttons: buttons,
@@ -35,9 +36,9 @@ export class UtilService {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...',
+      message: "Please wait...",
       translucent: true,
-      cssClass: 'custom-class custom-loading',
+      cssClass: "custom-class custom-loading",
     });
     loading.present();
     return await loading;
@@ -48,25 +49,32 @@ export class UtilService {
       key: key,
       value: data,
     });
-  }
+  };
 
   getStorage = async (key: string) => {
     const { value } = await Storage.get({ key: key });
     return value;
-  }
+  };
 
   removeStorage = async (key: string) => {
     await Storage.remove({ key: key });
   };
 
+  getToken() {
+    if (localStorage.getItem("CapacitorStorage.AUTH_TOKEN")) {
+      return localStorage.getItem("CapacitorStorage.AUTH_TOKEN");
+    } else {
+      return null;
+    }
+  }
   async checkNetwork() {
     const status = await Network.getStatus();
-    if (status.connectionType == 'none' || status.connectionType == 'unknown') {
+    if (status.connectionType == "none" || status.connectionType == "unknown") {
       this.presentAlert(
-        'Error',
-        '',
-        'Please check your network connection and then try again.',
-        ['OK']
+        "Error",
+        "",
+        "Please check your network connection and then try again.",
+        ["OK"]
       );
       return false;
     } else {
@@ -77,9 +85,9 @@ export class UtilService {
   checkLiveUrl(url) {
     let status = false;
     if (url) {
-      if (url.indexOf('https:') != -1) {
+      if (url.indexOf("https:") != -1) {
         status = true;
-      } else if (url.indexOf('http:') != -1) {
+      } else if (url.indexOf("http:") != -1) {
         status = true;
       } else {
         status = false;
