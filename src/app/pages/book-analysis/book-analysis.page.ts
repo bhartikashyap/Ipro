@@ -76,15 +76,9 @@ export class BookAnalysisPage implements OnInit {
       taxId: [""],
       deliveryFirstName: [""],
       deliveryLastName: [""],
-      deliveryStreetName: [
-        "",
-      ],
-      deliveryHouseNumber: [
-        "",
-      ],
-      deliveryAdditionalAddressInfo: [
-        "",
-      ],
+      deliveryStreetName: [""],
+      deliveryHouseNumber: [""],
+      deliveryAdditionalAddressInfo: [""],
       deliveryZipcode: [""],
       deliveryCity: [""],
       deliveryCountry: [""],
