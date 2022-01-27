@@ -69,7 +69,7 @@ export class BookAnalysisPage implements OnInit {
         ],
       ],
       city: ["", [Validators.required, Validators.maxLength(100)]],
-      deliveryAddress: [false],
+      deliveryAddress: [true],
       private: [false],
       company: [false],
       companyName: [""],

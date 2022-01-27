@@ -28,6 +28,29 @@
         <ion-label>{{'BOOKING_ANALYSIS.COMPANY' | translate}}</ion-label>
       </ion-item>
     </ion-row>
+<ion-item lines="none" class="form-group ion-no-padding"> 
+  <ion-input inputmode="text" placeholder="Company" formControlName="company"
+    id="company"
+    autocapitalize="off"></ion-input>
+</ion-item>
+<div *ngFor="let validation of validationMessage.company">
+  <div *ngIf="submitted && formControl['company'].errors" class="validation-message">
+    <div class="error-message text-red " *ngIf="formControl['company'].errors[validation.type]">
+      {{ validation.message }}
+    </div>
+  </div>
+</div>
+<ion-item lines="none" class="form-group ion-no-padding"> 
+  <ion-input inputmode="text" placeholder="Tax ID" formControlName="taxId" id="taxId"
+    autocapitalize="off"></ion-input>
+</ion-item>
+<div *ngFor="let validation of validationMessage.taxId">
+  <div *ngIf="submitted && formControl['taxId'].errors" class="validation-message">
+    <div class="error-message text-red " *ngIf="formControl['taxId'].errors[validation.type]">
+      {{ validation.message }}
+    </div>
+  </div>
+</div>
 
     <ion-item lines="none" class="form-group ion-no-padding">
       <!-- <ion-label for="email" position="floating"
@@ -178,6 +201,103 @@
         >{{'BOOKING_ANALYSIS.DELIVERY_ADDRESS_SAME' | translate}}</ion-label
       >
     </ion-item> 
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <ion-input inputmode="text" placeholder="Delivery FirstName" formControlName="deliveryFirstName" id="deliveryFirstName" autocapitalize="off">
+      </ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.deliveryFirstName">
+      <div *ngIf="submitted && formControl['deliveryFirstName'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['deliveryFirstName'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <ion-input inputmode="text" placeholder="Delivery Lastname" formControlName="deliveryLastName"
+        id="deliveryLastName" autocapitalize="off">
+      </ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.deliveryLastName">
+      <div *ngIf="submitted && formControl['deliveryLastName'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['deliveryLastName'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <ion-input inputmode="text" placeholder="Delivery StreetName" formControlName="deliveryStreetName"
+        id="deliveryStreetName" autocapitalize="off">
+      </ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.deliveryStreetName">
+      <div *ngIf="submitted && formControl['deliveryStreetName'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['deliveryStreetName'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <ion-input inputmode="text" placeholder="Delivery House Number" formControlName="deliveryHouseNumber"
+        id="deliveryHouseNumber" autocapitalize="off">
+      </ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessage.deliveryHouseNumber">
+      <div *ngIf="submitted && formControl['deliveryHouseNumber'].errors" class="validation-message">
+        <div class="error-message text-red " *ngIf="formControl['deliveryHouseNumber'].errors[validation.type]">
+          {{ validation.message }}
+        </div>
+      </div>
+    </div>
+     <ion-item lines="none" class="form-group ion-no-padding">
+       <ion-input inputmode="text" placeholder="Delivery Additional Address Info"
+         formControlName="deliveryAdditionalAddressInfo"
+         id="deliveryAdditionalAddressInfo" autocapitalize="off">
+       </ion-input>
+     </ion-item>
+     <div *ngFor="let validation of validationMessage.deliveryAdditionalAddressInfo">
+       <div *ngIf="submitted && formControl['deliveryAdditionalAddressInfo'].errors" class="validation-message">
+         <div class="error-message text-red " *ngIf="formControl['deliveryAdditionalAddressInfo'].errors[validation.type]">
+           {{ validation.message }}
+         </div>
+       </div>
+     </div>
+      <ion-item lines="none" class="form-group ion-no-padding">
+        <ion-input inputmode="text" placeholder="Delivery Zipcode"
+          formControlName="deliveryZipcode" id="deliveryZipcode" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <div *ngFor="let validation of validationMessage.deliveryZipcode">
+        <div *ngIf="submitted && formControl['deliveryZipcode'].errors" class="validation-message">
+          <div class="error-message text-red "
+            *ngIf="formControl['deliveryZipcode'].errors[validation.type]">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
+      <ion-item lines="none" class="form-group ion-no-padding">
+        <ion-input inputmode="text" placeholder="Delivery City" formControlName="deliveryCity"
+          id="deliveryCity" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <div *ngFor="let validation of validationMessage.deliveryCity">
+        <div *ngIf="submitted && formControl['deliveryCity'].errors" class="validation-message">
+          <div class="error-message text-red " *ngIf="formControl['deliveryCity'].errors[validation.type]">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
+      <ion-item lines="none" class="form-group ion-no-padding">
+        <ion-input inputmode="text" placeholder="Delivery Country" formControlName="deliveryCountry" id="deliveryCountry"
+          autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <div *ngFor="let validation of validationMessage.deliveryCountry">
+        <div *ngIf="submitted && formControl['deliveryCountry'].errors" class="validation-message">
+          <div class="error-message text-red " *ngIf="formControl['deliveryCountry'].errors[validation.type]">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
     <ion-button (click)="submit()" class="btn" color="danger" expand="block">
       {{'BOOKING_ANALYSIS.SUBMIT_BUTTON' | translate}}</ion-button
     >
