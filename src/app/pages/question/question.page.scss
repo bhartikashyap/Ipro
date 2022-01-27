@@ -53,7 +53,6 @@ ion-toolbar {
 ion-content {
   padding: 15px;
   --padding: 15px;
-  
 }
 form {
   padding: 15px;
@@ -63,10 +62,10 @@ form {
     background: rgba(18, 36, 59, 0.85);
   }
   .question-text {
-     color: #666;
-     font-size: .8125em;
-     font-weight: 600;
-     margin-bottom: 1rem !important;
+    color: #666;
+    font-size: 0.8125em;
+    font-weight: 600;
+    margin-bottom: 1rem !important;
   }
   .custom-control {
     position: relative;
@@ -83,7 +82,7 @@ form {
       padding: 10px 15px;
       padding-right: 35px;
       padding-left: 40px;
-      font-size: .8125em;
+      font-size: 0.8125em;
       line-height: 1.5;
       display: block;
       &::before {
@@ -102,13 +101,12 @@ form {
         width: 22px;
         height: 22px;
         transform: translateY(-50%);
-            position: absolute;
-            content: "";
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 50% 50%;
+        position: absolute;
+        content: "";
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
       }
-      
     }
   }
   .custom-control-input {
@@ -117,10 +115,10 @@ form {
     opacity: 0;
   }
 }
-.custom-control-input:checked~.custom-control-label::after {
+.custom-control-input:checked ~ .custom-control-label::after {
   background-image: url(../../../assets/img/right.svg);
 }
-.custom-control-input:checked~.custom-control-label::before {
+.custom-control-input:checked ~ .custom-control-label::before {
   background: transparent;
 }
 input.form-control {
@@ -132,11 +130,11 @@ input.form-control {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   height: 40px;
   color: #000;
-  font-size: .75em;
-  border-color: #D6D6D6;
+  font-size: 0.75em;
+  border-color: #d6d6d6;
   outline: none !important;
   box-shadow: none !important;
 }
@@ -146,10 +144,10 @@ input.form-control {
   min-width: 140px;
   color: #fff;
   text-align: center;
-  background-color: #FF662A;
-  border: 1px solid #FF662A;
+  background-color: #ff662a;
+  border: 1px solid #ff662a;
   padding: 10px 15px;
-  font-size: .8125em;
+  font-size: 0.8125em;
   line-height: 1.5;
   border-radius: 2px;
   transition: all 0.4s ease;
@@ -158,12 +156,11 @@ input.form-control {
   outline: none !important;
   text-transform: uppercase;
 }
-.text-center{
-    margin-top: 1.5rem !important;
-    text-align: center;
+.text-center {
+  margin-top: 1.5rem !important;
+  text-align: center;
 }
 ion-toolbar {
-
   // padding: 7px !important;
   .bell-icon {
     width: 30px;
@@ -189,11 +186,11 @@ ion-toolbar {
   padding: 10px 15px;
   padding-right: 35px;
   padding-left: 40px;
-  font-size: .8125em;
+  font-size: 0.8125em;
   line-height: 1.5;
 }
 
-.form1 .custom-checkbox .custom-control-input:checked~.custom-control-label {
+.form1 .custom-checkbox .custom-control-input:checked ~ .custom-control-label {
   background: #12243b;
 }
 
@@ -230,7 +227,10 @@ ion-toolbar {
   transform: translateY(-50%);
 }
 
-.form1 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+.form1
+  .custom-checkbox
+  .custom-control-input:checked
+  ~ .custom-control-label::before {
   background: transparent;
 }
 .form1 .custom-checkbox .custom-control-label::before {
@@ -247,6 +247,9 @@ ion-toolbar {
   height: 18px;
 }
 
-.form1 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+.form1
+  .custom-checkbox
+  .custom-control-input:checked
+  ~ .custom-control-label::before {
   background: #12243b;
 }

@@ -7,15 +7,6 @@
     display: block;
   }
 }
-// .register-img {
-//   display: block;
-//   background: url(../../../assets/img/register.jpeg);
-//   width: 285px;
-//   height: 145px;
-//   border-radius: 15px;
-//   margin: 30px auto 20px auto;
-//   background-position: center;
-// }
 
 .register-header {
   padding-top: 15px;
@@ -81,95 +72,11 @@ form {
     padding-left: 10px;
   }
 
-  // ion-label.label-floating {
-  //   position: relative;
-  //   top: 3px;
-  //   left: 10px;
-  //   font-size: 12px !important;
-  //   color: gray !important;
-  // }
-  // .password-input {
-  //   position: relative;
-  //   ion-input {
-  //     --padding-bottom: 0px;
-  //     --padding-top: 0px;
-  //     --padding-start: 0px;
-  //     --padding-end: 40px;
-  //   }
-  // ion-icon {
-  //   position: absolute;
-  //   bottom: 10px;
-  //   right: 20px;
-  //   font-size: 25px;
-  //   z-index: 9999;
-  // }
+  .btn {
+    height: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    --border-radius: 4px;
+    margin-top: 15px;
+  }
 }
-// .forgot-password {
-//   color: #6d6d6d;
-//   font-size: 12px;
-//   font-weight: 400;
-//   text-decoration: none;
-// }
-// .dont-know {
-//   color: #6d6d6d;
-//   font-size: 12px;
-//   font-weight: 400;
-//   text-decoration: none;
-//   text-align: center;
-//   width: 100%;
-//   display: block;
-//   margin-top: 20px;
-//   span {
-//     color: #ff662a;
-//   }
-// }
-.btn {
-  height: 40px;
-  font-size: 12px;
-  font-weight: 600;
-  --border-radius: 4px;
-  margin-top: 15px;
-}
-// ion-item.form-group.country-group {
-//   top: 32px;
-//   position: absolute;
-//   width: 70px;
-//   border: 1px solid #d4d4d4;
-//   height: 44px;
-//   border-radius: 4px;
-//   color: #727272;
-//   font-size: 12px;
-// }
-//   .activation-code {
-//     top: 32px;
-//     position: absolute;
-//     border-radius: 4px;
-//     color: #6d6d6d;
-//     font-size: 12px;
-//     p {
-//       margin: 0px;
-//     }
-//     p.find-label {
-//       width: 100%;
-//       color: #a9d5c1;
-//     }
-//   }
-// }
-// .my-search-class {
-//   --height: 500px;
-//   --width: 80%;
-// }
-
-// ion-toolbar {
-//   // padding: 7px !important;
-//   .bell-icon {
-//     width: 30px;
-//     height: 30px;
-//     margin-right: 20px;
-//   }
-
-// img.back-icon {
-//   width: 30px;
-//   height: 30px;
-// }
-// }

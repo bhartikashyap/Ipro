@@ -53,6 +53,7 @@ form {
   .form-group {
     position: relative;
     --inner-padding-end: 0 !important;
+    margin-top: 10px;
   }
   ion-input,
   ion-select {
@@ -131,11 +132,11 @@ form {
     margin-top: 15px;
   }
   ion-item.form-group.country-group {
-    top: 32px;
-    position: absolute;
+    top: 2px;
+    position: relative;
     width: 70px;
     border: 1px solid #d4d4d4;
-    height: 44px;
+    height: 40px;
     border-radius: 4px;
     color: #727272;
     font-size: 12px;
@@ -161,7 +162,6 @@ form {
 }
 
 ion-toolbar {
-
   // padding: 7px !important;
   .bell-icon {
     width: 30px;
