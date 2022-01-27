@@ -20,11 +20,11 @@
   <form [formGroup]="form">
     <ion-row>
       <ion-item lines="none" class="form-group ion-no-padding">
-        <ion-checkbox slot="start" mode="md" formControlName="private"></ion-checkbox>
+        <ion-checkbox (ionChange)="privateChange($event)" [(ngModel)]="private" slot="start" mode="md" formControlName="private"></ion-checkbox>
         <ion-label>{{'BOOKING_ANALYSIS.PRIVATE' | translate}}</ion-label>
       </ion-item>
       <ion-item lines="none" class="form-group ion-no-padding">
-        <ion-checkbox slot="start" mode="md" formControlName="company"></ion-checkbox>
+        <ion-checkbox (ionChange)="companyChange($event)" [(ngModel)]="company" slot="start" mode="md" formControlName="company"></ion-checkbox>
         <ion-label>{{'BOOKING_ANALYSIS.COMPANY' | translate}}</ion-label>
       </ion-item>
     </ion-row>
@@ -196,11 +196,12 @@
       </div>
     </div>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <ion-checkbox slot="start" mode="md" formControlName="deliveryAddress"></ion-checkbox>
+      <ion-checkbox slot="start" [(ngModel)]="deliveryAddress" (ionChange)="deliveryChange($event)" mode="md" formControlName="deliveryAddress"></ion-checkbox>
       <ion-label
         >{{'BOOKING_ANALYSIS.DELIVERY_ADDRESS_SAME' | translate}}</ion-label
       >
     </ion-item> 
+    <div *ngIf="!deliveryAddress">
     <ion-item lines="none" class="form-group ion-no-padding">
       <ion-input inputmode="text" placeholder="Delivery FirstName" formControlName="deliveryFirstName" id="deliveryFirstName" autocapitalize="off">
       </ion-input>
@@ -297,6 +298,7 @@
             {{ validation.message }}
           </div>
         </div>
+      </div>
       </div>
     <ion-button (click)="submit()" class="btn" color="danger" expand="block">
       {{'BOOKING_ANALYSIS.SUBMIT_BUTTON' | translate}}</ion-button

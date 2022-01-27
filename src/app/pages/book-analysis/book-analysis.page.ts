@@ -16,6 +16,9 @@ export class BookAnalysisPage implements OnInit {
   form: FormGroup;
   profile: any;
   birthday = false;
+  deliveryAddress = true;
+  private = false;
+  company = false;
   selectedDate: any;
   get formControl() {
     return this.form.controls;
@@ -116,6 +119,41 @@ export class BookAnalysisPage implements OnInit {
         { type: "required", message: message.required },
         { type: "maxlength", message: message.maxLength(100) },
       ],
+      deliveryFirstName: [
+        { type: "required", message: message.required },
+        { type: "pattern", message: message.alphabate },
+        { type: "maxlength", message: message.maxLength(100) },
+      ],
+      deliveryLastName: [
+        { type: "required", message: message.required },
+        { type: "pattern", message: message.alphabate },
+        { type: "maxlength", message: message.maxLength(100) },
+      ],
+      deliveryStreetName: [
+         { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(100) },
+      ],
+      deliveryHouseNumber: [
+        { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(50) },
+      ],
+      deliveryAdditionalAddressInfo: [
+        { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(200) },
+      ],
+      deliveryZipcode: [
+       { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(10) },
+        { type: "pattern", message: message.numeric },
+      ],
+      deliveryCity: [
+        { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(100) },
+      ],
+      deliveryCountry: [
+        { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(100) },
+      ],
     };
   }
 
@@ -127,6 +165,45 @@ export class BookAnalysisPage implements OnInit {
 
   reset() {
     this.form.reset();
+  }
+
+  privateChange(event:any){
+    this.form.get("private").setValue(this.private);
+  }
+
+  companyChange(event:any){
+    this.form.get("company").setValue(this.company);
+  }
+
+  deliveryChange(event: any) {
+    this.form.get("deliveryAddress").setValue(this.deliveryAddress);
+    if (!this.deliveryAddress) {
+      this.form.get('deliveryFirstName').setValidators([Validators.required,Validators.pattern(pattern.alphabate),Validators.maxLength(100)]);
+      this.form.get('deliveryLastName').setValidators([Validators.required,Validators.pattern(pattern.alphabate),Validators.maxLength(100)]);
+      this.form.get('deliveryStreetName').setValidators([Validators.required,Validators.maxLength(100)]);
+      this.form.get('deliveryHouseNumber').setValidators([Validators.required,Validators.maxLength(50)]);
+      this.form.get('deliveryAdditionalAddressInfo').setValidators([Validators.required,Validators.maxLength(200)]);
+      this.form.get('deliveryZipcode').setValidators([Validators.required,Validators.pattern(pattern.numeric),Validators.maxLength(10)]);
+      this.form.get('deliveryCity').setValidators([Validators.required,Validators.maxLength(100)]);
+      this.form.get('deliveryCountry').setValidators([Validators.required,Validators.maxLength(100)]);
+    }else{
+      this.form.get('deliveryFirstName').clearValidators();
+      this.form.get('deliveryFirstName').updateValueAndValidity();
+      this.form.get('deliveryLastName').clearValidators();
+      this.form.get('deliveryLastName').updateValueAndValidity();
+      this.form.get('deliveryStreetName').clearValidators();
+      this.form.get('deliveryStreetName').updateValueAndValidity();
+      this.form.get('deliveryHouseNumber').clearValidators();
+      this.form.get('deliveryHouseNumber').updateValueAndValidity();
+      this.form.get('deliveryAdditionalAddressInfo').clearValidators();
+      this.form.get('deliveryAdditionalAddressInfo').updateValueAndValidity();
+      this.form.get('deliveryZipcode').clearValidators();
+      this.form.get('deliveryZipcode').updateValueAndValidity();
+      this.form.get('deliveryCity').clearValidators();
+      this.form.get('deliveryCity').updateValueAndValidity();
+      this.form.get('deliveryCountry').clearValidators();
+      this.form.get('deliveryCountry').updateValueAndValidity();
+    }
   }
 
   async submit() {
