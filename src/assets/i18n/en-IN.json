@@ -1,0 +1,72 @@
+{
+    "LOGIN": {
+        "TITLE": "LOGIN",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "FORGOT_PASSWORD": "Forgot Password?",
+        "DONT_HAVE_ACCOUNT": "Don't have an account?",
+        "SIGNUP": "Sign up"
+    },
+    "FORGOT_PASSWORD": {
+        "TITLE": "Forgot Password",
+        "EMAIL": "Email",
+        "SUBMIT_BTN": "RESET NOW",
+        "ALREADY_REGISTERED": "Already Registered?",
+        "LOGIN": "Login"
+    },
+    "AREA_OF_INTEREST": {
+        "TITLE": "Area of Inetrest",
+        "PERSONALIZED_TEXT":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "PERSONALIZED_BTN": "Personalised Micronutrition",
+        "INTELIGENT_TEXT":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "INTELIGENT_BTN": "Intelligent Trading",
+        "PARTNERSHIP_TEXT":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "PARTNERSHIP_BTN": "iPro Partnership"
+    },
+    "INTELIGENT_TRADING": {
+        "TITLE": "Intelligent Trading",
+        "GET_TRADE_TXT":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "GET_TRADE": "Get iTrade"
+    },
+    "IPRO_PARTNERSHIP": {
+        "TITLE": "iPro Partner",
+        "BECOME_PARTNER_TXT":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "BECOME_PARTNER": "Become Partner"
+    },
+    "PERSONALIZED_MICRO": {
+        "TITLE": "Personalised Micronutrition",
+        "PERSONALIZED_MICRO_TXT1":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "PERSONALIZED_MICRO_BTN": "BOOK ANALYSIS",
+        "PERSONALIZED_MICRO_TXT2":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    "BOOKING_ANALYSIS": {
+        "HEADER_TITLE": "Book Analysis",
+        "TITLE":"Biling Details",
+        "PRIVATE":"Private",
+        "COMPANY":"Company",
+        "EMAIL": "Email",
+        "MOBILE":"Mobile",
+        "BIRTHDAY":"Birthday",
+        "STREET_NAME":"Street Name",
+        "HOUSE_NUMBER":"House number",
+        "ADDITION_ADDRESS":"Additional adress info",
+        "ZIP":"Zip",
+        "CITY":"City",
+        "DELIVERY_ADDRESS_SAME":"Delivery Address same as billing address",
+        "SUBMIT_BUTTON":"Book Analysis"
+    },
+    "REGISTER": {
+        "TITLE":"REGISTER",
+        "LANGUAGE":"Language",
+        "COUNTRY":"Country",
+        "PROFILE": "Mr/Mrs",
+        "FIRSTNAME":"Firstname",
+        "LASTNAME":"Lastname",
+        "EMAIL":"Email",
+        "MOBILE":"Mobile",
+        "ACTIVATION_CODE":"Activation Code",
+        "AGREE":"I Agree to the Privacy Policy",
+        "REGISTER_BTN":"REGISTER",
+        "LOGIN_BTN":"LOGIN"
+    }
+}

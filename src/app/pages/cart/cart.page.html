@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-modal [isOpen]="ionModelOpen">
+  <ion-modal [isOpen]="ionModelOpen" [swipeToClose]="false" [backdropDismiss]="false" [keyboardClose]="false">
     <ng-template>
       <ion-content>
         <iframe style="width: 100%;
@@ -26,8 +26,8 @@
   <form>
     <ion-row>
       <ion-item lines="none" class="form-group ion-no-padding">
-        <ion-label for="promo code (If available)" position="floating">Promo code (If available)</ion-label>
-        <ion-input inputmode="number" id="promo code (If available)" autocapitalize="off"></ion-input>
+        <ion-input inputmode="number" id="promocode" placeholder="Promo code (If available)" autocapitalize="off">
+        </ion-input>
       </ion-item>
       <ion-col>
         <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">Apply</ion-button>
@@ -42,15 +42,7 @@
     <ion-row class="admssion-fee-wrap" *ngFor="let item of products_data">
       <ion-col class="formcart-title admssion-fee-title">{{item?.productDescription ? item?.productDescription : '-'}}</ion-col>
       <ion-col class="formcart-value admssion-fee-value">{{item?.packageAmount ? item?.packageAmount : 0}} €</ion-col>
-    </ion-row>
-    <!-- <ion-row class="itrading-box-wrap">
-      <ion-col class="formcart-title itrading-box-title">iTrading Box</ion-col>
-      <ion-col class="formcart-value itrading-box-value">59,00 €</ion-col>
-    </ion-row>
-    <ion-row class="delivery-box-wrap">
-      <ion-col class="formcart-title delivery-title">Delivery</ion-col>
-      <ion-col class="formcart-value delivery-value">0,00 €</ion-col>
-    </ion-row> -->
+    </ion-row> 
     <ion-row class="total net-box-wrap">
       <ion-col class="formcart-title total net-title">Total Net Amount</ion-col>
       <ion-col class="formcart-value total net-value">{{vat?.totalNet ? vat?.totalNet : 0}} €</ion-col>

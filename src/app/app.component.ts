@@ -29,7 +29,11 @@ export class AppComponent implements OnInit {
       .getPreferredLanguage()
       .then((res) => {
         console.log(res);
-        this._initTranslate(res.value);
+        if (res.value.indexOf("en") != -1) {
+          this._initTranslate("en");
+        } else {
+          this._initTranslate("de");
+        }
         
       })
       .catch((e) => {
