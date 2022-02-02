@@ -45,24 +45,21 @@ export class UtilService {
   }
 
   setStorage = async (key: string, data: any) => {
-    await Storage.set({
-      key: key,
-      value: data,
-    });
+    await localStorage.setItem(key, data);
   };
 
   getStorage = async (key: string) => {
-    const { value } = await Storage.get({ key: key });
+    const  value  = await localStorage.getItem(key);
     return value;
   };
 
   removeStorage = async (key: string) => {
-    await Storage.remove({ key: key });
+    await localStorage.removeItem(key);
   };
 
   getToken() {
-    if (localStorage.getItem("CapacitorStorage.AUTH_TOKEN")) {
-      return localStorage.getItem("CapacitorStorage.AUTH_TOKEN");
+    if (localStorage.getItem("AUTH_TOKEN")) {
+      return localStorage.getItem("AUTH_TOKEN");
     } else {
       return null;
     }

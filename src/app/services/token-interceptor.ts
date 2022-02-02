@@ -7,7 +7,8 @@ import { Storage } from "@capacitor/storage";
 export class TokenInterceptor implements HttpInterceptor {
     constructor(private authenticationService: UtilService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let token = this.authenticationService.getToken(); 
+      let token = this.authenticationService.getToken(); 
+      console.log(token);
         if (token) {
             const cloned = request.clone({
               headers: request.headers.set(
