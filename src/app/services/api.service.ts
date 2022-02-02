@@ -41,11 +41,37 @@ export class ApiService extends EnvironmentService {
     return await this.http.post(this.apiUrl + api.CHECK_ZIP, body).toPromise();
   }
 
+  async checkEmail(email: string) {
+    let body={email};
+    return await this.http.post(this.apiUrl + api.CHECK_EMAIL, body).toPromise();
+  }
+
+  async checkTaxId(countryId: number,taxId:string) {
+    let body={
+      countryId:countryId ? Number(countryId) : null,
+      taxId:taxId ? taxId.toString() : null
+    };
+    return await this.http.post(this.apiUrl + api.CHECK_TAX_ID, body).toPromise();
+  }
+
   async updateProfile(body: any = {}) {
     return await this.http.post(this.apiUrl + api.UPDATE_PROFILE, body).toPromise();
   }
 
-  async getPlanDetail() {
-     return await this.http.get(this.apiUrl + api.GET_PLAN).toPromise();
+  async getPlanDetail(selected_plan:string) {
+    let body={selected_plan}
+     return await this.http.post(this.apiUrl + api.GET_PLAN,body).toPromise();
+  }
+
+  async createPayment(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.CREATE_PAYMENT, body).toPromise();
+  }
+
+  async paymentStatus(body:any  = {}) {
+    return await this.http.post(this.apiUrl + api.CHECK_PAYMENT_STATUS, body).toPromise();
+  }
+
+  async proceedRegistration(body:any  = {}) {
+    return await this.http.post(this.apiUrl + api.PROCEED_REGISTRATION, body).toPromise();
   }
 }

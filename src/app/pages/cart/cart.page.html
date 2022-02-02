@@ -13,8 +13,16 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
+  <ion-modal [isOpen]="ionModelOpen">
+    <ng-template>
+      <ion-content>
+        <iframe style="width: 100%;
+    height: 100vh;" class="webPage" frameborder="0" name="eventsPage" [src]="paymentUrl">
+        </iframe>
+    </ion-content>
+    </ng-template>
+  </ion-modal>
   <form>
     <ion-row>
       <ion-item lines="none" class="form-group ion-no-padding">
@@ -31,41 +39,41 @@
       <ion-col class="formcart-title net-amount-title">Item</ion-col>
       <ion-col class="formcart-value net-amount-value">Netto Amount</ion-col>
     </ion-row>
-    <ion-row class="admssion-fee-wrap">
-      <ion-col class="formcart-title admssion-fee-title">Admission Fee</ion-col>
-      <ion-col class="formcart-value admssion-fee-value">99,00 €</ion-col>
+    <ion-row class="admssion-fee-wrap" *ngFor="let item of products_data">
+      <ion-col class="formcart-title admssion-fee-title">{{item?.productDescription ? item?.productDescription : '-'}}</ion-col>
+      <ion-col class="formcart-value admssion-fee-value">{{item?.packageAmount ? item?.packageAmount : 0}} €</ion-col>
     </ion-row>
-    <ion-row class="itrading-box-wrap">
+    <!-- <ion-row class="itrading-box-wrap">
       <ion-col class="formcart-title itrading-box-title">iTrading Box</ion-col>
       <ion-col class="formcart-value itrading-box-value">59,00 €</ion-col>
     </ion-row>
     <ion-row class="delivery-box-wrap">
       <ion-col class="formcart-title delivery-title">Delivery</ion-col>
       <ion-col class="formcart-value delivery-value">0,00 €</ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-row class="total net-box-wrap">
       <ion-col class="formcart-title total net-title">Total Net Amount</ion-col>
-      <ion-col class="formcart-value total net-value">0,00 €</ion-col>
+      <ion-col class="formcart-value total net-value">{{vat?.totalNet ? vat?.totalNet : 0}} €</ion-col>
     </ion-row>
     <ion-row class="vat-box-wrap">
       <ion-col class="formcart-title vat-title">VAT</ion-col>
-      <ion-col class="formcart-value vat-value">0.00 €</ion-col>
+      <ion-col class="formcart-value vat-value">{{vat?.totalVat ? vat?.totalVat : 0}} €</ion-col>
     </ion-row>
     <ion-row class="total-box-wrap">
       <ion-col class="formcart-title total-title">Total</ion-col>
-      <ion-col class="formcart-value total-value">158,00 €</ion-col>
+      <ion-col class="formcart-value total-value">{{vat?.totalAmount ? vat?.totalAmount : 0}} €</ion-col>
     </ion-row>
 
     <ion-item lines="none" class="form-group ion-no-padding">
-      <ion-checkbox slot="start" mode="md"></ion-checkbox>
+      <ion-checkbox slot="start" mode="md" [(ngModel)]="termsConditionStatus"></ion-checkbox>
       <ion-label>I Agree to Terms and Conditions</ion-label>
     </ion-item>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <ion-checkbox slot="start" mode="md"></ion-checkbox>
+      <ion-checkbox slot="start" mode="md" [(ngModel)]="privacyPolicyStatus"></ion-checkbox>
       <ion-label>I Agree to the Privacy Policy</ion-label>
     </ion-item>
 
-    <ion-button (click)="openCart()" class="btn" color="danger" expand="block">BUY NOW</ion-button>
+    <ion-button (click)="buyCart()" class="btn" color="danger" expand="block">BUY NOW</ion-button>
 
   </div>
 </ion-content>

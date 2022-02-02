@@ -3,7 +3,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { Network } from '@capacitor/network';
 import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
-import { session } from '../utility/message';
+
 @Injectable({
   providedIn: "root",
 })

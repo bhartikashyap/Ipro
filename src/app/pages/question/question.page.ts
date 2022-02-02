@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'; 
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -19,7 +19,8 @@ export class QuestionPage implements OnInit {
     private menuCtrl: MenuController,
     private _translate: TranslateService,
     private utility: UtilService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private navController: NavController,
   ) {}
 
   ngOnInit() {
@@ -28,11 +29,16 @@ export class QuestionPage implements OnInit {
 
   getQuestions = async () => {
     let result: any = await this.apiService.getQuestions();
-    this.questions = result.questions;
+    this.questions = result.questions ? result.questions : null;
     console.log(result);
   }
 
   nextQuestion = async () => {
     this.questionIndex += 1;
+  }
+
+  goBack() {
+    // this.navController.back();
+    this.router.navigate(["/area-of-interest"]);
   }
 }

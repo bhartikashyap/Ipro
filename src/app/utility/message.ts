@@ -42,4 +42,5 @@ export var session = {
   AUTH_TOKEN: 'AUTH_TOKEN',
   AUTH_STATUS: 'AUTH_STATUS',
   AUTH_USER: 'AUTH_USER',
+    BOOKING: 'AUTH_BOOKING',
 };
