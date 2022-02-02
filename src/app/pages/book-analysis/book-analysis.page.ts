@@ -100,6 +100,9 @@ export class BookAnalysisPage implements OnInit {
       company: [false],
     });
     this.submitted = false;
+    this.deliveryAddress = true;
+    this.private = false;
+    this.company = false;
     this.validationMessage = {
       selected_plan: [{ type: "required", message: message.required }],
       role: [{ type: "required", message: message.required }],

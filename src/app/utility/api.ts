@@ -12,3 +12,4 @@ export const CHECK_TAX_ID = "ipro_validate_tax_id";
 export const CREATE_PAYMENT = "ipro_payment";
 export const CHECK_PAYMENT_STATUS = "ipro_check_payment_status";
 export const PROCEED_REGISTRATION = "ipro_proceed_registration";
+export const SUBMIT_ANSWER = "ipro_save_answers";

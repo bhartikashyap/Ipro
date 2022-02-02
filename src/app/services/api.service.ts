@@ -74,4 +74,8 @@ export class ApiService extends EnvironmentService {
   async proceedRegistration(body:any  = {}) {
     return await this.http.post(this.apiUrl + api.PROCEED_REGISTRATION, body).toPromise();
   }
+
+  async submitAnswer(body:any  = {}) {
+    return await this.http.post(this.apiUrl + api.SUBMIT_ANSWER, body).toPromise();
+  }
 }
