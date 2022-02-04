@@ -21,9 +21,11 @@ export class RegisterPage implements OnInit {
   countires: any = [];
   validationMessage: any;
   country: any = null;
+  selectedCountry: any;
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
+    private modalController: ModalController,
     private _translate: TranslateService,
     private utility: UtilService,
     private apiService: ApiService,
@@ -36,21 +38,37 @@ export class RegisterPage implements OnInit {
   }
   async getCountries() {
     let result: any = await this.apiService.getCountryList();
-    console.log(result);
     this.countires = result.countries;
+    for (const item of this.countires) {
+      if (item.countryCode == "DE") {
+        this.selectedCountry = item;
+        this.form.get("country").setValue(item.countryId);
+        this.form.get("countryName").setValue(item.countryName);
+        this.form.get("phoneCode").setValue(item.phoneCode);
+      }
+    }
   }
   async openModal() {
-    // const modal = await this.modalController.create({
-    //   component: SearchComponent,
-    //   cssClass: 'my-search-class',
-    // });
-    // return await modal.present();
+    const modal = await this.modalController.create({
+      component: SearchComponent,
+      cssClass: "my-countrysearch-class",
+      componentProps: {
+        countries: this.countires,
+      },
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if (data.dismissed == false && data.item) {
+      this.selectedCountry = data.item;
+      this.form.get("country").setValue(data.item.countryId);
+      this.form.get("countryName").setValue(data.item.countryName);
+      this.form.get("phoneCode").setValue(data.item.phoneCode);
+    } 
   }
 
   countryChange(event: any) { 
-    console.log(event);
     if (event) {
-this.form.get('phoneCode').setValue(event.phoneCode);
+      this.form.get('phoneCode').setValue(event.phoneCode);
     } 
   }
 
@@ -88,17 +106,18 @@ this.form.get('phoneCode').setValue(event.phoneCode);
   }
   initForm() {
     this.form = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.maxLength(100)]],
-      lastName: ['', [Validators.required, Validators.maxLength(100)]],
-      honor: ['', [Validators.required]],
-      sponsorId: ['', [Validators.required, Validators.maxLength(5)]],
-      email: ['', [Validators.required, Validators.pattern(pattern.email)]],
-      language: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      phoneCode: [''],
-      notificationToken: [''],
-      agree: [false, [Validators.requiredTrue]]
+      firstName: ["", [Validators.required, Validators.maxLength(100)]],
+      lastName: ["", [Validators.required, Validators.maxLength(100)]],
+      honor: ["", [Validators.required]],
+      sponsorId: ["", [Validators.required, Validators.maxLength(5)]],
+      email: ["", [Validators.required, Validators.pattern(pattern.email)]],
+      language: ["", [Validators.required]],
+      country: ["", [Validators.required]],
+      countryName: ["", [Validators.required]],
+      phone: ["", [Validators.required]],
+      phoneCode: [""],
+      notificationToken: [""],
+      agree: [false, [Validators.requiredTrue]],
     });
 
     this.validationMessage = {

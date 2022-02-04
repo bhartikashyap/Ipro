@@ -75,7 +75,9 @@
     <ion-row>
       <ion-col size="3" style="padding-left: 0px;">
         <ion-item lines="none" class="form-group ion-no-padding country-group">
-          <img src="assets/img/picture.png" class="country-icon" />
+          <!-- <img src="assets/img/picture.png" class="country-icon" /> -->
+          <span class="flag-icon flag-icon-{{selectedCountry?.countryCode.toLowerCase()}}" style="font-size: 17px;
+    top: -2px;"></span>
           <ion-label class="country-label">{{profile?.phoneCode}}</ion-label>
         </ion-item>
       </ion-col>
