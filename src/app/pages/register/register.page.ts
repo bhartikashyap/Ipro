@@ -48,10 +48,32 @@ export class RegisterPage implements OnInit {
       }
     }
   }
+
+  async selectCountry() {
+    const modal = await this.modalController.create({
+      component: SearchComponent,
+      cssClass: "my-countrysearch-class",
+      backdropDismiss: true,
+      showBackdrop: true,
+      animated: false,
+      componentProps: {
+        countries: this.countires,
+      },
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if (data.dismissed == false && data.item) {
+      this.selectedCountry = data.item;
+      this.form.get("phoneCode").setValue(data.item.phoneCode);
+    } 
+  }
   async openModal() {
     const modal = await this.modalController.create({
       component: SearchComponent,
       cssClass: "my-countrysearch-class",
+      showBackdrop: true,
+      backdropDismiss: true,
+      animated: false,
       componentProps: {
         countries: this.countires,
       },
@@ -78,7 +100,8 @@ export class RegisterPage implements OnInit {
       this.submitted = false;
       let params: any = this.form.getRawValue();
       let loading = await this.utility.presentLoading();
-      params.country = params.country.countryId;
+      params.notificationToken = "Test";
+      delete params.agree;
       this.apiService
         .registerUser(params)
         .then((res: any) => {
