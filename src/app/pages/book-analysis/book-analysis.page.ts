@@ -1,12 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { NavController } from "@ionic/angular";
+import { ModalController, NavController } from "@ionic/angular";
 import { ApiService } from "src/app/services/api.service";
 import { UtilService } from "src/app/services/util.service";
 import { message, session } from "src/app/utility/message";
 import { pattern } from "src/app/utility/pattern";
 import { format, parseISO } from "date-fns";
+import { SearchComponent } from "../register/search/search.component";
+import { PhoneNumberValidator } from "src/app/utility/phone-number-validator";
 @Component({
   selector: "app-book-analysis",
   templateUrl: "./book-analysis.page.html",
@@ -32,12 +34,13 @@ export class BookAnalysisPage implements OnInit {
     private navController: NavController,
     private fb: FormBuilder,
     private utility: UtilService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private modalController: ModalController
   ) {}
 
   async ngOnInit() {
     this.initForm();
-   
+
     await this.getProfile();
     await this.getCountries();
   }
@@ -45,8 +48,15 @@ export class BookAnalysisPage implements OnInit {
     let result: any = await this.apiService.getCountryList();
     this.countires = result.countries;
     for (const item of this.countires) {
-      if (item.countryId == this.profile.countryId) {
-        this.selectedCountry = item; 
+      if (item.countryCode == "DE") {
+        this.selectedCountry = item;
+        this.form.get("phoneCode").setValue(item.phoneCode);
+        this.form
+          .get("phone")
+          .setValidators(
+            PhoneNumberValidator(this.selectedCountry.countryCode)
+          );
+        this.form.get("phone").updateValueAndValidity();
       }
     }
   }
@@ -86,10 +96,7 @@ export class BookAnalysisPage implements OnInit {
         ],
       ],
       country: ["", [Validators.required]],
-      phone: [
-        "",
-        [Validators.required, Validators.pattern(pattern.phoneNumber)],
-      ],
+      phone: ["", [Validators.required]],
       phoneCode: ["", [Validators.required]],
       dob: ["", [Validators.required]],
       additionalAddressInfo: ["", [Validators.maxLength(200)]],
@@ -140,6 +147,7 @@ export class BookAnalysisPage implements OnInit {
       phone: [
         { type: "required", message: message.required },
         { type: "pattern", message: message.phoneNumber },
+        { type: "wrongNumber", message: message.phoneNumber },
       ],
       phoneCode: [
         { type: "required", message: message.required },
@@ -214,6 +222,29 @@ export class BookAnalysisPage implements OnInit {
     this.deliveryAddress = true;
   }
 
+  async selectCountry() {
+    const modal = await this.modalController.create({
+      component: SearchComponent,
+      cssClass: "my-countrysearch-class",
+      backdropDismiss: true,
+      showBackdrop: true,
+      animated: false,
+      componentProps: {
+        countries: this.countires,
+      },
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if (data.dismissed == false && data.item) {
+      this.selectedCountry = data.item;
+      this.form.get("phoneCode").setValue(data.item.phoneCode);
+      this.form
+        .get("phone")
+        .setValidators(PhoneNumberValidator(this.selectedCountry.countryCode));
+      this.form.get("phone").updateValueAndValidity();
+    }
+  }
+
   privateChange(event: any) {
     this.form.get("private").setValue(this.private);
     if (this.private) {
@@ -239,9 +270,7 @@ export class BookAnalysisPage implements OnInit {
       this.form.get("role").setValue("Company");
       this.form.get("private").updateValueAndValidity();
       this.form.get("role").updateValueAndValidity();
-      this.form
-        .get("taxId")
-        .setValidators([Validators.required, Validators.maxLength(200)]);
+      this.form.get("taxId").setValidators([Validators.maxLength(200)]);
       this.form.get("taxId").updateValueAndValidity();
       this.form
         .get("companyName")

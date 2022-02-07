@@ -1,51 +1,74 @@
 <ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<img (click)="goBack()" class="back-icon" src="assets/img/back.png">
-		</ion-buttons>
-		<ion-title></ion-title>
-		<ion-buttons slot="end">
-			<img class="bell-icon" src="assets/img/bell.png">
-			<ion-avatar>
-				<img src="assets/img/profile.png">
-			</ion-avatar>
-		</ion-buttons>
-	</ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img (click)="goBack()" class="back-icon" src="assets/img/back.png" />
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <img class="bell-icon" src="assets/img/bell.png" />
+      <ion-avatar>
+        <img src="assets/img/profile.png" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-	<form class="form form1" *ngIf="questions.length > 0">
-		<h6 class="question-text">{{questions[questionIndex].question}}</h6> 
-		<div *ngIf="questions[questionIndex].possibleAnswers === 'one'">
-			<div class="form-group" *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;">
-				<div class="custom-control custom-radio">
-					<input type="radio" [(ngModel)]="formData.answer" class="custom-control-input" name="radio" id="radio{{i}}" value="{{item.value}}">
-					<label class="custom-control-label" for="radio{{i}}">
-						<span class="num">{{(i + 1)}}</span> {{item.value}}
-					</label>
-				</div>
-			</div>
-		</div>
-		<div *ngIf="questions[questionIndex].possibleAnswers === 'multiple'">
-		  <div class="form-group" *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;">
-		    <div class="custom-control custom-radio custom-checkbox">
-		      <input type="checkbox"  class="custom-control-input" name="checkbox" id="checkbox{{i}}"  [(ngModel)]="item.selected" 
-       (ngModelChange)="selectCheckbox(item.selected, item)">
-		      <label class="custom-control-label" for="checkbox{{i}}">
-		        <span class="num">{{(i + 1)}}</span> {{item.value}}
-		      </label>
-		    </div>
-		  </div>
-		</div>
-		<div *ngIf="questions[questionIndex].possibleAnswers === 'text'">
-			<input type="text" [(ngModel)]="formData.answer" name="text" placeholder=" Please specify here" class="form-control">
-		</div>
-		<div *ngIf="errorMessage" style="color: red;">
-			{{errorMessage}}
-		</div>
-		<div class="text-center">
-			<a class="btn btn1" (click)="nextQuestion()">
-				{{submitStatus ? 'Complete' : 'Next'}}
-			</a>
-		</div>
-	</form>
+  <form class="form form1" *ngIf="questions.length > 0">
+    <h6 class="question-text">{{questions[questionIndex].question}}</h6>
+    <div *ngIf="questions[questionIndex].possibleAnswers === 'one'">
+      <div
+        class="form-group"
+        *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
+      >
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            [(ngModel)]="formData.answer"
+            class="custom-control-input"
+            name="radio"
+            id="radio{{i}}"
+            value="{{item.value}}"
+          />
+          <label class="custom-control-label" for="radio{{i}}">
+            <span class="num">{{(i + 1)}}</span> {{item.value}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="questions[questionIndex].possibleAnswers === 'multiple'">
+      <div
+        class="form-group"
+        *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
+      >
+        <div class="custom-control custom-radio custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            name="checkbox"
+            id="checkbox{{i}}"
+            [(ngModel)]="item.selected"
+            (ngModelChange)="selectCheckbox(item.selected, item)"
+          />
+          <label class="custom-control-label" for="checkbox{{i}}">
+            <span class="num">{{(i + 1)}}</span> {{item.value}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="questions[questionIndex].possibleAnswers === 'text'">
+      <input
+        type="text"
+        [(ngModel)]="formData.answer"
+        name="text"
+        placeholder=" Please specify here"
+        class="form-control"
+      />
+    </div>
+    <div *ngIf="errorMessage" style="color: red">{{errorMessage}}</div>
+    <div class="text-center">
+      <a class="btn btn1" (click)="nextQuestion()">
+        {{submitStatus ? 'Complete' : 'Next'}}
+      </a>
+    </div>
+  </form>
 </ion-content>

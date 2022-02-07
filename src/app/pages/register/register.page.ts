@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { IonicSelectableComponent } from '@ionic-selectable/angular';
-import { MenuController, ModalController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
-import { ApiService } from 'src/app/services/api.service';
-import { UtilService } from 'src/app/services/util.service';
-import { message, session } from 'src/app/utility/message';
-import { pattern } from 'src/app/utility/pattern';
-import { SearchComponent } from './search/search.component';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { IonicSelectableComponent } from "@ionic-selectable/angular";
+import { MenuController, ModalController } from "@ionic/angular";
+import { TranslateService } from "@ngx-translate/core";
+import { ApiService } from "src/app/services/api.service";
+import { UtilService } from "src/app/services/util.service";
+import { message, session } from "src/app/utility/message";
+import { pattern } from "src/app/utility/pattern";
+import { PhoneNumberValidator } from "src/app/utility/phone-number-validator";
+import { SearchComponent } from "./search/search.component";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: "app-register",
+  templateUrl: "./register.page.html",
+  styleUrls: ["./register.page.scss"],
 })
 export class RegisterPage implements OnInit {
   form: FormGroup;
@@ -45,6 +46,12 @@ export class RegisterPage implements OnInit {
         this.form.get("country").setValue(item.countryId);
         this.form.get("countryName").setValue(item.countryName);
         this.form.get("phoneCode").setValue(item.phoneCode);
+        this.form
+          .get("phone")
+          .setValidators(
+            PhoneNumberValidator(this.selectedCountry.countryCode)
+          );
+        this.form.get("phone").updateValueAndValidity();
       }
     }
   }
@@ -65,8 +72,13 @@ export class RegisterPage implements OnInit {
     if (data.dismissed == false && data.item) {
       this.selectedCountry = data.item;
       this.form.get("phoneCode").setValue(data.item.phoneCode);
-    } 
+      this.form
+        .get("phone")
+        .setValidators(PhoneNumberValidator(this.selectedCountry.countryCode));
+      this.form.get("phone").updateValueAndValidity();
+    }
   }
+
   async openModal() {
     const modal = await this.modalController.create({
       component: SearchComponent,
@@ -85,13 +97,17 @@ export class RegisterPage implements OnInit {
       this.form.get("country").setValue(data.item.countryId);
       this.form.get("countryName").setValue(data.item.countryName);
       this.form.get("phoneCode").setValue(data.item.phoneCode);
-    } 
+      this.form
+        .get("phone")
+        .setValidators(PhoneNumberValidator(this.selectedCountry.countryCode));
+      this.form.get("phone").updateValueAndValidity();
+    }
   }
 
-  countryChange(event: any) { 
+  countryChange(event: any) {
     if (event) {
-      this.form.get('phoneCode').setValue(event.phoneCode);
-    } 
+      this.form.get("phoneCode").setValue(event.phoneCode);
+    }
   }
 
   async submit() {
@@ -102,6 +118,7 @@ export class RegisterPage implements OnInit {
       let loading = await this.utility.presentLoading();
       params.notificationToken = "Test";
       delete params.agree;
+      // console.log(params);
       this.apiService
         .registerUser(params)
         .then((res: any) => {
@@ -112,7 +129,7 @@ export class RegisterPage implements OnInit {
             this.utility.setStorage(session.AUTH_STATUS, 1);
             this.utility.setStorage(session.AUTH_TOKEN, token);
             this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
-            this.router.navigate(['/area-of-interest']);
+            this.router.navigate(["/area-of-interest"]);
           } else {
             this.utility.presentToast(res.msg);
           }
@@ -121,7 +138,6 @@ export class RegisterPage implements OnInit {
           console.log(err);
           loading.dismiss();
         });
-      console.log(params);
     }
   }
   get formControls() {
@@ -131,7 +147,7 @@ export class RegisterPage implements OnInit {
     this.form = this.formBuilder.group({
       firstName: ["", [Validators.required, Validators.maxLength(100)]],
       lastName: ["", [Validators.required, Validators.maxLength(100)]],
-      honor: ["", [Validators.required]],
+      honor: ["", []],
       sponsorId: ["", [Validators.required, Validators.maxLength(5)]],
       email: ["", [Validators.required, Validators.pattern(pattern.email)]],
       language: ["", [Validators.required]],
@@ -145,26 +161,29 @@ export class RegisterPage implements OnInit {
 
     this.validationMessage = {
       firstName: [
-        { type: 'required', message: message.required },
-        { type: 'maxlength', message: message.maxLength(100) },
+        { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(100) },
       ],
       lastName: [
-        { type: 'required', message: message.required },
-        { type: 'maxlength', message: message.maxLength(100) },
+        { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(100) },
       ],
-      honor: [{ type: 'required', message: message.required }],
-      agree: [{ type: 'required', message: message.required }],
+      honor: [{ type: "required", message: message.required }],
+      agree: [{ type: "required", message: message.required }],
       sponsorId: [
-        { type: 'required', message: message.required },
-        { type: 'maxlength', message: message.maxLength(5) },
+        { type: "required", message: message.required },
+        { type: "maxlength", message: message.maxLength(5) },
       ],
       email: [
-        { type: 'required', message: message.required },
-        { type: 'pattern', message: message.email },
+        { type: "required", message: message.required },
+        { type: "pattern", message: message.email },
       ],
-      language: [{ type: 'required', message: message.required }],
-      country: [{ type: 'required', message: message.required }],
-      phone: [{ type: 'required', message: message.required }],
+      language: [{ type: "required", message: message.required }],
+      country: [{ type: "required", message: message.required }],
+      phone: [
+        { type: "required", message: message.required },
+        { type: "wrongNumber", message: message.phoneNumber },
+      ],
     };
   }
 }
