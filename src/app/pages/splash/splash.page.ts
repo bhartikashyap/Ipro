@@ -18,7 +18,7 @@ export class SplashPage implements OnInit {
     let sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
     setTimeout(() => {
       if (sessionRes) {
-        this.router.navigate(['/area-of-interest']);
+        this.router.navigate(["/tabs/area-of-interest"]);
       } else {
         this.router.navigate(['/login']);
       }

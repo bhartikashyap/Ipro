@@ -18,6 +18,7 @@
     <div *ngIf="questions[questionIndex].possibleAnswers === 'one'">
       <div
         class="form-group"
+        [ngClass]="{'active-q': formData.answer == item.value}"
         *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
       >
         <div class="custom-control custom-radio">

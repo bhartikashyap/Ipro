@@ -211,7 +211,7 @@ export class BookAnalysisPage implements OnInit {
   }
 
   openCart() {
-    this.router.navigate(["/cart"]);
+    this.router.navigate(["/tabs/cart"]);
   }
 
   reset() {

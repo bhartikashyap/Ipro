@@ -7,6 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
+  <div class="p-20">
   <ion-item lines="none" class="form-group ion-no-padding">
     <ion-input
       inputmode="text"
@@ -16,6 +17,7 @@
       (ionInput)="searchCountry($event)"
     ></ion-input>
   </ion-item>
+    </div>
   <ion-list>
     <ion-radio-group
       value="selectedCountry"
@@ -37,4 +39,5 @@
       </ion-item>
     </ion-radio-group>
   </ion-list>
+
 </ion-content>

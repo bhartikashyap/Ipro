@@ -34,26 +34,16 @@ h1 {
 .mb30 {
   margin-bottom: 30px !important;
 }
-
-ion-toolbar {
-  // padding: 7px !important;
-
-  .bell-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
-  }
-
-  img.back-icon {
-    width: 30px;
-    height: 30px;
-  }
-}
+ 
 
 ion-content {
   padding: 15px;
   --padding: 15px;
 }
+.form-group.active-q {
+  background: #12243b !important;
+}
+
 form {
   padding: 15px;
   .form-group {
@@ -160,20 +150,7 @@ input.form-control {
   margin-top: 1.5rem !important;
   text-align: center;
 }
-ion-toolbar {
-  // padding: 7px !important;
-  .bell-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
-  }
-
-  img.back-icon {
-    width: 30px;
-    height: 30px;
-  }
-}
-
+ 
 .form1 .custom-checkbox {
   padding-left: 0;
 }

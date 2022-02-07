@@ -120,6 +120,6 @@ export class QuestionPage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(["/area-of-interest"]);
+    this.router.navigate(["/tabs/area-of-interest"]);
   }
 }

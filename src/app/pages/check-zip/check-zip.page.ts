@@ -67,7 +67,7 @@ export class CheckZipPage implements OnInit {
               "Currently no one available in this zipcode.", ['Ok']
             );
           } else {
-            this.router.navigate(["/book-analysis"]);
+            this.router.navigate(["/tabs/book-analysis"]);
           }
         })
         .catch((err) => {

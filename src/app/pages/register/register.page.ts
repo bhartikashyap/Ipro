@@ -129,7 +129,7 @@ export class RegisterPage implements OnInit {
             this.utility.setStorage(session.AUTH_STATUS, 1);
             this.utility.setStorage(session.AUTH_TOKEN, token);
             this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
-            this.router.navigate(["/area-of-interest"]);
+            this.router.navigate(["/tabs/area-of-interest"]);
           } else {
             this.utility.presentToast(res.msg);
           }

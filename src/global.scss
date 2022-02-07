@@ -36,3 +36,22 @@
   color: red;
   font-size: 12px;
 }
+.tabs-inner {
+  contain: unset !important;
+  position: initial !important;
+}
+
+ion-toolbar {
+
+  // padding: 7px !important;
+  .bell-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+  }
+
+  img.back-icon {
+     width: 25px;
+     height: 25px;
+  }
+}

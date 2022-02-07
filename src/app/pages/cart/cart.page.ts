@@ -117,7 +117,7 @@ export class CartPage implements OnInit {
   }
 
   openQuestion(){
-    this.router.navigate(["/question"]);
+    this.router.navigate(["/tabs/question"]);
   }
 
   resetCart(){

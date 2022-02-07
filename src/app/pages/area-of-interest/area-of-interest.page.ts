@@ -21,14 +21,14 @@ export class AreaOfInterestPage implements OnInit {
   }
 
   openPersonalized(){
-     this.router.navigate(['/personalized-micronutrition'])
+     this.router.navigate(['/tabs/personalized-micronutrition'])
   }
 
    openIntelligent(){
-     this.router.navigate(['/inteligent-trading'])
+     this.router.navigate(["/tabs/inteligent-trading"]);
   }
 
    openPartnership(){
-     this.router.navigate(['/ipro-partnership'])
+     this.router.navigate(["/tabs/ipro-partnership"]);
   }
 }
