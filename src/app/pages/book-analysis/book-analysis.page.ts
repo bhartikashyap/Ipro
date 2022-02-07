@@ -20,6 +20,8 @@ export class BookAnalysisPage implements OnInit {
   private = false;
   company = false;
   selectedDate: any;
+  countires: any = [];
+  selectedCountry: any;
   get formControl() {
     return this.form.controls;
   }
@@ -33,18 +35,28 @@ export class BookAnalysisPage implements OnInit {
     private apiService: ApiService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.initForm();
-    this.getProfile();
+   
+    await this.getProfile();
+    await this.getCountries();
   }
-
+  async getCountries() {
+    let result: any = await this.apiService.getCountryList();
+    this.countires = result.countries;
+    for (const item of this.countires) {
+      if (item.countryId == this.profile.countryId) {
+        this.selectedCountry = item; 
+      }
+    }
+  }
   async getProfile() {
     let loading = await this.utility.presentLoading();
     let result: any = await this.apiService.getProfile();
     loading.dismiss();
-    if(result.status == 1){
+    if (result.status == 1) {
       this.profile = result.data.profile ? result.data.profile : null;
-      if(this.profile){
+      if (this.profile) {
         this.form.get("email").setValue(this.profile.userEmail);
         this.form.get("phone").setValue(this.profile.phone);
         this.form.get("phoneCode").setValue(this.profile.phoneCode);
@@ -78,10 +90,7 @@ export class BookAnalysisPage implements OnInit {
         "",
         [Validators.required, Validators.pattern(pattern.phoneNumber)],
       ],
-      phoneCode: [
-        "",
-        [Validators.required],
-      ],
+      phoneCode: ["", [Validators.required]],
       dob: ["", [Validators.required]],
       additionalAddressInfo: ["", [Validators.maxLength(200)]],
       delivery_address_added: [true],
@@ -200,9 +209,9 @@ export class BookAnalysisPage implements OnInit {
   reset() {
     this.form.reset();
     this.submitted = false;
-    this.private=false;
-    this.company=false;
-    this.deliveryAddress=true;
+    this.private = false;
+    this.company = false;
+    this.deliveryAddress = true;
   }
 
   privateChange(event: any) {
@@ -340,8 +349,10 @@ export class BookAnalysisPage implements OnInit {
           return false;
         }
       }
-      params.selected_plan= params.selected_plan ? params.selected_plan : "body analysis",
-      delete params.company;
+      (params.selected_plan = params.selected_plan
+        ? params.selected_plan
+        : "body analysis"),
+        delete params.company;
       delete params.private;
       this.utility.setStorage(session.BOOKING, JSON.stringify(params));
       this.reset();

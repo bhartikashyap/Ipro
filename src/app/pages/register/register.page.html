@@ -25,14 +25,8 @@
       </div>
     </div>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <ionic-selectable [items]="countires" 
-      formControlName="country" placeholder="Country"  
-      [(ngModel)]="country"
-        [ngModelOptions]="{standalone: true}" [hasVirtualScroll]="true" 
-        (ngModelChange)="countryChange($event)" 
-        itemValueField="countryId" itemTextField="countryName" [canSearch]="true">
-      </ionic-selectable>
-
+       <ion-input readonly inputmode="text" formControlName="countryName" id="country"
+        placeholder="{{'REGISTER.COUNTRY' | translate}}" (click)="openModal()" autocapitalize="off"></ion-input>
     </ion-item>
     <div *ngFor="let validation of validationMessage.country">
       <div *ngIf="submitted && formControls['country'].errors" class="validation-message">
@@ -93,14 +87,16 @@
     <ion-row>
 
       <ion-col size="3">
-        <ion-item lines="none" class="form-group ion-no-padding country-group">
-          <img src="assets/img/picture.png" class="country-icon">
+        <ion-item lines="none" class="form-group ion-no-padding country-group" (click)="selectCountry()">
+          <!-- <img src="assets/img/picture.png" class="country-icon"> -->
+           <span class="flag-icon flag-icon-{{selectedCountry?.countryCode.toLowerCase()}}" style="font-size: 17px;
+    top: -2px;"></span>
           <label class="country-label">{{form.get('phoneCode').value}}</label>
         </ion-item>
       </ion-col>
       <ion-col size="9">
         <ion-item lines="none" class="form-group ion-no-padding">
-          <ion-input inputmode="number" id="mobile-number" formControlName="phone"
+          <ion-input inputmode="number" type="tel" id="mobile-number" formControlName="phone"
             placeholder="{{'REGISTER.MOBILE' | translate}}" autocapitalize="off"></ion-input>
         </ion-item>
       </ion-col>

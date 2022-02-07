@@ -1,18 +1,23 @@
  
+ <ion-header translucent>
+     <ion-toolbar>
+         <ion-title>Select Country</ion-title>
+         <ion-buttons slot="end">
+             <ion-button (click)="closeModal()">Close</ion-button>
+         </ion-buttons>
+     </ion-toolbar>
+ </ion-header>
 <ion-content fullscreen>
-    <form>
-        <ion-item lines="none" class="form-group ion-no-padding">
-            <ion-label for="firstname" position="floating">Firstname</ion-label>
-            <ion-input inputmode="text" id="firstname" autocapitalize="off"></ion-input>
-        </ion-item>
-        <ion-row>
-            <ion-col>
-                <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">Find Now</ion-button>
-            </ion-col>
-            <ion-col>
-                <ion-button (click)="closeModal()" class="btn" color="dark" expand="block">Close</ion-button>
-            </ion-col>
-        </ion-row>
-    </form>
+    <ion-list>
+        <ion-radio-group value="selectedCountry" (ionChange)="selectCountry($event)">
+            <ion-item *ngFor="let item of countries;">
 
+                <ion-label>
+                    <span class="flag-icon flag-icon-{{item.countryCode.toLowerCase()}}" style="font-size: 17px;
+    top: 0px;"></span>
+                    {{item.countryName}}</ion-label>
+                <ion-radio mode="md" slot="start" value="{{item.countryId}}"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
 </ion-content>
