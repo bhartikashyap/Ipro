@@ -7,12 +7,11 @@ import { IonicModule } from "@ionic/angular";
 import { RegisterPageRoutingModule } from "./register-routing.module";
 
 import { RegisterPage } from "./register.page";
-import { SearchComponent } from "./search/search.component";
 import { HttpClient } from "@angular/common/http";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { IonIntlTelInputModule } from "ion-intl-tel-input";
-import { IonicSelectableModule } from "@ionic-selectable/angular";
+import { IonicSelectableModule } from 'ionic-selectable';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -34,7 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     IonicModule,
     RegisterPageRoutingModule,
   ],
-  exports: [SearchComponent],
-  declarations: [RegisterPage, SearchComponent],
+  exports: [],
+  declarations: [RegisterPage],
 })
 export class RegisterPageModule {}

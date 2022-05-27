@@ -1,22 +1,27 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button [routerLink]="[ '/tabs/area-of-interest']">
+    <ion-tab-button [routerLink]="[utilSer.mainDashboard]">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{'tabs.tab1' | translate}}</ion-label>
+    </ion-tab-button>
+    <!-- <ion-tab-button [routerLink]="[ '/tabs/dashboard']">
       <ion-icon name="home"></ion-icon>
       <ion-label>Dashboard</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button [routerLink]="[ '/tabs/shop']">
+    </ion-tab-button> -->
+    
+    <ion-tab-button [routerLink]="['/tabs/shop']">
       <ion-icon name="storefront-outline"></ion-icon>
-      <ion-label>Shop</ion-label>
+      <ion-label>{{'tabs.tab2' | translate}}</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button [routerLink]="[ '/tabs/card']">
+    <ion-tab-button [routerLink]="[ '/tabs/basket']">
       <ion-icon name="cart-outline"></ion-icon>
-      <ion-label>Cart</ion-label>
+      <ion-badge color="primary">{{utilSer.cartNo}}</ion-badge>
+      <ion-label>{{'tabs.tab3' | translate}}</ion-label>
     </ion-tab-button>
     <ion-tab-button (click)="openMenu()">
       <ion-icon name="menu"></ion-icon>
-      <ion-label>Menu</ion-label>
+      <ion-label>{{'tabs.tab4' | translate}}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

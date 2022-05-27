@@ -1,26 +1,28 @@
+<!-- <app-header  [headerTitle]="'PAGES.CART' | translate"  [headerBack]=true  *ngIf="!questionComplete"></app-header> -->
 <ion-header>
-  <ion-toolbar>
+  
+  <ion-toolbar class="ion-toolbar">
     <ion-buttons slot="start">
-      <img (click)="goBack()" class="back-icon" src="assets/img/back.png" />
+      <img (click)="utility.goNext('/questionare')" class="back-icon" src="assets/img/back.png">
     </ion-buttons>
-    <ion-title></ion-title>
-    <ion-buttons slot="end">
-      <img class="bell-icon" src="assets/img/bell.png" />
-      <ion-avatar>
-        <img src="assets/img/profile.png" />
-      </ion-avatar>
-    </ion-buttons>
+    <ion-title>{{'PAGES.QUESTION' | translate}}</ion-title>
+   
+  
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form class="form form1" *ngIf="questions.length > 0">
-    <h6 class="question-text">{{questions[questionIndex].question}}</h6>
+  <form class="form form1" *ngIf="questions.length > 0 &&  !questionComplete" >
+    <h6 class="question-text">{{questions[questionIndex].question}} <span *ngIf="questions[questionIndex].mandatory == 'y'"> *</span></h6>
+    <img src="{{questions[questionIndex].show_image}}"  style="padding: 29px;" *ngIf="questions[questionIndex].show_image != ''" />
+
     <div *ngIf="questions[questionIndex].possibleAnswers === 'one'">
+
       <div
         class="form-group"
         [ngClass]="{'active-q': formData.answer == item.value}"
         *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
       >
+
         <div class="custom-control custom-radio">
           <input
             type="radio"
@@ -46,9 +48,10 @@
             type="checkbox"
             class="custom-control-input"
             name="checkbox"
+            [value]="item.selected"
             id="checkbox{{i}}"
-            [(ngModel)]="item.selected"
-            (ngModelChange)="selectCheckbox(item.selected, item)"
+            [attr.checked]="questions[questionIndex].answer.indexOf(item.value) > -1 ? true : null"
+            (click)="selectCheckbox(i, item,questions[questionIndex])"
           />
           <label class="custom-control-label" for="checkbox{{i}}">
             <span class="num">{{(i + 1)}}</span> {{item.value}}
@@ -56,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="questions[questionIndex].possibleAnswers === 'text'">
+    <div *ngIf="questions[questionIndex].possibleAnswers === 'text' ">
       <input
         type="text"
         [(ngModel)]="formData.answer"
@@ -65,11 +68,76 @@
         class="form-control"
       />
     </div>
+    <div *ngIf="questions[questionIndex].possibleAnswers === 'float' || questions[questionIndex].possibleAnswers === 'int'">
+      <input
+        type="text"
+        [(ngModel)]="formData.answer"
+        name="number"
+        placeholder=" Please specify here"
+        class="form-control"
+      />
+    </div>
     <div *ngIf="errorMessage" style="color: red">{{errorMessage}}</div>
+   
+    
+  </form>
+
+
+  <ion-list *ngIf="questionComplete">
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">
+       
+        <ion-text>
+          <p class="question-content">{{'QUESTIONNAIRE.digitalSign' | translate}}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+ <p style="padding-left:20px"><strong>{{'QUESTIONNAIRE.acceptedBy' | translate}}:</strong></p>
+
+    <div style="display:flex;padding-left:20px" class="question">
+
+  <div >
+    <ion-input type="text" class="form-group" placeholder="Firstname" [(ngModel)]="firstname"  id="firstname" autocapitalize="off">
+    </ion-input>
+    <span style="   padding: 10px;">{{username?.firstname}}</span>
+  </div>
+  <div>
+    <ion-input type="text" placeholder="Family Name"  [(ngModel)]="lastname"  id="lastname" autocapitalize="off">  </ion-input>
+    <span style="   padding: 10px;">{{username?.lastname}}</span>
+  </div>
+ </div>
+  
+    <!-- <ion-item lines="none" class="form-group ion-no-padding" >
+      <ion-input type="text" class="form-group" placeholder="Firstname" [(ngModel)]="firstname"  id="firstname" autocapitalize="off">
+      </ion-input><br>
+      <span>{{username?.firstname}}</span>
+      <ion-input type="text" placeholder="Family Name"  [(ngModel)]="lastname"  id="lastname" autocapitalize="off">  </ion-input>
+
+
+    </ion-item> -->
+    
+      <!-- <ion-item lines="none" class="form-group ion-no-padding" > -->
+        <!-- <div class="ion-text-wrap"> {{username?.lastname}}</div> -->
+
+
+      <!-- <ion-label class="ion-text-wrap" slot="start">{{username?.firstname}}</ion-label> -->
+      <!-- <div class="ion-text-wrap"> {{username?.firstname}}</div> -->
+
+      <!-- <ion-label class="ion-text-wrap" slot="start">{{username?.lastname}}</ion-label> -->
+
+
+    
+    <!-- </ion-item> -->
+    <div *ngIf="firstnameMessage" style="color: red;padding: 0px 10px;">{{firstnameMessage}}</div>
+
+    <div *ngIf="lastnameMessage" style="color: red;padding: 0px 10px;">{{lastnameMessage}}</div>
+    </ion-list>
     <div class="text-center">
-      <a class="btn btn1" (click)="nextQuestion()">
-        {{submitStatus ? 'Complete' : 'Next'}}
+      <a class="btn btn2" (click)="nextQuestion(questions[questionIndex],'back')" *ngIf="questionIndex > 0 ">
+        {{'QUESTIONNAIRE.btn.back' | translate}}
+      </a>
+      <a class="btn btn1" (click)="nextQuestion(questions[questionIndex],'next')">
+        {{submitStatus ? 'QUESTIONNAIRE.btn.complete' | translate : 'QUESTIONNAIRE..btn.next' | translate}}
       </a>
     </div>
-  </form>
 </ion-content>

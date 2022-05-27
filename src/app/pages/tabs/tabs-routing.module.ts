@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { TabsComponent } from "./tabs.component";
+import { UtilService } from "src/app/services/util.service";
 const routes: Routes = [
   {
     path: "",
@@ -14,10 +15,20 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'dashboard/:type',
+        loadChildren: () =>
+          // import('../../pages/member-replacement/member-replacement.module').then( m => m.MemberReplacementPageModule)
+          import('../../pages/dashboard/dashboard.module').then(m => m.DashboardPageModule),
+      },
+      {
+        path: 'basket',
+        loadChildren: () =>
+          import('../../pages/basket/basket.module').then(m => m.BasketPageModule),
+      },
+      {
         path: "personalized-micronutrition",
         loadChildren: () =>
-          import(
-            "../../pages/personalized-micronutrition/personalized-micronutrition.module"
+          import("../../pages/personalized-micronutrition/personalized-micronutrition.module"
           ).then((m) => m.PersonalizedMicronutritionPageModule),
       },
       {
@@ -35,11 +46,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: "card",
-        loadChildren: () =>
-          import("../../pages/card/card.module").then((m) => m.CardPageModule),
-      },
-      {
         path: "book-analysis",
         loadChildren: () =>
           import("../../pages/book-analysis/book-analysis.module").then(
@@ -52,13 +58,6 @@ const routes: Routes = [
           import("../../pages/cart/cart.module").then((m) => m.CartPageModule),
       },
       {
-        path: "question",
-        loadChildren: () =>
-          import("../../pages/question/question.module").then(
-            (m) => m.QuestionPageModule
-          ),
-      },
-      {
         path: "check-zip",
         loadChildren: () =>
           import("../../pages/check-zip/check-zip.module").then(
@@ -66,26 +65,82 @@ const routes: Routes = [
           ),
       },
       {
+        path: "changepassword",
+        loadChildren: () =>
+          import("../../pages/changepassword/changepassword.module").then(
+            (m) => m.ChangepasswordPageModule
+          ),
+      },
+      {
         path: "shop",
         loadChildren: () =>
           import("../../pages/shop/shop.module").then((m) => m.ShopPageModule),
       },
+
       {
-        path: "",
-        redirectTo: "/tabs/area-of-interest",
-        pathMatch: "full",
+        path: "product-detail",
+        loadChildren: () =>
+          import(
+            "../../pages/product-detail/product-detail.module"
+          ).then((m) => m.ProductDetailPageModule),
       },
+      {
+        path: 'user-managment/:type',
+        loadChildren: () =>
+          import(
+            "../../pages/prospect-managment/prospect-managment.module"
+          ).then((m) => m.ProspectManagmentPageModule),
+
+      },
+      {
+
+
+        path: 'notification',
+        loadChildren: () => import("../../pages/notification/notification.module"
+        ).then(m => m.NotificationPageModule)
+      },
+      {
+        path: 'detail',
+        loadChildren: () => import('../../pages/mem-pros-detail/mem-pros-detail.module').then(m => m.MemProsDetailPageModule)
+      },
+      {
+        path: 'my-sponsor',
+        loadChildren: () => import('../../pages/my-sponsor/my-sponsor.module').then(m => m.MySponsorPageModule)
+      },
+      {
+        path: 'myproducts',
+        loadChildren: () => import('../../pages/myproducts/myproducts.module').then(m => m.MyproductsPageModule)
+      },
+      {
+        path: 'setdiscount',
+        loadChildren: () => import('../../pages/setdicount/setdicount.module').then(m => m.SetdicountPageModule)
+      },
+      {
+        path: 'paymnet-option',
+        loadChildren: () => import('../../pages/paymnet-option/paymnet-option.module').then( m => m.PaymnetOptionPageModule)
+      },
+      {
+        path: 'commission-option',
+        loadChildren: () => import('../../pages/commission-option/commission-option.module').then( m => m.CommissionOptionPageModule)
+      }
+    
+    
+      // {
+      //   path: "",
+      //   redirectTo: "/tabs/area-of-interest",
+      //   pathMatch: "full",
+      // },
     ],
   },
-  {
-    path: "",
-    redirectTo: "/tabs/area-of-interest",
-    pathMatch: "full",
-  },
+  // {
+  //   path: "",
+  //   redirectTo: "/tabs/area-of-interest",
+  //   pathMatch: "full",
+  // },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TabsRoutingModule {}
+export class TabsRoutingModule { }

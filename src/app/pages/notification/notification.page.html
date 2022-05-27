@@ -1,0 +1,23 @@
+<app-header [headerTitle]="'NOTIFICATION.title' | translate" [headerBack]=true></app-header>
+<ion-content>
+  <!-- <p (click)="clearAll()" style="margin-left: 75%; margin-top:15px;">Clear All</p> -->
+  <ion-list *ngIf="notifications != null && notifications.length>0">
+    <ion-item *ngFor="let noti of notifications; let i = index;">
+      <div *ngIf="noti?.body">
+        <!-- <p>{{noti.title}}</p> -->
+        <span>{{i+1}}. {{noti.body}}</span>
+
+      </div>
+     
+      <!-- <ion-checkbox slot="start"></ion-checkbox> -->
+      <ion-icon slot="end" name="trash-outline" (click)="deleteNoti(noti,i)" style="margin:0px !important"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="notifications == null || notifications == null || notifications.length == 0">
+  <ion-item>
+        <p>{{'NOTIFICATION.msg' | translate}}</p>
+       
+    </ion-item>
+  </ion-list>
+</ion-content>

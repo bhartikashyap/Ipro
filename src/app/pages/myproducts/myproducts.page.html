@@ -1,0 +1,69 @@
+<app-header [headerTitle]="'MYPRODUCT.title' | translate" [headerBack]=true></app-header>
+
+<ion-content>
+  <div style="padding:10px;"></div>
+
+
+  <!-- line -->
+ 
+
+
+    <ion-card *ngFor="let prod of myproducts; let i = index">
+
+      <ion-card-content class="">
+        <ion-list lines="none" class="" style="margin:2px 0px">
+          <ion-item>
+            <ion-label>
+              {{prod.packageName}}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'MYPRODUCT.productDetail.expiry' | translate}}:</ion-label>
+            <span>{{prod.validTill}}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'MYPRODUCT.productDetail.status' | translate}} :</ion-label>
+            <span>{{prod.productStatus}}</span>
+          </ion-item>
+          <ion-item *ngIf="prod.productStatus == 'Active subscription'">
+            <div class="modal-close1" (click) = 'productAction(prod.packageId,"cancel")'>
+              <ion-button class="btn" color="danger">
+                {{'MYPRODUCT.btns.cancel' | translate}}
+              </ion-button>
+
+            </div>
+          </ion-item>
+          <ion-item *ngIf="prod.productStatus == 'Single Purchase' || prod.productStatus == 'Purchased'">
+            <div class="modal-close1">
+
+<!-- <div style="    display: flex;
+" > -->
+              <ion-button class="btn" color="success"  (click) = 'productAction(prod.packageId,"reactivate")' >
+                {{'MYPRODUCT.btns.subs' | translate}}
+              </ion-button>
+
+              <ion-button class="btn" color="secondary"  (click) = 'buyAgain(prod.packageId,prod.avail_runtime)'>
+                {{'MYPRODUCT.btns.buy' | translate}}
+              </ion-button>
+              <!-- </div> -->
+            </div>
+          </ion-item>
+
+        </ion-list>
+
+
+
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none" class="" style="margin:2px 0px" *ngIf="myproducts?.length <= 0">
+
+
+      <ion-item>
+        <span>No Products </span>
+      </ion-item>
+    </ion-list>
+
+    <!-- line -->
+
+    <div style="padding:10px;"></div>
+</ion-content>

@@ -42,12 +42,12 @@ export class ForgotpasswordPage implements OnInit {
         ],
       ] 
     });
-
+    let messages = this.utility.translateText('MSG')
     this.validationMessage = {
       email: [
-        { type: 'required', message: message.required },
-        { type: 'pattern', message: message.email },
-        { type: 'maxlength', message: message.maxLength(100) },
+        { type: 'required', message: messages.required },
+        { type: 'pattern', message: messages.email },
+        { type: 'maxlength', message: message.maxLength(100,messages.maxLength,messages.characters) },
       ]
     };
   }
@@ -68,10 +68,10 @@ export class ForgotpasswordPage implements OnInit {
           loading.dismiss();
           if (res.status) {
             
-            this.utility.presentToast(res.msg);
+            this.utility.presentToast(res.msg,"bottom");
             this.form.reset();
           } else {
-            this.utility.presentToast(res.msg);
+            this.utility.presentToast(res.msg,"bottom");
           }
         })
         .catch((err: any) => {

@@ -1,0 +1,154 @@
+<app-header  [headerTitle]="'DETAIL.title' | translate"  [headerBack]=true  ></app-header>
+
+<ion-content>
+  <div ></div>
+ 
+
+<ion-card *ngIf="data?.userId || data?.firstName">
+  <ion-card-content class="">
+    <ion-list lines="none"  class="title-border" style="margin:2px 0px" >
+      <ion-item *ngIf="data?.userId">
+        <ion-label>{{'DETAIL.id' | translate }}:</ion-label>
+        <span>{{data?.userId != '' ? data?.userId:"--"}}</span>
+      </ion-item>
+      <ion-item *ngIf="data?.firstName">
+        <ion-label>{{'DETAIL.name' | translate }} :</ion-label>
+        <span>{{data?.firstName != ''? data?.firstName:"--"}} {{data?.lastName != '' ?data?.lastName:'--'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'DETAIL.company' | translate }} :</ion-label>
+        <span>{{data?.companyName != ''?data?.companyName:'--'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'DETAIL.discount' | translate }} :</ion-label>
+
+        <ion-select
+        [(ngModel)]="discount"
+        (ionChange)="saveDsicount($event)"
+        [disabled]="data?.customizeRole == 'MEMBER'"
+      >
+      <ion-select-option value="0" >0% </ion-select-option>
+      <ion-select-option value='5'>5%</ion-select-option>
+        <ion-select-option value='10'>10%</ion-select-option>
+        <ion-select-option value="15">15%</ion-select-option>
+        <ion-select-option value="20">20%</ion-select-option>
+        <ion-select-option value="25">25%</ion-select-option>
+        <ion-select-option value="30">30%</ion-select-option>
+        <ion-select-option value="35">35%</ion-select-option>
+        <ion-select-option value="40">40%</ion-select-option>
+        </ion-select>
+        <!-- <span><ion-input type="number" value="5" min="1" max="9"></ion-input></span> -->
+      </ion-item>
+     
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+<ion-card *ngIf="data?.videos">
+  <ion-card-header class="title-border diffColor blue">
+    <ion-card-title>{{'DETAIL.videoProg' | translate }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="">
+    <ion-list lines="none"  class="title-border" style="margin:2px 0px" >
+      <!-- <ion-item>
+        <ion-label>iPro Intro :</ion-label>
+        <span>Manager 450</span>
+      </ion-item> -->
+      <ion-item>
+        <ion-label>{{'DETAIL.iM' | translate }} :</ion-label>
+        <span>{{data?.videos[0]?.percentage != '' ? data?.videos[0]?.percentage : '--'}} </span>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label>iT :</ion-label>
+        <span>{{data?.videos[1]?.percentage}}</span>
+      </ion-item> -->
+      <ion-item>
+        <ion-label>{{'DETAIL.iP' | translate }}:</ion-label>
+        <span>{{data?.videos[1]?.percentage != '' ? data?.videos[1]?.percentage : '--'}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+<ion-card *ngIf="data?.email || data?.phone">
+  <ion-card-header class="title-border diffColor blue">
+    <ion-card-title>{{'DETAIL.contact' | translate }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="">
+    <ion-list lines="none"  class="title-border" style="margin:2px 0px" >
+      <ion-item *ngIf="data?.email != ''" (click)="sendMail(data?.email)">
+        <ion-label>{{'DETAIL.email' | translate }} :</ion-label>
+        <span>{{data?.email != '' ? data?.email : '--'}}</span>
+      </ion-item>
+      <ion-item *ngIf="data?.phone != ''" (click)="callNumber(data?.phoneCode ,data?.phone)"> 
+        <ion-label>{{'DETAIL.phone' | translate }} :</ion-label>
+        <span>{{data?.phoneCode}} {{data?.phone != '' ? data?.phone: '--'}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+<!-- to show when role is member -->
+<ion-card *ngIf="data?.customizeRole == 'MEMBER'">
+  <ion-card-header class="title-border diffColor blue">
+    <ion-card-title>{{'DETAIL.status' | translate }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="">
+    <ion-list lines="none"  class="title-border" style="margin:2px 0px" >
+      <ion-item >
+        <ion-label>{{'DETAIL.status' | translate }} :</ion-label>
+        <span>{{data?.memberType != '' ? data?.memberType : '--'}}</span>
+      </ion-item>
+      <ion-item *ngIf="data?.rank">
+        <ion-label>{{'DETAIL.yourrank' | translate }} :</ion-label>
+        <span>{{data?.rank != '' ? data?.rank : '--'}}</span>
+      </ion-item>
+      <ion-item *ngIf="data?.GV">
+        <ion-label>{{'DETAIL.gvcounting' | translate }}:</ion-label>
+        <span>{{data?.GV != '' ? data?.GV : '--'}}</span>
+      </ion-item>
+      <ion-item *ngIf="data?.DV">
+        <ion-label>{{'DETAIL.dv' | translate }} :</ion-label>
+        <span>{{data?.DV != '' ? data?.DV : '--'}}</span>
+      </ion-item>
+      <ion-item >
+        <ion-label>Line 1 GV Counting :</ion-label>
+        <span>{{data?.GVLeg1 != '' ? data?.GVLeg1 : '--'}}</span>
+      </ion-item>
+      <ion-item >
+        <ion-label>Line 2 GV Counting :</ion-label>
+        <span>{{data?.GVLeg2 != '' ? data?.GVLeg2 : '--'}}</span>
+      </ion-item>
+      <ion-item >
+        <ion-label>Line 3 GV Counting :</ion-label>
+        <span>{{data?.GVLeg3 != '' ? data?.GVLeg3 : '--'}}</span>
+      </ion-item>
+     
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+<ion-card >
+  <ion-card-header class="title-border diffColor blue">
+    <ion-card-title>{{'DETAIL.notes' | translate }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="">
+    <ion-list lines="none"  class="title-border" style="margin:2px 0px" >
+      <ion-item>
+        <ion-textarea [(ngModel)]="notes">{{data?.quickNote}}</ion-textarea>
+        <!-- <ion-label>Email :</ion-label>
+        <span>Manager 450</span> -->
+      </ion-item>
+     
+    </ion-list>
+    <p *ngIf="error != ''" class="error">{{'DETAIL.error' | translate }}</p>
+  </ion-card-content>
+
+</ion-card>
+
+<!-- <div class="content-wrap" > -->
+  <ion-button class="btn" color="danger" expand="block" (click)="saveNotes(notes)">
+    {{'DETAIL.btn' | translate }}
+  </ion-button>
+<!-- </div> -->
+
+
+<div style="padding:10px;"></div>
+
+</ion-content>

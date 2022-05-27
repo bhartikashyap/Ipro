@@ -19,4 +19,28 @@ export class EnvironmentService {
   get production() {
     return environment.production;
   }
+
+  get plans() {
+    return environment.plans;
+  }
+
+  get videosGerman() {
+    return environment.videosGermany;
+  }
+  get videosEnglish() {
+    return environment.videosEnglish;
+  }
+
+  get pdfGerman() {
+    return environment.germanyPdfs;
+  }
+  get pdfEnglish() {
+    return environment.englishPdfs;
+  }
+  getEnglishError(){
+    return environment.englishErrors;
+  }
+  getGermanError(){
+    return environment.englishErrors;
+  }
 }

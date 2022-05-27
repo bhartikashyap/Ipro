@@ -8,6 +8,7 @@ export function PhoneNumberValidator(
 ): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } => {
     let validNumber = false;
+    console.log(regionCode,control.value);
     try {
       const phoneNumber = phoneNumberUtil.parseAndKeepRawInput(
         control.value,
@@ -15,7 +16,7 @@ export function PhoneNumberValidator(
       );
       validNumber = phoneNumberUtil.isValidNumber(phoneNumber);
     } catch (e) {}
-
+// console.log(validNumber ? null : { wrongNumber: { value: control.value } })
     return validNumber ? null : { wrongNumber: { value: control.value } };
   };
 }

@@ -22,7 +22,7 @@ export class SplashPage implements OnInit {
       } else {
         this.router.navigate(['/login']);
       }
-    }, 4000);
+    }, 1000);
   }
 
 }

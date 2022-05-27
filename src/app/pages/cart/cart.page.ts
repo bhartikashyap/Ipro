@@ -22,7 +22,7 @@ export class CartPage implements OnInit {
   paymentUrl: any;
   ionModelOpen = false
   paymentId: any;
-
+  selectedPlan:any;
   constructor(
     private utility: UtilService,
     private apiService: ApiService,
@@ -30,17 +30,26 @@ export class CartPage implements OnInit {
     private navController: NavController,
     private domSanit: DomSanitizer,
     public datepipe: DatePipe
-  ) { }
+  ) { 
+   // this.getPlanDetail();
+  }
 
   ngOnInit() {
+   
+   // this.getPlanDetail();
+  }
+  
+  ionViewWillEnter(){
     this.getPlanDetail();
   }
 
   async getPlanDetail() {
+    this.selectedPlan = await this.utility.getStorage(session.SELECTED_PLAN); 
+    console.log(this.selectedPlan)
     let loading = await this.utility.presentLoading();
     let booking:any=await this.utility.getStorage(session.BOOKING);
     this.booking=booking ? JSON.parse(booking) : null;
-    let response: any = await this.apiService.getPlanDetail(this.booking.selected_plan);
+    let response: any = await this.apiService.getPlanDetail(this.selectedPlan);
     loading.dismiss();
     if(response.status == 1){
       this.plan=response.data ? response.data :null;
@@ -52,14 +61,17 @@ export class CartPage implements OnInit {
   }
 
   async buyCart(){
-    if(!this.termsConditionStatus){
-      this.utility.presentToast('Select terms & condition');
-      return false;
-    }else if(!this.privacyPolicyStatus){
-      this.utility.presentToast('Select privacy policy');
-      return false;
-    }else if(!this.booking){
-      this.utility.presentToast('Booking detail not found');
+    // this.openQuestion();
+
+    // if(!this.termsConditionStatus){
+    //   this.utility.presentToast('Select terms & condition');
+    //   return false;
+    // }else if(!this.privacyPolicyStatus){
+    //   this.utility.presentToast('Select privacy policy');
+    //   return false;
+    // }else
+     if(!this.booking){
+      this.utility.presentToast('Booking detail not found',"bottom");
       return false;
     }else{
       let latest_date:string='';
@@ -68,9 +80,9 @@ export class CartPage implements OnInit {
         latest_date =this.datepipe.transform(dob, 'dd-MM-yyyy');
       }
       let params={
-        selected_plan :this.booking.selected_plan ? this.booking.selected_plan : 'body analysis',
+        selected_plan :this.selectedPlan ? this.selectedPlan : 'body analysis',
         email :this.booking.email ? this.booking.email : '',
-        countryId :this.booking.country ? Number(this.booking.country) : 0,
+        countryId :this.booking.countryId ? Number(this.booking.countryId) : 0,
         nr :this.booking.nr ? this.booking.nr : '',
         streetname  :this.booking.streetname  ? this.booking.streetname  : '',
         city  :this.booking.city  ? this.booking.city  : '',
@@ -79,7 +91,7 @@ export class CartPage implements OnInit {
       };
       let result:any=await this.apiService.createPayment(params);
       if(result.status == 0){
-        this.utility.presentToast(result.msg);
+        this.utility.presentToast(result.msg,"bottom");
         return false;
       }else{
         this.paymentUrl = result.response.result.redirect_url;
@@ -106,18 +118,19 @@ export class CartPage implements OnInit {
         this.booking.paymentId = this.paymentId;
         let data:any=await this.apiService.proceedRegistration(this.booking);
         if(data.status == 1){
-          this.utility.presentToast(result.msg);
+          this.utility.presentToast(result.msg,"bottom");
           this.resetCart();
           this.openQuestion();
         }else{
-          this.utility.presentToast(result.msg);
+          this.utility.presentToast(result.msg,"bottom");
           return false;
         }
      }   
   }
 
   openQuestion(){
-    this.router.navigate(["/tabs/question"]);
+    
+    this.router.navigate(["/questionare"]);
   }
 
   resetCart(){
@@ -130,7 +143,7 @@ export class CartPage implements OnInit {
     this.utility.removeStorage(session.BOOKING);
   }
 
-  goBack(){
-    this.navController.back();
-  }
+  // goBack(){
+  //   this.navController.back();
+  // }
 }

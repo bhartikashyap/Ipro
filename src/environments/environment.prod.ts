@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
-  baseurl: 'https://bitbusinesstest.de/api/',
+  baseurl:'https://bitbusinesstest.de/mobile/api/',
   fileurl: '',
 };
+

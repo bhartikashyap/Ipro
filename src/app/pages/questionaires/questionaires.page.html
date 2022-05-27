@@ -1,0 +1,62 @@
+
+<ion-header>
+  
+  <ion-toolbar class="ion-toolbar">
+   
+    <ion-title>{{'PAGES.QUESTIONARE' | translate}}</ion-title>
+   
+  
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">
+        <ion-text>
+          <h3 class="question-class">{{'QUESTIONNAIRE.line1' | translate}}
+            only!</h3>
+        </ion-text>
+        <ion-text>
+          <p class="question-content">{{'QUESTIONNAIRE.line2' | translate}}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+
+
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap check-label">{{'QUESTIONNAIRE.line3' | translate}}</ion-label>
+      <ion-checkbox slot="start" class="privacy-check" [(ngModel)]="agree" (ionCahange)="errorText = ''"></ion-checkbox>
+    </ion-item>
+  
+    <div class="error-message text-red"  *ngIf="errorText != ''">
+      {{errorText}}
+    </div>
+
+    <!-- <ion-item lines="none">
+      <ion-text class="personal-data">Personal Data</ion-text>
+    </ion-item>
+
+    <ion-item lines="none" >
+
+      <ion-select placeholder="Gender" >
+        <ion-select-option value="f">Female</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+        <ion-select-option value="o">Others</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input placeholder="Body Height (in cm)"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input placeholder="Abdominal girth (in cm)"></ion-input>
+    </ion-item> -->
+     
+    <ion-button class="btn" color="danger" expand="block" margin (click)="goForward()">
+      {{'QUESTIONNAIRE.btn.next' | translate}}
+    </ion-button>
+  </ion-list>
+ 
+
+</ion-content>

@@ -1,0 +1,154 @@
+ .grey{
+    background: #F1F1F1;
+    /* border-right: 1px solid #281f1f; */
+    padding: 1px;
+    // font-size: 10px;
+    ion-col{
+        border: 1px solid #ccc;
+        // text-align: center;
+        font-weight: 700;
+        line-height:10.4px;
+    
+    }
+}
+ion-col{
+    padding: 1px ;
+    font-size:9px;
+
+        
+
+}
+.colm{
+    border-radius: 14px;
+        font-weight: 700;
+        line-height:11.4px;
+        font-size:9px;
+   
+}
+.textCenter{
+    text-align: center;
+
+}
+ .yellow-col{
+    background: #f9c30d;
+    color: #000;
+    
+}
+.grey-col{
+    background-color: #969696;
+    color: #fff;
+    
+}
+.blue-col {
+    // background-color: #14253B;
+    background-color: #4D4D4D;
+    color: #F5F64F;
+       
+        
+   
+}
+
+
+p{
+    margin: 8px;
+    font-size: 8px;
+}
+ion-card{
+    border-radius: 12px;
+}
+
+ion-card-header{
+    padding: 8px;
+}
+ion-card-title{
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.sub-title{
+    background-color: #000;
+    color: #fff;
+    padding: 11px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.title-border{
+    border-bottom:1px solid #ccc;
+}
+.card-btn{
+    text-transform: uppercase;
+    margin:10px;
+    font-size: 10px !important;
+}
+.btn{
+    text-transform: uppercase;
+    margin:8px;
+    // font-size: 10px !important;
+    font-size: 8px !important;
+    // width: 70px;
+}
+.yellow{
+    background-color: #F9C30C;
+}
+.green{
+    background-color: #53AF25;
+}
+.blue{
+    background-color: #14253B;
+}
+.red{
+    background-color: #FF1601;
+    // 
+}
+.diffColor ion-card-title{
+    color:#fff !important;
+}
+
+.line
+{
+    padding:0px !important;
+}
+.line-free{
+    text-align: center;
+    font-size: 20px;
+    padding: 10px !important;
+}
+.line-free p{
+    text-decoration: underline;
+    color: #F96629;
+
+}
+.ion-cards{
+    display: flex;
+    align-items: center;
+    
+}
+.searchbar{
+    display: flex;
+}
+.searchbar ion-icon {
+    padding: 10px;
+    position: fixed;
+    right: 2%;
+    top:20%;
+}
+
+ion-searchbar{
+    font-size: 10px;
+}
+.searchbar-input input{
+    padding: 2px 12px !important;
+    font-size: 10px !important;
+
+}
+
+.no-member{
+    padding: 12px;
+    text-align: center;
+}
+.ion-grid{
+    padding: 2px;
+}

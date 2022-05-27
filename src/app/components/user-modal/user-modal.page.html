@@ -1,0 +1,151 @@
+<ion-header *ngIf="title != 'question-complete' && title !='analysis'">
+  <ion-toolbar>
+    <ion-title *ngIf="title == 'dashboard'">{{'MODALS.DASHBOARD.title' | translate}}</ion-title>
+    <ion-title *ngIf="title == 'language'">{{'MODALS.LANGUAGE.title' | translate}}</ion-title>
+    <ion-title *ngIf="title == 'member-place'">{{'MODALS.PLACEMEMBER.title' | translate}}</ion-title>
+    <ion-title *ngIf="title == 'reconfirmation'">{{'MODALS.RECONFIRM.title' | translate}}</ion-title>
+    <ion-title *ngIf="title == 'search'">{{'MODALS.USERSEARCH.title' | translate}}</ion-title>
+    <ion-title *ngIf="title == 'error'"> {{'MODALS.ERROR.title' | translate}}</ion-title>
+    <ion-title *ngIf="title == 'pdf'" (click)="closeModal()"> Done</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div ></div>
+  <div *ngIf="title == 'pdf'">
+    <iframe class= 'webPage' name= "eventsPage"  [src]="utiSer.pdf"  style="height:600px;" allowfullscreen>
+    </iframe>
+  </div>
+  
+  <ion-list *ngIf="title == 'error'" lines="none">
+      <ion-item (click)="changeLan('en')" lines="none" style="text-align:'center'">
+        {{'MODALS.ERROR.ERROR_MSG' | translate}}
+      </ion-item>
+     
+  </ion-list>
+  <ion-list *ngIf="title == 'question-complete'" lines="none">
+    <ion-item  lines="none" style="text-align:'center'">
+     <p><strong>Congratulations! <br> You have completed all the questions!</strong><br>
+     You will be contacted by us shortly bt eMail or phone to schedule the analysis session. Your date are required for the analysis but can be accessed only if you give permission for it.Permission can be granted bt eMail (if you recieve a request) or by presenting a QR code to the Analyst who will contact you.
+<br>You can get your QR code any time in the APP or on the WEB under Menu Option: Analysis > QR Code</p>
+    </ion-item>
+   
+</ion-list>
+<ion-list *ngIf="title == 'analysis'" lines="none">
+  <ion-item  lines="none" style="text-align:'center'">
+   <p>
+   Please present this QR code to analyst.<br>
+Scanning the QR code with the analysis software will provide permission to load your data for the analysis.<br>
+
+</p>
+
+
+  </ion-item>
+  <ion-item  lines="none" style="text-align:'center'">
+    <img style="width: 150px;
+    height: 150px;
+    border: solid #000 1px;
+    text-align: center;
+  
+    background: #c2b7b730;
+    margin-left:20%" [src]="QRcode?.qrcode"  alt="QR code" />
+       <!--  src="assets/img/logo.png"-->
+
+  </ion-item>
+ 
+</ion-list>
+  <ion-list *ngIf="title == 'language'" lines="none">
+    <ion-radio-group [value]="utiSer.deviceLang" >
+      <ion-item (click)="changeLan('en')" lines="none">
+        <ion-label> {{'MODALS.LANGUAGE.ENGLISH' | translate}}</ion-label>
+        <ion-radio slot="start" value="en" checked="utiSer.deviceLang =='en'"></ion-radio>
+      </ion-item>
+      <ion-item (click)="utiSer.changeLan('de')" lines="none">
+        <ion-label> {{'MODALS.LANGUAGE.GERMANY' | translate}}</ion-label>
+        <ion-radio slot="start" value="de" checked="utiSer.deviceLang =='de'"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <!-- change dashboard -->
+
+  <ion-list  *ngIf="title == 'dashboard'">
+    <ion-radio-group [value]="utiSer.defaultDash">
+      <ion-item (click)="utiSer.defaultDashChange('Partner')" lines="none">
+        <ion-label>{{'MODALS.DASHBOARD.PROSPECT' | translate}}</ion-label>
+        <ion-radio slot="start" value="Partner" checked="utiSer.defaultDash=='Partner'"></ion-radio>
+      </ion-item>
+
+      <ion-item (click)="utiSer.defaultDashChange('Member')" lines="none">
+        <ion-label>{{'MODALS.DASHBOARD.MEMBER' | translate}} </ion-label>
+        <ion-radio slot="start" value="Member" checked="utiSer.defaultDash=='Member'"></ion-radio>
+      </ion-item>
+
+      
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-list  *ngIf="title == 'member-place'">
+    <p  *ngIf="memberToplace?.data?.users.length >0 " style="padding-left: 30px;font-weight: 700;"> Please select user to place:</p>
+    <ion-radio-group [value]="selectedMember" >
+      <ion-item   *ngFor="let memPlace of memberToplace?.data?.users; let i = index" (click)="selectedMember = memPlace" >
+        <ion-label >{{memPlace.firstName != '' ?memPlace.firstName:'--'}} {{memPlace.lastName != '' ?memPlace.lastName:'--'}} </ion-label><ion-label slot="end"> Id: {{memPlace.userId != '' ?memPlace.userId:'--'}}   </ion-label>
+        <ion-radio slot="start" [value]="memPlace.userId" ></ion-radio>
+      </ion-item>
+
+      <ion-item  *ngIf="memberToplace?.data?.users.length <= 0 ">
+        <ion-label >{{'MODALS.ERROR.NO_USER_ERROR' | translate}}  </ion-label>
+        
+      </ion-item>
+    </ion-radio-group>
+    <p class="error" *ngIf="erroMsg != undefined " style="    color: red;
+    padding-left: 30px;">{{erroMsg}}</p>
+  </ion-list>
+
+  <ion-list *ngIf="title == 'reconfirmation'" lines="none">
+      <ion-item lines="none" style="text-align: center;">
+        <ion-label>{{'MODALS.RECONFIRM.RECONFIRM_MSG' | translate}}  <br>{{'MODALS.RECONFIRM.NO_REPLACE' | translate}}</ion-label>
+      </ion-item>
+     
+  </ion-list>
+  <ion-list *ngIf="title == 'search'" lines="none">
+    <!-- <ion-item lines="none"> -->
+      <ion-searchbar  (keyup.enter)="getPlacementTree(searchItem)"  showCancelButton="never"
+        [(ngModel)]="searchItem" placeholder="{{'MODALS.USERSEARCH.SEARCH_PALCEHOLDER' | translate}} "  >
+      </ion-searchbar>
+    <!-- </ion-item> -->
+   
+</ion-list>
+
+
+
+  <div ></div>
+  <div class="modal-close" >
+    
+    <ion-button class="btn" color="secondary" (click)="closeModal()" *ngIf="title == 'reconfirmation' || title == 'member-place' ">
+      {{'MODALS.BUTTONS.CANCEL' | translate}}
+    </ion-button>
+    <ion-button class="btn" color="secondary" (click)="closeModal()" *ngIf="title == 'search' || title == 'language'  || title == 'dashboard' || title == 'analysis' ">
+      {{'MODALS.BUTTONS.CLOSE' | translate}}
+    </ion-button>
+    <ion-button class="btn" color="secondary" (click)="navigateHome()" *ngIf="title == 'question-complete' ">
+      {{'MODALS.BUTTONS.CLOSE' | translate}}
+    </ion-button>
+    <ion-button class="btn" color="danger" (click)="placeMember()" *ngIf="title == 'reconfirmation' ">
+      {{'MODALS.BUTTONS.YES' | translate}}
+    </ion-button>
+    <ion-button class="btn" color="danger" (click)="reconfirmation(selectedMember)" *ngIf="title == 'member-place' && memberToplace?.data?.users.length > 0 ">
+      {{'MODALS.BUTTONS.PLACE' | translate}}
+    </ion-button>
+    <ion-button class="btn" color="danger" (click)="getPlacementTree(searchItem)" *ngIf="title == 'search'">
+      {{'MODALS.BUTTONS.SEARCH' | translate}}
+    </ion-button>
+    <ion-button class="btn" color="danger" (click)="gohome()" *ngIf="title == 'error'">
+      {{'MODALS.BUTTONS.GO_HOME' | translate}}
+    </ion-button>
+
+  </div>
+  <!-- </ion-card-content>
+  </ion-card> -->
+
+</ion-content>

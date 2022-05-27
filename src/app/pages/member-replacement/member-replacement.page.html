@@ -1,0 +1,171 @@
+
+
+<ion-content>
+  <div></div>
+
+  <div *ngIf="!placementTree?.hasOwnProperty('data')">
+    <!-- <div class="ion-cards">
+      <ion-card>
+        <ion-card-content> -->
+         <p class="no-member">{{placementTree?.msg}}</p> 
+         <ion-button class="btn" color="secondary" expand="block" (click)="cancelSearch()" >
+         Clear Search
+         </ion-button>
+        <!-- </ion-card-content>
+      </ion-card>
+    </div> -->
+
+  </div>
+  <!-- line1 -->
+  <div *ngIf="placementTree?.hasOwnProperty('data')">
+    <div class="ion-cards">
+
+      <!-- <ion-card> -->
+        <!-- <ion-card-content> -->
+          <div style="display:flex;flex-direction: column;width: 25%;">
+            <ion-button class="btn" color="secondary" expand="block" (click)="goTohome()" >
+              Back Home
+             </ion-button>
+            <ion-button class="btn" color="secondary" expand="block" (click)="searchPopup()" >
+             Search
+            </ion-button>
+          </div>
+       
+        <!-- </ion-card-content> -->
+      <!-- </ion-card> -->
+
+      <!-- <ion-card>
+        <ion-grid>
+          <p>{{placementTree?.data?.firstName != '' ? placementTree?.data?.firstName :'--' }} {{placementTree?.data?.lastName != '' ?
+            placementTree?.data?.lastName :'--' }} >> ID: {{placementTree?.data?.userId != '' ? placementTree?.data?.userId :'--' }} </p>
+
+          <ion-row>
+            <ion-col>
+              {{placementTree?.data?.yourStatus != '' ? placementTree?.data?.yourStatus :'--' }}
+            </ion-col>
+            <ion-col>
+              {{placementTree?.data?.rank != '' ? placementTree?.data?.rank :'--' }}
+            </ion-col>
+            <ion-col>
+              PV:{{placementTree?.data?.PV != '' ? placementTree?.data?.PV :'--' }}
+            </ion-col>
+            <ion-col>
+              DV:{{placementTree?.data?.DV != '' ? placementTree?.data?.DV :'--' }}
+            </ion-col>
+            <ion-col>
+              GV:{{placementTree?.data?.GV != '' ? placementTree?.data?.GV :'--' }}
+            </ion-col>
+          </ion-row>
+          <p>Sponosor:  </p>
+
+
+          <ion-row>
+            <ion-col>
+              {{placementTree?.data?.sponsorName != '' ? placementTree?.data?.sponsorName :'--' }}
+            </ion-col>
+            <ion-col>
+             ID:{{placementTree?.data?.sponsorId != '' ? placementTree?.data?.sponsorId :'--' }}
+            </ion-col>
+            <ion-col>
+              {{placementTree?.data?.sponsorStatus != '' ? placementTree?.data?.sponsorStatus :'--' }}
+            </ion-col>
+            <ion-col>
+              {{placementTree?.data?.sponsorRank != '' ? placementTree?.data?.sponsorRank :'--' }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card> -->
+
+      <!-- <ion-card> -->
+
+        <app-lines  [placementTree]="placementTree?.data" [userId]="placementTree?.data?.userId" [leg] = "''" style="width:45%"></app-lines>
+
+            
+        <!-- <ion-card-content>  || placementTree?.data?.levelUpUser == loggedInuser" -->
+          <div style="display:flex;flex-direction: column;width: 30%;">
+            <ion-button class="btn" color="secondary" expand="block" (click)="beforelevelUp(placementTree?.data?.levelUpUser,'top')"   [disabled]="loggedInuserInsearch || searchType =='tree' ">
+             Go To TOP Level UP
+           </ion-button>
+           <!-- || placementTree?.data?.levelUpUser == loggedInuser -->
+          <ion-button class="btn" color="secondary" expand="block" (click)="beforelevelUp(placementTree?.data?.levelUpUser,'one')" [disabled]="loggedInuserInsearch || searchType =='tree'">
+           Go To ONE Level UP
+           </ion-button>
+           
+          </div>
+        <!-- </ion-card-content> -->
+      <!-- </ion-card> -->
+    </div>
+
+    <!-- line -->
+    <div class="ion-cards">
+     
+      <!-- line -->
+      <app-lines style="width:33%" (openPopUp)="openPopUp($event,leg)"  (lowestLevel)="lowestLevel($event)" (levelUp)="levelUp($event)" [placementTree]="placementTree?.data?.leg1" [userId]="placementTree?.data?.userId" [leg] = "'1'" [levelUpId]="placementTree?.data?.levelUpUser"></app-lines>
+      <app-lines  style="width:33%" (openPopUp)="openPopUp($event,leg)" (lowestLevel)="lowestLevel($event)" (levelUp)="levelUp($event)"  [placementTree]="placementTree?.data?.leg2" [userId]="placementTree?.data?.userId" [leg] = "'2'" [levelUpId]="placementTree?.data?.levelUpUser"></app-lines>
+      <app-lines style="width:33%" (openPopUp)="openPopUp($event,leg)" (lowestLevel)="lowestLevel($event)" (levelUp)="levelUp($event)"  [placementTree]="placementTree?.data?.leg3" [userId]="placementTree?.data?.userId" [leg] = "'3'" [levelUpId]="placementTree?.data?.levelUpUser"></app-lines>
+      <!-- <ion-card *ngIf="placementTree?.data?.leg2">
+        <ion-card-header class="title-border diffColor red" (click)="levelUp(placementTree?.data?.leg2?.userId,'one')">
+          <ion-card-title>{{'DASHBAORD.line.title' | translate }} 2</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="line-free" *ngIf="isEmptyObject(placementTree?.data?.leg2)">
+          <span>Free</span>
+          <p (click)="openPopUp(placementTree?.data?.userId,2)">Click here tp Place a new member </p>
+
+        </ion-card-content>
+
+        <ion-card-content class="line" *ngIf="!isEmptyObject(placementTree?.data?.leg2)">
+          <ion-grid>
+            <p>{{placementTree?.data?.leg2?.firstName != '' ? placementTree?.data?.leg2?.firstName :'--' }}
+              {{placementTree?.data?.leg2?.lastName != '' ? placementTree?.data?.leg2?.lastName :'--' }} >> ID:
+              {{placementTree?.data?.leg2?.userId != '' ? placementTree?.data?.leg2?.userId :'--' }} </p>
+            <ion-row>
+              <ion-col>
+                {{placementTree?.data?.leg2?.yourStatus != '' ? placementTree?.data?.leg2?.yourStatus :'--' }}
+              </ion-col>
+              <ion-col>
+                {{placementTree?.data?.leg2?.rank != '' ? placementTree?.data?.leg2?.rank :'--' }}
+              </ion-col>
+              <ion-col>
+                PV:{{placementTree?.data?.leg2?.PV != '' ? placementTree?.data?.leg2?.PV :'--' }}
+              </ion-col>
+              <ion-col>
+                DV:{{placementTree?.data?.leg2?.DV != '' ? placementTree?.data?.leg2?.DV :'--' }}
+              </ion-col>
+              <ion-col>
+                GV:{{placementTree?.data?.leg2?.GV != '' ? placementTree?.data?.leg2?.GV :'--' }}
+              </ion-col>
+            </ion-row>
+            <p>Sponosor:  </p>
+            <ion-row>
+              <ion-col>
+                {{placementTree?.data?.leg2?.sponsorName != '' ? placementTree?.data?.leg2?.sponsorName :'--' }}
+              </ion-col>
+              <ion-col>
+                {{placementTree?.data?.leg2?.sponsorId != '' ? placementTree?.data?.leg2?.sponsorId :'--' }}
+              </ion-col>
+              <ion-col>
+                {{placementTree?.data?.leg2?.sponsorStatus != '' ? placementTree?.data?.leg2?.sponsorStatus :'--' }}
+              </ion-col>
+              <ion-col>
+                {{placementTree?.data?.leg2?.sponsorRank != '' ? placementTree?.data?.leg2?.sponsorRank :'--' }}
+              </ion-col>
+              
+            </ion-row>
+
+          </ion-grid>
+          <ion-button class="btn" color="danger" expand="block" (click)="lowestLevel(placementTree?.data?.leg2?.userId)"   >
+             Lowest Level
+          </ion-button>
+        </ion-card-content>
+
+      </ion-card> -->
+      <!-- line -->
+     
+    </div>
+  </div>
+
+
+  <div style="padding:10px;"></div>
+
+</ion-content>
+

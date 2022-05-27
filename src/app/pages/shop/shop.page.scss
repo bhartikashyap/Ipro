@@ -3,3 +3,67 @@ ion-toolbar .bell-icon {
     height: 30px;
     margin-right: 20px;
 }
+ion-item {
+    padding: 10px 0px;
+}
+
+.product{
+    // padding:10px;
+    display: flex;
+
+} 
+
+.product img{
+    border-radius: 15px;
+    width: 80px;
+    height:85px;
+} 
+.product div{
+    display: flex;
+    flex-direction:column;
+    padding-left: 8px;
+    padding-bottom: 7px;
+} 
+.product div h2{
+    margin: 0px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6D6D6D;
+    font-weight: 800;
+}
+.product div p{
+    margin: 0px;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    color: #6D6D6D;
+
+}
+.product-detail{
+    padding: 0px;
+    margin: 0px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    color: #6D6D6D;
+}
+ion-input{
+    font-size: 12px;
+    border: 1px solid #d6d6d6 !important;
+    height: 28px;
+    width: 50%;
+    max-width: 50%;
+    border-radius: 5px !important;
+    padding: 0px 11px !important;
+}
+ion-label{
+     margin-left: 25%;
+     flex:1 0% 0% !important;
+
+}
+ion-item div{
+    cursor: pointer;
+}

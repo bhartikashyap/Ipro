@@ -1,0 +1,85 @@
+
+<app-header  [headerTitle]="'PAGES.CART' | translate"  [headerBack]=backBtn  ></app-header>
+
+<ion-content>
+  <ion-modal [isOpen]="ionModelOpen" [swipeToClose]="false" [backdropDismiss]="false" [keyboardClose]="false" class="paymentModal">
+    <ng-template>
+      <ion-content>
+        <iframe  class="webPage" style="height: 100% !important;" frameborder="0" name="eventsPage" [src]="paymentUrl">
+        </iframe>
+      </ion-content>
+    </ng-template> 
+  </ion-modal>
+  <form *ngIf="products_data.length > 0">
+    <ion-row>
+      <ion-col>
+        <ion-input type="number" id="promocode" placeholder="{{'CART.PROMO' | translate}}" autocapitalize="off">
+      </ion-input>
+    </ion-col>
+      <ion-col>
+        <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">{{'CART.APPLY' | translate}}</ion-button>
+      </ion-col>
+    
+    </ion-row>
+  </form>
+  <div class="form-cart" *ngIf="products_data.length > 0">
+    <ion-row class="net-amount-wrap">
+      <ion-col>
+        <strong>{{'CART.ITEM_SELECTED' | translate}}</strong>
+ 
+      </ion-col>
+      </ion-row>
+
+    <ion-row class="net-amount-wrap">
+      <ion-col class="formcart-title net-amount-title" size="8">{{'CART.Item' | translate}}</ion-col>
+      <ion-col class="formcart-value net-amount-value">{{'CART.NettoAmount' | translate}}</ion-col>
+    </ion-row>
+    <!-- <div > -->
+      <ion-row class="admssion-fee-wrap" *ngFor="let item of products_data;let indexOfelement=index;" style="    border-bottom: 1px solid #ccc;">
+        
+        <ion-col class="formcart-title admssion-fee-title" size="8">{{item.details?.packageName ? item.details?.packageName : '-'}}
+          <p class="remove-span" (click)="removeItem(item)">{{'CART.REMOVE' | translate}}
+
+            </p>
+        </ion-col>
+       
+        <ion-col class="formcart-value admssion-fee-value">
+         
+          {{item.details?.packageAmount ? item.details?.packageAmount : 0}} €
+         
+
+        </ion-col>
+       
+       
+      </ion-row>
+   
+      <ion-row class="vat-box-wrap">
+        <ion-col class="formcart-title vat-title">{{'CART.DELIVERYCHARGES' | translate}}</ion-col>
+        <ion-col class="formcart-value vat-value">{{totalAmt?.deliveryCharges ? totalAmt?.deliveryCharges : 0}} €</ion-col>
+      </ion-row>
+    <ion-row class="total net-box-wrap">
+      <ion-col class="formcart-title total net-title"> {{'CART.TotalNetAmount' | translate}}</ion-col>
+      <ion-col class="formcart-value total net-value">{{totalAmt?.totalNet ? totalAmt?.totalNet : 0}} €</ion-col>
+    </ion-row>
+    <ion-row class="vat-box-wrap">
+      <ion-col class="formcart-title vat-title">{{'CART.VAT' | translate}}</ion-col>
+      <ion-col class="formcart-value vat-value">{{totalAmt?.totalVat ? totalAmt?.totalVat : 0}} €</ion-col>
+    </ion-row>
+   
+    <ion-row class="total-box-wrap">
+      <ion-col class="formcart-title total-title">{{'CART.Total' | translate}}</ion-col>
+      <ion-col class="formcart-value total-value">{{totalAmt?.totalAmount ? totalAmt?.totalAmount : 0}} €</ion-col>
+    </ion-row>
+
+    <ion-item lines="none" class="form-group ion-no-padding">
+      <ion-label class="ion-text-wrap">{{'CART.Agree' | translate}} <p class="tnc" (click)="utility.openPdfLinks(utility.pdfLink[0].link,'Term & Condition')">{{'CART.TNC' | translate}}</p> & <p class="tnc" (click)="utility.openPdfLinks(utility.pdfLink[3].link,'Term & Condition')">{{'CART.RFW' | translate}}</p> </ion-label>
+    </ion-item>
+   
+
+    <ion-button (click)="buyCart()" class="btn" color="danger" expand="block">{{'CART.BUYNOW' | translate}}</ion-button>
+
+  </div>
+  <ion-item *ngIf="products_data.length == 0">
+    <p class="product-detail"> {{'CART.NOITEM' | translate}}</p>
+</ion-item>
+</ion-content>

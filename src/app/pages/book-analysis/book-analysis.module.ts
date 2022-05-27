@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule,DatePipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
 import { IonicModule } from "@ionic/angular";
 
 import { BookAnalysisPageRoutingModule } from "./book-analysis-routing.module";
@@ -12,7 +11,13 @@ import { Globalization } from "@ionic-native/globalization/ngx";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { RegisterPageModule } from "../register/register.module";
-
+import { IonicSelectableModule } from 'ionic-selectable';
+import {ShareComponentModule} from '../../components/share-component-module';
+import { InAppBrowser , InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { CalendarModule } from 'ion2-calendar';
+import { NgCalendarModule  } from 'ionic2-calendar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { DatePickerModule } from 'ionic-calendar-date-picker';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -20,6 +25,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CommonModule,
     FormsModule,
+    IonicSelectableModule,
+    ShareComponentModule,
+    CalendarModule,
+    NgCalendarModule,
+    NgbModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -31,7 +41,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     BookAnalysisPageRoutingModule,
     ReactiveFormsModule,
     RegisterPageModule,
+    
   ],
   declarations: [BookAnalysisPage],
+  providers:[DatePipe,InAppBrowser]
 })
 export class BookAnalysisPageModule {}

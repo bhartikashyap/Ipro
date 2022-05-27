@@ -44,12 +44,15 @@
   }
 }
 form {
-  padding: 20px;
+  padding: 5px;
   padding-top: 0px;
   .form-group {
     position: relative;
-    margin-top: 20px;
-    --inner-padding-end: 0 !important;
+    margin-top: 10px;
+    --inner-padding-end: 5px !important;
+  }
+  div{
+    padding: 1px 10px;
   }
   ion-input,
   ion-select,
@@ -62,7 +65,7 @@ form {
     width: 100%;
     max-width: 100%;
     border-radius: 5px !important;
-    padding: 12px 11px !important;
+    padding: 0px 11px !important;
     --padding-bottom: 0px;
     --padding-top: 0px;
     --padding-start: 0px;
@@ -143,7 +146,7 @@ form {
     font-size: 12px;
     font-weight: 600;
     --border-radius: 4px;
-    margin-top: 15px;
+    margin: 20px;
   }
   ion-item.form-group.country-group {
        position: absolute;
@@ -180,4 +183,28 @@ form {
       color: #a9d5c1;
     }
   }
+  .phone-code-div{
+    // width: 40%;
+    padding: 0px !important;
+    display: flex;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+  }
+  .phone-code-div span{
+    width:20px;
+  }
+
+
+  .phone-ion{
+    width:82px; 
+    border:0px !important;
+
+  }
+  .phone-ion .ionic-selectable-icon {
+   display:none !important;
+ }
+  
 }
+

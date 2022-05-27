@@ -19,12 +19,15 @@
   }
 }
 form {
-  padding: 20px;
+  padding: 5px;
   padding-top: 0px;
   .form-group {
     position: relative;
-    --inner-padding-end: 0 !important;
+    --inner-padding-end: 5px !important;
     margin-top: 20px;
+  }
+  div{
+    padding: 1px 10px;
   }
   ion-input {
     font-style: normal;
@@ -70,7 +73,7 @@ form {
     ion-icon {
       position: absolute;
       bottom: 10px;
-      right: 20px;
+      right: 35px;
       font-size: 25px;
       z-index: 9999;
     }
@@ -80,6 +83,7 @@ form {
     font-size: 12px;
     font-weight: 400;
     text-decoration: none;
+    padding: 5px 30px;
   }
   .dont-know {
     color: #6d6d6d;
@@ -99,6 +103,11 @@ form {
     font-size: 12px;
     font-weight: 600;
     --border-radius: 4px;
-    margin-top: 15px;
+    margin: 20px;
   }
+}
+
+ion-content {
+  --padding-bottom: 0px !important; 
+   --padding-top: 0px !important; 
 }

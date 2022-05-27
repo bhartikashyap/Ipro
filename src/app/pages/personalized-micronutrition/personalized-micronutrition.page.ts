@@ -1,7 +1,14 @@
-import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, Platform } from '@ionic/angular';
 import { Device } from "@capacitor/device";
+import { UtilService } from 'src/app/services/util.service';
+import { EnvironmentService } from 'src/app/services/environment.service';
+import { session } from 'src/app/utility/message';
+import { VideoService } from 'src/app/services/video.service';
+import { ApiService } from 'src/app/services/api.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ChangeDetectorRef,ChangeDetectionStrategy, Component, HostListener, OnInit,SimpleChanges } from '@angular/core';
+
 declare let _cpmp: any;
 declare let cincopa: any;
 @Component({
@@ -11,34 +18,75 @@ declare let cincopa: any;
 })
 export class PersonalizedMicronutritionPage implements OnInit {
   public folder: string;
-  playerId = "cincopa_1638196190170";
+  public dashboardDatas:any=[];
+
+  playerId =this.videoSer.videoType[1].id;
   width = 0;
   cpo: any = [];
   showUpdate = false;
-  currentProgress: any = {
-    completion_percent: 0,
-    completion_sec: 17,
-    current_completion_percent: 10,
-    current_progress_sec: 14,
-    duration_sec: 164,
-    hm_range: "0-7:2,8-13:3,14:2,15-16",
-  };
-  tmpCurrentProgress: any = {
-    completion_percent: 0,
-    completion_sec: 17,
-    current_completion_percent: 10,
-    current_progress_sec: 14,
-    duration_sec: 164,
-    hm_range: "0-7:2,8-13:3,14:2,15-16",
-  };
+  // currentProgress: any = {
+  //   completion_percent: 0,
+  //   completion_sec: 17,
+  //   current_completion_percent: 10,
+  //   current_progress_sec: 0,
+  //   duration_sec: 164,
+  //   hm_range: "0-7:2,8-13:3,14:2,15-16",
+  // };
+  // tmpCurrentProgress: any = {
+  //   completion_percent: 0,
+  //   completion_sec: 17,
+  //   current_completion_percent: 10,
+  //   current_progress_sec: 0,
+  //   duration_sec: 164,
+  //   hm_range: "0-7:2,8-13:3,14:2,15-16",
+  // };
   info: any;
-   
+
+  constructor(private router: Router,
+    private cdr: ChangeDetectorRef,
+    private platform: Platform,
+    private navController: NavController,
+    private utility: UtilService,
+    private envr: EnvironmentService,
+    private videoSer: VideoService,
+    private apiSer: ApiService,
+    private translateService:TranslateService
+  ) {
+    console.log(this);
+  }
+
+  
+   ionViewWillEnter() {
+    this.getDashboard();
+    this.videoSer.videoId = 1
+    this.utility.setStorage(session.SELECTED_PLAN, this.envr.plans.bodyAnlaysis);
+
+  }
+
+  async getDashboard(){
+    let loading = await this.utility.presentLoading();
+    this.apiSer
+      .prospectDashboard() 
+      .then((res: any) => {
+        loading.dismiss();
+        let result=res;
+        if(result.status){
+          this.dashboardDatas = res.data;
+          console.log(this.dashboardDatas )
+        }
+       
+        console.log(res)
+      })
+    
+  }
 
   ngAfterViewInit() {
-    this.initPlayer("A4HAcLOLOO68!AkADF107s8tQ");
+    
+    this.videoSer.initPlayer(this.videoSer.videoType[1].initPlayer,this.videoSer.videoType[1].id,this.cdr);
   }
 
   ngOnInit() {
+
     this.platform.ready().then(async () => {
       console.log("Width: " + this.platform.width());
       this.width = this.platform.width();
@@ -47,111 +95,29 @@ export class PersonalizedMicronutritionPage implements OnInit {
       console.log("Height: " + this.platform.height());
     });
   }
-  playerAPI() {
-    let galleryWrapID = this.playerId;
-    if (
-      cincopa &&
-      cincopa.getGalleryById(galleryWrapID) &&
-      cincopa.getGalleryById(galleryWrapID).getSkin().go.playerAPI
-    ) {
-      return cincopa.getGalleryById(galleryWrapID).getSkin().go.playerAPI;
-    } else {
-      return false;
-    }
-  }
-  specificTime() {
-    if (this.playerAPI()) {
-      this.playerAPI().setCurrentTime(42);
-    }
-  }
-  initPlayer(id) {
-    let that = this;
-    cincopa = cincopa || {};
-    cincopa.analytics_persistent = { mode: "localstorage" };
-    cincopa.registeredFunctions = cincopa.registeredFunctions || [];
-    cincopa.registeredFunctions.push({
-      func(name, data, gallery) {
-        const stats = gallery.get_video_play_stats(data);
-        that.tmpCurrentProgress = stats;
-        that.cdr.detectChanges();
-      },
-      filter: "video.timeupdate",
-    });
-    cincopa.registeredFunctions.push({
-      func(name, data, gallery) {
-        if (that.info.model === "iPad") {
-          gallery.args.fullscreen_button = false;
-        }
-        gallery.args.gear_button = false;
-        console.log(gallery.args);
-      },
-      filter: "runtime.on-args",
-    });
-    cincopa.registeredFunctions.push({
-      func(name, data, gallery) {},
-      filter: "video.load",
-    });
-    cincopa.registeredFunctions.push({
-      func(name, data, gallery) {
-        console.log("Change detect");
-        console.log(gallery);
-      },
-      filter: "video.change",
-    });
-    cincopa.registeredFunctions.push({
-      func(name, data, gallery) {
-        const stats = gallery.get_video_play_stats(data);
-        that.currentProgress = stats;
-        that.showUpdate = true;
-        that.cdr.detectChanges();
-      },
-      filter: "video.pause",
-    });
-    cincopa.registeredFunctions.push({
-      func(name, data, gallery) {
-        const stats = gallery.get_video_play_stats(data);
-        that.cdr.detectChanges();
-      },
-      filter: "video.play",
-    });
-
-    this.cpo = [];
-    this.cpo._object = this.playerId;
-    this.cpo._fid = id;
-    _cpmp.push(this.cpo);
-    (() => {
-      const cp = document.createElement("script");
-      cp.type = "text/javascript";
-      cp.async = true;
-      cp.src = "https://rtcdn.cincopa.com/libasync.js";
-      let c = document.getElementsByTagName("script")[0];
-      c.parentNode.insertBefore(cp, c);
-    })();
-  }
-
-  @HostListener("window:resize", ["$event"])
-  onResize(event) {
-    this.width = event.target.innerWidth;
-  }
-
-  enterFullScreen() {
-    this.playerAPI() && this.playerAPI().enterFullScreen();
-  }
-
-  exitFullScreen() {
-    this.playerAPI() && this.playerAPI().exitFullScreen();
-  } 
-
-  constructor(private router: Router, 
-    private cdr: ChangeDetectorRef,
-    private platform: Platform,
-    private navController: NavController) { }
  
-  goBack() {
-    this.navController.back();
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+  }
+
+  
+
+
+
+ 
+ async saveVideoDur() {
+  this.videoSer.saveVideoDur( this.videoSer.videoId)
+
+  }
+  
+ 
+  ionViewDidLeave() {
+    this.videoSer.pauseVideo();
+    
   }
 
   openBookingAnalysis() {
-    this.router.navigate(["/tabs/check-zip"]);
+    this.utility.goNext("/tabs/check-zip")
   }
+
 }

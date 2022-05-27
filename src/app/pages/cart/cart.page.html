@@ -1,37 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <img (click)="goBack()" class="back-icon" src="assets/img/back.png">
-    </ion-buttons>
-    <ion-title>Cart</ion-title>
-    <ion-buttons slot="end">
-      <img class="bell-icon" src="assets/img/bell.png">
-      <ion-avatar>
-        <img src="assets/img/profile.png">
-      </ion-avatar>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+
+<app-header  [headerTitle]="'PAGES.CART' | translate"  [headerBack]=true  ></app-header>
 
 <ion-content>
-  <ion-modal [isOpen]="ionModelOpen" [swipeToClose]="false" [backdropDismiss]="false" [keyboardClose]="false">
+  <ion-modal [isOpen]="ionModelOpen" [swipeToClose]="false" [backdropDismiss]="false" [keyboardClose]="false" class="paymentModal">
     <ng-template>
       <ion-content>
-        <iframe style="width: 100%;
-    height: 100vh;" class="webPage" frameborder="0" name="eventsPage" [src]="paymentUrl">
+        <iframe  class="webPage" style="height: 100% !important;" frameborder="0" name="eventsPage" [src]="paymentUrl">
         </iframe>
-    </ion-content>
+      </ion-content>
     </ng-template>
   </ion-modal>
   <form>
     <ion-row>
-      <ion-item lines="none" class="form-group ion-no-padding">
-        <ion-input inputmode="number" id="promocode" placeholder="Promo code (If available)" autocapitalize="off">
+      <ion-col>
+        <ion-input type="number" id="promocode" placeholder="Promo code (If available)" autocapitalize="off">
+      </ion-input>
+    </ion-col>
+      <ion-col>
+        <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">Apply</ion-button>
+      </ion-col>
+      <!-- <ion-item lines="none" class="form-group ion-no-padding">
+        <ion-input type="number" id="promocode" placeholder="Promo code (If available)" autocapitalize="off">
         </ion-input>
       </ion-item>
       <ion-col>
         <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">Apply</ion-button>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </form>
   <div class="form-cart">
@@ -39,10 +33,18 @@
       <ion-col class="formcart-title net-amount-title">Item</ion-col>
       <ion-col class="formcart-value net-amount-value">Netto Amount</ion-col>
     </ion-row>
-    <ion-row class="admssion-fee-wrap" *ngFor="let item of products_data">
-      <ion-col class="formcart-title admssion-fee-title">{{item?.productDescription ? item?.productDescription : '-'}}</ion-col>
-      <ion-col class="formcart-value admssion-fee-value">{{item?.packageAmount ? item?.packageAmount : 0}} €</ion-col>
-    </ion-row> 
+    <!-- <div > -->
+      <ion-row class="admssion-fee-wrap" *ngFor="let item of products_data;let indexOfelement=index;">
+        <ion-col class="formcart-title admssion-fee-title">{{item?.packageName ? item?.packageName : '-'}}
+        </ion-col>
+        <ion-col class="formcart-value admssion-fee-value">
+          <!-- <span class="remove-span" *ngIf="indexOfelement > 0" >Remove</span> -->
+
+          {{item?.packageAmount ? item?.packageAmount : 0}} €
+        </ion-col>
+      </ion-row>
+    <!-- </div> -->
+
     <ion-row class="total net-box-wrap">
       <ion-col class="formcart-title total net-title">Total Net Amount</ion-col>
       <ion-col class="formcart-value total net-value">{{vat?.totalNet ? vat?.totalNet : 0}} €</ion-col>
@@ -57,13 +59,14 @@
     </ion-row>
 
     <ion-item lines="none" class="form-group ion-no-padding">
-      <ion-checkbox slot="start" mode="md" [(ngModel)]="termsConditionStatus"></ion-checkbox>
-      <ion-label>I Agree to Terms and Conditions</ion-label>
+      <!-- <ion-checkbox slot="start" mode="md" [(ngModel)]="termsConditionStatus"></ion-checkbox> -->
+      <ion-label class="ion-text-wrap">By selecting BUY NOW I Agree to <a href="" target="_blank">Terms and
+          Conditions</a> & <a href="" target="_blank">the Privacy Policy</a> </ion-label>
     </ion-item>
-    <ion-item lines="none" class="form-group ion-no-padding">
+    <!-- <ion-item lines="none" class="form-group ion-no-padding">
       <ion-checkbox slot="start" mode="md" [(ngModel)]="privacyPolicyStatus"></ion-checkbox>
-      <ion-label>I Agree to the Privacy Policy</ion-label>
-    </ion-item>
+      <ion-label class="ion-text-wrap">I Agree to the Privacy Policy</ion-label>
+    </ion-item> -->
 
     <ion-button (click)="buyCart()" class="btn" color="danger" expand="block">BUY NOW</ion-button>
 

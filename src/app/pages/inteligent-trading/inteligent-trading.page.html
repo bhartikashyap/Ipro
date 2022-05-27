@@ -1,17 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <img (click)="goBack()" class="back-icon" src="assets/img/back.png">
-    </ion-buttons>
-    <ion-title></ion-title>
-    <ion-buttons slot="end">
-      <img class="bell-icon" src="assets/img/bell.png">
-      <ion-avatar>
-        <img src="assets/img/profile.png">
-      </ion-avatar>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header  [headerTitle]=""  [headerBack]=true  ></app-header>
 
 <ion-content>
 
@@ -19,7 +6,7 @@
  <div id="cincopa_16381961901701" style="width: 90% !important;"></div>
   <div class="content-wrap">
     <p class="mb30">{{'INTELIGENT_TRADING.GET_TRADE_TXT' | translate}}</p>
-    <ion-button class="btn" color="danger" expand="block">{{'INTELIGENT_TRADING.GET_TRADE' | translate}}
+    <ion-button class="btn" color="danger" expand="block" (click)="goNext()">{{'INTELIGENT_TRADING.GET_TRADE' | translate}}
     </ion-button> 
   </div>
 </ion-content>

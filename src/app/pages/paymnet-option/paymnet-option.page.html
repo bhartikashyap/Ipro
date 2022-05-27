@@ -1,0 +1,107 @@
+<app-header  [headerTitle]="'PAGES.PAYMENT_ABO' | translate"  [headerBack]=true  ></app-header>
+
+<ion-content style="padding:10px;">
+  <div style="padding:10px;"></div>
+  <ion-card *ngFor="let paym of userProfile?.paymentAbo; let i = index" >
+   
+    <ion-radio-group [value]="cardPaymentoption?.myPaymentOption" >
+   
+    <ion-card-content class="" *ngIf="i == 0 ">
+
+      <ion-item  lines="none">
+        <ion-label>{{'PAYMENT_OPTON.Activate' | translate}}/{{'PAYMENT_OPTON.Deactivate' | translate}}</ion-label>
+        <ion-radio slot="start" value="creditcard" checked="cardPaymentoption?.myPaymentOption =='creditcard'"   class="radio"></ion-radio>
+      </ion-item>
+      <ion-item  lines="none">
+        <label>{{'PAYMENT_OPTON.method.credit' | translate}}</label> 
+        <p slot="end" *ngIf="cardPaymentoption?.cardNumber != ''">{{cardPaymentoption?.cardNumber}}</p>
+        <p *ngIf="cardadded"  style="font-size:12px;color:rgb(99, 91, 91);margin-left: 25px;"> {{'PAYMENT_OPTON.inprogress' | translate}}</p>
+      </ion-item>
+    
+
+      <!-- <ion-item  lines="none" *ngIf="cardPaymentoption?.cardNumber != '' && !cardadded">
+        <label>Credit Card</label> 
+      </ion-item>
+      <ion-item  lines="none" *ngIf="cardPaymentoption?.cardNumber != '' && !cardadded">
+          <label style="font-size:14px">{{cardPaymentoption?.cardHolder}}</label> 
+          <p slot="end" style="font-size:12px">{{cardPaymentoption?.cardNumber}}</p>
+      </ion-item>
+      <p *ngIf="cardadded"  style="font-size:12px;color:rgb(99, 91, 91)">Updating Registerion.....</p> -->
+
+      
+      <ion-button class="card-btn" color="secondary" expand="block" (click)="aboPayment(paym)" *ngIf="cardPaymentoption?.cardNumber == '' && !cardadded">
+        {{'PAYMENT_OPTON.btns.add' | translate}}  {{'PAYMENT_OPTON.method.credit' | translate}}
+        <!-- *ngIf="cardPaymentoption?.cardNumber == ''" -->
+      </ion-button>
+      <ion-button class="card-btn" color="danger" expand="block" *ngIf="cardPaymentoption?.cardNumber != '' || cardadded" (click)="confirmDelete(paym)">
+        {{'PAYMENT_OPTON.btns.delete' | translate}} {{'PAYMENT_OPTON.method.credit' | translate}}
+      </ion-button>
+    </ion-card-content>
+
+    <ion-card-content class="" *ngIf="i == 1">
+      <!-- <ion-radio-group [value]="userProfile?.paymentAbo" > -->
+      <ion-item  lines="none">
+        <ion-label>{{'PAYMENT_OPTON.Activate' | translate}}/{{'PAYMENT_OPTON.Deactivate' | translate}}</ion-label>
+        <ion-radio slot="start"  value="iban" checked="cardPaymentoption?.myPaymentOption =='iban'"   class="radio"></ion-radio>
+      </ion-item>
+    <!-- </ion-radio-group> -->
+      <ion-item  lines="none">
+        <label>{{'PAYMENT_OPTON.method.IBAN' | translate}}</label> 
+        <p slot="end" *ngIf="cardPaymentoption?.iban != ''">{{cardPaymentoption?.iban}}</p>
+        <p *ngIf="ibanadded"  style="font-size:12px;color:rgb(99, 91, 91);margin-left: 25px;"> {{'PAYMENT_OPTON.inprogress' | translate}}</p>
+      </ion-item>
+    
+
+      <!-- <ion-item  lines="none" *ngIf="cardPaymentoption?.cardNumber != '' && !cardadded">
+        <label>Credit Card</label> 
+      </ion-item>
+      <ion-item  lines="none" *ngIf="cardPaymentoption?.cardNumber != '' && !cardadded">
+          <label style="font-size:14px">{{cardPaymentoption?.cardHolder}}</label> 
+          <p slot="end" style="font-size:12px">{{cardPaymentoption?.cardNumber}}</p>
+      </ion-item>
+      <p *ngIf="cardadded"  style="font-size:12px;color:rgb(99, 91, 91)">Updating Registerion.....</p> -->
+
+      
+      <ion-button class="card-btn" color="secondary" expand="block" (click)="aboPayment(paym)" *ngIf="cardPaymentoption?.iban == '' && !ibanadded">
+        {{'PAYMENT_OPTON.btns.add' | translate}}  {{'PAYMENT_OPTON.method.IBAN' | translate}}
+        <!-- *ngIf="cardPaymentoption?.cardNumber == ''" -->
+      </ion-button>
+      <ion-button class="card-btn" color="danger" expand="block" *ngIf="cardPaymentoption?.iban != '' || ibanadded" (click)="confirmDelete(paym)">
+        {{'PAYMENT_OPTON.btns.delete' | translate}} {{'PAYMENT_OPTON.method.IBAN' | translate}}
+      </ion-button>
+
+    </ion-card-content>
+  </ion-radio-group>
+
+  </ion-card>
+
+
+  <!-- <ion-card>
+    <ion-card-header>
+      
+       
+    </ion-card-header>
+   
+    <ion-card-content class="">
+      <ion-radio-group [value]="cardPaymentoption?.myPaymentOption" >
+      <ion-item  lines="none">
+        <ion-label>Activate/Deactivate</ion-label>
+        <ion-radio slot="start" value="iban" checked="cardPaymentoption?.myPaymentOption =='iban'"  class="radio"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+      <ion-item  lines="none" *ngIf="cardPaymentoption?.iban != ''">
+        <label>IBAN</label> 
+        <p slot="end">{{cardPaymentoption?.iban}}</p>
+      </ion-item>
+      
+      <ion-button class="card-btn" color="secondary" expand="block" (click)="utilSer.goNext(['/tabs/commission-option'])" *ngIf="cardPaymentoption?.iban == ''">
+        Add/Change IBAN
+      </ion-button>
+      <ion-button class="card-btn" color="danger" expand="block" *ngIf="cardPaymentoption?.iban != ''">
+        Delete IBAN
+      </ion-button>
+    </ion-card-content>
+  </ion-card> -->
+
+  <div style="padding:10px;"></div>
+</ion-content>

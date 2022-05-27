@@ -1,0 +1,53 @@
+<app-header  [headerTitle]=title  [headerBack]=true  ></app-header>
+
+<ion-content>
+
+  <div ></div>
+
+  <ion-card class="mem-grid">
+  <ion-grid>
+    <ion-row style="background: rgb(27, 43, 93); color:#fff">
+      <ion-col class="ion-align-self-center">
+        <div style="text-align:center"> {{'PROSPECT_MANAGEMENT.tableHeader.userId' | translate }}</div>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <div style="text-align:center"> {{'PROSPECT_MANAGEMENT.tableHeader.name' | translate }}</div>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <div style="text-align:center"> {{'PROSPECT_MANAGEMENT.tableHeader.register' | translate }}</div>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <div style="text-align:center">  {{'PROSPECT_MANAGEMENT.tableHeader.percentage' | translate }}</div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row style="border-bottom: 1px solid #ccc;" *ngFor="let pros of userData; let i = index" (click)="detail(pros)">
+      <ion-col class="ion-align-self-center">
+        <div style="text-align:center">{{pros.userId != '' ?pros.userId:"--"}}</div>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <div  style="text-align:center">{{pros.firstName != '' ?pros.firstName:"--"}} {{pros.lastName != '' ?pros.lastName:"--"}}</div>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <div  style="text-align:center">{{pros.registrationDate != '' ? pros.registrationDate.split(" ")[0]:"--"}}</div>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <div  style="text-align:center"> {{pros.userDiscount != '' ?pros.userDiscount:"--"}} 
+          <!-- <span *ngIf="pros.userDiscount && pros.userDiscount != ''">
+%
+          </span> -->
+          <!-- {{pros.userId}} -->
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf=" userData.length <= 0" >
+      <ion-col> No records found.</ion-col>
+    </ion-row>
+   
+  </ion-grid>
+</ion-card>
+    
+
+
+
+</ion-content>

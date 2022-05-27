@@ -1,0 +1,43 @@
+<app-header [headerTitle]="'PAGES.PRODUCTDETAIL' | translate" [headerBack]=true></app-header>
+
+<ion-content>
+  <ion-item *ngIf="detail != undefined" lines="none">
+
+    <!-- <div>-->
+    <div class="product"> 
+        <img src="{{detail.packageImage}}" alt="{{detail.packageName}}" />
+
+      <h2>{{detail.packageName}}</h2>
+      <p class="product-detail"> {{detail.productDescription}}</p>
+      <!-- <p class="product-detail"> {{detail.productDescriptionDE}}</p> -->
+      <ion-select  class="price-detail ion-margin" [(ngModel)]="detail.availTymSelected" interface="action-sheet"
+        (ionChange)="changeDuration($event)" *ngIf="detail != undefined">
+        <ion-select-option *ngFor="let avtym of detail.avail_runtime | keyvalue" [value]="avtym.key">{{avtym.value}}
+        </ion-select-option>
+      </ion-select>
+      <!-- </div> -->
+
+
+    </div>
+    <!-- <div> -->
+    <!-- <ion-label>Hair Color</ion-label> -->
+
+
+    <!-- </div> -->
+
+
+  </ion-item>
+  <h1 class="price"><strong> &euro; {{detail.changedPrice}} + {{'CART.VAT' | translate}}</strong></h1>
+
+  <div class="content-wrap" *ngIf="!detail.disableCart">
+    <ion-button class="btn" color="danger" expand="block" disabled="{{detail.disableCart}}" (click)="addTobasket()">
+      {{'PRODUCT.ADDTOCART' | translate}}
+    </ion-button>
+  </div>
+  <div class="content-wrap" *ngIf="detail.disableCart">
+    <ion-button class="btn" color="danger" expand="block" (click)="removeItem()">
+      {{'PRODUCT.REMOVE' | translate}}
+    </ion-button>
+  </div>
+
+</ion-content>

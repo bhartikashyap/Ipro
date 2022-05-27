@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: "app-tabs",
@@ -7,11 +8,24 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ["./tabs.component.scss"],
 })
 export class TabsComponent implements OnInit {
-  constructor(private menuCtrl: MenuController) {}
+  dashboard:any=''
+  constructor(private menuCtrl: MenuController,private utilSer:UtilService) {
+  
+    
+  }
 
-  ngOnInit() {}
+async ngOnInit() {
+    // await this.utilSer.changeMenu();
+  }
+  ionViewWillEnter() {
+    this.dashboard = "/tabs/dashboard/"+this.utilSer.defaultDash;
 
-  openMenu() {
-    this.menuCtrl.open();
+  }
+
+ 
+  openMenu(){
+    console.log(this.menuCtrl);
+    this.menuCtrl.enable(true);
+    this.menuCtrl.open('first');
   }
 }

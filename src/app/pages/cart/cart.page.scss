@@ -3,11 +3,11 @@
 //   --width: 80%;
 // }
 form {
-  padding: 21px;
+ // padding: 21px;
   padding-top: 70px;
   .form-group {
     position: relative;
-    --inner-padding-end: 0 !important;
+    --inner-padding-end: 5px !important;
   }
   ion-input,
   ion-select {
@@ -83,7 +83,7 @@ ion-item.form-group.country-group {
   font-size: 12px;
 }
 .form-cart {
-  padding: 20px;
+  padding: 12px;
   ion-col.formcart-value {
     text-align: right;
   }
@@ -95,7 +95,7 @@ ion-item.form-group.country-group {
   }
   ion-col.formcart-title.admssion-fee-title,
   ion-col.formcart-value.admssion-fee-value {
-    font-family: Poppins;
+    // font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -104,7 +104,7 @@ ion-item.form-group.country-group {
   }
   ion-col.formcart-title.itrading-box-title,
   ion-col.formcart-value.itrading-box-value {
-    font-family: Poppins;
+    // font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -113,7 +113,7 @@ ion-item.form-group.country-group {
   }
   ion-col.formcart-title.delivery-title,
   ion-col.formcart-value.delivery-value {
-    font-family: Poppins;
+    // font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -122,7 +122,7 @@ ion-item.form-group.country-group {
   }
   ion-col.formcart-title.total.net-title,
   ion-col.formcart-value.total.net-value {
-    font-family: Poppins;
+    // font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -131,7 +131,7 @@ ion-item.form-group.country-group {
   }
   ion-col.formcart-title.vat-title,
   ion-col.formcart-value.vat-value {
-    font-family: Poppins;
+    // font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -167,5 +167,20 @@ ion-item.form-group.country-group {
     opacity: 0;
     color: #6d6d6d;
   }
+}
+.remove-span{
+  background: #ff662999;
+    border-radius: 9px;
+    padding: 5px;
+    font-size: 11px;
+    line-height: 10px;
+    /* color: #7a6c6c; */
+    margin-right: 4px;
+}
+a{
+  color: #ff6629;
+}
+.paymentModal{
+  --height:865px;
 }
  

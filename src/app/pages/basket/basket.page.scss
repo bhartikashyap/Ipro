@@ -1,0 +1,197 @@
+// .my-search-class {
+//   --height: 500px;
+//   --width: 80%;
+// }
+form {
+    // padding: 21px;
+     padding-top: 70px;
+     .form-group {
+       position: relative;
+       --inner-padding-end: 5px !important;
+     }
+     ion-input,
+     ion-select {
+       font-style: normal;
+       font-weight: normal;
+       font-size: 12px;
+       border: 1px solid #d6d6d6 !important;
+       height: 40px;
+       border-radius: 5px !important;
+       padding: 12px 11px !important;
+       --padding-bottom: 0px;
+       --padding-top: 0px;
+       --padding-start: 0px;
+       --padding-end: 0px;
+       --inner-padding-end: 0 !important;
+     }
+   
+     ion-item.item-has-value ion-label,
+     ion-item.item-has-focus ion-label {
+       top: 15px !important;
+       background: white;
+       z-index: 999;
+       text-align: left;
+       font-size: 16px !important;
+       width: 100px !important;
+       padding-left: 10px;
+     }
+   
+     ion-label.label-floating {
+       position: relative;
+       top: 3px;
+       left: 10px;
+       font-size: 12px !important;
+       color: gray !important;
+     }
+   
+     //   ion-icon {
+     //     position: absolute;
+     //     bottom: 10px;
+     //     right: 20px;
+     //     font-size: 25px;
+     //     z-index: 9999;
+     //   }
+   }
+   .dont-know {
+     color: #6d6d6d;
+     font-size: 12px;
+     font-weight: 400;
+     text-decoration: none;
+     text-align: center;
+     width: 100%;
+     display: block;
+     margin-top: 20px;
+     span {
+       color: #ff662a;
+     }
+   }
+   .btn {
+     height: 40px;
+     font-size: 12px;
+     font-weight: 600;
+     --border-radius: 4px;
+     margin-top: -2px;
+   }
+   ion-item.form-group.country-group {
+     top: 32px;
+     position: absolute;
+     width: 70px;
+     border: 1px solid #d4d4d4;
+     height: 44px;
+     border-radius: 4px;
+     color: #727272;
+     font-size: 12px;
+   }
+   .form-cart {
+     padding: 12px;
+     ion-col.formcart-value {
+       text-align: right;
+     }
+     ion-col.formcart-value.net-amount-value,
+     ion-col.formcart-title.net-amount-title {
+       font-weight: 800;
+       font-size: 16px;
+       color: #6d6d6d;
+     }
+     ion-col.formcart-title.admssion-fee-title,
+     ion-col.formcart-value.admssion-fee-value {
+       // font-family: Poppins;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 14px;
+       line-height: 21px;
+       color: #6d6d6d;
+     }
+     ion-col.formcart-title.itrading-box-title,
+     ion-col.formcart-value.itrading-box-value {
+       // font-family: Poppins;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 14px;
+       line-height: 21px;
+       color: #6d6d6d;
+     }
+     ion-col.formcart-title.delivery-title,
+     ion-col.formcart-value.delivery-value {
+       // font-family: Poppins;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 14px;
+       line-height: 21px;
+       color: #6d6d6d;
+     }
+     ion-col.formcart-title.total.net-title,
+     ion-col.formcart-value.total.net-value {
+       // font-family: Poppins;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 14px;
+       line-height: 21px;
+       color: #6d6d6d;
+     }
+     ion-col.formcart-title.vat-title,
+     ion-col.formcart-value.vat-value {
+       // font-family: Poppins;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 14px;
+       line-height: 21px;
+       color: #6d6d6d;
+     }
+     ion-col.formcart-title.total-title,
+     ion-col.formcart-value.total-value {
+       font-weight: 800;
+       font-size: 16px;
+       color: #6d6d6d;
+     }
+     ion-row.total.net-box-wrap {
+       padding-top: 36px;
+     }
+     ion-row.total-box-wrap {
+       border-top: 1px solid;
+     }
+     label {
+       left: 0px;
+       top: 0px;
+       margin: 0px;
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       border: 0px;
+       background: transparent;
+       cursor: pointer;
+       appearance: none;
+       outline: none;
+       display: flex;
+       align-items: center;
+       opacity: 0;
+       color: #6d6d6d;
+     }
+   }
+   .remove-span{
+    background: #e3322dc9;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 11px;
+    line-height: 10px;
+    /* margin-right: 4px; */
+    font-size: 9px;
+    font-weight: 800;
+    margin: 0px;
+    width: 50px;
+    color: #fff;
+    text-align: center;
+   }
+   a{
+     color: #ff6629;
+   }
+   .paymentModal{
+     --height:865px;
+   }
+
+   .tnc{
+    color: #ff6629;
+    text-decoration: underline;
+    font-size: 15px;
+   }
+    

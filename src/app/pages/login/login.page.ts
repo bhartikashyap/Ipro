@@ -20,6 +20,7 @@ export class LoginPage implements OnInit {
   }
   submitted = false;
   validationMessage: any;
+
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
@@ -38,23 +39,23 @@ export class LoginPage implements OnInit {
         "",
         [
           Validators.required,
-          Validators.pattern(pattern.email),
+         // Validators.pattern(pattern.email),
           Validators.maxLength(100),
         ],
       ],
       password: ["", [Validators.required, Validators.maxLength(100)]],
     });
-
+    let messages = this.utility.translateText('MSG')
     this.validationMessage = {
       email: [
-        { type: "required", message: message.required },
-        { type: "pattern", message: message.email },
-        { type: "maxlength", message: message.maxLength(100) },
+        { type: "required", message: messages.required },
+        { type: "pattern", message: messages.email },
+        { type: "maxlength", message: message.maxLength(100 ,messages.maxLength,messages.characters) },
       ],
       password: [
-        { type: "required", message: message.required },
-        { type: "pattern", message: message.password },
-        { type: "maxlength", message: message.maxLength(100) },
+        { type: "required", message: messages.required },
+        { type: "pattern", message: messages.password },
+        { type: "maxlength", message: message.maxLength(100 ,messages.maxLength,messages.characters) },
       ],
     };
   }
@@ -78,9 +79,11 @@ export class LoginPage implements OnInit {
     if (this.form.valid && this.utility.checkNetwork()) {
       this.submitted = false;
       let params: any = this.form.getRawValue();
+      params['notificationToken'] = this.utility.FCMToken;
+      console.log(params)
       let loading = await this.utility.presentLoading();
       this.apiService
-        .loginUser(params)
+        .loginUser(params) 
         .then((res: any) => {
           loading.dismiss();
           if (res.status == 1) {
@@ -89,9 +92,27 @@ export class LoginPage implements OnInit {
             this.utility.setStorage(session.AUTH_STATUS, 1);
             this.utility.setStorage(session.AUTH_TOKEN, token);
             this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
-            this.router.navigate(["/tabs/area-of-interest"]);
+            this.utility.userRole=data.userRole;
+            this.utility.setStorage('userRole',data.userRole);
+            this.utility.setStorage('firstLogin', new Date());
+            if(data.userRole == 'Prospect'){
+                   this.utility.checkQuestionaire();
+             // this.utility.goNext(["/tabs/area-of-interest"]);
+             // this.router.navigate(["/tabs/area-of-interest"]);
+            }
+            else{
+              let dash;
+              if(data.defaultDashboard == 'Partner'){
+                dash = 'Partner';
+              }
+              else{
+                dash = 'Member';
+              }
+              this.utility.setStorage('CHANGE_DASH',dash);
+              this.utility.goNext(["/tabs/dashboard/"+dash])
+            }
           } else {
-            this.utility.presentToast(res.msg);
+            this.utility.presentToast(res.msg,"bottom");
           }
         })
         .catch((err: any) => {
@@ -101,4 +122,5 @@ export class LoginPage implements OnInit {
       console.log(params);
     }
   }
+
 }

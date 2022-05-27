@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: "",
-    loadChildren: () =>
-      import("./pages/splash/splash.module").then((m) => m.SplashPageModule),
-  },
+  // {
+  //   path: "",
+  //   loadChildren: () =>
+  //     import("./pages/splash/splash.module").then((m) => m.SplashPageModule),
+  // },
   {
     path: "login",
     loadChildren: () =>
@@ -31,6 +31,43 @@ const routes: Routes = [
     loadChildren: () =>
       import("./pages/tabs/tabs.module").then((m) => m.TabsModule),
   },
+  {
+    path: 'questionaires',
+    loadChildren: () => import('./pages/questionaires/questionaires.module').then( m => m.QuestionairesPageModule)
+  },
+  {
+    path: 'user-modal',
+    loadChildren: () => import('./components/user-modal/user-modal.module').then( m => m.UserModalPageModule)
+  },
+  {
+    path: "questionare",
+    loadChildren: () =>
+      import(
+        "./pages/questionaires/questionaires.module"
+      ).then((m) => m.QuestionairesPageModule),
+  },
+  {
+    path: "question",
+    loadChildren: () =>
+      import("./pages/question/question.module").then(
+        (m) => m.QuestionPageModule
+      ),
+  }
+  ,
+  {
+    path: 'member-replacement',
+    loadChildren: () => import('./pages/member-replacement/member-replacement.module').then( m => m.MemberReplacementPageModule)
+  }
+
+
+
+
+
+
+
+
+
+
   
 
 
