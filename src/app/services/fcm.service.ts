@@ -67,26 +67,21 @@ async  pushRegister() {
       (notification: PushNotificationSchema) => {
        this.utility.newNotification += 1;
          this.utility.changeMessage("Push Notification");
-         const data = notification.notification.data;
-         console.log('Push action performed: ' + data);
-         console.log('Push action performed: ' + JSON.stringify(data));
-        console.log('Push received: ' + JSON.stringify(notification));
-        this.savePush(notification, "no-navigate");
+        console.log('Push received: ' + JSON.stringify(notification.data));
+        this.savePush(notification.data, "no-navigate");
       //  this.utility.getCart('notification');
-
-        
       }
     );
 
     // // Method called when tapping on a notification
-    // PushNotifications.addListener('pushNotificationActionPerformed',
-    //   (notification: ActionPerformed) => {
-    //     const data = notification.notification.data;
-    //     console.log('Push action performed: ' + data);
-    //     console.log('Push action performed: ' + JSON.stringify(data));
-    //     this.savePush(notification, "navigate")   
-    //   }
-    // );
+    PushNotifications.addListener('pushNotificationActionPerformed',
+      (notification: ActionPerformed) => {
+        const data = notification.notification.data;
+        console.log('Push action performed: ' + data);
+        console.log('Push action performed: ' + JSON.stringify(data));
+        this.savePush(data, "navigate")   
+      }
+    );
 
   
     // await PushNotifications.addListener('pushNotificationActionPerformed', notification => {
@@ -145,14 +140,14 @@ async  pushRegister() {
         notifications.push(notification);
       }
       else {
-        prevNot = JSON.parse(prevNot);
+        prevNot = JSON.parse(prevNot);                           
         if (prevNot.length == 15) {
           prevNot.splice(0, 1);
         }
         prevNot.push(notification)
-        notifications = prevNot;
+        notifications = prevNot;   
   
-      }
+      }   
   console.log(notifications,"notificationsnotificationsnotificationsnotificationsnotifications")
       // notifications.push(notification);
       this.utility.setStorage('notification', JSON.stringify(notifications));

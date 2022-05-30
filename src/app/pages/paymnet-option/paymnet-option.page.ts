@@ -18,6 +18,7 @@ export class PaymnetOptionPage implements OnInit {
   cardadded:any=false;
   ibanadded:any=false;
   somethingElseclick:any=false;
+  myPaymentOption:any;
   options: InAppBrowserOptions = {
     location: 'yes',//Or 'no' 
     hidden: 'no', //Or  'yes'
@@ -72,6 +73,7 @@ export class PaymnetOptionPage implements OnInit {
     if (result.status == 1) {
       this.cardPaymentoption = result.data;
       var changeLoader;
+      this.myPaymentOption = this.cardPaymentoption?.myPaymentOption 
       if( this.cardPaymentoption.iban !=''){
         
           this.ibanadded = false;

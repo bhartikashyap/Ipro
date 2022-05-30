@@ -4,13 +4,13 @@
   <div style="padding:10px;"></div>
   <ion-card *ngFor="let paym of userProfile?.paymentAbo; let i = index" >
    
-    <ion-radio-group [value]="cardPaymentoption?.myPaymentOption" >
+    <ion-radio-group [value]="myPaymentOption" >
    
     <ion-card-content class="" *ngIf="i == 0 ">
 
       <ion-item  lines="none">
         <ion-label>{{'PAYMENT_OPTON.Activate' | translate}}/{{'PAYMENT_OPTON.Deactivate' | translate}}</ion-label>
-        <ion-radio slot="start" value="creditcard" checked="cardPaymentoption?.myPaymentOption =='creditcard'"   class="radio"></ion-radio>
+        <ion-radio slot="start" value="creditcard" checked="cardPaymentoption?.myPaymentOption =='creditcard'"   class="radio" (click)="myPaymentOption = 'creditcard'"></ion-radio>
       </ion-item>
       <ion-item  lines="none">
         <label>{{'PAYMENT_OPTON.method.credit' | translate}}</label> 
@@ -42,7 +42,7 @@
       <!-- <ion-radio-group [value]="userProfile?.paymentAbo" > -->
       <ion-item  lines="none">
         <ion-label>{{'PAYMENT_OPTON.Activate' | translate}}/{{'PAYMENT_OPTON.Deactivate' | translate}}</ion-label>
-        <ion-radio slot="start"  value="iban" checked="cardPaymentoption?.myPaymentOption =='iban'"   class="radio"></ion-radio>
+        <ion-radio slot="start"  value="iban" checked="cardPaymentoption?.myPaymentOption =='iban'"   class="radio" (click)="myPaymentOption = 'iban'"></ion-radio>
       </ion-item>
     <!-- </ion-radio-group> -->
       <ion-item  lines="none">
