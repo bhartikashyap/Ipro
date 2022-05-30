@@ -67,6 +67,9 @@ async  pushRegister() {
       (notification: PushNotificationSchema) => {
        this.utility.newNotification += 1;
          this.utility.changeMessage("Push Notification");
+         const data = notification.notification.data;
+         console.log('Push action performed: ' + data);
+         console.log('Push action performed: ' + JSON.stringify(data));
         console.log('Push received: ' + JSON.stringify(notification));
         this.savePush(notification, "no-navigate");
       //  this.utility.getCart('notification');
@@ -75,24 +78,24 @@ async  pushRegister() {
       }
     );
 
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        const data = notification.notification.data;
-        console.log('Push action performed: ' + data);
-        console.log('Push action performed: ' + JSON.stringify(data));
-        this.savePush(notification, "navigate")
-      }
-    );
+    // // Method called when tapping on a notification
+    // PushNotifications.addListener('pushNotificationActionPerformed',
+    //   (notification: ActionPerformed) => {
+    //     const data = notification.notification.data;
+    //     console.log('Push action performed: ' + data);
+    //     console.log('Push action performed: ' + JSON.stringify(data));
+    //     this.savePush(notification, "navigate")   
+    //   }
+    // );
 
   
-    await PushNotifications.addListener('pushNotificationActionPerformed', notification => {
-      console.log('Push notification action performed', notification.actionId, notification.inputValue);
-      const data = notification.notification.data;
-      console.log('Push action performed: ' + data);
-      console.log('Push action performed: ' + JSON.stringify(data));
-      this.savePush(notification, "navigate")
-    });
+    // await PushNotifications.addListener('pushNotificationActionPerformed', notification => {
+    //   console.log('Push notification action performed', notification.actionId, notification.inputValue);
+    //   const data = notification.notification.data;
+    //   console.log('Push action performed: ' + data);
+    //   console.log('Push action performed: ' + JSON.stringify(data));
+    //   this.savePush(notification, "navigate")
+    // });
 
 
   }

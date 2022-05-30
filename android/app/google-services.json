@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "511786605642",
+    "project_id": "ipro-346211",
+    "storage_bucket": "ipro-346211.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511786605642:android:35b1147cf19f9a1b9fdab3",
+        "android_client_info": {
+          "package_name": "com.ipro.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511786605642-77cj4aeeva175fedskejpsf7okc6mnej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsmCY2KKQdmPh0VoPCcjn2YHHTKdCT5hY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511786605642-77cj4aeeva175fedskejpsf7okc6mnej.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "511786605642-f8lkn10knekk4hjo7omgc0tqcl5voef3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ipro.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
