@@ -74,37 +74,49 @@ export class PaymnetOptionPage implements OnInit {
       this.cardPaymentoption = result.data;
       var changeLoader;
       this.myPaymentOption = this.cardPaymentoption?.myPaymentOption 
-      if( this.cardPaymentoption.iban !=''){
-        
-          this.ibanadded = false;
-        
-        changeLoader = "loader";
-        // clearInterval();
+     
+      if(this.cardPaymentoption.cardNumber =='' || this.cardPaymentoption.iban_payment_option =='' ){
+        changeLoader = "noloader";
+        if(loader == "noloader"){
+          setTimeout(() => {
+            this.getPaymentoption(changeLoader,type);
+            if(this.cardPaymentoption?.myPaymentOption =='direct_debit_sepa'){
+              this.ibanadded = true;
+            }
+            else  if(this.cardPaymentoption?.myPaymentOption =='creditcard'){
+              this.cardadded = true;
+    
+            }
+            if(this.router.url == '/tabs/paymnet-option'){
+              
+            }
+           
+    
+          },2000);
+        }
+
+
+
       }
-      if(this.cardPaymentoption.cardNumber !='' ){
-        // if(type == 'CREDITCARD'){
+     
+       else{
+
+
+        if(this.cardPaymentoption?.myPaymentOption =='direct_debit_sepa'){
+          this.ibanadded = false;
+        }
+        else  if(this.cardPaymentoption?.myPaymentOption =='creditcard'){
           this.cardadded = false;
+
+        }
+        // if(type == 'CREDITCARD'){
   
         // }else  if(type == 'GUARANTEED_DIRECT_DEBIT_SEPA'){
         //   this.ibanadded = false;
         // }
         changeLoader = "loader";
         // clearInterval();
-      }
-     
-       else{
-        changeLoader = "noloader";
-        if(loader == "noloader"){
-          setTimeout(() => {
-            this.getPaymentoption(changeLoader,type);
-            if(this.router.url == '/tabs/paymnet-option'){
-              
-             // console.log(this.paymentUrl)
-            }
-           
-    
-          },2000);
-        }
+      
       }
       console.log(changeLoader,"changeLoader")
       
@@ -262,7 +274,7 @@ export class PaymnetOptionPage implements OnInit {
       }, 2000 );
     } else {
       if(type == 'CREDITCARD'){
-        this.cardadded = true;
+        this.cardadded = false;
 
       }else  if(type == 'GUARANTEED_DIRECT_DEBIT_SEPA'){
         this.ibanadded = false;

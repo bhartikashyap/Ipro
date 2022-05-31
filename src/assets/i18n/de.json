@@ -29,7 +29,7 @@
             "ERROR_MSG": "Oops, something went wrong.Please try again."
         },
         "SPONSOR": {
-            "title": " Sponsor Details",
+            "title": " Sponser Detail",
             "NAME": "Name",
             "EMAIL": "Email",
             "PHONE": "Phone"
@@ -47,7 +47,11 @@
             "YES": "Yes",
             "PLACE": "Place",
             "SEARCH": "Search",
-            "GO_HOME": "Go Home"
+            "GO_HOME": "Go Home",
+            "NO": "No",
+            "OK": "OK",
+            "GO_TO_SHOP": "Go To Shop",
+            "zipcode": "Zip Code"
         }
     },
     "LOGIN": {
@@ -114,9 +118,9 @@
         "CITY": "City",
         "DELIVERY_ADDRESS_SAME": "Delivery Address same as billing address",
         "SUBMIT_BUTTON": "Book Analysis",
-        "AGE_ERROR":"User must be min 18 Years old",
-        "NO_BOOKING":"Booking detail not found",
-        "CHECK_ZIP":"Check ZIP"
+        "AGE_ERROR": "User must be min 18 Years old",
+        "NO_BOOKING": "Booking detail not found",
+        "CHECK_ZIP": "Check ZIP"
     },
     "REGISTER": {
         "TITLE": "REGISTER",
@@ -150,11 +154,11 @@
         "PP": "the Privacy Policy",
         "RFW": "RULES OF WITHDRAWAL",
         "NOITEM": " No item in the cart",
-        "REMOVE":"Remove",
-        "ITEM_SELECTED":"Selected Item",
-        "APPLY":"Apply",
-        "PROMO":"Promo code (If available)",
-        "DELIVERYCHARGES":"Delivery Charges"
+        "REMOVE": "Remove",
+        "ITEM_SELECTED": "Selected Item",
+        "APPLY": "Apply",
+        "PROMO": "Promo code (If available)",
+        "DELIVERYCHARGES": "Delivery Charges"
     },
     "PAGES": {
         "DASHBOARD": "Dashboard",
@@ -227,7 +231,7 @@
         "notes": "Notes",
         "btn": "Save Notes",
         "error": "Please enter some text",
-        "save_note":"Notes saved successfully."
+        "save_note": "Notes saved successfully."
     },
     "DASHBAORD": {
         "title": "Dashboard",
@@ -243,8 +247,8 @@
             "prospect": "Manage your prospects",
             "member": "Manage your members"
         },
-        "referral_link":" My referral link",
-        "your_link":"Your referral id is",
+        "referral_link": " My referral link",
+        "your_link": "Your referral id is",
         "yourrank": {
             "title": "Your Rank",
             "gvcounting": "GV Counting",
@@ -293,45 +297,59 @@
             "credit": "Credit Card",
             "IBAN": "IBAN"
         },
-        "btns":{
-            "add":"Add/Change ",
-            "delete":" Delete",
-            "save":"Save",
-            "getone":"Get One here"
+        "inprogress": "Updating Registeration.....",
+        "btns": {
+            "add": "Add/Change ",
+            "delete": " Delete",
+            "save": "Save",
+            "getone": "Get One here"
         },
-        "msg":{
-            "addcard":"Card Added successfully.",
-            "validIBAN":"Please enter valid IBAN no",
-            "reqIBAN":"Please enter IBAN no.",
-            "walletAdd":"Please enter wallet address.",
-            "paymnet":"Payment method added successfully."
-
+        "msg": {
+            "addcard": "Card Added successfully.",
+            "validIBAN": "Please enter valid IBAN no",
+            "reqIBAN": "Please enter IBAN no.",
+            "walletAdd": "Please enter wallet address.",
+            "payment": "Payment method added successfully.",
+            "deleteCard": "Card Deleted successfully",
+            "deleteWarning": "Are you sure you want the delete this card?"
         },
-        "SEPA":"SEPA BANK Details(only SEPA accounts allowed)",
-        "countrycode":"Country Code IBAN",
-        "validate":"Validate IBAN",
-        "BIc":"BIC",
-        "freeaccount":"Need a free of charge SEPA account ?",
-        "BITCOIN":"BITCOIN",
-        "wallet":"Enter Wallet Address"
+        "SEPA": "SEPA BANK Details(only SEPA accounts allowed)",
+        "countrycode": "Country Code IBAN",
+        "validate": "Validate IBAN",
+        "Bic": "BIC",
+        "freeaccount": "Need a free of charge SEPA account ?",
+        "BITCOIN": "BITCOIN",
+        "wallet": "Enter Wallet Address"
     },
-    "QUESTIONNAIRE":{
-       "line1":"We need some informationPlease answer ALL questions - it will take few minutes only!",
-       "line2":"The safety of your data is important to us. Our data protection are in accordance with the EU General Data Protection Regulaation. The data are required for the purpose only to complete the high quality body analysis. Data will and can be used with your prior permission only (Password provided after completion of questions)",
-       "terms":"I did read and agree to the Privacy terms",
-       "msg":"Please agree to the privacy terms."
+    "QUESTIONNAIRE": {
+        "line1": "We need some informationPlease answer ALL questions - it will take few minutes only!",
+        "line2": "The safety of your data is important to us. Our data protection are in accordance with the EU General Data Protection Regulaation. The data are required for the purpose only to complete the high quality body analysis. Data will and can be used with your prior permission only (Password provided after completion of questions)",
+        "terms": "I did read and agree to the Privacy terms",
+        "msg": "Please agree to the privacy terms.",
+        "btn": {
+            "complete": "Complete",
+            "next": "Next",
+            "back": "Back"
+        },
+        "digitalSign": "With my digital signature I confirm that all the questions have been answered truthfully and completely.",
+        "acceptedBy": "Accepted By",
+        "firstNameError": "First Name should match",
+        "lastNameError": "Family Name should match",
+        "completeSign": "Please Provide the complete sign",
+        "ansSubmitted": "Answers submitted succesfully",
+        "noAns": "Please select an answer"
     },
-    "tabs":{
-        "tab1":"Dashboard",
-        "tab2":"Shop",
-        "tab3":"Cart",
-        "tab4":"Menu"
+    "tabs": {
+        "tab1": "Dashboard",
+        "tab2": "Shop",
+        "tab3": "Cart",
+        "tab4": "Menu"
     },
-    "NOTIFICATION":{
-        "title":"Notification",
-        "msg":"No Notification"
+    "NOTIFICATION": {
+        "title": "Notification",
+        "msg": "No Notification"
     },
-    "MSG":{
+    "MSG": {
         "deleteConfirm": "Are you sure that you want to delete this record?",
         "activeConfirm": "Are you sure that you want to active this record?",
         "inactiveConfirm": "Are you sure that you want to inactive this record?",
@@ -347,15 +365,23 @@
         "alphabate": "Please enter only alphabate.",
         "alphaNumeric": "Please enter only alphanumeric.",
         "numeric": "Please enter only numeric.",
-        "password":
-          "Please define a password that meets the following criteria: <br>1] Atleast 8 characters in total. <br>2] Atleast 1 special charater. <br>3] Atleast 1 number. <br>4] Atleast 1 upper case alphabet. <br>5] Atleast 1 lower case alphabet.",
+        "password": "Please define a password that meets the following criteria: <br>1] Atleast 8 characters in total. <br>2] Atleast 1 special charater. <br>3] Atleast 1 number. <br>4] Atleast 1 upper case alphabet. <br>5] Atleast 1 lower case alphabet.",
         "confirmPassword": "Password & Confirm Password must be same.",
         "acceptTerms": "Please accpet terms and conditions.",
         "changePassword": "Password changed successfully.",
         "forgetPassword": "Please check your email.",
         "onlyImageType": "Only allow jpg, jpeg, gif & png.",
         "logout_confirmation": "Are you sure you want to logout?",
-        "NETWORK_CHECK": "Please check your network connection and then try again."
-
+        "NETWORK_CHECK": "Please check your network connection and then try again.",
+        "characters": "characters",
+        "maxLength": "You cannot enter more than",
+        "minLength": "This must contain at least ",
+        "fixLength": "This must contain",
+        "currentlyUnavailable": "Currently no one available in this zipcode.",
+        "stilladded": "Still Product added to cart",
+        "zipcode": "Enter the Zip code.",
+        "invalidZip": "Invalid zipcode,Still Product added to cart",
+        "productadded": "Product added to cart",
+        "activationCode": "If you don't have an activation code please enter 1001"
     }
 }

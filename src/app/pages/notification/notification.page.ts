@@ -10,10 +10,10 @@ export class NotificationPage implements OnInit {
 notifications:any;
   constructor(private utility:UtilService) { }
 
-  ngOnInit() {
+  ngOnInit() { 
   }
-
-  ionViewWillEnter(){
+ 
+  ionViewWillEnter(){   
    this.getNoti();
    this.utility.newNotification = 0;
   }

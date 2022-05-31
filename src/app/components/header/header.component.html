@@ -6,13 +6,21 @@
     </ion-buttons>
     <ion-title>{{headerTitle}}</ion-title>
    
+      <ion-buttons slot="end" (click)="utilSer.goNext('/tabs/notification')">
+        <!-- <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge color="primary">{{utilSer.cartNo}}</ion-badge> -->
+          <img class="bell-icon" src="assets/img/bell.png" >
+          <ion-badge color="primary" *ngIf="utilSer.newNotification > 0" style="    margin-top: -22px;
+            margin-left: -10px;">{{utilSer.newNotification}}</ion-badge>
+     
+          
+
+       
+      </ion-buttons>
       <ion-buttons slot="end">
         <!-- <ion-icon name="cart-outline"></ion-icon>
         <ion-badge color="primary">{{utilSer.cartNo}}</ion-badge> -->
-        <img class="bell-icon" src="assets/img/bell.png" (click)="utilSer.goNext('/tabs/notification')">
-        <ion-badge color="primary" *ngIf="utilSer.newNotification > 0" style="    margin-top: -15px;
-          margin-left: -12px;">{{utilSer.newNotification}}</ion-badge>
-          
+       
 
         <img (click)="openPopup()" src="assets/img/calling.png"  class="call-icon"/>
        
