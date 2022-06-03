@@ -97,10 +97,7 @@ export class UserModalPage implements OnInit {
     console.log(this.selectedMember)
     if (data != undefined) {
       this.utiSer.setStorage('selectedMember',JSON.stringify(data));
-
-
       this.utiSer.openPopup(UserModalPage, "reconfirmation", 'reconfirm',true);
-
     }
     else{
       this.erroMsg = this.utiSer.translateText('MODALS').USERSEARCH.BLANK_ERROR;

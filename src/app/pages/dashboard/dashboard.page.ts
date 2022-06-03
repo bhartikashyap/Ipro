@@ -27,25 +27,6 @@ export class DashboardPage implements OnInit {
       // do nothing
     });
 
-  //   setInterval(() => {  
-  //     this.utility.changeMessage("Push Notification");
-  // }, 2000);
-   
-
-  
-    // this.subs = this.utility.currentMessage.subscribe(message => {
-    //   console.log(message)
-    //   console.log(this.subs)
-
-    //   if (message == 'Push Notification') {
-    //       this.utility.newNotification = this.utility.newNotification +1;
-    //   }
-    //   if (this.subs != undefined) {
-    //     this.subs.unsubscribe();
-
-    //   }
-    // })
-    // this.dateDifference();
     this.utility.changeMenu();
     this.utility.getCart('cart');
     this.utility.setStorage(session.SELECTED_PLAN,'basket');

@@ -1,17 +1,17 @@
 <ion-card *ngIf="placementTree">
   <ion-card-header style="display:flex;align-items: center;" class="title-border diffColor" [ngClass]="{'green': leg=='1', 'red': leg=='3','yellow': leg=='2'}"  *ngIf="leg != ''"> 
-    <ion-card-title>Lines {{leg}}  </ion-card-title>
+    <ion-card-title>{{'DASHBAORD.line.title' | translate}} {{leg}}  </ion-card-title>
     <!-- <ion-card-title  style="color:#fff;text-decoration:underline;font-size:9px;    position: absolute;
     right: 7%;
     top: 0%;"  *ngIf="!isEmptyObject(placementTree)">  -->
     <ion-button (click)="levelUps(placementTree?.userId,'one')" class="btn" color="secondary" expand="" *ngIf="!isEmptyObject(placementTree)" style="height:20px; position: absolute;
-    right: 2%;">Click to select
+    right: 2%;"> {{'DASHBAORD.member-placement.click-to-select' | translate}} 
     </ion-button>
    <!-- </ion-card-title> -->
   </ion-card-header>
   <ion-card-content class="line-free"  *ngIf="isEmptyObject(placementTree)" >
-    <span>Free</span>
-    <ion-button class="btn" color="secondary" expand="block" (click)="openPopUps(userId,leg)">Click here <br>to Place a new member
+    <span>{{'DASHBAORD.member-placement.free' | translate}}</span>
+    <ion-button class="btn" color="secondary" expand="block" (click)="openPopUps(userId,leg)">{{'DASHBAORD.member-placement.click' | translate}} <br>{{'DASHBAORD.member-placement.to-place' | translate}}
     </ion-button>
     <!-- <p  </p> -->
 
@@ -20,7 +20,7 @@
     <ion-grid  *ngIf="leg == ''">
       <ion-row>
         <ion-col  class="colm grey-col textCenter" size="3">
-          ID:{{placementTree?.userId != '' ? placementTree?.userId :'--' }} 
+          {{'DASHBAORD.member-placement.ID' | translate}}:{{placementTree?.userId != '' ? placementTree?.userId :'--' }} 
         </ion-col>
         <ion-col  class="colm blue-col" size="6" style="padding-left:5px;">
           {{placementTree?.firstName != '' ? placementTree?.firstName :'--' }}  
@@ -37,22 +37,22 @@
         <!-- {{placementTree?.rank != '' ? placementTree?.rank :'--' }} -->
       </ion-col>
       <ion-col>
-        PV:{{placementTree?.PV != '' ? placementTree?.PV :'--' }}
+        {{'DASHBAORD.line.pv' | translate}}:{{placementTree?.PV != '' ? placementTree?.PV :'--' }}
       </ion-col>
       <ion-col>
-        DV:{{placementTree?.DV != '' ? placementTree?.DV :'--' }}
+        {{'DASHBAORD.yourrank.dv' | translate}} :{{placementTree?.DV != '' ? placementTree?.DV :'--' }}
       </ion-col>
       <ion-col>
-        GV:{{placementTree?.GV != '' ? placementTree?.GV :'--' }}
+        {{'DASHBAORD.line.gv' | translate}}:{{placementTree?.GV != '' ? placementTree?.GV :'--' }}
       </ion-col>
     </ion-row>
     <ion-row  *ngIf="leg == ''">
       <ion-col  class="colm blue-col" style="color:#fff !important;padding-left:5px;" size="3">
-        Sponosor
+        {{'DASHBAORD.member-placement.sponsor' | translate}}
       </ion-col>
      
       <ion-col class="colm grey-col" size="3" style="padding-left:5px;">
-        ID:{{placementTree?.sponsorId != '' ? placementTree?.sponsorId :'--' }}
+        {{'DASHBAORD.member-placement.ID' | translate}}:{{placementTree?.sponsorId != '' ? placementTree?.sponsorId :'--' }}
 
       </ion-col>
      
@@ -74,7 +74,7 @@
     <ion-grid *ngIf="leg != ''">
         <ion-row>
           <ion-col  class="colm grey-col textCenter" size="3">
-            ID:{{placementTree?.userId != '' ? placementTree?.userId :'--' }} 
+            {{'DASHBAORD.member-placement.ID' | translate}}:{{placementTree?.userId != '' ? placementTree?.userId :'--' }} 
           </ion-col>
           <ion-col   class="colm blue-col" size="6" style="padding-left:5px;">
             {{placementTree?.firstName != '' ? placementTree?.firstName :'--' }}  
@@ -87,23 +87,23 @@
           {{replaceRank(placementTree?.rank)}}
         </ion-col>
         <ion-col>
-          PV:{{placementTree?.PV != '' ? placementTree?.PV :'--' }}
+          {{'DASHBAORD.line.pv' | translate}}:{{placementTree?.PV != '' ? placementTree?.PV :'--' }}
         </ion-col>
         <ion-col>
-          DV:{{placementTree?.DV != '' ? placementTree?.DV :'--' }}
+          {{'DASHBAORD.yourrank.dv' | translate}}:{{placementTree?.DV != '' ? placementTree?.DV :'--' }}
         </ion-col>
         <ion-col>
-          GV:{{placementTree?.GV != '' ? placementTree?.GV :'--' }}
+          {{'DASHBAORD.line.gv' | translate}}:{{placementTree?.GV != '' ? placementTree?.GV :'--' }}
         </ion-col>
       </ion-row>
     
       <ion-row  >
         <ion-col  class="colm blue-col" style="color:#fff !important;padding-left:5px;font-size: 7px!important;" size="3">
-          Sponosor
+           {{'DASHBAORD.member-placement.sponsor' | translate}}
         </ion-col>
        
         <ion-col class="colm grey-col" size="3" style="padding-left:5px;font-size: 7px!important;">
-          ID:{{placementTree?.sponsorId != '' ? placementTree?.sponsorId :'--' }}
+          {{'DASHBAORD.member-placement.ID' | translate}}:{{placementTree?.sponsorId != '' ? placementTree?.sponsorId :'--' }}
 
         </ion-col>
        
@@ -118,18 +118,7 @@
         </ion-col>
        
       </ion-row>
-      <!-- <ion-row *ngIf="leg != ''" class="grey">
-        <ion-col  size="8">
-          {{placementTree?.sponsorName != '' ? placementTree?.sponsorName :'--' }}
-        </ion-col>
-       
-       
-        <ion-col style="text-align: right;">
-          {{placementTree?.sponsorRank != '' ? placementTree?.sponsorRank :'--' }}
-        </ion-col>
-       
-      </ion-row> -->
-
+ 
     </ion-grid>
    
   </ion-card-content>
@@ -137,7 +126,7 @@
    
   
     <ion-button class="btn" color="secondary" expand="block" (click)="lowestLevels(placementTree?.userId)" *ngIf="!isEmptyObject(placementTree)"  >
-      Go To Lowest Level Line {{leg}}
+      {{'DASHBAORD.member-placement.lowest-level' | translate}} {{leg}}
     </ion-button>
   </div>
 </ion-card>

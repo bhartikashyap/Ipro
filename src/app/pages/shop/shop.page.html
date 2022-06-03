@@ -2,7 +2,7 @@
 <app-header  [headerTitle]="'PAGES.SHOP' | translate"  [headerBack]=false  ></app-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item *ngIf="allProducts != null && allProducts.length > 0">
     <ion-label>{{'SHOP.Filter' | translate}}:</ion-label>
     <ion-select [(ngModel)]="selectedOption" interface="action-sheet" (ionChange)="changeCategory($event)">
       <ion-select-option value="all">{{'SHOP.All' | translate}}</ion-select-option>
@@ -11,25 +11,28 @@
     </ion-select>
   </ion-item>
 
-  <ion-item *ngIf="allProducts.length == 0">
+  <ion-item *ngIf=" allProducts.length == 0">
       <p class="product-detail">{{'SHOP.NP' | translate}}</p>
   </ion-item>
-  <ion-item *ngFor="let prod of allProducts" (click)="openDetailsWithQueryParams(prod)">
-    <div style="padding-bottom:10px;">
-      <div class="product">
-        <img src="{{prod.packageImage}}" />
-        <div>
-          <h2>{{prod.packageName}}</h2>
-          <p> {{'SHOP.SD' | translate}}:{{prod.avail_runtime[1]}} </p>
-          <p > {{'SHOP.SP' | translate}}: <span><strong>&euro; {{prod.standard_price}} + {{'SHOP.VAT' | translate}}</strong></span></p>
-          <p *ngIf="prod.your_price != 0"> {{'SHOP.YP' | translate}}: <span><strong> &euro; {{prod.your_price}} + VAT</strong></span></p>
+  <div *ngIf="allProducts != null && allProducts.length > 0">
+    <ion-item  *ngFor="let prod of allProducts" (click)="openDetailsWithQueryParams(prod)">
+      <div style="padding-bottom:10px;">
+        <div class="product">
+          <img src="{{prod.packageImage}}" />
+          <div>
+            <h2>{{prod.packageName}}</h2>
+            <p> {{'SHOP.SD' | translate}}:{{prod.avail_runtime[1]}} </p>
+            <p > {{'SHOP.SP' | translate}}: <span><strong>&euro; {{prod.standard_price}} + {{'SHOP.VAT' | translate}}</strong></span></p>
+            <p *ngIf="prod.your_price != 0"> {{'SHOP.YP' | translate}}: <span><strong> &euro; {{prod.your_price}} + VAT</strong></span></p>
+          </div>
         </div>
+  
+        <p class="product-detail"> {{prod.productDescription}}</p>
+        <!-- <p class="product-detail"> {{prod.productDescriptionDE}}</p> -->
       </div>
-
-      <p class="product-detail"> {{prod.productDescription}}</p>
-      <!-- <p class="product-detail"> {{prod.productDescriptionDE}}</p> -->
-    </div>
-
-  </ion-item>
-
+  
+    </ion-item>
+  
+  </div>
+ 
 </ion-content> 

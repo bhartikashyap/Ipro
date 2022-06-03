@@ -1,4 +1,4 @@
-<app-header  [headerTitle]="'PAGES.DASHBOARD' | translate"  [headerBack]=false  ></app-header>
+<app-header [headerTitle]="'PAGES.DASHBOARD' | translate" [headerBack]=false></app-header>
 
 <ion-content style="padding:10px;">
   <div style="padding:10px;"></div>
@@ -10,7 +10,8 @@
       </ion-avatar>
       <div>
         <ion-card-title>{{'DASHBAORD.status' | translate }}: {{details?.dashboard_data?.yourStatus}} </ion-card-title>
-        <ion-card-subtitle class="sub-title" (click)="shareReffralLink(details?.dashboard_data?.referralLink)">{{'DASHBAORD.referral_link' | translate }}</ion-card-subtitle>
+        <ion-card-subtitle class="sub-title" (click)="shareReffralLink(details?.dashboard_data?.referralLink)">
+          {{'DASHBAORD.referral_link' | translate }}</ion-card-subtitle>
       </div>
     </ion-card-header>
   </ion-card>
@@ -21,8 +22,9 @@
     </ion-card-header>
     <ion-card-content class="">
       <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/member-replacement')">
-        ({{details?.dashboard_data?.membersRequired > 0 ? details?.dashboard_data?.membersRequired:0}}){{'DASHBAORD.openaction.action1' | translate }}</ion-button>
-        <!-- <ion-button class="card-btn" color="danger" expand="block" *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
+        ({{details?.dashboard_data?.membersRequired > 0 ?
+        details?.dashboard_data?.membersRequired:0}}){{'DASHBAORD.openaction.action1' | translate }}</ion-button>
+      <!-- <ion-button class="card-btn" color="danger" expand="block" *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
           (X) MEMBER TO PLACE</ion-button> -->
       <ion-button class="card-btn" color="danger" expand="block">
         {{'DASHBAORD.openaction.action2' | translate }}</ion-button>
@@ -30,7 +32,7 @@
         Free Broker Registration</ion-button> -->
     </ion-card-content>
   </ion-card>
-<!-- prospect refferal -->
+  <!-- prospect refferal -->
   <ion-card>
     <ion-card-header>
 
@@ -39,11 +41,12 @@
       </ion-avatar>
       <div class="refferral">
         <ion-card-title> {{'DASHBAORD.referral.title_pros' | translate }}</ion-card-title>
-        <ion-card-subtitle class="sub-title" (click)="goTo('/tabs/user-managment/prospect')"> {{'DASHBAORD.referral.prospect' | translate }}</ion-card-subtitle>
+        <ion-card-subtitle class="sub-title" (click)="goTo('/tabs/user-managment/prospect')">
+          {{'DASHBAORD.referral.prospect' | translate }}</ion-card-subtitle>
       </div>
     </ion-card-header>
   </ion-card>
-<!-- member referral -->
+  <!-- member referral -->
   <ion-card>
     <ion-card-header>
 
@@ -52,7 +55,8 @@
       </ion-avatar>
       <div class="refferral">
         <ion-card-title>{{'DASHBAORD.referral.title_mem' | translate }}</ion-card-title>
-        <ion-card-subtitle class="sub-title" (click)="goTo('/tabs/user-managment/member')">{{'DASHBAORD.referral.member' | translate }}</ion-card-subtitle>
+        <ion-card-subtitle class="sub-title" (click)="goTo('/tabs/user-managment/member')">{{'DASHBAORD.referral.member'
+          | translate }}</ion-card-subtitle>
       </div>
     </ion-card-header>
   </ion-card>
@@ -63,7 +67,7 @@
       <ion-card-title>{{'DASHBAORD.yourrank.title' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
-      <ion-list lines="none"  class="title-border" style="margin:2px 0px" >
+      <ion-list lines="none" class="title-border" style="margin:2px 0px">
         <ion-item>
           <ion-label>{{'DASHBAORD.yourrank.title' | translate }}:</ion-label>
           <span>{{details?.dashboard_data?.rank}}</span>
@@ -85,7 +89,7 @@
           <span>{{details?.dashboard_data?.leaderBonusDays}}</span>
         </ion-item>
       </ion-list>
-      
+
       <ion-list lines="none">
         <ion-item>
           <ion-label> {{'DASHBAORD.yourrank.nextrank' | translate }}:</ion-label>
@@ -106,28 +110,28 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
-  
+
 
   <!-- line -->
   <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
     <ion-card-header class="title-border diffColor green">
-      <ion-card-title>{{'DASHBAORD.line.title' | translate }}  1 </ion-card-title>
+      <ion-card-title>{{'DASHBAORD.line.title' | translate }} 1 </ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
-      <ion-list lines="none"  class="" style="margin:2px 0px" >
+      <ion-list lines="none" class="" style="margin:2px 0px">
         <ion-item>
           <ion-label>{{'DASHBAORD.line.members' | translate }}:</ion-label>
           <span>{{details?.dashboard_data?.membersLeg1}}</span>
         </ion-item>
         <ion-item>
-          <ion-label>{{'DASHBAORD.line.gv' | translate }}  :</ion-label>
+          <ion-label>{{'DASHBAORD.line.gv' | translate }} :</ion-label>
           <span>{{details?.dashboard_data?.GVLeg1}}</span>
         </ion-item>
         <ion-item>
           <ion-label>{{'DASHBAORD.line.gvcounting' | translate }}:</ion-label>
           <span>{{details?.dashboard_data?.GVCountingLeg1}}</span>
         </ion-item>
-        
+
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -137,20 +141,20 @@
       <ion-card-title>{{'DASHBAORD.line.title' | translate }} 2</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
-      <ion-list lines="none"  class="" style="margin:2px 0px" >
+      <ion-list lines="none" class="" style="margin:2px 0px">
         <ion-item>
           <ion-label>{{'DASHBAORD.line.members' | translate }}:</ion-label>
           <span>{{details?.dashboard_data?.membersLeg2}}</span>
         </ion-item>
         <ion-item>
-          <ion-label>{{'DASHBAORD.line.gv' | translate }}  :</ion-label>
+          <ion-label>{{'DASHBAORD.line.gv' | translate }} :</ion-label>
           <span>{{details?.dashboard_data?.GVLeg2}}</span>
         </ion-item>
         <ion-item>
           <ion-label>{{'DASHBAORD.line.gvcounting' | translate }}:</ion-label>
           <span>{{details?.dashboard_data?.GVCountingLeg2}}</span>
         </ion-item>
-        
+
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -160,48 +164,48 @@
       <ion-card-title>{{'DASHBAORD.line.title' | translate }} 3</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
-      <ion-list lines="none"  class="" style="margin:2px 0px" >
+      <ion-list lines="none" class="" style="margin:2px 0px">
         <ion-item>
           <ion-label>{{'DASHBAORD.line.members' | translate }}:</ion-label>
           <span>{{details?.dashboard_data?.membersLeg3}}</span>
         </ion-item>
         <ion-item>
-          <ion-label>{{'DASHBAORD.line.gv' | translate }}  :</ion-label>
+          <ion-label>{{'DASHBAORD.line.gv' | translate }} :</ion-label>
           <span>{{details?.dashboard_data?.GVLeg3}}</span>
         </ion-item>
         <ion-item>
           <ion-label>{{'DASHBAORD.line.gvcounting' | translate }}:</ion-label>
           <span>{{details?.dashboard_data?.GVCountingLeg3}}</span>
         </ion-item>
-        
+
       </ion-list>
     </ion-card-content>
   </ion-card>
 
   <!-- products -->
 
-  <ion-card *ngIf="details?.products.length > 0">
+  <ion-card *ngIf="details?.products != null && details?.products.length > 0">
     <ion-card-header class="title-border  ">
       <ion-card-title>{{'DASHBAORD.products.title' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="products">
-      <ion-list lines="none"  class=""   *ngFor="let prod of details?.products; let i = index" >
-      
-        <ion-item >
-    {{prod?.packageName}}   
+      <ion-list lines="none" class="" *ngFor="let prod of details?.products; let i = index">
+
+        <ion-item>
+          {{prod?.packageName}}
         </ion-item>
-        <ion-item >
-          {{'DASHBAORD.products.expiry' | translate }} :  
-            <span *ngIf="prod?.expiryDate && prod?.expiryDate != ''">
-              {{prod?.validTill != '' ? prod?.validTill: '0 Day'}}
-            </span>
+        <ion-item>
+          {{'DASHBAORD.products.expiry' | translate }} :
+          <span *ngIf="prod?.expiryDate && prod?.expiryDate != ''">
+            {{prod?.validTill != '' ? prod?.validTill: '0 Day'}}
+          </span>
         </ion-item>
-        
-      
+
+
       </ion-list>
-      <ion-button class="btn" color="danger" expand="block"  (click)="utility.goNext('/tabs/myproducts')">
+      <ion-button class="btn" color="danger" expand="block" (click)="utility.goNext('/tabs/myproducts')">
         {{'DASHBAORD.products.btn' | translate }}
-       </ion-button>
+      </ion-button>
     </ion-card-content>
   </ion-card>
 

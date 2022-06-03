@@ -168,17 +168,18 @@ export class AppComponent implements OnInit {
     if (Capacitor.isNativePlatform()) {
       // this.utility.removeAuth();
       if( this.sessionRes){
-        let token =await this.utility.getFCMToken()
-        let fcmToken = {
-          "notificationToken":await this.utility.getFCMToken()
-        }
+        this.utility.silentLogout();
+        // let token =await this.utility.getFCMToken()
+        // let fcmToken = {
+        //   "notificationToken":await this.utility.getFCMToken()
+        // }
         
-        console.log("logout",fcmToken);
-        this.apiSer.logoutUser(fcmToken).then((res: any) => {
-          this.utility.removeAuth();
-          this.sessionRes = 0;
-          this.router.navigate(['/login']);
-        });
+        // console.log("logout",fcmToken);
+        // this.apiSer.logoutUser(fcmToken).then((res: any) => {
+        //   this.utility.removeAuth();
+        //   this.sessionRes = 0;
+        //   this.router.navigate(['/login']);
+        // });
       }
       let storageNotifications :any= await this.utility.getStorage('notification');
       if(storageNotifications){
@@ -264,7 +265,8 @@ export class AppComponent implements OnInit {
       this.utility.openPopup(SetdicountPage,selectedTab,'discount',true);
     }
     else if (selectedTab=='privacy'){
-      this.utility.openPdfLinks(this.utility.pdfLink[2].link,'');
+       this.utility.openPdfLinks(this.utility.pdfLink[2].link,'');
+     // this.utility.openPopup(UserModalPage,'pdf','modal-question' ,true);
     }
     else if (selectedTab=='notice'){
       console.log(this.utility.pdfLink[1].link)

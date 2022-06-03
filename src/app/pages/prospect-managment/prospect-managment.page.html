@@ -2,7 +2,6 @@
 
 <ion-content>
 
-  <div ></div>
 
   <ion-card class="mem-grid">
   <ion-grid>
@@ -41,7 +40,7 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf=" userData.length <= 0" >
-      <ion-col> No records found.</ion-col>
+      <ion-col>{{'SHOP.NP' | translate }} </ion-col>
     </ion-row>
    
   </ion-grid>

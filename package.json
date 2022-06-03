@@ -31,7 +31,6 @@
     "@awesome-cordova-plugins/in-app-browser": "^5.40.0",
     "@awesome-cordova-plugins/screen-orientation": "^5.41.0",
     "@awesome-cordova-plugins/video-player": "^5.39.1",
-    "@capacitor-community/date-picker": "^0.2.3",
     "@capacitor/android": "3.3.3",
     "@capacitor/app": "1.0.7",
     "@capacitor/browser": "^1.0.7",

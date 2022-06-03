@@ -25,17 +25,16 @@
   </ion-list>
   <ion-list *ngIf="title == 'question-complete'" lines="none">
     <ion-item  lines="none" style="text-align:'center'">
-     <p><strong>Congratulations! <br> You have completed all the questions!</strong><br>
-     You will be contacted by us shortly bt eMail or phone to schedule the analysis session. Your date are required for the analysis but can be accessed only if you give permission for it.Permission can be granted bt eMail (if you recieve a request) or by presenting a QR code to the Analyst who will contact you.
-<br>You can get your QR code any time in the APP or on the WEB under Menu Option: Analysis > QR Code</p>
+     <p><strong>{{'QUESTIONNAIRE.congratulations' | translate}} <br> {{'QUESTIONNAIRE.quetsionComplete1' | translate}}</strong><br>
+      {{'QUESTIONNAIRE.quetsionComplete2' | translate}}
+<br>{{'QUESTIONNAIRE.quetsionComplete3' | translate}}</p>
     </ion-item>
    
 </ion-list>
 <ion-list *ngIf="title == 'analysis'" lines="none">
   <ion-item  lines="none" style="text-align:'center'">
-   <p>
-   Please present this QR code to analyst.<br>
-Scanning the QR code with the analysis software will provide permission to load your data for the analysis.<br>
+   <p> {{'QUESTIONNAIRE.QR1' | translate}} <br>
+    {{'QUESTIONNAIRE.QR2' | translate}}<br>
 
 </p>
 
@@ -86,15 +85,15 @@ Scanning the QR code with the analysis software will provide permission to load 
   </ion-list>
 
   <ion-list  *ngIf="title == 'member-place'">
-    <p  *ngIf="memberToplace?.data?.users.length >0 " style="padding-left: 30px;font-weight: 700;"> Please select user to place:</p>
+    <p  *ngIf="memberToplace?.data?.users.length >0 " style="padding-left: 30px;font-weight: 700;"> {{'DASHBAORD.member-placement.user-to-place' | translate}}:</p>
     <ion-radio-group [value]="selectedMember" >
       <ion-item   *ngFor="let memPlace of memberToplace?.data?.users; let i = index" (click)="selectedMember = memPlace" >
-        <ion-label >{{memPlace.firstName != '' ?memPlace.firstName:'--'}} {{memPlace.lastName != '' ?memPlace.lastName:'--'}} </ion-label><ion-label slot="end"> Id: {{memPlace.userId != '' ?memPlace.userId:'--'}}   </ion-label>
+        <ion-label >{{memPlace.firstName != '' ?memPlace.firstName:'--'}} {{memPlace.lastName != '' ?memPlace.lastName:'--'}} </ion-label><ion-label slot="end"> {{'DASHBAORD.member-placement.ID' | translate}}: {{memPlace.userId != '' ?memPlace.userId:'--'}}   </ion-label>
         <ion-radio slot="start" [value]="memPlace.userId" ></ion-radio>
       </ion-item>
 
       <ion-item  *ngIf="memberToplace?.data?.users.length <= 0 ">
-        <ion-label >{{'MODALS.ERROR.NO_USER_ERROR' | translate}}  </ion-label>
+        <ion-label >{{'MODALS.PLACEMEMBER.NO_USER_ERROR' | translate}}  </ion-label>
         
       </ion-item>
     </ion-radio-group>

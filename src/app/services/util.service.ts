@@ -1,4 +1,4 @@
-import { Injectable, Output, EventEmitter,ViewChild,ElementRef } from '@angular/core';
+import { Injectable, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { AlertController, LoadingController, ToastController, NavController } from '@ionic/angular';
 import { Network } from '@capacitor/network';
 import { Router } from '@angular/router';
@@ -16,6 +16,9 @@ import { Browser } from '@capacitor/browser';
 import { DocumentViewer, DocumentViewerOptions } from '@awesome-cordova-plugins/document-viewer/ngx';
 import { UserModalPage } from '../components/user-modal/user-modal.page';
 import { DomSanitizer } from '@angular/platform-browser';
+import { session } from 'src/app/utility/message';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { Platform } from '@ionic/angular';
 @Injectable({
   providedIn: "root",
 })
@@ -34,73 +37,91 @@ export class UtilService {
   newNotification: any = 0;
   memberPlacedUuserId; any;
   pdfLink: any = this.envr.pdfEnglish;;
-  pdf:any;
+  pdf: any;
   public memberPage = [
 
-    { title: 'Dashboard', url: '/tabs/dashboard/defaultDash', icon: '../assets/img/dashboard.png', subPages: null, role: "Member", name: '' },
-    { title: 'My Sponser', url: '', icon: '../assets/img/sponser.png', subPages: null, role: "Member", name: 'sponsor' },
+    { title: 'Dashboard', url: '/tabs/dashboard/defaultDash', icon: '../assets/img/dashboard.png', subPages: null, role: "Member", name: '', menu: "menu1" },
+    { title: 'My Sponser', url: "", icon: '../assets/img/sponser.png', subPages: null, role: "Member", name: 'sponsor', menu: "menu2" },
 
     {
-      title: 'My iPro', url: '', icon: '../assets/img/setting.png', subPages: [
-        { title1: 'My Products', url: '/tabs/myproducts', id: "nested-button5", component: '', name: 'about1' },
-        { title1: 'Prospect Management', url: '/tabs/user-managment/prospect', id: "nested-button2", component: '', name: 'about1' },
-        { title1: 'Member Management', url: '/tabs/user-managment/member', id: "nested-button3", component: '', name: 'about1' },
-        { title1: 'Member placement', url: '/member-replacement', id: "nested-button4", component: '', name: 'about1' },
+      title: 'My iPro', url: "", icon: '../assets/img/setting.png', menu: "menu3", subPages: [
+        { title1: 'My Products', menu: "menu4", url: '/tabs/myproducts', id: "nested-button5", component: '', name: 'about1' },
+        { title1: 'Prospect Management', menu: "menu5", url: '/tabs/user-managment/prospect', id: "nested-button2", component: '', name: 'about1' },
+        { title1: 'Member Management', menu: "menu6", url: '/tabs/user-managment/member', id: "nested-button3", component: '', name: 'about1' },
+        { title1: 'Member placement', menu: "menu7", url: '/member-replacement', id: "nested-button4", component: '', name: 'about1' },
       ], name: ''
     },
     {
-      title: 'Settings', url: '/tabs/notification', icon: '../assets/img/setting.png', subPages: [
-        { title1: 'Change Password', id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
-        { title1: 'Change Language', id: "language", component: '', name: 'language', url: "" },
-        { title1: 'Change Dashboard', id: "dashboard", component: '', name: 'dashboard', url: "", },
-        { title1: 'Set Default Discount', id: "discount", component: '', name: 'discount', url: "" },
-        { title1: 'Abo Payment Options', url: "/tabs/paymnet-option", id: "nested-button01", component: '', name: 'about2' },
-        { title1: 'Commission Payment ', url: "/tabs/commission-option", id: "nested-button011", component: '', name: 'about21' },
+      title: 'Settings', menu: "menu8", url: "", icon: '../assets/img/setting.png', subPages: [
+        { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
+        { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
+        { title1: 'Change Dashboard', menu: "menu11", id: "dashboard", component: '', name: 'dashboard', url: "", },
+        { title1: 'Set Default Discount', menu: "menu12", id: "discount", component: '', name: 'discount', url: "" },
+        { title1: 'Abo Payment Options', menu: "menu13", url: "/tabs/paymnet-option", id: "nested-button01", component: '', name: 'about2' },
+        { title1: 'Commission Payment ', menu: "menu14", url: "/tabs/commission-option", id: "nested-button011", component: '', name: 'about21' },
       ], name: ''
     },
 
     {
       ///tabs/member-managment'
-      title: 'Legal', url: '', icon: '../assets/img/legal.png', subPages: [
-        { title1: 'Legal Notice', component: '', name: 'notice', url: "" },
-        { title1: 'Private Policy', component: '', name: 'privacy', url: "" },
-        { title1: 'Term & Conditions', component: '', name: 'tnc', url: "" },
+      title: 'Legal', menu: "menu15", url: "", icon: '../assets/img/legal.png', subPages: [
+        { title1: 'Legal Notice', menu: "menu16", component: '', name: 'notice', url: "" },
+        { title1: 'Private Policy', menu: "menu17", component: '', name: 'privacy', url: "" },
+        { title1: 'Term & Conditions', menu: "menu18", component: '', name: 'tnc', url: "" },
       ], name: ''
     },
     {
       ///tabs/member-managment'
-      title: 'My Analysis Data', url: '', icon: '../assets/img/legal.png', subPages: [
-        { title1: 'QR Code', component: '', name: 'analysis', url: "" }
+      title: 'My Analysis Data', menu: "menu19", url: "", icon: '../assets/img/legal.png', subPages: [
+        { title1: 'QR Code', menu: "menu20", component: '', name: 'analysis', url: "" }
       ], name: ''
     },
-    { title: 'Logout', url: '', icon: '../assets/img/legal.png', subPages: null, name: 'logout' }
+    { title: 'Logout', menu: "menu21", url: "", icon: '../assets/img/legal.png', subPages: null, name: 'logout' }
   ];
   public prospectPage = [
-    { title: 'Dashboard', url: '/tabs/area-of-interest', icon: '../assets/img/dashboard.png', subPages: null, role: "Prospect", name: '' },
-    { title: 'My Sponser', url: '', icon: '../assets/img/sponser.png', subPages: null, role: "Prospect", name: 'sponsor' },
+    { title: 'Dashboard', menu: "menu1", url: '/tabs/area-of-interest', icon: '../assets/img/dashboard.png', subPages: null, role: "Prospect", name: '' },
+    { title: 'My Sponser', menu: "menu2", url: "", icon: '../assets/img/sponser.png', subPages: null, role: "Prospect", name: 'sponsor' },
     {
-      title: 'Settings', url: '', icon: '../assets/img/setting.png', subPages: [
-        { title1: 'Change Password', id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
-        { title1: 'Change Language', id: "language", component: '', name: 'language', url: "" },
+      title: 'Settings', menu: "menu8", url: "", icon: '../assets/img/setting.png', subPages: [
+        { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
+        { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
       ], name: ''
     },
     {
       ///tabs/member-managment'
-      title: 'Legal', url: '', icon: '../assets/img/legal.png', subPages: [
-        { title1: 'Legal Notice', component: '', name: 'notice', url: "" },
-        { title1: 'Private Policy', component: '', name: 'privacy', url: "" },
-        { title1: 'Term & Conditions', component: '', name: 'tnc', url: "" },
+      title: 'Legal', menu: "menu15", url: "", icon: '../assets/img/legal.png', subPages: [
+        { title1: 'Legal Notice', menu: "menu16", component: '', name: 'notice', url: "" },
+        { title1: 'Private Policy', menu: "menu17", component: '', name: 'privacy', url: "" },
+        { title1: 'Term & Conditions', menu: "menu18", component: '', name: 'tnc', url: "" },
       ], name: ''
     },
     {
       ///tabs/member-managment'
-      title: 'Analysis', url: '', icon: '../assets/img/legal.png', subPages: [
-        { title1: 'QR Code', component: '', name: 'analysis', url: "" }
+      title: 'My Analysis Data', menu: "menu19", url: "", icon: '../assets/img/legal.png', subPages: [
+        { title1: 'QR Code', menu: "menu20", component: '', name: 'analysis', url: "" }
       ], name: ''
     },
-    { title: 'Logout', url: '', icon: '../assets/img/legal.png', subPages: null, name: 'logout' }
+    { title: 'Logout', menu: "menu21", url: '', icon: '../assets/img/legal.png', subPages: null, name: 'logout' }
   ];
   public appPages = this.prospectPage;
+  options: InAppBrowserOptions = {
+    location: 'yes',//Or 'no' 
+    hidden: 'no', //Or  'yes'
+    clearcache: 'yes',
+    clearsessioncache: 'yes',
+    zoom: 'yes',//Android only ,shows browser zoom controls 
+    hardwareback: 'yes',
+    mediaPlaybackRequiresUserAction: 'no',
+    shouldPauseOnSuspend: 'no', //Android only 
+    closebuttoncaption: 'Close', //iOS only
+    disallowoverscroll: 'no', //iOS only 
+    toolbar: 'yes', //iOS only 
+    enableViewportScale: 'no', //iOS only 
+    allowInlineMediaPlayback: 'no',//iOS only 
+    presentationstyle: 'pagesheet',//iOS only 
+    fullscreen: 'yes',//Windows only    
+  };
+  openPage: any;
 
   constructor(
     private toastController: ToastController,
@@ -117,8 +138,10 @@ export class UtilService {
     private modalController: ModalController,
     private document: DocumentViewer,
     private domSanit: DomSanitizer,
-  ) { 
-   
+    private theInAppBrowser: InAppBrowser,
+    private platform: Platform
+  ) {
+
   }
 
 
@@ -232,24 +255,35 @@ export class UtilService {
   }
 
   goNext(url: any) {
-   
+
     this.navCtrl.navigateForward(url)
   }
   openPdfLinks(pdfUrl, pdfName) {
-    console.log( pdfUrl)
-    this.pdf=  pdfUrl //  this.domSanit.bypassSecurityTrustResourceUrl(pdfUrl)
+    console.log(pdfUrl)
+    this.pdf = this.domSanit.bypassSecurityTrustResourceUrl(pdfUrl)
+    console.log(this.pdf)
+    if (pdfName == '') {
+      this.openPopup(UserModalPage, 'pdf', '', true);
+    }
+    else {
+      // this.document.viewDocument(pdfUrl, 'application/pdf', {title: pdfName});
+      if (this.platform.is('android')) {
+        this.openPage = this.theInAppBrowser.create(pdfUrl, "_blank", this.options);
+      } else {
+        Browser.open({ url: pdfUrl });
 
-    // if(pdfName != ''){
-     //  this.openPopup(UserModalPage,'pdf','',true);
-    // }
-    // else{
-    //   this.document.viewDocument(pdfUrl, 'application/pdf', {title: pdfName});
-    // }
-console.log( this.pdf)
-   
-    Browser.open({ url: pdfUrl });
 
-      //
+      }
+    }
+
+
+
+
+
+
+
+
+    //
   }
 
   async getPlanDetail(plan) {
@@ -281,15 +315,15 @@ console.log( this.pdf)
   };
 
   async getFCMToken() {
-    let FCMToken:any = await this.getStorage("FCMToken");
-    
-    if(FCMToken != null && FCMToken != undefined && FCMToken!= ''){
+    let FCMToken: any = await this.getStorage("FCMToken");
+
+    if (FCMToken != null && FCMToken != undefined && FCMToken != '') {
       return FCMToken;
     }
-    else{
+    else {
       return false;
     }
-   
+
 
     // return this.FCMToken;
   }
@@ -558,7 +592,7 @@ console.log( this.pdf)
       products_data = response ? response : [];
       if (products_data) {
         products_data = products_data.data ? products_data.data : [];
-        if(type== 'notification'){
+        if (type == 'notification') {
           this.newNotification += 1;
 
         }
@@ -574,17 +608,64 @@ console.log( this.pdf)
     return products_data
   }
 
-  translateText(page){
+  translateText(page) {
     let text;
-    this._translate.get(page).subscribe( value => {
-      text=value;
+    this._translate.get(page).subscribe(value => {
+      text = value;
       console.log(value)
-      
+
       // this.items[0].name = value;
-      }
+    }
     );
     return text;
-    
+
+  }
+
+  async logout() {
+    let AUTH_STATUS = await this.getStorage(session.AUTH_STATUS);
+    console.log(AUTH_STATUS);
+    if (AUTH_STATUS) {
+      this.presentAlert(
+        "Warning",
+        "",
+        [],
+        this.translateText('MSG').logout_confirmation,
+        [{
+          text: this.translateText("MODALS").BUTTONS.YES,
+          cssClass: 'secondary',
+          handler: async () => {
+            this.silentLogout();
+            //console.log(firstLogin);
+
+
+          }
+        }
+          , {
+          text: this.translateText("MODALS").BUTTONS.NO,
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }]
+      );
+
+    }
+
+  }
+
+  async silentLogout() {
+    var loading = await this.presentLoading();
+    var firstLogin = await this.getStorage('firstLogin');
+    let fcmToken = {
+      "notificationToken": await this.getFCMToken()
+    }
+    this.apiSer.logoutUser(fcmToken).then((res: any) => {
+      loading.dismiss();
+      this.removeAuth();
+      this.router.navigate(['/login']);
+    });
+
   }
 
 

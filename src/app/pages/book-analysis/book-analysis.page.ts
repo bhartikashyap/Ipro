@@ -502,8 +502,8 @@ export class BookAnalysisPage implements OnInit {
 
   reset() {
     this.submitted = false;
-    this.private = true;
-    this.company = false;
+    // this.private = true;
+    // this.company = false;
     this.deliveryAddress = true;
   }
 
