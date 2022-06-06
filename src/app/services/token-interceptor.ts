@@ -18,16 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
         ),
       });
 
-      // next.handle(request).subscribe((res) => {
-      //   console.log(res)
-      //   let result: any = res;
-      //   if (result?.body?.msg) {
-      //     if (result.body.msg == "Token not found in request" || result.body.msg == "unauthorize") {
-      //      // this.authenticationService.silentLogout();
-      //       return false;
-      //     }
-      //   }
-      // })
+    
 
 
 
@@ -41,7 +32,25 @@ export class TokenInterceptor implements HttpInterceptor {
       //   const error = err.error.message || err.statusText;
       //   return throwError(error);
       // }))
+
+      //  next.handle(request).subscribe((res) => {
+       
+      //   let result: any = res;
+      //   if (result?.body?.msg) {
+      //     console.log(res)
+      //     if (result.body.msg == "Token not found in request" || result.body.msg == "Unauthorized") {
+      //       this.authenticationService.silentLogout();
+      //      console.log(" in token here")
+
+           
+      //     }
+          
+           
+      //   }
+      //   return next.handle(cloned);
+      // })
       return next.handle(cloned);
+      
     }
     return next.handle(request);
   }

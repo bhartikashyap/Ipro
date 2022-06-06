@@ -167,8 +167,8 @@ export class AppComponent implements OnInit {
 
     if (Capacitor.isNativePlatform()) {
       // this.utility.removeAuth();
-      if( this.sessionRes){
-        this.utility.silentLogout();
+     // if( this.sessionRes){
+        // this.utility.silentLogout();
         // let token =await this.utility.getFCMToken()
         // let fcmToken = {
         //   "notificationToken":await this.utility.getFCMToken()
@@ -180,7 +180,7 @@ export class AppComponent implements OnInit {
         //   this.sessionRes = 0;
         //   this.router.navigate(['/login']);
         // });
-      }
+    //  }
       let storageNotifications :any= await this.utility.getStorage('notification');
       if(storageNotifications){
         this.utility.removeStorage('notification');

@@ -31,7 +31,7 @@ import { Badge } from '@awesome-cordova-plugins/badge/ngx';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 // import { DatePickerModule } from 'ionic-calendar-date-picker';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -74,8 +74,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       EmailComposer,
      CallNumber,
      DocumentViewer,
-     Badge
-    //  InAppBrowser
+     Badge,
+     InAppBrowser
   ],
   bootstrap: [AppComponent],
 })

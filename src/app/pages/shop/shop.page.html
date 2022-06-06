@@ -15,24 +15,49 @@
       <p class="product-detail">{{'SHOP.NP' | translate}}</p>
   </ion-item>
   <div *ngIf="allProducts != null && allProducts.length > 0">
-    <ion-item  *ngFor="let prod of allProducts" (click)="openDetailsWithQueryParams(prod)">
-      <div style="padding-bottom:10px;">
-        <div class="product">
-          <img src="{{prod.packageImage}}" />
-          <div>
-            <h2>{{prod.packageName}}</h2>
+    <div *ngFor="let prod of allProducts" style="border-bottom: solid #ccc 1px;
+    padding: 10px;">
+
+  
+    <ion-item   lines="none" class="ion-no-padding">
+
+     
+      <div class="zoom-box">
+        <ion-slides  pager="true" [options]="slideOpts">
+          <ion-slide>
+            <!-- <div class="swiper-zoom-container"> -->
+              <img src="{{prod.packageImage}}" />
+            <!-- </div> -->
+            
+          </ion-slide>
+          <ion-slide>
+            <!-- <div class="swiper-zoom-container"> -->
+              <img src="{{prod.packageImage}}" />
+          <!-- </div> -->
+          </ion-slide>
+        </ion-slides>
+        </div>
+     
+    <div  (click)="openDetailsWithQueryParams(prod)" class="detail">
+      <!-- <div class=""> -->
+            <h2 style="margin:0px">{{prod.packageName}}</h2>
             <p> {{'SHOP.SD' | translate}}:{{prod.avail_runtime[1]}} </p>
             <p > {{'SHOP.SP' | translate}}: <span><strong>&euro; {{prod.standard_price}} + {{'SHOP.VAT' | translate}}</strong></span></p>
             <p *ngIf="prod.your_price != 0"> {{'SHOP.YP' | translate}}: <span><strong> &euro; {{prod.your_price}} + VAT</strong></span></p>
-          </div>
-        </div>
-  
-        <p class="product-detail"> {{prod.productDescription}}</p>
-        <!-- <p class="product-detail"> {{prod.productDescriptionDE}}</p> -->
-      </div>
-  
+          <!-- *ngFor="let img of images" -->
+          
+        <!-- </div> -->
+       
+    </div>
+   
+    <div>
+
+  </div>
     </ion-item>
-  
+    <p class="product-detail"> {{prod.productDescriptionDE}}</p>
+
+  </div>
+
   </div>
  
 </ion-content> 

@@ -13,6 +13,18 @@ export class ShopPage implements OnInit {
  allProducts:any=[];
  allCategories:any;
  selectedOption:any = 'all';
+ slideOpts = {
+  initialSlide: 0,
+  speed: 400,
+  loop: true,
+  zoom: {
+    minRatio: 1,
+    maxRatio: 3,
+    toggle: true,
+    containerClass :'swiper-zoom-container',
+    zoomedSlideClass: 'swiper-slide-zoomed'
+  }
+};
   constructor(  
     private utility: UtilService,
     private apiService: ApiService, 

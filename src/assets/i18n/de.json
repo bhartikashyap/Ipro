@@ -1,7 +1,7 @@
 {
     "MODALS": {
         "DASHBOARD": {
-            "title": "Default Dashboard wählen",
+            "title": "Standard Dashboard wählen",
             "PROSPECT": "Partner Dashboard",
             "MEMBER": "Member Dashboard"
         },
@@ -198,10 +198,10 @@
         "CONFIRMPASS": "Passwort bestätigen"
     },
     "PROSPECT_MANAGEMENT": {
-        "title": "PROSPECT",
+        "title": "INTERESSENTEN",
         "subtitle": "Details",
         "tableHeader": {
-            "userId": "Member ID",
+            "userId": "ID",
             "name": "Name",
             "register": "Registriert",
             "percentage": "%"
@@ -239,16 +239,16 @@
         "openaction": {
             "title": "Zu Erledigen",
             "action1": " MEMBER(s) zu platzieren",
-            "action2": "Abo aktivieren und extra 5% sparen!"
+            "action2": "Extra 5% sparen-> Abo aktivieren!"
         },
         "referral": {
-            "title_pros": "iPro Interessenten Verwaltung",
-            "title_mem": "iPro Member Verwaltung",
-            "prospect": "Verwalte Deine Interessenten",
-            "member": "Verwalte Deine Member"
+            "title_pros": "Interessenten Verwaltung",
+            "title_mem": "Member Verwaltung",
+            "prospect": "Zum Interessenten Management",
+            "member": "Zum Member Management"
         },
-        "referral_link": " Mein Empfehlungs-Link",
-        "your_link": "Mein Aktivierungscode für neue Interessenten ist",
+        "referral_link": " Mein Empfehlungslink",
+        "your_link": "Einladung zur kostenlosen Registrierung bei iPro - einfach auf folgenden Link klicken:",
         "yourrank": {
             "title": "Dein Rang",
             "gvcounting": "GV Counting",
@@ -268,25 +268,25 @@
             "pv":"PV"
         },
         "products": {
-            "title": "My Products",
-            "expiry": "Expires in",
-            "btn": " Manage Products"
+            "title": "Meine Produkte",
+            "expiry": "Laufzeit noch:",
+            "btn": " Meine Produkte managen"
         },
         "member-placement":{
             "click":"Klick hier",
-            "to-place":"um ein neues Mitglied zu platzieren",
-            "lowest-level":"Gehen Sie zur Linie der niedrigsten Ebene",
+            "to-place":"um Mitglied zu platzieren",
+            "lowest-level":"Zur niedrigsten Ebene",
             "sponsor":"Sponsor",
-            "ID":"ICH WÜRDE",
-            "click-to-select":"Klicke um auszuwählen",
-            "user-to-place":"Bitte wählen Sie den zu platzierenden Benutzer aus",
+            "ID":"ID",
+            "click-to-select":"Klick um auszuwählen",
+            "user-to-place":"Bitte wählen Sie den zu platzierenden Kunden aus",
             "free":"Frei"
         }
     },
     "MYPRODUCT": {
         "title": "Meine Produkte",
         "productDetail": {
-            "title": "Product Name",
+            "title": "Produkt Name",
             "expiry": "Läuft ab in",
             "status": "Status"
         },
@@ -320,7 +320,7 @@
             "validIBAN": "Bitte eine gültige IBAN eingeben",
             "reqIBAN": "Bitte IBAN eingeben.",
             "walletAdd": "Bitte die Wallet-Adresse eingeben.",
-            "payment": "PZahlungsmethode erfolgreich zugefügt.",
+            "payment": "Zahlungsmethode erfolgreich zugefügt.",
             "deleteCard": "Karte wurde entfernt",
             "deleteWarning": "Möchtest Du die Karte wirklich entfernen?"
         },
@@ -328,14 +328,14 @@
         "countrycode": "IBAN Länder Kennung",
         "validate": "IBAN prüfen",
         "Bic": "BIC",
-        "freeaccount": "Kostenlos ein SEPA Konto einrichten?",
+        "freeaccount": "Kein SEPA Konto? Hier kostenlos einrichten!",
         "BITCOIN": "BITCOIN",
         "wallet": "Wallet Adresse eingeben"
     },
     "QUESTIONNAIRE": {
         "line1": "Für die Erstellung des Rezeptes benötigen wir ein paar Daten. Bitte alle Fragen beantworten, es dauert nur 3 Minuten!",
         "line2": "Die Sicherheit Deiner Daten ist wichtig für uns! Unser Datenschutz steht im Einklang mit der EU-Datenschutz-Grundverordnung. Die Daten werden ausschließlich für die Körperanalyse verwendet und können nur mit Deiner Zustimmung verwendet werden.(Passwort wird nach Abschluss der Fragen bereitgestellt)",
-        "terms": "I did read and agree to the Privacy terms",
+        "terms": "Ich bestätige das ich die Datenschutzbestimmungen gelesen und akzeptiert habe.",
         "msg": "Ich stimme den Datenscgutzbestimmungen zu.",
         "btn": {
             "complete": "Fertig",
@@ -359,7 +359,7 @@
     "tabs": {
         "tab1": "Dashboard",
         "tab2": "Shop",
-        "tab3": "Warenkorp",
+        "tab3": "Warenkorb",
         "tab4": "Menü"
     },
     "NOTIFICATION": {
@@ -380,7 +380,7 @@
         "pintrest": "Please enter valid pintrest url",
         "phoneNumber": "Bitte eine gültige Handy Nummer eingeben",
         "alphabate": "Bitte nur Buchstaben eingeben.",
-        "alphaNumeric": "Bitte nur alphanumersiche Zeichen eingeben.",
+        "alphaNumeric": "Bitte nur alphanumerische Zeichen eingeben.",
         "numeric": "Bitte nur Ziffern eingeben.",
         "password": "Bitte gib ein Passwort ein, das die folgenden Kriterien erfüllt: <br>1] Mindestens 8 Zeichen. <br>2] Mindestens ein Sonderzeichen. <br>3] Mindestens 1 Ziffer. <br>4] Mindestens ein Großbuchstabe. <br>5] Mindestens ein Kleinbuchstabe.",
         "confirmPassword": "Passwort und Passwort Bestätigung müssen übereinstimmen.",
@@ -399,26 +399,26 @@
         "zipcode": "Bitte PLZ Deines Heimatortes eingeben.",
         "invalidZip": "Ungültige Postleitzahl,Produkt wurde trotzdem zum Warenkorb hinzugefügt",
         "productadded": "Produkt zum Warenkorb zugefügt",
-        "activationCode": "If you don't have an activation code please enter 0"
+        "activationCode": "Wenn du keinen Aktivierungscode erhalten hast - gib bitte eine 0 ein."
     },
     "MENU":{
-        "menu1":"Armaturenbrett",
+        "menu1":"Dashboard",
         "menu2":"Mein Sponsor",
         "menu3":"Mein iPro",
         "menu4":"Meine Produkte",
-        "menu5":"Interessentenmanagement",
+        "menu5":"Interessenten<br>Verwaltung",
         "menu6":"Mitgliederverwaltung",
         "menu7":"Mitgliederplatzierung",
         "menu8":"Einstellungen",
         "menu9":"Passwort ändern",
         "menu10":"Sprache ändern",
         "menu11":"Dashboard ändern",
-        "menu12":"Standardrabatt festlegen",
+        "menu12":"Rabatt festlegen",
         "menu13":"Abo-Zahlungsoptionen",
         "menu14":"Provisionszahlung",
-        "menu15":"Gesetzlich",
+        "menu15":"Rechtliches",
         "menu16":"Impressum",
-        "menu17":"Privatpolitik",
+        "menu17":"Datenschutz",
         "menu18":"Allgemeine Geschäftsbedingungen",
         "menu19":"Meine Analysedaten",
         "menu20":"QR Code",

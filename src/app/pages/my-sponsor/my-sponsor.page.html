@@ -11,16 +11,16 @@
   <div style="padding:10px"> </div>
 
   <ion-list lines="none" class="" style="margin:2px 0px" *ngIf="title == 'sponsor'">
-    <ion-item lines="none">
+    <ion-item lines="none" *ngIf="sponsors?.data?.firstName != ''">
       <ion-label>{{'MODALS.SPONSOR.NAME' | translate}} :</ion-label>
       <span>{{sponsors?.data?.firstName}} {{sponsors?.data?.lastName}}</span>
     </ion-item>
-    <ion-item (click)="sendmail(sponsors?.data?.email)">
+    <ion-item (click)="sendmail(sponsors?.data?.email)" *ngIf="sponsors?.data?.email != ''">
       <ion-label>{{'MODALS.SPONSOR.EMAIL' | translate}} :</ion-label>
       <span>{{sponsors?.data?.email}}</span>
     </ion-item>
 
-    <ion-item (click)="callNo(sponsors?.data?.phoneNo)">
+    <ion-item (click)="callNo(sponsors?.data?.phoneNo)" *ngIf="sponsors?.data?.phoneNo != ''">
       <ion-label>{{'MODALS.SPONSOR.PHONE' | translate}} :</ion-label>
       <span>{{sponsors?.data?.phoneNo}}</span>
     </ion-item>
@@ -28,17 +28,17 @@
   </ion-list>
   <ion-list lines="none" *ngIf="title=='header'">
 
-    <ion-item>
+    <ion-item *ngIf="sponsors?.data?.firstName != ''" lines="none" >
       <ion-label> {{sponsors?.data?.firstName}} {{sponsors?.data?.lastName}}</ion-label>
     </ion-item>
 
-    <ion-item (click)="callNo(sponsors?.data?.phoneNo)" lines="none">
+    <ion-item (click)="callNo(sponsors?.data?.phoneNo)" lines="none" *ngIf="sponsors?.data?.phoneNo != ''">
       <ion-label>{{sponsors?.data?.phoneNo}}</ion-label>
       <ion-icon name="call-outline" slot="end"></ion-icon>
 
 
     </ion-item>
-    <ion-item (click)="sendmail(sponsors?.data?.email)" lines="none">
+    <ion-item (click)="sendmail(sponsors?.data?.email)" lines="none" *ngIf="sponsors?.data?.email != ''">
 
       <ion-label>{{sponsors?.data?.email}}</ion-label>
       <ion-icon name="mail-outline" slot="end"></ion-icon>

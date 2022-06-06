@@ -21,7 +21,7 @@
       <ion-card-title>{{'DASHBAORD.openaction.title' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
-      <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/member-replacement')">
+      <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/member-replacement')" *ngIf="details?.dashboard_data?.membersRequired > 0 ">
         ({{details?.dashboard_data?.membersRequired > 0 ?
         details?.dashboard_data?.membersRequired:0}}){{'DASHBAORD.openaction.action1' | translate }}</ion-button>
       <!-- <ion-button class="card-btn" color="danger" expand="block" *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">

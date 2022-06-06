@@ -201,7 +201,7 @@
         "title": "PROSPECT",
         "subtitle": "Detail",
         "tableHeader": {
-            "userId": "Member ID",
+            "userId": "ID",
             "name": "Name",
             "register": "Registered",
             "percentage": "%"
@@ -276,7 +276,7 @@
             "click":"Click here",
             "to-place":"to Place a new member",
             "lowest-level":"Go To Lowest Level Line",
-            "sponsor":"Sponosor",
+            "sponsor":"Sponsor",
             "ID":"ID",
             "click-to-select":"Click to select",
             "user-to-place":"Please select user to place",
@@ -403,7 +403,7 @@
     },
     "MENU":{
         "menu1":"Dashboard",
-        "menu2":"My Sponser",
+        "menu2":"My Sponsor",
         "menu3":"My iPro",
         "menu4":"My Products",
         "menu5":"Prospect Management",
@@ -418,7 +418,7 @@
         "menu14":"Commission Payment",
         "menu15":"Legal",
         "menu16":"Legal Notice",
-        "menu17":"Private Policy",
+        "menu17":"Privacy Policy",
         "menu18":"Term & Conditions",
         "menu19":"My Analysis Data",
         "menu20":"QR Code",
