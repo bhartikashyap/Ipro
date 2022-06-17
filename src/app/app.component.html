@@ -4,25 +4,29 @@
       <ion-content>
         <ion-list id="inbox-list">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of utility.appPages; let i = index">
-            <ion-item class="menu-label" *ngIf="p.url != ''" routerDirection="root" [routerLink]="[p.url]"
+            <ion-item class="menu-label"  routerDirection="root" [routerLink]="[p.url]"
               (click)="menu(p)" lines="none" detail="false" routerLinkActive="selected">
               <img src={{p.icon}}>
               <ion-label>{{'MENU.'+p.menu | translate}}</ion-label>
             </ion-item>
-            <ion-item class="menu-label" *ngIf="p.url == ''" routerDirection="root" (click)="menu(p)" lines="none"
+            <!-- <ion-item class="menu-label" *ngIf="p.url == ''" routerDirection="root" (click)="menu(p)" lines="none"
               detail="false" routerLinkActive="selected">
               <img src={{p.icon}}>
               <ion-label>{{'MENU.'+p.menu | translate}}</ion-label>
-            </ion-item>
+            </ion-item> -->
             <div class="sub-menu" *ngIf="p.subPages != null">
               <p *ngFor="let subP of p.subPages"  (click)="menu(subP)">
                 <span  *ngIf="subP.url != ''"  id="{{subP.id}}" 
                 routerDirection="root"  [routerLink]="[subP.url]">
-                  {{'MENU.'+subP.menu | translate}}
+
+                 {{'MENU.'+subP.menu | translate}}
 
                 </span>
                 <span  *ngIf="subP.url == ''"  >
                   {{'MENU.'+subP.menu | translate}}
+                <!-- <a  *ngIf="subP.menu == 'menu17'"  [href]="utility.pdfLink[2].link">{{'MENU.'+subP.menu | translate}} </a>
+
+                  <span *ngIf="subP.menu != 'menu17'" >{{'MENU.'+subP.menu | translate}}</span> -->
 
                 </span>
               </p>

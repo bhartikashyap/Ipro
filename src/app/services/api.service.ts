@@ -179,6 +179,10 @@ export class ApiService extends EnvironmentService {
   async paymentOption(body: any = {}) {
     return await this.http.post(this.apiUrl + api.PAYMENT_OPTION, body).toPromise();
   }
+  async changePaymentOption(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.CHANGE_PAYMENT_OPTION, body).toPromise();
+  }
+
 
   async checkIban(body: any = {}) {
     return await this.http.post(this.apiUrl + api.CHECK_IBAN, body).toPromise();

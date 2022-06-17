@@ -56,37 +56,40 @@ export const environment = {
   englishPdfs: [
     {
       title: 'agb',
-      link: 'https://myipro.family/legals/english/AGB.pdf'
+      link: 'http://myipro.family/legals/english/RigthOfWithdrawal.html'
     },
     {
       title: 'Legalnotice',
-      link: 'https://myipro.family/legals/english/LegalNotice.pdf'
+      link: 'https://myipro.family/legals/english/Legal-Notice.html'
     },
     {
       title: 'privacypolicy',
-      link: 'https://myipro.family/legals/english/PrivacyPolicy.pdf'
+      link: 'http://myipro.family/legals/english/Privacy-Policy.html'
     },
     {
       title: 'tnc',
-      link: 'https://myipro.family/legals/english/Widerrufsrecht.pdf'
+      link: 'http://myipro.family/legals/english/Terms-and-conditions.html'
     }
   ],
+
+ 
+
   germanyPdfs: [
     {
       title: 'agb',
-      link: 'https://myipro.family/legals/german/AGB.pdf'
+      link: 'http://myipro.family/legals/german/Widerrufsrecht.html'
     },
     {
       title: 'Legalnotice',
-      link: 'https://myipro.family/legals/german/Impressum.pdf'
+      link: 'https://myipro.family/legals/german/Impressum.html'
     },
     {
       title: 'privacypolicy',
-      link: 'https://myipro.family/legals/german/Datenschutz.pdf'
+      link: 'http://myipro.family/legals/german/Datenschutz.html'
     },
     {
       title: 'tnc',
-      link: 'https://myipro.family/legals/german/Widerrufsrecht.pdf'
+      link: ' http://myipro.family/legals/german/AGB.html'
     }
   ],
   englishErrors:[

@@ -7,6 +7,7 @@ import { NavController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { UtilService } from 'src/app/services/util.service';
 import { session } from 'src/app/utility/message';
+import { UserModalPage } from 'src/app/components/user-modal/user-modal.page';
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.page.html',
@@ -85,7 +86,26 @@ export class BasketPage implements OnInit {
 
 
   async buyCart() {
-    this.router.navigate(["/tabs/book-analysis"]);
+let onlyDevice =0 ;
+    // this.products_data.map((item)=>{
+    //   console.log(item.details)
+    //   let packageId = parseInt(item.details.packageId)
+    //   if(packageId >= 244 && packageId <= 252) {
+    //     onlyDevice++;
+    //   }
+    //   else{
+    //     onlyDevice-- ;
+    //   }
+
+    // })
+    // console.log(onlyDevice,this.products_data.length)
+    // if(this.products_data.length == onlyDevice){
+    //   this.utility.openPopup(UserModalPage,'payment','sponsor-class',true);
+    // }
+    // else{
+     this.router.navigate(["/tabs/book-analysis"]);
+
+    // }
   }
 
   async validatePayment() {

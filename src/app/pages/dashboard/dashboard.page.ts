@@ -23,9 +23,7 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
-    this.subscription = this.platform.backButton.subscribeWithPriority(9999, () => {
-      // do nothing
-    });
+   
 
     this.utility.changeMenu();
     this.utility.getCart('cart');
@@ -45,11 +43,11 @@ export class DashboardPage implements OnInit {
     let details: any = await this.apiSer.dashboard();
     if (details.status) {
       this.details = details.data;
+      this.utility.setStorage('paymentOption',this.details.dashboard_data.myPaymentOption);
+     
       if (type == 'Partner') {
-        // if (this.details?.dashboard_data?.yourStatus == 'Partner') {
         this.details.dashboard_data.yourStatus = 'Partner';
 
-        // }
 
       }
       else if (type == 'Member') {
@@ -59,13 +57,15 @@ export class DashboardPage implements OnInit {
       else {
         this.details.dashboard_data.yourStatus = await this.utility.getStorage("CHANGE_DASH");
       }
+      if( details.data.dashboard_data.yourStatus != null &&  details.data.dashboard_data.yourStatus != ''){
+        details.data.dashboard_data.yourStatus =  details.data.dashboard_data.yourStatus.toLowerCase();
+      }
       console.log(details.data.dashboard_data.yourStatus)
     }
     else {
       this.details = {}
     }
     loading.dismiss();
-    console.log(this.details);
 
   }
 
@@ -96,7 +96,7 @@ export class DashboardPage implements OnInit {
   // }
 
   ionViewWillLeave() {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
 }

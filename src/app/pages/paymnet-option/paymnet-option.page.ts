@@ -12,13 +12,13 @@ import { callCordovaPlugin } from '@ionic-native/core/decorators/common';
   styleUrls: ['./paymnet-option.page.scss'],
 })
 export class PaymnetOptionPage implements OnInit {
-  cardPaymentoption:any={}
-  userProfile:any;
+  cardPaymentoption: any = {}
+  userProfile: any;
   browser: any;
-  cardadded:any=false;
-  ibanadded:any=false;
-  somethingElseclick:any=false;
-  myPaymentOption:any;
+  cardadded: any = false;
+  ibanadded: any = false;
+  somethingElseclick: any = false;
+  myPaymentOption: any;
   options: InAppBrowserOptions = {
     location: 'yes',//Or 'no' 
     hidden: 'no', //Or  'yes'
@@ -35,104 +35,111 @@ export class PaymnetOptionPage implements OnInit {
     allowInlineMediaPlayback: 'no',//iOS only 
     presentationstyle: 'pagesheet',//iOS only 
     fullscreen: 'yes',//Windows only    
-  };
+  };      
   openPage: any
 
-  constructor(public utilSer:UtilService,private apiSer:ApiService, private theInAppBrowser: InAppBrowser,
+  constructor(public utilSer: UtilService, private apiSer: ApiService, private theInAppBrowser: InAppBrowser,
     private platform: Platform,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
 
 
   }
   ionViewWillEnter() {
-    this.getPaymentoption("loader","");
-    
+    this.getPaymentoption("loader", "");
+
   }
-  async getPaymentoption(loader,type){
+  async getPaymentoption(loader, type) {
     this.somethingElseclick = false;
     console.log(loader)
     // this.cardPaymentoption={}
     let loading
-    if(loader == "loader"){
-       loading = await this.utilSer.presentLoading();
+    if (loader == "loader") {
+      loading = await this.utilSer.presentLoading();
 
     }
     let result: any = await this.apiSer.paymentOption();
-    let profile:any = await this.apiSer.getProfile();
-    if(loader == "loader"){
+    let profile: any = await this.apiSer.getProfile();
+    if (loader == "loader") {
       loading.dismiss();
 
 
     }
-    if(profile.status){
+    if (profile.status) {
       this.userProfile = profile.data.profile;
       console.log(this.userProfile)
     }
     if (result.status == 1) {
       this.cardPaymentoption = result.data;
       var changeLoader;
-      this.myPaymentOption = this.cardPaymentoption?.myPaymentOption 
-     
-      if(this.cardPaymentoption.cardNumber =='' || this.cardPaymentoption.iban_payment_option =='' ){
-        changeLoader = "noloader";
-        if(loader == "noloader"){
-          setTimeout(() => {
-            this.getPaymentoption(changeLoader,type);
-            if(this.cardPaymentoption?.myPaymentOption =='direct_debit_sepa'){
-              this.ibanadded = true;
-            }
-            else  if(this.cardPaymentoption?.myPaymentOption =='creditcard'){
-              this.cardadded = true;
-    
-            }
-            if(this.router.url == '/tabs/paymnet-option'){
-              
-            }
-           
-    
-          },2000);
+      
+      this.myPaymentOption = this.cardPaymentoption?.myPaymentOption
+      if (loader == "noloader") {
+        if (type == 'GUARANTEED_DIRECT_DEBIT_SEPA') {         
+          this.ibanadded = true;
+          this.myPaymentOption = 'guaranteed_direct_debit_sepa';
+
+          if (this.cardPaymentoption.iban_payment_option == '') {
+            changeLoader = "noloader";
+            setTimeout(() => {
+              this.getPaymentoption(changeLoader, type);
+            }, 2000);
+          }
+          else{
+            this.ibanadded = false;
+          changeLoader = "loader";
+          let data = {
+            'paymentOption': type
+          }
+          this.apiSer.changePaymentOption(data);
+            
+          }
         }
+        else if (type == 'CREDITCARD') {
+          this.myPaymentOption = 'creditcard';
 
-
-
+          this.cardadded = true;
+          if (this.cardPaymentoption.cardNumber == '') {
+            changeLoader = "noloader";
+            setTimeout(() => {
+              this.getPaymentoption(changeLoader, type);
+            }, 2000);
+          }
+          else{
+            this.cardadded = false;
+            changeLoader = "loader";
+            let data = {
+              'paymentOption': type
+            }
+            this.apiSer.changePaymentOption(data);
+          }
+        }
       }
-     
-       else{
-
-
-        if(this.cardPaymentoption?.myPaymentOption =='direct_debit_sepa'){
+      else {
+        if (this.cardPaymentoption?.myPaymentOption == 'guaranteed_direct_debit_sepa') {
           this.ibanadded = false;
         }
-        else  if(this.cardPaymentoption?.myPaymentOption =='creditcard'){
+        else if (this.cardPaymentoption?.myPaymentOption == 'creditcard') {
           this.cardadded = false;
-
         }
-        // if(type == 'CREDITCARD'){
-  
-        // }else  if(type == 'GUARANTEED_DIRECT_DEBIT_SEPA'){
-        //   this.ibanadded = false;
-        // }
-        changeLoader = "loader";
-        // clearInterval();
-      
+         changeLoader = "loader";
       }
-      console.log(changeLoader,"changeLoader")
-      
-       
+      console.log(changeLoader, "changeLoader")
+
+
       // }
-      
+
     }
-   
+
 
   }
 
-  async aboPayment(type){
+  async aboPayment(type) {
     this.somethingElseclick = false;
     console.log(type)
-    let data={
-      'paymentOption':type
+    let data = {
+      'paymentOption': type
     }
     let loading = await this.utilSer.presentLoading();
     let result: any = await this.apiSer.aboPayment(data);
@@ -140,13 +147,13 @@ export class PaymnetOptionPage implements OnInit {
     if (result.status == 1) {
       this.inAppBrowser(result.response.result.redirect_url);
       this.somethingElseclick = true;
-
-      this.validatePayment(result.paymentId,type)
-      //this.cardPaymentoption = result.data
       
+      this.validatePayment(result.paymentId, type)
+      //this.cardPaymentoption = result.data
+
     }
   }
-  confirmDelete(type){
+  confirmDelete(type) {
     this.somethingElseclick = false;
     this.utilSer.presentAlert(
       "Warning",
@@ -157,7 +164,7 @@ export class PaymnetOptionPage implements OnInit {
         text: this.utilSer.translateText("MODALS").BUTTONS.YES,
         cssClass: 'secondary',
         handler: async () => {
-         this.deletePaymnet(type);
+          this.deletePaymnet(type);
 
         }
       }
@@ -172,22 +179,22 @@ export class PaymnetOptionPage implements OnInit {
     );
   }
 
-  async deletePaymnet(type){
+  async deletePaymnet(type) {
     this.somethingElseclick = false;
     console.log(type)
-    let data={
-      'paymentOption':type
+    let data = {
+      'paymentOption': type
     }
     let loading = await this.utilSer.presentLoading();
     let result: any = await this.apiSer.deletPayment(data);
     loading.dismiss();
     if (result.status == 1) {
-      this.utilSer.presentToast(this.utilSer.translateText('PAYMENT_OPTON').msg.deleteCard,"top");
-      this.getPaymentoption("loader",type);
+      this.utilSer.presentToast(this.utilSer.translateText('PAYMENT_OPTON').msg.deleteCard, "top");
+      this.getPaymentoption("loader", type);
       // this.inAppBrowser(result.response.result.redirect_url);
       // this.validatePayment(result.paymentId)
       //this.cardPaymentoption = result.data
-      
+
     }
   }
 
@@ -224,11 +231,11 @@ export class PaymnetOptionPage implements OnInit {
   async closeBrowser() {
     if (this.platform.is('android')) {
       this.openPage.close()
-      
+
 
     } else {
       Browser.close()
-      
+
 
     }
   }
@@ -255,39 +262,73 @@ export class PaymnetOptionPage implements OnInit {
     }
   }
 
-  async validatePayment(paymentId,type) {
+  async validatePayment(paymentId, type) {
     let result: any = await this.apiSer.paymentStatus({
       paymentId: paymentId
     });
-    if (result.status == 0) {
+    if (result.msg == "payment not completed") {
 
       setTimeout(() => {
-       
-      if(this.router.url == '/tabs/paymnet-option'  && this.somethingElseclick){
-        this.validatePayment(paymentId,type);
-       // console.log(this.paymentUrl)
-      }
-      
+
+        if (this.router.url == '/tabs/paymnet-option' ) {
+          this.validatePayment(paymentId, type);
+          // console.log(this.paymentUrl)
+        }
+
 
         this.onManualClose();
 
-      }, 2000 );
+      }, 2000);
     } else {
-      if(type == 'CREDITCARD'){
+      if (type == 'CREDITCARD') {
         this.cardadded = false;
 
-      }else  if(type == 'GUARANTEED_DIRECT_DEBIT_SEPA'){
+      } else if (type == 'GUARANTEED_DIRECT_DEBIT_SEPA') {
         this.ibanadded = false;
       }
       clearInterval();
       this.closeBrowser();
-      this.utilSer.presentToast(this.utilSer.translateText('PAYMENT_OPTON').msg.addcard, "top");
-      this.getPaymentoption("noloader",type);
+      if (result.msg == "payment completed") {
+        this.utilSer.presentToast(this.utilSer.translateText('PAYMENT_OPTON').msg.addcard, "top");
+        this.getPaymentoption("noloader", type);
+       
+
+      }
 
     }
   }
 
+  async changePayment(type,methodType){
+    console.log(type,methodType)
+    let data = {
+      'paymentOption': methodType
+    }
+    if(type == 'creditcard'){
+      this.myPaymentOption = 'creditcard';
+      if(this.cardPaymentoption?.cardNumber != ''){
+        this.apiSer.changePaymentOption(data)
+      }
+      else if(this.cardPaymentoption?.cardNumber == ''){
+        this.aboPayment(methodType);
 
-  
+      }
+    }
+    else  if(type == 'guaranteed_direct_debit_sepa'){
+      this.myPaymentOption = 'guaranteed_direct_debit_sepa';
+      if(this.cardPaymentoption?.iban_payment_option != ''){
+        this.apiSer.changePaymentOption(data)
+      }
+      else if(this.cardPaymentoption?.iban_payment_option == ''){
+        this.aboPayment(methodType);
+
+      }
+    }
+   // 
+  //  this.myPaymentOption = ;
+    // changePaymentOption
+  }
+
+
+
 
 }

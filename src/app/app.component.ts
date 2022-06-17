@@ -134,7 +134,7 @@ export class AppComponent implements OnInit {
         console.log(event)
         console.log(this.router.getCurrentNavigation)
         console.log(this.router.url)
-        if(this.router.url == '/member-replacement'){
+        if(this.router.url == '/member-replacement' || this.router.url.indexOf('/tabs/dashboard') > -1 || this.router.url == '/tabs/area-of-interest'){
            // this.utility.changeMenu();
             this.platform.backButton.subscribeWithPriority(9999, () => {
               // do nothing
@@ -274,7 +274,7 @@ export class AppComponent implements OnInit {
     }
     else if (selectedTab=='tnc'){
       console.log(this.utility.pdfLink[0].link)
-      this.utility.openPdfLinks(this.utility.pdfLink[0].link,'Term & Condition');
+      this.utility.openPdfLinks(this.utility.pdfLink[3].link,'Term & Condition');
     }
     else if (selectedTab=='analysis'){
       this.utility.openPopup(UserModalPage,selectedTab,'modal-question' ,true);

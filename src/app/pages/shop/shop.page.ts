@@ -16,14 +16,7 @@ export class ShopPage implements OnInit {
  slideOpts = {
   initialSlide: 0,
   speed: 400,
-  loop: true,
-  zoom: {
-    minRatio: 1,
-    maxRatio: 3,
-    toggle: true,
-    containerClass :'swiper-zoom-container',
-    zoomedSlideClass: 'swiper-slide-zoomed'
-  }
+  loop: true
 };
   constructor(  
     private utility: UtilService,
@@ -54,8 +47,8 @@ export class ShopPage implements OnInit {
        loading.dismiss();
         // console.log(res);
         this.allProducts = res.data;
-        this.allProducts.map((item)=>{
-          console.log(item.avail_runtime[1])
+        this.allProducts.map((item,index)=>{
+          console.log(item.packageId,index)
        })
      })
   }

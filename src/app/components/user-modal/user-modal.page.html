@@ -6,16 +6,25 @@
     <ion-title *ngIf="title == 'reconfirmation'">{{'MODALS.RECONFIRM.title' | translate}}</ion-title>
     <ion-title *ngIf="title == 'search'">{{'MODALS.USERSEARCH.title' | translate}}</ion-title>
     <ion-title *ngIf="title == 'error'"> {{'MODALS.ERROR.title' | translate}}</ion-title>
+    <ion-title *ngIf="title == 'payment'"> {{'MODALS.PAYMENT.title' | translate}}</ion-title>
     <ion-title *ngIf="title == 'pdf'" (click)="closeModal()"> Done</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div ></div>
-  <div *ngIf="title == 'pdf'">
-    <iframe class= 'webPage' name= "eventsPage"  [src]="utiSer.pdf"  style="height:600px;" allowfullscreen>
+<ion-content *ngIf="title == 'pdf'" class="ion-content-iframe">
+  <div *ngIf="title == 'pdf'" style="height: 100%;">
+
+    
+    <iframe  class="webPage" style="height:100%;" frameborder="0" name="eventsPage" [src]="utiSer.pdf">
     </iframe>
+    <!-- <iframe class= 'webPage' name= "eventsPage"  [src]="utiSer.pdf"  style="height:600px;" allowfullscreen>
+    </iframe> -->
+    <!-- <iframe id="fred" style="border:1px solid #666CCC" title="PDF in an i-Frame" [src]="utiSer.pdf" frameborder="1" scrolling="auto" height="1100" width="850"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
   </div>
+  </ion-content>
+  <ion-content *ngIf="title != 'pdf'">
+  <div ></div>
+ 
   
   <ion-list *ngIf="title == 'error'" lines="none">
       <ion-item (click)="changeLan('en')" lines="none" style="text-align:'center'">
@@ -62,6 +71,19 @@
       <ion-item (click)="utiSer.changeLan('de')" lines="none">
         <ion-label> {{'MODALS.LANGUAGE.GERMANY' | translate}}</ion-label>
         <ion-radio slot="start" value="de" checked="utiSer.deviceLang =='de'"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-list *ngIf="title == 'payment'" lines="none">
+    <ion-radio-group [value]="utiSer.paymnetType" >
+      <ion-item (click)="utiSer.paymnetType ='one'" lines="none">
+        <ion-label> {{'MODALS.PAYMENT.ONETIME' | translate}}</ion-label>
+        <ion-radio slot="start" value="one" checked="utiSer.paymnetType =='one'"></ion-radio>
+      </ion-item>
+      <ion-item (click)="utiSer.paymnetType ='emi'" lines="none">
+        <ion-label> {{'MODALS.PAYMENT.EMI' | translate}}</ion-label>
+        <ion-radio slot="start" value="emi" checked="utiSer.paymnetType =='emi'"></ion-radio>
       </ion-item>
     </ion-radio-group>
   </ion-list>
@@ -141,6 +163,10 @@
     </ion-button>
     <ion-button class="btn" color="danger" (click)="gohome()" *ngIf="title == 'error'">
       {{'MODALS.BUTTONS.GO_HOME' | translate}}
+    </ion-button>
+
+    <ion-button class="btn" color="danger" (click)="gotoPayment()" *ngIf="title == 'payment'">
+      {{'MODALS.BUTTONS.CONTINUE' | translate}}
     </ion-button>
 
   </div>

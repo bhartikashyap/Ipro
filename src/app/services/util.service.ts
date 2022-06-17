@@ -17,7 +17,8 @@ import { DocumentViewer, DocumentViewerOptions } from '@awesome-cordova-plugins/
 import { UserModalPage } from '../components/user-modal/user-modal.page';
 import { DomSanitizer } from '@angular/platform-browser';
 import { session } from 'src/app/utility/message';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+// import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Platform } from '@ionic/angular';
 @Injectable({
   providedIn: "root",
@@ -38,6 +39,7 @@ export class UtilService {
   memberPlacedUuserId; any;
   pdfLink: any = this.envr.pdfEnglish;;
   pdf: any;
+  paymnetType:any='one';
   public memberPage = [
 
     { title: 'Dashboard', url: '/tabs/dashboard/defaultDash', icon: '../assets/img/dashboard.png', subPages: null, role: "Member", name: '', menu: "menu1" },
@@ -104,23 +106,23 @@ export class UtilService {
     { title: 'Logout', menu: "menu21", url: '', icon: '../assets/img/legal.png', subPages: null, name: 'logout' }
   ];
   public appPages = this.prospectPage;
-  options: InAppBrowserOptions = {
-    location: 'yes',//Or 'no' 
-    hidden: 'no', //Or  'yes'
-    clearcache: 'yes',
-    clearsessioncache: 'yes',
-    zoom: 'yes',//Android only ,shows browser zoom controls 
-    hardwareback: 'yes',
-    mediaPlaybackRequiresUserAction: 'no',
-    shouldPauseOnSuspend: 'no', //Android only 
-    closebuttoncaption: 'Close', //iOS only
-    disallowoverscroll: 'no', //iOS only 
-    toolbar: 'yes', //iOS only 
-    enableViewportScale: 'no', //iOS only 
-    allowInlineMediaPlayback: 'no',//iOS only 
-    presentationstyle: 'pagesheet',//iOS only 
-    fullscreen: 'yes',//Windows only    
-  };
+  // options: InAppBrowserOptions = {
+  //   location: 'yes',//Or 'no' 
+  //   hidden: 'no', //Or  'yes'
+  //   clearcache: 'yes',
+  //   clearsessioncache: 'yes',
+  //   zoom: 'yes',//Android only ,shows browser zoom controls 
+  //   hardwareback: 'yes',
+  //   mediaPlaybackRequiresUserAction: 'no',
+  //   shouldPauseOnSuspend: 'no', //Android only 
+  //   closebuttoncaption: 'Close', //iOS only
+  //   disallowoverscroll: 'no', //iOS only 
+  //   toolbar: 'yes', //iOS only 
+  //   enableViewportScale: 'no', //iOS only 
+  //   allowInlineMediaPlayback: 'no',//iOS only 
+  //   presentationstyle: 'pagesheet',//iOS only 
+  //   fullscreen: 'yes',//Windows only    
+  // };
   openPage: any;
 
   constructor(
@@ -262,28 +264,23 @@ export class UtilService {
     console.log(pdfUrl)
     this.pdf = this.domSanit.bypassSecurityTrustResourceUrl(pdfUrl)
     console.log(this.pdf)
-    if (pdfName == '') {
+    // if (pdfName == '') {
       this.openPopup(UserModalPage, 'pdf', '', true);
-    }
-    else {
+      // this.document
       // this.document.viewDocument(pdfUrl, 'application/pdf', {title: pdfName});
-      if (this.platform.is('android')) {
-        this.openPage = this.theInAppBrowser.create(pdfUrl, "_blank", this.options);
-      } else {
-        Browser.open({ url: pdfUrl });
+    // }
+    // else {
+      // this.document.viewDocument(pdfUrl, 'application/pdf', {title: pdfName});
+      // if (this.platform.is('android')) {
+      //   const browser = this.theInAppBrowser.create(pdfUrl);
+
+        // this.openPage = this.theInAppBrowser.create(pdfUrl, "_blank", this.options);
+     // } else {
+        // Browser.open({ url: pdfUrl });
 
 
-      }
-    }
-
-
-
-
-
-
-
-
-    //
+    //  }
+    // }
   }
 
   async getPlanDetail(plan) {
@@ -369,7 +366,7 @@ export class UtilService {
   async changeLan(lan, page) {
 
     let params: any = {}
-    if (lan == 'en') {
+    if (lan == 'en' || lan == 'english') {
       this.videoSer.videoType = this.envr.videosEnglish;
       this.pdfLink = this.envr.pdfEnglish;
       // this.language = 'en'
@@ -378,7 +375,7 @@ export class UtilService {
         "language": 'english'
       }
     }
-    else {
+    else  if (lan == 'de' || lan == 'german') {
       this.videoSer.videoType = this.envr.videosGerman;
       this.pdfLink = this.envr.pdfGerman;
       this.deviceLang = 'de'
@@ -439,6 +436,8 @@ export class UtilService {
       //alert("This is because userRole is:"+userRole+" or may be because default dash is "+ this.defaultDash+".You can also check this :"+ this.mainDashboard  );
 
     }
+    // if(userRole !)
+    // userRole = userRole.toLowerCase();
     if (userRole == 'Prospect') {
       this.appPages = this.prospectPage;
       this.mainDashboard = "/tabs/area-of-interest";

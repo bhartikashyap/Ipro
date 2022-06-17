@@ -10,6 +10,11 @@
             "ENGLISH": "Englisch",
             "GERMANY": "Deutsch"
         },
+        "PAYMENT": {
+            "title": "Bitte wähle wie Du zahlen möchtest!",
+            "ONETIME": "Einmalzahlung",
+            "EMI": "Ratenzahlung mit 2 bis 12 Monatsraten"
+        },
         "PLACEMEMBER": {
             "title": "Platzierung Mitglieder",
             "NO_USER_ERROR": "Keine Mitglieder zu platzieren."
@@ -51,7 +56,8 @@
             "NO": "Nein",
             "OK": "OK",
             "GO_TO_SHOP": "Zum Shop",
-            "zipcode": "PLZ"
+            "zipcode": "PLZ",
+            "CONTINUE":"WEITER"
         }
     },
     "LOGIN": {
@@ -239,7 +245,9 @@
         "openaction": {
             "title": "Zu Erledigen",
             "action1": " MEMBER(s) zu platzieren",
-            "action2": "Extra 5% sparen-> Abo aktivieren!"
+            "action2": "Extra 5% sparen-> Abo aktivieren!",
+            "action3": "Provisionszahlung hinzufügen",
+            "action4": "UNTERZEICHNEN Sie die Partnervereinbarung"
         },
         "referral": {
             "title_pros": "Interessenten Verwaltung",
@@ -248,6 +256,7 @@
             "member": "Zum Member Management"
         },
         "referral_link": " Mein Empfehlungslink",
+        "no_action":"Keine Aktionen",
         "your_link": "Einladung zur kostenlosen Registrierung bei iPro - einfach auf folgenden Link klicken:",
         "yourrank": {
             "title": "Dein Rang",
@@ -424,5 +433,30 @@
         "menu20":"QR Code",
         "menu21":"Ausloggen"
 
+    },
+    "Agreement":{
+        "title": "Partner Agreement",
+        "german":{
+            "title":"ERKLÄRUNG ÜBER DIE UMSATZSTEUERRECHTLICHE UNTERNEHMEREIGENSCHAFT",
+            "line1":"Kein Unternehmer im Sinne des §2 Umsatzsteuergesetz tätig und somit nicht umsatzsteuerpflichtig bin",
+            "line2":"momentan als Kleinunternehmer nach §19 Abs. 1 uns 2 Umsatzsteuergesetz tätig und somit nicht umsatzsteuerpflichtig bin ",
+            "line3":"im Sinne des §2 Umsatzsteuergesetz tätig und umsatzsteuerpflichtig bin. Laut Umsatzsteuergesetz falle ich unter die Normalbesteuerung mit zurzeit 19% Umsatzsteuer (Ausnahme: 16% vom 1.Juli 2020 bis 31.Dez2020) ",
+            "line3.1":"Die mit der Gutschrift für die Provision(en) ausgezahlte Umsatzsteuer führe ich an das Finanzamt ab",
+            "line3.2":"Nur auszufüllen wenn Option 3 zutrifft",
+            "input1":"Zuständiges Finanzamt",
+            "input2":"Steuer ID oder Steuernummer",
+            "input3":"Ust-ID",
+            "btn":"WEITER"
+        },
+        "all-partner":{
+            "title":"Partner Vereinbarung",
+            "line1":"Textline 1",
+            "line2":"Textline 2",
+            "line3":"Textline 3",
+            "line4":"Textline 4",
+            "line5":"Textline 5",
+            "sub-text":"Mit meiner elektronischen Unterschrift bestätige ich, dass alle Angaben korrekt gemacht wurden und  der Partner Vereinbarung zugestimmt wird.",
+            "btn":"FERTIG"
+        }
     }
 }

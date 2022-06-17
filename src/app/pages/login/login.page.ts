@@ -93,7 +93,7 @@ export class LoginPage implements OnInit {
             this.utility.setStorage(session.AUTH_TOKEN, token);
             this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
             this.utility.userRole=data.userRole;
-            this.utility.setStorage('userRole',data.userRole);
+            this.utility.setStorage('userRole',data.userLevelStatus);
             this.utility.setStorage('firstLogin', new Date());
             if(data.userRole == 'Prospect'){
                    this.utility.checkQuestionaire();
@@ -102,12 +102,13 @@ export class LoginPage implements OnInit {
             }
             else{
               let dash;
-              if(data.defaultDashboard == 'Partner'){
-                dash = 'Partner';
-              }
-              else{
-                dash = 'Member';
-              }
+              // if(data.defaultDashboard != undefined && data.defaultDashboard != '' && data.defaultDashboard != null){
+              //   dash = data.defaultDashboard;
+              // }
+             
+              // else{
+                dash = data.userLevelStatus;
+              // }
               this.utility.setStorage('CHANGE_DASH',dash);
               this.utility.goNext(["/tabs/dashboard/"+dash])
             }

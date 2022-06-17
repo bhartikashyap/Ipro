@@ -169,7 +169,7 @@ export class MemberReplacementPage implements OnInit {
     loading.dismiss();
     if (response.status == 1) {
       this.utilSer.presentToast("Member placed successfully.", "top");
-      this.getPlacementTree('search', '', memberId);
+      this.getPlacementTree('tree', '', memberId);
       // if(this.searchItem != ''){
       //   this.getPlacementTree('search','');
       // }

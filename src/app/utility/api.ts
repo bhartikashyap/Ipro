@@ -43,6 +43,7 @@ export const GET_LOW_LEVEL ='ipro_get_lowest_level';
 export const USER_FOR_PLACEMENT ='ipro_users_for_placement';
 export const PLACEMENT_TREE ='ipro_placement_tree';
 export const PROSPECT_DASHBOARD ='ipro_dashboard_text';
+export const CHANGE_PAYMENT_OPTION ='ipro_change_payment_option';
 
 export const PAYMENT_OPTION ='ipro_payment_options';
 export const COMMISION_PAYMENT_OPTION ='ipro_save_commission_payment_option';

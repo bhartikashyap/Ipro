@@ -16,7 +16,7 @@
   </ion-item>
   <div *ngIf="allProducts != null && allProducts.length > 0">
     <div *ngFor="let prod of allProducts" style="border-bottom: solid #ccc 1px;
-    padding: 10px;">
+    padding: 10px 0px;"  (click)="openDetailsWithQueryParams(prod)" class="item">
 
   
     <ion-item   lines="none" class="ion-no-padding">
@@ -24,21 +24,17 @@
      
       <div class="zoom-box">
         <ion-slides  pager="true" [options]="slideOpts">
-          <ion-slide>
+          <ion-slide *ngFor="let packageImage of prod.packageImages">
             <!-- <div class="swiper-zoom-container"> -->
-              <img src="{{prod.packageImage}}" />
+              <img src="{{packageImage}}" />
             <!-- </div> -->
             
           </ion-slide>
-          <ion-slide>
-            <!-- <div class="swiper-zoom-container"> -->
-              <img src="{{prod.packageImage}}" />
-          <!-- </div> -->
-          </ion-slide>
+         
         </ion-slides>
         </div>
      
-    <div  (click)="openDetailsWithQueryParams(prod)" class="detail">
+    <div  class="detail">
       <!-- <div class=""> -->
             <h2 style="margin:0px">{{prod.packageName}}</h2>
             <p> {{'SHOP.SD' | translate}}:{{prod.avail_runtime[1]}} </p>
@@ -54,7 +50,7 @@
 
   </div>
     </ion-item>
-    <p class="product-detail"> {{prod.productDescriptionDE}}</p>
+    <p class="product-details" *ngIf="prod.productDescriptionDE"> {{prod.productDescriptionDE}}</p>
 
   </div>
 

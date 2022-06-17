@@ -1,43 +1,88 @@
 <app-header [headerTitle]="'PAGES.PRODUCTDETAIL' | translate" [headerBack]=true></app-header>
 
 <ion-content>
-  <ion-item *ngIf="detail != undefined" lines="none">
+  <ion-modal style="--height: 500px;" [isOpen]="ionModelOpen" [swipeToClose]="false" [backdropDismiss]="false" [keyboardClose]="false"
+    >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar style="--background:#fff !important">
 
-    <!-- <div>-->
-    <div class="product"> 
-        <img src="{{detail.packageImage}}" alt="{{detail.packageName}}" />
+          <ion-title slot="end" (click)="ionModelOpen=false;slideOpts['zoom']={}"> <ion-icon name="close"></ion-icon></ion-title>
+  </ion-toolbar>
+</ion-header>
+      <ion-content>
+        <div class='full-zoom-box'>
+        <ion-slides  pager=" true" [options]="slideOpts" style="height: 350px;"> 
+          <!-- packageImages -->
+            <ion-slide *ngFor="let packageImage of detail.packageImages">
+              <!-- <div class="swiper-zoom-container"> -->
+              <img src="{{packageImage}}" alt="{{detail.packageName}}" />
+              <!-- </div> -->
 
-      <h2>{{detail.packageName}}</h2>
-      <p class="product-detail"> {{detail.productDescription}}</p>
-      <!-- <p class="product-detail"> {{detail.productDescriptionDE}}</p> -->
-      <ion-select  class="price-detail ion-margin" [(ngModel)]="detail.availTymSelected" interface="action-sheet"
-        (ionChange)="changeDuration($event)" *ngIf="detail != undefined">
-        <ion-select-option *ngFor="let avtym of detail.avail_runtime | keyvalue" [value]="avtym.key">{{avtym.value}}
-        </ion-select-option>
-      </ion-select>
+            </ion-slide>
+           
+            </ion-slides>
+          </div>
+</ion-content>      
+</ng-template>
+</ion-modal>
+<div class="zoom-box">
+  <ion-slides pager="true" [options]="slideOpts">
+   
+    <ion-slide *ngFor="let packageImage of detail.packageImages">
+      <!-- <div class="swiper-zoom-container"> -->
+      <img src="{{packageImage}}" alt="{{detail.packageName}}" (click)="ionModelOpen=true;slideOpts['zoom']={
+        minRatio: 1,
+        maxRatio: 3,
+        toggle: true,
+        containerClass :'swiper-zoom-container',
+        zoomedSlideClass: 'swiper-slide-zoomed'
+      }" />
       <!-- </div> -->
 
+    </ion-slide>
+   
+  </ion-slides>
+</div>
 
-    </div>
-    <!-- <div> -->
-    <!-- <ion-label>Hair Color</ion-label> -->
+<ion-item lines="none">
+
+  <!-- <div>-->
+
+  <div class="product">
 
 
+    <h2>{{detail.packageName}}</h2>
+    <p class="product-detail"> {{detail.productDescription}}</p>
+    <!-- <p class="product-detail"> {{detail.productDescriptionDE}}</p> -->
+    <ion-select class="price-detail ion-margin" [(ngModel)]="detail.availTymSelected" interface="action-sheet"
+      (ionChange)="changeDuration($event)" *ngIf="detail != undefined" style="width: 250px;">
+      <ion-select-option *ngFor="let avtym of detail.avail_runtime | keyvalue" [value]="avtym.key">{{avtym.value}}
+      </ion-select-option>
+    </ion-select>
     <!-- </div> -->
 
 
-  </ion-item>
-  <h1 class="price"><strong> &euro; {{detail.changedPrice}} + {{'CART.VAT' | translate}}</strong></h1>
+  </div>
+  <!-- <div> -->
+  <!-- <ion-label>Hair Color</ion-label> -->
 
-  <div class="content-wrap" *ngIf="!detail.disableCart">
-    <ion-button class="btn" color="danger" expand="block" disabled="{{detail.disableCart}}" (click)="addTobasket()">
-      {{'PRODUCT.ADDTOCART' | translate}}
-    </ion-button>
-  </div>
-  <div class="content-wrap" *ngIf="detail.disableCart">
-    <ion-button class="btn" color="danger" expand="block" (click)="removeItem()">
-      {{'PRODUCT.REMOVE' | translate}}
-    </ion-button>
-  </div>
+
+  <!-- </div> -->
+
+
+</ion-item>
+<h1 class="price"><strong> &euro; {{detail.changedPrice}} + {{'CART.VAT' | translate}}</strong></h1>
+
+<div class="content-wrap" *ngIf="!detail.disableCart">
+  <ion-button class="btn" color="danger" expand="block" disabled="{{detail.disableCart}}" (click)="addTobasket()">
+    {{'PRODUCT.ADDTOCART' | translate}}
+  </ion-button>
+</div>
+<div class="content-wrap" *ngIf="detail.disableCart">
+  <ion-button class="btn" color="danger" expand="block" (click)="removeItem()">
+    {{'PRODUCT.REMOVE' | translate}}
+  </ion-button>
+</div>
 
 </ion-content>

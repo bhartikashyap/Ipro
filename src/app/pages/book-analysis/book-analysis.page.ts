@@ -274,16 +274,18 @@ export class BookAnalysisPage implements OnInit {
       let dob = selectedDate.split('-');
       if (type == 'profile') {
         // console.log(dob[1] + '/' + dob[0] + '/' + dob[2])
-        this.dob = { day:parseInt(dob[1]) , month:  parseInt(dob[0]), year:  parseInt(dob[2])};  //new date picker code
-
+         this.dob = { day:parseInt(dob[0]) , month:  parseInt(dob[1]), year:  parseInt(dob[2])};  //new date picker code
+      //  this.dob = { year: parseInt(dob[0]), month: parseInt(dob[1]), day: parseInt(dob[2]) };
+        this.form.get("dob").setValue(this.dob);
+        console.log(this.dob)
         let dobReg = new Date(dob[1] + '/' + dob[0] + '/' + dob[2]).toLocaleString('en-us', {
           year: 'numeric',
           month: 'short',
           day: 'numeric',
         })
-        this.form.get('dob').setValue(dobReg);
+       // this.form.get('dob').setValue(dobReg);
          this.mydob = dobReg;
-        // console.log(this.mydob)
+         console.log(this.mydob)
       }
       else {
         console.log(dob[2] + '/' + dob[1] + '/' + dob[0])
@@ -712,7 +714,9 @@ export class BookAnalysisPage implements OnInit {
     } else {
       this.latest_date = '';
       if (formdata.dob) {
-        let dob = new Date(formdata.dob);
+        // let dob = new Date(formdata.dob);
+        console.log(formdata.dob)
+        // console.log(dob)
         this.latest_date = formdata.dob.day+"-"+formdata.dob.month+"-"+formdata.dob.year;
         //this.datepipe.transform(dob, 'dd-MM-yyyy');
       }
@@ -853,7 +857,7 @@ export class BookAnalysisPage implements OnInit {
     let result: any = await this.apiService.paymentStatus({
       paymentId: this.paymentId
     });
-    if (result.status == 0) {
+    if (result.msg == "payment not completed") {
       setTimeout(() => {
         if (this.router.url == '/tabs/book-analysis') {
           this.validatePayment(userBillingData);
@@ -867,7 +871,10 @@ export class BookAnalysisPage implements OnInit {
     } else {
 
       this.closeBrowser();
-
+      this.paymentInti = false;
+      if (result.msg != "payment completed") {
+         return false;
+      }
       // this.ionModelOpen = false;
       this.profile.paymentId = this.paymentId;
       let params;
@@ -885,12 +892,23 @@ export class BookAnalysisPage implements OnInit {
       let data: any = await this.apiService.buyNow(params);
       if (data.status == 1) {
         this.paymentInti = false;
-
+        this.utility.cartNo =0;
         this.utility.presentToast(result.msg, "bottom");
         //this.navController.
         if (data.redirect_to_questionnaire.toLowerCase() == 'no') {
-          let url = this.utility.changeMenu();
+          let result: any = await this.apiService.getProfile();
+          if (result.status == 1) {
+            let profile = result.data.profile ? result.data.profile : null;
+            this.utility.setStorage('userRole',profile.userType);
+            this.utility.setStorage('CHANGE_DASH',profile.userType);
+            let url:any = await this.utility.changeMenu();
           this.router.navigate([url])
+          }else{
+            let url:any = await this.utility.changeMenu();
+          this.router.navigate([url])
+          }
+          // let url:any = await this.utility.changeMenu();
+          // this.router.navigate([url])
 
         } else {
           this.router.navigate(["/questionare"])

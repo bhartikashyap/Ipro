@@ -123,6 +123,11 @@ const routes: Routes = [
         path: 'commission-option',
         loadChildren: () => import('../../pages/commission-option/commission-option.module').then( m => m.CommissionOptionPageModule)
       }
+      ,
+      {
+        path: 'partner-agreement',
+        loadChildren: () => import('../../pages/partner-agreement/partner-agreement.module').then( m => m.PartnerAgreementPageModule)
+      }
     
     
       // {

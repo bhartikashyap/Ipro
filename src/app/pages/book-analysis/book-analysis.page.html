@@ -4,14 +4,14 @@
 <app-header *ngIf="selectedPlan == 'affiliate program'"  [headerTitle]="'PAGES.PARTNERSHIP' | translate"  [headerBack]=true  ></app-header>
 <app-header *ngIf="selectedPlan == 'basket'"  [headerTitle]="'Checkout'"  [headerBack]=true  ></app-header>
 <ion-content>
-  <ion-modal [isOpen]="ionModelOpen" [swipeToClose]="false" [backdropDismiss]="false" [keyboardClose]="false" class="paymentModal">
+  <!-- <ion-modal [isOpen]="ionModelOpen" [swipeToClose]="false" [backdropDismiss]="false" [keyboardClose]="false" class="paymentModal">
     <ng-template>
       <ion-content>
         <iframe #iframe id="iframe"  class="webPage" style="height: 100% !important;" frameborder="0" name="eventsPage" [src]="paymentUrl"  sandbox="allow-popups allow-top-navigation allow-presentation allow-scripts allow-pointer-lock allow-same-origin allow-forms">
         </iframe>
       </ion-content>
     </ng-template>
-  </ion-modal>
+  </ion-modal> -->
   <div *ngIf="paymentInti">
     <img src="assets/img/loader.gif"> 
   </div>
@@ -19,13 +19,16 @@
 
   
 
-  <div class="register-header">
-    <h1>{{'BOOKING_ANALYSIS.TITLE' | translate}}</h1>
-  </div>
  
-  
+ 
+ 
+    
   <form [formGroup]="form">
-   
+    
+   <div *ngIf="profile?.city == '' || profile?.nr == '' ||  profile?.phone == '' || profile?.streetname == '' || profile?.zipCode == '' ">
+    <div class="register-header">
+      <h1>{{'BOOKING_ANALYSIS.TITLE' | translate}}</h1>
+    </div>
     <ion-item lines="none" class="form-group ion-no-padding">
       <div class="check-div">
         <ion-checkbox (ionChange)="companyChange($event)" [(ngModel)]="private" slot="start" formControlName="private">
@@ -71,9 +74,6 @@
 
     <ion-item lines="none" class="form-group ion-no-padding">
      
-      <!-- <ion-label for="email" position="floating"
-        >{{'BOOKING_ANALYSIS.EMAIL' | translate}}</ion-label
-      > -->
       <ion-input type="email" placeholder="{{'BOOKING_ANALYSIS.EMAIL' | translate}}" formControlName="email" id="email"
         autocapitalize="off"></ion-input>
     </ion-item>
@@ -115,64 +115,7 @@
         </div>
       </div>
     </div>
-    <!-- <ionic-calendar-date-picker (onSelect)="dateSelected($event)"></ionic-calendar-date-picker>	 -->
-    <div class="ion-padding" (click)="openCalendar();">
-      <!-- <ion-calendar [(ngModel)]="myDob" [ngModelOptions]="{standalone: true}"
-        (onChange)="onChange($event)"
-        
-        [format]="'YYYY-MM-DD'">
-      </ion-calendar> -->
-    </div>
-   
-    <!-- <ionic-calendar-date-picker (onSelect)="dateSelected($event)"></ionic-calendar-date-picker>	 -->
-    <!-- <calendar 
-        [calendarMode]="'week'"
-        (onCurrentDateChanged)="onCurrentDateChanged($event)"
-        (onRangeChanged)="reloadSource(startTime, endTime)"
-        (onEventSelected)="onEventSelected($event)"
-        (onTitleChanged)="onViewTitleChanged($event)"
-        (onTimeSelected)="onTimeSelected($event)"
-        [step]="'30'">
-        
-    </calendar> -->
-    <!-- <ion-calendar [(ngModel)]="this.dateRange"
-                  (onChange)="onChange($event)"
-                  [options]="option"
-                  type="string"
-                  format="YYYY-MM-DD"
-                  [ngModelOptions]="{standalone: true}">
-    </ion-calendar> -->
-  <!-- <input class="form-control" placeholder="yyyy-mm-dd"
-  name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" [ngModelOptions]="{standalone: true}" [minDate]="minDobString" [maxDate]="maxDobString">
-<button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"></button> -->
-   <!-- <input  class="form-control" placeholder="{{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}"
-        name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" [ngModelOptions]="{standalone: true}" [minDate]="minDobString" [maxDate]="maxDobString">
-     
-      <ion-button fill="clear"  (click)="d.toggle()" class="btn btn-outline-secondary calendar" slot="start" >
-        <ion-icon icon="calendar"></ion-icon>
-      </ion-button> -->
-
-
-      <!-- <ion-item lines="none" *ngIf="!company">
-       
-
-    <ion-input formControlName="dob" (click)="openDate()" placeholder="{{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}"
-      autocapitalize="off"></ion-input>
-    <ion-button fill="clear" (click)="openDate()" slot="start" >
-      <ion-icon icon="calendar"></ion-icon>
-    </ion-button>
-    <ion-modal [isOpen]="birthday" show-backdrop="true" class="birthday">
-      <ng-template>
-        <ion-datetime #popoverDatetime2 presentation="date" name="myDob" (ionChange)="changeDate(popoverDatetime2.value)">
-         
-        </ion-datetime>
-      </ng-template>
-    </ion-modal> 
-     </ion-item> -->
-    <!-- <div *ngFor="let validation of validationMessage.dob"> -->
-      
       <div style="display: flex;"  *ngIf="!company" class="form-group ion-no-padding">
-
         <ion-button fill="clear" (click)="d.toggle()">
           <ion-icon icon="calendar"></ion-icon>
         </ion-button>
@@ -199,7 +142,6 @@
           {{ doberror }}
         </div>
       </div>
-    <!-- </div> -->
    
     <div *ngFor="let validation of validationMessage.dob">
       <div *ngIf="submitted && formControl['dob'].errors" class="validation-message">
@@ -209,9 +151,7 @@
       </div>
     </div>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <!-- <ion-label for="street name" position="floating"
-        >{{'BOOKING_ANALYSIS.STREET_NAME' | translate}}</ion-label
-      > -->
+    
       <ion-input type="text" id="street name" autofocus="on" formControlName="streetname"
         placeholder="{{'BOOKING_ANALYSIS.STREET_NAME' | translate}}"></ion-input>
         
@@ -224,9 +164,7 @@
       </div>
     </div>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <!-- <ion-label for="house number" position="floating"
-        >{{'BOOKING_ANALYSIS.HOUSE_NUMBER' | translate}}</ion-label
-      > -->
+    
       <ion-input formControlName="nr" placeholder="{{'BOOKING_ANALYSIS.HOUSE_NUMBER' | translate}}" type="text"
         id="house-number" autocapitalize="off"></ion-input>
     </ion-item>
@@ -238,9 +176,7 @@
       </div>
     </div>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <!-- <ion-label for="Additional adress" position="floating"
-        >{{'BOOKING_ANALYSIS.ADDITION_ADDRESS' | translate}}
-      </ion-label> -->
+    
       <ion-input type="text" id="additional-adress" autocapitalize="off" formControlName="additionalAddressInfo"
         placeholder="{{'BOOKING_ANALYSIS.ADDITION_ADDRESS' | translate}}"></ion-input>
     </ion-item>
@@ -252,9 +188,7 @@
       </div>
     </div>
     <ion-item lines="none" class="form-group ion-no-padding">
-      <!-- <ion-label for="zip" position="floating"
-        >{{'BOOKING_ANALYSIS.ZIP' | translate}}</ion-label
-      > -->
+     
       <ion-input formControlName="zipCode" placeholder="{{'BOOKING_ANALYSIS.ZIP' | translate}}" type="text" id="zip"
         autocapitalize="off"></ion-input>
     </ion-item>
@@ -295,6 +229,16 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="filled-data" *ngIf="profile?.city != '' && profile?.nr != '' &&  profile?.phone != '' && profile?.streetname != '' && profile?.zipCode != '' ">
+   <h3>Main/Billing Address</h3>
+   <p><strong>Name:</strong>{{profile?.firstName}} {{profile?.lastName}}</p>
+   <p><span>Address:</span>{{profile?.nr}},{{profile?.streetname}}</p>
+   <p>Zipcode:{{profile?.zipCode}} </p>
+   <p>City:{{profile?.city}} </p>
+   <p>Country:{{profile?.countryName}} </p>
+   <!-- <p><strong>Edit Address</strong></p> -->
+  </div>
 
 
 
@@ -303,6 +247,8 @@
         formControlName="delivery_address_added"></ion-checkbox>
       <ion-label class="ion-text-wrap check-label">{{'BOOKING_ANALYSIS.DELIVERY_ADDRESS_SAME' | translate}}</ion-label>
     </ion-item>
+
+
     <div *ngIf="!deliveryAddress">
       <ion-item lines="none" class="form-group ion-no-padding">
         <ion-input type="text" placeholder="Delivery FirstName" formControlName="deliveryFirstName"
@@ -413,6 +359,8 @@
         </div>
       </div>
     </div>
+
+
     <ion-button   *ngIf="selectedPlan == 'body analysis'" (click)="submit()" class="btns" color="danger" expand="block">
       {{'BOOKING_ANALYSIS.SUBMIT_BUTTON' | translate}}</ion-button>
 

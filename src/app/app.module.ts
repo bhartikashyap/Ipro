@@ -23,7 +23,7 @@ import {VideoService} from 'src/app/services/video.service';
  import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
-//  import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
  import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 import { CalendarModule } from 'ion2-calendar';
  import { DocumentViewer ,DocumentViewerOptions} from '@awesome-cordova-plugins/document-viewer/ngx';
@@ -31,7 +31,7 @@ import { Badge } from '@awesome-cordova-plugins/badge/ngx';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+// import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 // import { DatePickerModule } from 'ionic-calendar-date-picker';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -75,7 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
      CallNumber,
      DocumentViewer,
      Badge,
-     InAppBrowser
+    InAppBrowser
   ],
   bootstrap: [AppComponent],
 })

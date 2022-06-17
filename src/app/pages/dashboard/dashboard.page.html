@@ -9,7 +9,7 @@
         <img src="assets/img/user1.png" />
       </ion-avatar>
       <div>
-        <ion-card-title>{{'DASHBAORD.status' | translate }}: {{details?.dashboard_data?.yourStatus}} </ion-card-title>
+        <ion-card-title>{{'DASHBAORD.status' | translate }}: {{details?.dashboard_data?.yourStatus.toUpperCase()}} </ion-card-title>
         <ion-card-subtitle class="sub-title" (click)="shareReffralLink(details?.dashboard_data?.referralLink)">
           {{'DASHBAORD.referral_link' | translate }}</ion-card-subtitle>
       </div>
@@ -21,15 +21,25 @@
       <ion-card-title>{{'DASHBAORD.openaction.title' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
-      <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/member-replacement')" *ngIf="details?.dashboard_data?.membersRequired > 0 ">
-        ({{details?.dashboard_data?.membersRequired > 0 ?
-        details?.dashboard_data?.membersRequired:0}}){{'DASHBAORD.openaction.action1' | translate }}</ion-button>
-      <!-- <ion-button class="card-btn" color="danger" expand="block" *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
-          (X) MEMBER TO PLACE</ion-button> -->
-      <ion-button class="card-btn" color="danger" expand="block">
+      <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/member-replacement')" *ngIf="details?.dashboard_data?.usersToBePlaced > 0 ">
+        ({{details?.dashboard_data?.usersToBePlaced > 0 ?
+        details?.dashboard_data?.usersToBePlaced:0}}){{'DASHBAORD.openaction.action1' | translate }}</ion-button>
+     
+      <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/tabs/paymnet-option')" *ngIf="details?.dashboard_data?.myPaymentOption == ''">
         {{'DASHBAORD.openaction.action2' | translate }}</ion-button>
-      <!-- <ion-button class="card-btn" color="danger" expand="block">
-        Free Broker Registration</ion-button> -->
+
+        <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/tabs/commission-option')" *ngIf="details?.dashboard_data?.show_commission_payment_link == 'yes'">
+          {{'DASHBAORD.openaction.action3' | translate }}</ion-button>
+
+          <ion-button class="card-btn" color="danger" expand="block" *ngIf="details?.dashboard_data?.show_tax_form == 'yes'">
+            {{'DASHBAORD.openaction.action4' | translate }}</ion-button>
+            <!-- (click)="utility.goNext('/tabs/partner-agreement')"  -->
+        
+        <p style="padding: 10px;" *ngIf="details?.dashboard_data?.usersToBePlaced <= 0 && details?.dashboard_data?.myPaymentOption != '' && details?.dashboard_data?.show_tax_form == 'no' && details?.dashboard_data?.show_commission_payment_link == 'no' ">
+          
+          {{'DASHBAORD.no_action' | translate }}
+          </p>
+ 
     </ion-card-content>
   </ion-card>
   <!-- prospect refferal -->
@@ -62,50 +72,58 @@
   </ion-card>
 
   <!-- your rank -->
-  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
+  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'partner'">
     <ion-card-header class="title-border diffColor blue">
       <ion-card-title>{{'DASHBAORD.yourrank.title' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
       <ion-list lines="none" class="title-border" style="margin:2px 0px">
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.rank">
           <ion-label>{{'DASHBAORD.yourrank.title' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.rank}}</span>
+          <span>{{details?.dashboard_data?.rank!= '' ? details?.dashboard_data?.rank:"--"}}</span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.GV">
           <ion-label>{{'DASHBAORD.yourrank.gvcounting' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.GV}}</span>
+          <span>{{details?.dashboard_data?.GV!= '' ? details?.dashboard_data?.GV:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.DV">
           <ion-label>{{'DASHBAORD.yourrank.dv' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.DV}}</span>
+          <span>{{details?.dashboard_data?.DV!= '' ? details?.dashboard_data?.DV:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.rankRewardCycle">
           <ion-label>{{'DASHBAORD.yourrank.rrc' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.rankRewardCycle}}</span>
+          <span>{{details?.dashboard_data?.rankRewardCycle!= '' ? details?.dashboard_data?.rankRewardCycle:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.leaderBonusDays">
           <ion-label>{{'DASHBAORD.yourrank.lbd' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.leaderBonusDays}}</span>
+          <span>{{details?.dashboard_data?.leaderBonusDays!= '' ? details?.dashboard_data?.leaderBonusDays:"--"}}
+          </span>
         </ion-item>
       </ion-list>
 
       <ion-list lines="none">
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.nextRank">
           <ion-label> {{'DASHBAORD.yourrank.nextrank' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.nextRank}}</span>
+          <span>{{details?.dashboard_data?.nextRank!= '' ? details?.dashboard_data?.nextRank:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.GVRequired">
           <ion-label>{{'DASHBAORD.yourrank.gvcountingReq' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.GVRequired}}</span>
+          <span>{{details?.dashboard_data?.GVRequired!= '' ? details?.dashboard_data?.GVRequired:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.membersRequired">
           <ion-label>{{'DASHBAORD.yourrank.memReq' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.membersRequired}}</span>
+          <span>{{details?.dashboard_data?.membersRequired!= '' ? details?.dashboard_data?.membersRequired:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="details?.dashboard_data?.DMVRequired">
           <ion-label>{{'DASHBAORD.yourrank.dvReq' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.DMVRequired}}</span>
+          <span>{{details?.dashboard_data?.DMVRequired!= '' ? details?.dashboard_data?.DMVRequired:"--"}}
+          </span>
         </ion-item>
       </ion-list>
     </ion-card-content>
@@ -113,69 +131,78 @@
 
 
   <!-- line -->
-  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
+  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'partner'">
     <ion-card-header class="title-border diffColor green">
       <ion-card-title>{{'DASHBAORD.line.title' | translate }} 1 </ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
       <ion-list lines="none" class="" style="margin:2px 0px">
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.members' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.membersLeg1}}</span>
+          <span>{{details?.dashboard_data?.membersLeg1!= '' ? details?.dashboard_data?.membersLeg1:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.gv' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.GVLeg1}}</span>
+          <span>{{details?.dashboard_data?.GVLeg1!= '' ? details?.dashboard_data?.GVLeg1:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.gvcounting' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.GVCountingLeg1}}</span>
+          <span>{{details?.dashboard_data?.GVCountingLeg1!= '' ? details?.dashboard_data?.GVCountingLeg1:"--"}}
+          </span>
         </ion-item>
 
       </ion-list>
     </ion-card-content>
   </ion-card>
   <!-- line -->
-  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
+  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'partner'">
     <ion-card-header class="title-border diffColor yellow">
       <ion-card-title>{{'DASHBAORD.line.title' | translate }} 2</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
       <ion-list lines="none" class="" style="margin:2px 0px">
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.members' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.membersLeg2}}</span>
+          <span>{{details?.dashboard_data?.membersLeg2!= '' ? details?.dashboard_data?.membersLeg2:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.gv' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.GVLeg2}}</span>
+          <span>{{details?.dashboard_data?.GVLeg2!= '' ? details?.dashboard_data?.GVLeg2:"--"}}
+          </span>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.gvcounting' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.GVCountingLeg2}}</span>
+          <span>{{details?.dashboard_data?.GVCountingLeg2!= '' ? details?.dashboard_data?.GVCountingLeg2:"--"}}
+          </span>
         </ion-item>
 
       </ion-list>
     </ion-card-content>
   </ion-card>
   <!-- line -->
-  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'Partner'">
+  <ion-card *ngIf="details?.dashboard_data?.yourStatus == 'partner'">
     <ion-card-header class="title-border diffColor red">
       <ion-card-title>{{'DASHBAORD.line.title' | translate }} 3</ion-card-title>
     </ion-card-header>
     <ion-card-content class="">
       <ion-list lines="none" class="" style="margin:2px 0px">
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.members' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.membersLeg3}}</span>
+          <span>{{details?.dashboard_data?.membersLeg3!= '' ? details?.dashboard_data?.membersLeg3:"--"}}
+           </span>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.gv' | translate }} :</ion-label>
-          <span>{{details?.dashboard_data?.GVLeg3}}</span>
+          <span>{{details?.dashboard_data?.GVLeg3!= '' ? details?.dashboard_data?.GVLeg3:"--"}}
+           </span>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-label>{{'DASHBAORD.line.gvcounting' | translate }}:</ion-label>
-          <span>{{details?.dashboard_data?.GVCountingLeg3}}</span>
+          <span>{{details?.dashboard_data?.GVCountingLeg3!= '' ? details?.dashboard_data?.GVCountingLeg3:"--"}}
+            </span>
         </ion-item>
 
       </ion-list>
@@ -194,9 +221,9 @@
         <ion-item>
           {{prod?.packageName}}
         </ion-item>
-        <ion-item>
+        <ion-item >
           {{'DASHBAORD.products.expiry' | translate }} :
-          <span *ngIf="prod?.expiryDate && prod?.expiryDate != ''">
+          <span *ngIf="prod?.expiryDate && prod?.expiryDate ">
             {{prod?.validTill != '' ? prod?.validTill: '0 Day'}}
           </span>
         </ion-item>

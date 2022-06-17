@@ -50,9 +50,9 @@
               </div>
             </div>
           </div>
-          <p style="font-size:12px;text-decoration: underline;text-align: center;" (click)="checkIban(ibanNo)"
+          <!-- <p style="font-size:12px;text-decoration: underline;text-align: center;" (click)="checkIban(ibanNo)"
             [ngClass]="{'green': ibanCheck == 'pass', 'red': ibanCheck == 'fail','blue': ibanCheck == 'notchecked'}">
-            {{'PAYMENT_OPTON.validate' | translate}}</p>
+            {{'PAYMENT_OPTON.validate' | translate}}</p> -->
 
           <ion-item lines="none">
 
@@ -66,7 +66,8 @@
 
           <div style="text-align:center;padding:2% 12%;" slot="center">
             <ion-button class="card-btn" color="secondary" expand="" (click)="savePayment('iban')"
-              [disabled]="ibanCheck != 'pass'">
+              >
+              <!-- [disabled]="ibanCheck != 'pass'" -->
               {{'PAYMENT_OPTON.btns.save' | translate}}
             </ion-button>
             <p style="color: #666666;font-size:12px">{{'PAYMENT_OPTON.freeaccount' | translate}}</p>
@@ -80,18 +81,15 @@
 
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <!-- <ion-card>
 
 
       <ion-card-content class="">
-        <!-- <ion-radio-group [value]="paymnetMethod"> -->
         <ion-item lines="none">
           <ion-label>{{'PAYMENT_OPTON.Activate' | translate}}/{{'PAYMENT_OPTON.Deactivate' | translate}}</ion-label>
           <ion-checkbox slot="start" formControlName="bitcoin" [(ngModel)]="bitcoin" class="radio"
             (ionChange)="onBitcoinChange()"></ion-checkbox>
         </ion-item>
-        <!-- </ion-radio-group> -->
-        <!-- <div *ngIf="cardPaymentoption.commissionPaymentOption == 'Bitcoin'"> -->
         <ion-item lines="none" style="text-align:center;padding:2% 12%;--min-height: 20px;">
           <p style="text-align:center;">{{'PAYMENT_OPTON.BITCOIN' | translate}}</p>
 
@@ -106,17 +104,14 @@
 
         </ion-item>
         <p style="font-size:12px;" class="red">{{error}}</p>
-        <!-- <ion-item lines="none" > -->
         <div style="text-align:center;padding:2% 12%;">
           <ion-button class="card-btn" color="danger" expand="" (click)="savePayment('bitcoin')">
             {{'PAYMENT_OPTON.btns.save' | translate}}
           </ion-button>
         </div>
-        <!-- </div> -->
-        <!-- </ion-item> -->
 
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
   </form>
   <div style="padding:10px;"></div>
 </ion-content>

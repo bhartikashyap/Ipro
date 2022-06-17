@@ -9,12 +9,14 @@ import { UtilService } from "src/app/services/util.service";
 })
 export class MyproductsPage implements OnInit {
 myproducts:any;
+paymnetOption:any;
   constructor(private apiSer:ApiService,private utliSer:UtilService) { }
 
   ngOnInit() {
   }
   async ionViewWillEnter() {
     this.getProducts();
+    this.paymnetOption =await this.utliSer.getStorage("paymentOption")
   }
 
   async getProducts(){
@@ -36,6 +38,13 @@ myproducts:any;
   }
 
   async productAction(packageId,action){
+
+    if(action == 'reactivate'){
+      if(this.paymnetOption == ''   ){
+         this.utliSer.goNext('/tabs/paymnet-option');
+         return false;
+      }
+    }
     let data ={
       "packageId":packageId,
       "action":action
@@ -75,10 +84,12 @@ myproducts:any;
   // }
 
   async buyAgain(packageId,runtime){
-    console.log(runtime[1]);
+    console.log(runtime["1"]);
+    console.log( Object.keys(runtime)[0]);
+   
     let data ={
       "packageId":packageId,
-      "runtime":runtime[1]
+      "runtime":Object.keys(runtime)[0]
     }
     let loading = await this.utliSer.presentLoading();
     this.apiSer.addToCart(data).then((res)=>{

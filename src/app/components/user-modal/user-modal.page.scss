@@ -12,3 +12,10 @@ ion-toolbar{
     padding:0px
 }
 
+.ion-content-iframe{
+    --padding-end: 0px !important;
+    --padding-start: 0px !important;
+    --padding-bottom: 0px !important;
+    --padding-top: 60px !important;
+}
+

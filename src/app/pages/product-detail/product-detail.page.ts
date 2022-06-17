@@ -12,6 +12,15 @@ import { session } from 'src/app/utility/message';
 export class ProductDetailPage implements OnInit {
 detail:any= new Object;
 profile:any;
+ionModelOpen:any=false;
+slideOpts = {
+  initialSlide: 0,
+  speed: 400,
+  loop: true,
+  zoom: {
+    
+  }
+};
 
 // availTymOption:any="1";
 
@@ -46,7 +55,7 @@ profile:any;
     else{
      this.detail["changedPrice"] = this.detail.standard_price;
     }
-    if(this.detail.added_to_cart.toLowerCase() === 'yes' && this.detail.added_to_cart.toLowerCase() === 'yes'){
+    if(this.detail.added_to_cart.toLowerCase() === 'yes' && this.detail.make_disable.toLowerCase() === 'yes'){
       this.detail["disableCart"]=true;
     }
     else{

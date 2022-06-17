@@ -1,7 +1,7 @@
 ion-item{
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
+  
 }
 
 .product{
@@ -11,8 +11,7 @@ ion-item{
 
 } 
 
-// .product
- img{
+ .zoom-box img{
     display: block;
   margin-left: auto;
   margin-right: auto;
@@ -83,4 +82,17 @@ ion-label{
     font-weight: 600;
     --border-radius: 4px;
     margin: 20px;
+}
+.zoom-box {
+    // position: absolute;
+    height: 40%;
+    display: flex;
+    padding-top:20px;
+    // width: 45%;
+}
+
+.full-zoom-box{
+     padding-top: 20px;
+    // padding-bottom: 20px;
+  
 }

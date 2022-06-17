@@ -115,6 +115,10 @@ export class UserModalPage implements OnInit {
     this.closeModal();
   }
 
+async gotoPayment(){
+  this.utiSer.goNext(["/tabs/book-analysis"]);
+  this.closeModal();
+}
 
 
 }
