@@ -17,7 +17,6 @@ import { Platform } from '@ionic/angular';
 import { VideoService } from './services/video.service';
 import { EnvironmentService } from 'src/app/services/environment.service';
 import { ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
-import { initializeApp } from 'firebase/app';
 import { ModalController } from '@ionic/angular';
 import { UserModalPage } from '../app/components/user-modal/user-modal.page';
 //  import { Events } from '@ionic/angular';
@@ -31,10 +30,7 @@ import { FcmService } from './services/fcm.service';
 import { SetdicountPage } from './pages/setdicount/setdicount.page';
 import { MySponsorPage } from './pages/my-sponsor/my-sponsor.page';
 import { AppVersion } from '@awesome-cordova-plugins/app-version/ngx';
-const firebaseConfig = {
-  //...
-};
-const firebasApp = initializeApp(firebaseConfig);
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -67,7 +63,6 @@ export class AppComponent implements OnInit {
     private appVersion: AppVersion,
     private market: Market
   ) {
-    console.log(firebasApp)
     this.videoSer.videoType = this.envr.videosEnglish;
     if (Capacitor.isNativePlatform()) {
       this.fcmSer.pushRegister();

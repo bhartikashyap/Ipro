@@ -18,7 +18,6 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
  import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
  import { AppVersion } from '@awesome-cordova-plugins/app-version/ngx';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { initializeApp } from 'firebase/app';
 import { Market } from '@ionic-native/market/ngx';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
