@@ -69,6 +69,10 @@ export const environment = {
     {
       title: 'tnc',
       link: 'http://myipro.family/legals/english/Terms-and-conditions.html'
+    },
+    {
+      title: 'partner',
+      link: 'http://myipro.family/legals/english/PartnerAgreement.html'
     }
   ],
 
@@ -90,6 +94,10 @@ export const environment = {
     {
       title: 'tnc',
       link: ' http://myipro.family/legals/german/AGB.html'
+    },
+    {
+      title: 'partner',
+      link: 'http://myipro.family/legals/german/PartnerVereinbarung.html'
     }
   ],
   englishErrors:[

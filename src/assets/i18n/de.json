@@ -21,7 +21,7 @@
         },
         "RECONFIRM": {
             "title": "Bestätigung",
-            "RECONFIRM_MSG": "Bitte bestätigen das die Platzierung durchgeführt werden soll!",
+            "RECONFIRM_MSG": "Bitte bestätige das die Platzierung hier durchgeführt werden soll!",
             "NO_REPLACE": "(Keine Umplatzierung möglich!)"
         },
         "USERSEARCH": {
@@ -41,7 +41,7 @@
         },
         "DISCOUNT": {
             "title": "Standard Rabatt festlegen",
-            "LABEL": "Bitte wählen Sie den Standardrabatt aus, der allen neuen Interessenten/Mitgliedern/Partnern angeboten werden soll, die Sie direkt empfohlen haben",
+            "LABEL": "Bitte wählen Sie den Standardrabatt aus, der allen neuen Interessenten & Mitgliedern eingeräumt werden soll, die Sie direkt empfohlen haben",
             "PERCENTAGE": "Prozent",
             "PHONE": "Phone",
             "DISCOUNT_SET_MSG": "Der Standard Rabatt wurde erfolgreich aktuallisiert"
@@ -57,7 +57,8 @@
             "OK": "OK",
             "GO_TO_SHOP": "Zum Shop",
             "zipcode": "PLZ",
-            "CONTINUE":"WEITER"
+            "CONTINUE":"WEITER",
+            "VERSION_UPDATE":"Jetzt aktualisieren"
         }
     },
     "LOGIN": {
@@ -110,10 +111,10 @@
         "id": "cincopa_1638196190170"
     },
     "BOOKING_ANALYSIS": {
-        "HEADER_TITLE": "Book Analysis",
+        "HEADER_TITLE": "Analyse buchen",
         "TITLE": "Rechnungsadresse",
         "PRIVATE": "Privat",
-        "COMPANY": "Company",
+        "COMPANY": "Firma",
         "EMAIL": "Email",
         "MOBILE": "Handy",
         "BIRTHDAY": "Geburtstag",
@@ -124,9 +125,10 @@
         "CITY": "Stadt",
         "DELIVERY_ADDRESS_SAME": "Lieferadresse stimmt mit Rechnungsadresse überein",
         "SUBMIT_BUTTON": "Analyse buchen",
-        "AGE_ERROR": "Members müssen mindestens 18 Jahre alt sein",
+        "AGE_ERROR": "Du musst mindestens 18 Jahre alt sein",
         "NO_BOOKING": "Buchungsdetails nicht gefunden...",
-        "CHECK_ZIP": "PLZ prüfen"
+        "CHECK_ZIP": "PLZ prüfen",
+        "Profile_updated":"Profile Updated Successfully."
     },
     "REGISTER": {
         "TITLE": "REGISTER",
@@ -181,7 +183,8 @@
         "ITRADE": "iTrade",
         "PARTNERSHIP": "PARTNERSCHAFT",
         "PAYMENT_ABO": "Abo Zahlungsarten",
-        "PAYMENT_COMMISSION": "Zahlungsarten Provision"
+        "PAYMENT_COMMISSION": "Zahlungsarten Provision",
+        "PROFILE": "My Profile"
     },
     "ICON": {
         "BELL": "bell.png",
@@ -245,9 +248,9 @@
         "openaction": {
             "title": "Zu Erledigen",
             "action1": " MEMBER(s) zu platzieren",
-            "action2": "Extra 5% sparen-> Abo aktivieren!",
+            "action2": "Abo aktivieren!",
             "action3": "Provisionszahlung hinzufügen",
-            "action4": "UNTERZEICHNEN Sie die Partnervereinbarung"
+            "action4": "Partnervereinbarung unterschreiben"
         },
         "referral": {
             "title_pros": "Interessenten Verwaltung",
@@ -288,7 +291,7 @@
             "sponsor":"Sponsor",
             "ID":"ID",
             "click-to-select":"Klick um auszuwählen",
-            "user-to-place":"Bitte wählen Sie den zu platzierenden Kunden aus",
+            "user-to-place":"Bitte wähle den zu platzierenden Kunden aus",
             "free":"Frei"
         }
     },
@@ -317,7 +320,7 @@
             "credit": "Kreditkarte",
             "IBAN": "IBAN"
         },
-        "inprogress": "Updating Registrierung.....",
+        "inprogress": "Registrierung läuft .....",
         "btns": {
             "add": "Add/Change ",
             "delete": " Löschen",
@@ -376,6 +379,7 @@
         "msg": "Keine neuen Nachrichten"
     },
     "MSG": {
+        "app_update": "Eine neue iPro App Version ist verfügbar! Bitte die neue Version installieren um die volle Funktionalität zu gewährleisten. ",
         "deleteConfirm": "Bist Du sicher, dass Du diese Daten löschen möchtest?",
         "activeConfirm": "Bist Du sicher, dass Du diese Daten löschen möchtest?",
         "inactiveConfirm": "Bist Du sicher, dass Du diese Daten deaktivieren möchtest?",
@@ -431,7 +435,8 @@
         "menu18":"Allgemeine Geschäftsbedingungen",
         "menu19":"Meine Analysedaten",
         "menu20":"QR Code",
-        "menu21":"Ausloggen"
+        "menu21":"Ausloggen",
+        "menu22":"My Profile"
 
     },
     "Agreement":{
@@ -456,7 +461,7 @@
             "line4":"Textline 4",
             "line5":"Textline 5",
             "sub-text":"Mit meiner elektronischen Unterschrift bestätige ich, dass alle Angaben korrekt gemacht wurden und  der Partner Vereinbarung zugestimmt wird.",
-            "btn":"FERTIG"
+            "btn":"ABSCHICKEN"
         }
     }
 }

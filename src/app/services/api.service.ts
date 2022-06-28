@@ -205,6 +205,14 @@ export class ApiService extends EnvironmentService {
     return await this.http.post(this.apiUrl + api.DELETE_PAYMENT_OPTION, body).toPromise();
   }
 
+  async partnerAgreement(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.PARTNER_AGREEMENT, body).toPromise();
+  }
+
+  async appVersion(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.APP_VERSION, body).toPromise();
+  }
+
 
 
   

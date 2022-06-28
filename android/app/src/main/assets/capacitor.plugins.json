@@ -46,9 +46,5 @@
 	{
 		"pkg": "capacitor-email-composer",
 		"classpath": "de.einfachhans.emailcomposer.EmailComposerPlugin"
-	},
-	{
-		"pkg": "capacitor-video-player",
-		"classpath": "com.jeep.plugin.capacitor.capacitorvideoplayer.CapacitorVideoPlayerPlugin"
 	}
 ]

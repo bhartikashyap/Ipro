@@ -52,3 +52,5 @@ export const ABO_PAYMENT_OPTION ='ipro_save_payment_option';
 export const QR_CODE ='ipro_get_qrcode';   
 export const LOGOUT ='ipro_logout';
 export const DELETE_PAYMENT_OPTION ='ipro_remove_payment_option';
+export const PARTNER_AGREEMENT ='ipro_save_tax_form';
+export const APP_VERSION="getAppVersion";

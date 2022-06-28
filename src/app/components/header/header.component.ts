@@ -1,7 +1,6 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { MenuController, NavController,ModalController } from '@ionic/angular';
 import { UserModalPage } from '../user-modal/user-modal.page';
-import { Badge } from '@awesome-cordova-plugins/badge/ngx';
 import { UtilService } from 'src/app/services/util.service';
 import { MySponsorPage } from 'src/app/pages/my-sponsor/my-sponsor.page';
 
@@ -20,7 +19,6 @@ export class HeaderComponent implements OnInit {
   subscription:any;
   notiCount:any=0;
   constructor(private navCtrl:NavController,
-    private badge: Badge,
     public modalController: ModalController,
     public utilSer:UtilService,
     public route:Router

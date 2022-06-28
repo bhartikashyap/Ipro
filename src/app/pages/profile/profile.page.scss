@@ -1,0 +1,178 @@
+
+  form {
+    padding: 5px;
+    padding-top: 0px;
+    .form-group {
+      position: relative;
+      --inner-padding-end: 5px !important;
+      margin-top: 10px;
+    }
+    ion-input,
+    ion-select ,
+    ionic-selectable {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      border: 1px solid #d6d6d6 !important;
+      height: 45px;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 5px !important;
+      padding: 0px 11px !important;
+      --padding-bottom: 0px;
+      --padding-top: 0px;
+      --padding-start: 0px;
+      --padding-end: 0px;
+      --inner-padding-end: 0 !important;
+    }
+  
+    // ion-item.item-has-value ion-label,
+    // ion-item.item-has-focus ion-label {
+    //   top: 15px !important;
+    //   background: white;
+    //   z-index: 999;
+    //   text-align: left;
+    //   font-size: 16px !important;
+    //   width: 100px !important;
+    //   padding-left: 10px;
+    // }
+  
+    ion-label.label-floating {
+      position: relative;
+      top: 3px;
+      left: 10px;
+      font-size: 12px !important;
+      color: gray !important;
+    }
+    .password-input {
+      position: relative;
+      ion-input {
+        --padding-bottom: 0px;
+        --padding-top: 0px;
+        --padding-start: 0px;
+        --padding-end: 40px;
+      }
+      ion-icon {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        font-size: 25px;
+        z-index: 9999;
+      }
+    }
+    .forgot-password {
+      color: #6d6d6d;
+      font-size: 12px;
+      font-weight: 400;
+      text-decoration: none;
+    }
+    .dont-know {
+      color: #6d6d6d;
+      font-size: 12px;
+      font-weight: 400;
+      text-decoration: none;
+      text-align: center;
+      width: 100%;
+      display: block;
+      margin-top: 20px;
+      span {
+        color: #ff662a;
+      }
+    }
+    .btns {
+      height: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      --border-radius: 4px;
+      margin: 20px;
+    }
+    ion-item.form-group.country-group {
+      top: 2px;
+      position: relative;
+      width: 70px;
+      border: 1px solid #d4d4d4;
+      height: 40px;
+      border-radius: 4px;
+      color: #727272;
+      font-size: 12px;
+    }
+    .activation-code {
+      top: 32px;
+      position: absolute;
+      border-radius: 4px;
+      color: #6d6d6d;
+      font-size: 12px;
+      p {
+        margin: 0px;
+      }
+      p.find-label {
+        width: 100%;
+        color: #a9d5c1;
+      }
+    }
+  
+    .phone-code-div{
+      // width: 40%;
+      padding: 0px !important;
+      display: flex;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  
+    }
+    .phone-code-div span{
+      width:20px;
+    }
+  
+  
+    .phone-ion{
+      width:82px; 
+      border:0px !important;
+  
+    }
+    .phone-ion .ionic-selectable-icon {
+     display:none !important;
+   }
+   div{
+    padding: 1px 10px;
+  }
+  .check-div{
+    display: flex;
+    padding-right: 20px;
+  }
+  .check-div ion-checkbox{
+    margin-left: 2px;
+    margin-top: 0px;
+  }
+  
+  
+  }
+  .my-search-class {
+    --height: 500px;
+    --width: 80%;
+  }
+  ion-datetime{
+    position: absolute !important;
+    bottom: 20% !important;
+    max-width:none !important;
+    left: 10%;
+    right: 10%;
+   
+  }
+  .birthday{
+    --box-shadow:none;
+    margin: auto;
+    --background: transparent !important;
+    align-items: unset;
+  }
+
+  ion-content{
+    --padding-top: 80px !important;
+  }
+
+
+  
+  
+  
+  
+  

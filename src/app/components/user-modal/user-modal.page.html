@@ -14,56 +14,56 @@
 <ion-content *ngIf="title == 'pdf'" class="ion-content-iframe">
   <div *ngIf="title == 'pdf'" style="height: 100%;">
 
-    
-    <iframe  class="webPage" style="height:100%;" frameborder="0" name="eventsPage" [src]="utiSer.pdf">
+
+    <iframe class="webPage" style="height:100%;" frameborder="0" name="eventsPage" [src]="utiSer.pdf">
     </iframe>
-    <!-- <iframe class= 'webPage' name= "eventsPage"  [src]="utiSer.pdf"  style="height:600px;" allowfullscreen>
-    </iframe> -->
-    <!-- <iframe id="fred" style="border:1px solid #666CCC" title="PDF in an i-Frame" [src]="utiSer.pdf" frameborder="1" scrolling="auto" height="1100" width="850"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+
   </div>
-  </ion-content>
-  <ion-content *ngIf="title != 'pdf'">
-  <div ></div>
- 
-  
+</ion-content>
+<ion-content *ngIf="title != 'pdf'">
+  <div></div>
+
+
   <ion-list *ngIf="title == 'error'" lines="none">
-      <ion-item (click)="changeLan('en')" lines="none" style="text-align:'center'">
-        {{'MODALS.ERROR.ERROR_MSG' | translate}}
-      </ion-item>
-     
+    <ion-item (click)="changeLan('en')" lines="none" style="text-align:'center'">
+      {{'MODALS.ERROR.ERROR_MSG' | translate}}
+    </ion-item>
+
   </ion-list>
   <ion-list *ngIf="title == 'question-complete'" lines="none">
-    <ion-item  lines="none" style="text-align:'center'">
-     <p><strong>{{'QUESTIONNAIRE.congratulations' | translate}} <br> {{'QUESTIONNAIRE.quetsionComplete1' | translate}}</strong><br>
-      {{'QUESTIONNAIRE.quetsionComplete2' | translate}}
-<br>{{'QUESTIONNAIRE.quetsionComplete3' | translate}}</p>
+    <ion-item lines="none" style="text-align:'center'">
+      <p><strong>{{'QUESTIONNAIRE.congratulations' | translate}} <br> {{'QUESTIONNAIRE.quetsionComplete1' |
+          translate}}</strong><br>
+        {{'QUESTIONNAIRE.quetsionComplete2' | translate}}
+        <br>{{'QUESTIONNAIRE.quetsionComplete3' | translate}}
+      </p>
     </ion-item>
-   
-</ion-list>
-<ion-list *ngIf="title == 'analysis'" lines="none">
-  <ion-item  lines="none" style="text-align:'center'">
-   <p> {{'QUESTIONNAIRE.QR1' | translate}} <br>
-    {{'QUESTIONNAIRE.QR2' | translate}}<br>
 
-</p>
+  </ion-list>
+  <ion-list *ngIf="title == 'analysis'" lines="none">
+    <ion-item lines="none" style="text-align:'center'">
+      <p> {{'QUESTIONNAIRE.QR1' | translate}} <br>
+        {{'QUESTIONNAIRE.QR2' | translate}}<br>
+
+      </p>
 
 
-  </ion-item>
-  <ion-item  lines="none" style="text-align:'center'">
-    <img style="width: 150px;
+    </ion-item>
+    <ion-item lines="none" style="text-align:'center'">
+      <img style="width: 150px;
     height: 150px;
     border: solid #000 1px;
     text-align: center;
   
     background: #c2b7b730;
-    margin-left:20%" [src]="QRcode?.qrcode"  alt="QR code" />
-       <!--  src="assets/img/logo.png"-->
+    margin-left:20%" [src]="QRcode?.qrcode" alt="QR code" />
+      <!--  src="assets/img/logo.png"-->
 
-  </ion-item>
- 
-</ion-list>
+    </ion-item>
+
+  </ion-list>
   <ion-list *ngIf="title == 'language'" lines="none">
-    <ion-radio-group [value]="utiSer.deviceLang" >
+    <ion-radio-group [value]="utiSer.deviceLang">
       <ion-item (click)="changeLan('en')" lines="none">
         <ion-label> {{'MODALS.LANGUAGE.ENGLISH' | translate}}</ion-label>
         <ion-radio slot="start" value="en" checked="utiSer.deviceLang =='en'"></ion-radio>
@@ -76,7 +76,7 @@
   </ion-list>
 
   <ion-list *ngIf="title == 'payment'" lines="none">
-    <ion-radio-group [value]="utiSer.paymnetType" >
+    <ion-radio-group [value]="utiSer.paymnetType">
       <ion-item (click)="utiSer.paymnetType ='one'" lines="none">
         <ion-label> {{'MODALS.PAYMENT.ONETIME' | translate}}</ion-label>
         <ion-radio slot="start" value="one" checked="utiSer.paymnetType =='one'"></ion-radio>
@@ -90,7 +90,7 @@
 
   <!-- change dashboard -->
 
-  <ion-list  *ngIf="title == 'dashboard'">
+  <ion-list *ngIf="title == 'dashboard'">
     <ion-radio-group [value]="utiSer.defaultDash">
       <ion-item (click)="utiSer.defaultDashChange('Partner')" lines="none">
         <ion-label>{{'MODALS.DASHBOARD.PROSPECT' | translate}}</ion-label>
@@ -102,21 +102,25 @@
         <ion-radio slot="start" value="Member" checked="utiSer.defaultDash=='Member'"></ion-radio>
       </ion-item>
 
-      
+
     </ion-radio-group>
   </ion-list>
 
-  <ion-list  *ngIf="title == 'member-place'">
-    <p  *ngIf="memberToplace?.data?.users.length >0 " style="padding-left: 30px;font-weight: 700;"> {{'DASHBAORD.member-placement.user-to-place' | translate}}:</p>
-    <ion-radio-group [value]="selectedMember" >
-      <ion-item   *ngFor="let memPlace of memberToplace?.data?.users; let i = index" (click)="selectedMember = memPlace" >
-        <ion-label >{{memPlace.firstName != '' ?memPlace.firstName:'--'}} {{memPlace.lastName != '' ?memPlace.lastName:'--'}} </ion-label><ion-label slot="end"> {{'DASHBAORD.member-placement.ID' | translate}}: {{memPlace.userId != '' ?memPlace.userId:'--'}}   </ion-label>
-        <ion-radio slot="start" [value]="memPlace.userId" ></ion-radio>
+  <ion-list *ngIf="title == 'member-place'">
+    <p *ngIf="memberToplace?.data?.users.length >0 " style="padding-left: 30px;font-weight: 700;">
+      {{'DASHBAORD.member-placement.user-to-place' | translate}}:</p>
+    <ion-radio-group [value]="selectedMember">
+      <ion-item *ngFor="let memPlace of memberToplace?.data?.users; let i = index" (click)="selectedMember = memPlace">
+        <ion-label>{{memPlace.firstName != '' ?memPlace.firstName:'--'}} {{memPlace.lastName != ''
+          ?memPlace.lastName:'--'}} </ion-label>
+        <ion-label slot="end"> {{'DASHBAORD.member-placement.ID' | translate}}: {{memPlace.userId != ''
+          ?memPlace.userId:'--'}} </ion-label>
+        <ion-radio slot="start" [value]="memPlace.userId"></ion-radio>
       </ion-item>
 
-      <ion-item  *ngIf="memberToplace?.data?.users.length <= 0 ">
-        <ion-label >{{'MODALS.PLACEMEMBER.NO_USER_ERROR' | translate}}  </ion-label>
-        
+      <ion-item *ngIf="memberToplace?.data?.users.length <= 0 ">
+        <ion-label>{{'MODALS.PLACEMEMBER.NO_USER_ERROR' | translate}} </ion-label>
+
       </ion-item>
     </ion-radio-group>
     <p class="error" *ngIf="erroMsg != undefined " style="    color: red;
@@ -124,29 +128,32 @@
   </ion-list>
 
   <ion-list *ngIf="title == 'reconfirmation'" lines="none">
-      <ion-item lines="none" style="text-align: center;">
-        <ion-label>{{'MODALS.RECONFIRM.RECONFIRM_MSG' | translate}}  <br>{{'MODALS.RECONFIRM.NO_REPLACE' | translate}}</ion-label>
-      </ion-item>
-     
+    <ion-item lines="none" style="text-align: center;">
+      <ion-label>{{'MODALS.RECONFIRM.RECONFIRM_MSG' | translate}} <br>{{'MODALS.RECONFIRM.NO_REPLACE' | translate}}
+      </ion-label>
+    </ion-item>
+
   </ion-list>
   <ion-list *ngIf="title == 'search'" lines="none">
     <!-- <ion-item lines="none"> -->
-      <ion-searchbar  (keyup.enter)="getPlacementTree(searchItem)"  showCancelButton="never"
-        [(ngModel)]="searchItem" placeholder="{{'MODALS.USERSEARCH.SEARCH_PALCEHOLDER' | translate}} "  >
-      </ion-searchbar>
+    <ion-searchbar (keyup.enter)="getPlacementTree(searchItem)" showCancelButton="never" [(ngModel)]="searchItem"
+      placeholder="{{'MODALS.USERSEARCH.SEARCH_PALCEHOLDER' | translate}} ">
+    </ion-searchbar>
     <!-- </ion-item> -->
-   
-</ion-list>
+
+  </ion-list>
 
 
 
-  <div ></div>
-  <div class="modal-close" >
-    
-    <ion-button class="btn" color="secondary" (click)="closeModal()" *ngIf="title == 'reconfirmation' || title == 'member-place' ">
+  <div></div>
+  <div class="modal-close">
+
+    <ion-button class="btn" color="secondary" (click)="closeModal()"
+      *ngIf="title == 'reconfirmation' || title == 'member-place' ">
       {{'MODALS.BUTTONS.CANCEL' | translate}}
     </ion-button>
-    <ion-button class="btn" color="secondary" (click)="closeModal()" *ngIf="title == 'search' || title == 'language'  || title == 'dashboard' || title == 'analysis' ">
+    <ion-button class="btn" color="secondary" (click)="closeModal()"
+      *ngIf="title == 'search' || title == 'language'  || title == 'dashboard' || title == 'analysis' ">
       {{'MODALS.BUTTONS.CLOSE' | translate}}
     </ion-button>
     <ion-button class="btn" color="secondary" (click)="navigateHome()" *ngIf="title == 'question-complete' ">
@@ -155,7 +162,8 @@
     <ion-button class="btn" color="danger" (click)="placeMember()" *ngIf="title == 'reconfirmation' ">
       {{'MODALS.BUTTONS.YES' | translate}}
     </ion-button>
-    <ion-button class="btn" color="danger" (click)="reconfirmation(selectedMember)" *ngIf="title == 'member-place' && memberToplace?.data?.users.length > 0 ">
+    <ion-button class="btn" color="danger" (click)="reconfirmation(selectedMember)"
+      *ngIf="title == 'member-place' && memberToplace?.data?.users.length > 0 ">
       {{'MODALS.BUTTONS.PLACE' | translate}}
     </ion-button>
     <ion-button class="btn" color="danger" (click)="getPlacementTree(searchItem)" *ngIf="title == 'search'">

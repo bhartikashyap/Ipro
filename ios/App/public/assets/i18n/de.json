@@ -1,0 +1,465 @@
+{
+    "MODALS": {
+        "DASHBOARD": {
+            "title": "Standard Dashboard wählen",
+            "PROSPECT": "Partner Dashboard",
+            "MEMBER": "Member Dashboard"
+        },
+        "LANGUAGE": {
+            "title": "Sprache ändern",
+            "ENGLISH": "Englisch",
+            "GERMANY": "Deutsch"
+        },
+        "PAYMENT": {
+            "title": "Bitte wähle wie Du zahlen möchtest!",
+            "ONETIME": "Einmalzahlung",
+            "EMI": "Ratenzahlung mit 2 bis 12 Monatsraten"
+        },
+        "PLACEMEMBER": {
+            "title": "Platzierung Mitglieder",
+            "NO_USER_ERROR": "Keine Mitglieder zu platzieren."
+        },
+        "RECONFIRM": {
+            "title": "Bestätigung",
+            "RECONFIRM_MSG": "Bitte bestätige das die Platzierung hier durchgeführt werden soll!",
+            "NO_REPLACE": "(Keine Umplatzierung möglich!)"
+        },
+        "USERSEARCH": {
+            "title": "Suche",
+            "SEARCH_PALCEHOLDER": "Bitte Member ID oder Nutzernamen eingeben",
+            "BLANK_ERROR": "Bitte zu platzierendes Mitglied wählen"
+        },
+        "ERROR": {
+            "title": "Fehler",
+            "ERROR_MSG": "Oops, da hat etwas nicht geklappt. Bitte noch einmal probieren."
+        },
+        "SPONSOR": {
+            "title": " Sponsor Details",
+            "NAME": "Name",
+            "EMAIL": "Email",
+            "PHONE": "Phone"
+        },
+        "DISCOUNT": {
+            "title": "Standard Rabatt festlegen",
+            "LABEL": "Bitte wählen Sie den Standardrabatt aus, der allen neuen Interessenten & Mitgliedern eingeräumt werden soll, die Sie direkt empfohlen haben",
+            "PERCENTAGE": "Prozent",
+            "PHONE": "Phone",
+            "DISCOUNT_SET_MSG": "Der Standard Rabatt wurde erfolgreich aktuallisiert"
+        },
+        "BUTTONS": {
+            "CANCEL": "Abbrechen",
+            "CLOSE": "Schließen",
+            "YES": "Ja",
+            "PLACE": "Platzieren",
+            "SEARCH": "Suchen",
+            "GO_HOME": "Dashboard",
+            "NO": "Nein",
+            "OK": "OK",
+            "GO_TO_SHOP": "Zum Shop",
+            "zipcode": "PLZ",
+            "CONTINUE":"WEITER"
+        }
+    },
+    "LOGIN": {
+        "TITLE": "LOGIN",
+        "EMAIL": "Email",
+        "PASSWORD": "Passwort",
+        "FORGOT_PASSWORD": "Passwort vergessen?",
+        "DONT_HAVE_ACCOUNT": "Noch keinen Zugang?",
+        "SIGNUP": "Kostenlos registrieren"
+    },
+    "FORGOT_PASSWORD": {
+        "TITLE": "Passwort vergessen",
+        "EMAIL": "Email",
+        "SUBMIT_BTN": "Jetzt anfordern",
+        "ALREADY_REGISTERED": "Bereits registriert?",
+        "LOGIN": "Login"
+    },
+    "AREA_OF_INTEREST": {
+        "TITLE": "Interessengebiet",
+        "PERSONALIZED_TEXT": "Text Individuelle Micronährstoffe",
+        "PERSONALIZED_BTN": "Individuelle Micronährstoffe",
+        "INTELIGENT_TEXT": "Text intelligent trading",
+        "INTELIGENT_BTN": "Intelligentes Trading",
+        "PARTNERSHIP_TEXT": "Text iPro Partnerschaft",
+        "PARTNERSHIP_BTN": "iPro Partnerschaft"
+    },
+    "INTELIGENT_TRADING": {
+        "TITLE": "Intelligentes Trading",
+        "GET_TRADE_TXT": "Video Text get iTrade",
+        "GET_TRADE": "Get iTrade",
+        "type": "itrade",
+        "initPlayer": "A4HAcLOLOO68!AcKDfHlT5Nbx",
+        "id": "cincopa_16381961901701"
+    },
+    "IPRO_PARTNERSHIP": {
+        "TITLE": "iPro Partner",
+        "BECOME_PARTNER_TXT": "Video Text become Partner",
+        "BECOME_PARTNER": "Become Partner",
+        "type": "partnership",
+        "initPlayer": "A4HAcLOLOO68!AcODu5kSqv52",
+        "id": "cincopa_16381961901702"
+    },
+    "PERSONALIZED_MICRO": {
+        "TITLE": "Individuelle Micronährstoffe",
+        "PERSONALIZED_MICRO_TXT1": "Text1 Individuelle Micronährstoffe",
+        "PERSONALIZED_MICRO_BTN": "BOOK ANALYSIS",
+        "PERSONALIZED_MICRO_TXT2": "Text2 Individuelle Micronährstoffe",
+        "type": "bodyAnlaysis",
+        "initPlayer": "A4HAcLOLOO68!AgMDkHFzzsRA",
+        "id": "cincopa_1638196190170"
+    },
+    "BOOKING_ANALYSIS": {
+        "HEADER_TITLE": "Analyse buchen",
+        "TITLE": "Rechnungsadresse",
+        "PRIVATE": "Privat",
+        "COMPANY": "Firma",
+        "EMAIL": "Email",
+        "MOBILE": "Handy",
+        "BIRTHDAY": "Geburtstag",
+        "STREET_NAME": "Straße",
+        "HOUSE_NUMBER": "Hausnummer",
+        "ADDITION_ADDRESS": "Adresszusatz",
+        "ZIP": "PLZ",
+        "CITY": "Stadt",
+        "DELIVERY_ADDRESS_SAME": "Lieferadresse stimmt mit Rechnungsadresse überein",
+        "SUBMIT_BUTTON": "Analyse buchen",
+        "AGE_ERROR": "Du musst mindestens 18 Jahre alt sein",
+        "NO_BOOKING": "Buchungsdetails nicht gefunden...",
+        "CHECK_ZIP": "PLZ prüfen",
+        "Profile_updated":"Profile Updated Successfully."
+    },
+    "REGISTER": {
+        "TITLE": "REGISTER",
+        "LANGUAGE": "Sprache",
+        "COUNTRY": "Land",
+        "PROFILE": "Fr/Hr",
+        "FIRSTNAME": "Vorname",
+        "LASTNAME": "Familienname",
+        "EMAIL": "Email",
+        "MOBILE": "Handy",
+        "ACTIVATION_CODE": "Aktivierungscode",
+        "AGREE": "Ich stimme den Datenschutzbestimmungen zu",
+        "REGISTER_BTN": "REGISTRIEREN",
+        "LOGIN_BTN": "Anmelden"
+    },
+    "PRODUCT": {
+        "ADDTOCART": "Zum Warenkorb hinzufügen",
+        "REMOVE": "Aus dem Warenkorb entfernen"
+    },
+    "CART": {
+        "TITLE": "Warenkorb",
+        "BUYNOW": "Jetzt Kaufen",
+        "Item": "Produkt",
+        "NettoAmount": "Netto Betrag",
+        "Remove": "Entfernen",
+        "TotalNetAmount": "Netto Gesamt",
+        "VAT": "Mwst",
+        "Total": "Gesamt",
+        "Agree": "Durch Auswahl von JETZT KAUFEN bestätige ich meine Zustimmung zu den",
+        "TNC": "allgemeinen Geschäftsbedingungen",
+        "PP": "den Datenschutzbestimmungen",
+        "RFW": "Widerrufsrecht",
+        "NOITEM": "Kein Produkt im Warenkorb",
+        "REMOVE": "Entfernen",
+        "ITEM_SELECTED": "Produkt auswählen",
+        "APPLY": "Einlösen",
+        "PROMO": "Promo Code (wenn verfügbar)",
+        "DELIVERYCHARGES": "Lieferkosten"
+    },
+    "PAGES": {
+        "DASHBOARD": "Dashboard",
+        "CART": "Warenkorb",
+        "BOOKANALYSIS": "Analyse buchen",
+        "CHECKZIP": "PLZ prüfen",
+        "FORGOTPASSWORD": "Passwort vergessen",
+        "SHOP": "Shop",
+        "LOGIN": "Anmelden",
+        "REGISTER": "Kostenlos Registrieren",
+        "QUESTION": "Fragen",
+        "PRODUCTDETAIL": "Produkt Details",
+        "QUESTIONARE": "Anamnese",
+        "ITRADE": "iTrade",
+        "PARTNERSHIP": "PARTNERSCHAFT",
+        "PAYMENT_ABO": "Abo Zahlungsarten",
+        "PAYMENT_COMMISSION": "Zahlungsarten Provision",
+        "PROFILE": "My Profile"
+    },
+    "ICON": {
+        "BELL": "bell.png",
+        "CALLING": "calling.png"
+    },
+    "SHOP": {
+        "All": "Alle",
+        "Filter": "Filter",
+        "NP": "Zur Zeit keine Produkte.",
+        "SD": "Menge für",
+        "DSTD": "4 Wochen",
+        "SP": "Standart Preis",
+        "YP": "DEIN PREIS",
+        "VAT": "Mwst"
+    },
+    "CHANGEPASS": {
+        "title": "PASSWORT ÄNDERN",
+        "OLDPASS": "Aktuelles Passwort",
+        "NEWPASS": "Neues Passwort",
+        "CONFIRMPASS": "Passwort bestätigen"
+    },
+    "PROSPECT_MANAGEMENT": {
+        "title": "INTERESSENTEN",
+        "subtitle": "Details",
+        "tableHeader": {
+            "userId": "ID",
+            "name": "Name",
+            "register": "Registriert",
+            "percentage": "%"
+        }
+    },
+    "MEMBER_MANAGEMENT": {
+        "title": "MEMBER"
+    },
+    "DETAIL": {
+        "title": "Details  ",
+        "id": "ID",
+        "name": "Name",
+        "company": "Company",
+        "discount": "Rabatt",
+        "videoProg": "Video Progress",
+        "iM": "iM",
+        "iP": "iP",
+        "contact": "Kontakt",
+        "email": "Email",
+        "phone": "Handy",
+        "status": "Status",
+        "yourrank": "Dein Rang",
+        "gvcounting": "GV Counting",
+        "dv": "DV",
+        "rrc": "Rank Reward Zyklus",
+        "lbd": "Leader Bonus Tage",
+        "notes": "Notitz",
+        "btn": "Notitz speichern",
+        "error": "Bitte Text eingeben...",
+        "save_note": "Notizen gespeichert."
+    },
+    "DASHBAORD": {
+        "title": "Dashboard",
+        "status": "Mein Status",
+        "openaction": {
+            "title": "Zu Erledigen",
+            "action1": " MEMBER(s) zu platzieren",
+            "action2": "Abo aktivieren!",
+            "action3": "Provisionszahlung hinzufügen",
+            "action4": "Partnervereinbarung unterschreiben"
+        },
+        "referral": {
+            "title_pros": "Interessenten Verwaltung",
+            "title_mem": "Member Verwaltung",
+            "prospect": "Zum Interessenten Management",
+            "member": "Zum Member Management"
+        },
+        "referral_link": " Mein Empfehlungslink",
+        "no_action":"Keine Aktionen",
+        "your_link": "Einladung zur kostenlosen Registrierung bei iPro - einfach auf folgenden Link klicken:",
+        "yourrank": {
+            "title": "Dein Rang",
+            "gvcounting": "GV Counting",
+            "dv": "DV",
+            "rrc": "Rank Reward Zyklus",
+            "lbd": "Leader Bonus Tage",
+            "nextrank": "Nächster Rang",
+            "dvReq": "DV benötigt",
+            "gvcountingReq": "GV Counting benötigt",
+            "memReq": "Members benötigt "
+        },
+        "line": {
+            "title": "Lines",
+            "gv": "GV",
+            "gvcounting": "GV Counting",
+            "members": "Members",
+            "pv":"PV"
+        },
+        "products": {
+            "title": "Meine Produkte",
+            "expiry": "Laufzeit noch:",
+            "btn": " Meine Produkte managen"
+        },
+        "member-placement":{
+            "click":"Klick hier",
+            "to-place":"um Mitglied zu platzieren",
+            "lowest-level":"Zur niedrigsten Ebene",
+            "sponsor":"Sponsor",
+            "ID":"ID",
+            "click-to-select":"Klick um auszuwählen",
+            "user-to-place":"Bitte wähle den zu platzierenden Kunden aus",
+            "free":"Frei"
+        }
+    },
+    "MYPRODUCT": {
+        "title": "Meine Produkte",
+        "productDetail": {
+            "title": "Produkt Name",
+            "expiry": "Läuft ab in",
+            "status": "Status"
+        },
+        "btns": {
+            "subs": "Abbonieren",
+            "buy": "Wieder Kaufen",
+            "cancel": "Stornieren"
+        }
+    },
+    "EMAIL": {
+        "BODY": "Danke für die Anfrage ans iPro Team......",
+        "CC": "",
+        "SUBJECT": "iPro Team"
+    },
+    "PAYMENT_OPTON": {
+        "Activate": "Aktivieren",
+        "Deactivate": "Deaktivieren",
+        "method": {
+            "credit": "Kreditkarte",
+            "IBAN": "IBAN"
+        },
+        "inprogress": "Registrierung läuft .....",
+        "btns": {
+            "add": "Add/Change ",
+            "delete": " Löschen",
+            "save": "Speichern",
+            "getone": "Hier einrichten"
+        },
+        "msg": {
+            "addcard": "Karte erfolgreich zugefügt.",
+            "validIBAN": "Bitte eine gültige IBAN eingeben",
+            "reqIBAN": "Bitte IBAN eingeben.",
+            "walletAdd": "Bitte die Wallet-Adresse eingeben.",
+            "payment": "Zahlungsmethode erfolgreich zugefügt.",
+            "deleteCard": "Karte wurde entfernt",
+            "deleteWarning": "Möchtest Du die Karte wirklich entfernen?"
+        },
+        "SEPA": "SEPA BANK Details(nur SEPA Konten erlaubt)",
+        "countrycode": "IBAN Länder Kennung",
+        "validate": "IBAN prüfen",
+        "Bic": "BIC",
+        "freeaccount": "Kein SEPA Konto? Hier kostenlos einrichten!",
+        "BITCOIN": "BITCOIN",
+        "wallet": "Wallet Adresse eingeben"
+    },
+    "QUESTIONNAIRE": {
+        "line1": "Für die Erstellung des Rezeptes benötigen wir ein paar Daten. Bitte alle Fragen beantworten, es dauert nur 3 Minuten!",
+        "line2": "Die Sicherheit Deiner Daten ist wichtig für uns! Unser Datenschutz steht im Einklang mit der EU-Datenschutz-Grundverordnung. Die Daten werden ausschließlich für die Körperanalyse verwendet und können nur mit Deiner Zustimmung verwendet werden.(Passwort wird nach Abschluss der Fragen bereitgestellt)",
+        "terms": "Ich bestätige das ich die Datenschutzbestimmungen gelesen und akzeptiert habe.",
+        "msg": "Ich stimme den Datenscgutzbestimmungen zu.",
+        "btn": {
+            "complete": "Fertig",
+            "next": "Nächste",
+            "back": "Zurück"
+        },
+        "digitalSign": "Mit meiner digitalen Unterschrift bestätige ich, dass alle Fragen wahrheitsgemäß und vollständig beantwortet wurden.",
+        "acceptedBy": "Akzeptiert von",
+        "firstNameError": "Vorname muss übereinstimmen",
+        "lastNameError": "Familienname muss übereinstimmen",
+        "completeSign": "Bitte vollständig ausfüllen",
+        "ansSubmitted": "Antworten erfolgreich abgeschlossen",
+        "noAns": "Bitte eine Antwort wählen",
+        "QR1":" Bitte legen Sie diesen QR-Code dem Analysten vor.",
+        "QR2":"Durch Scannen des QR-Codes mit der Analysesoftware erhalten Sie die Erlaubnis, Ihre Daten für die Analyse zu laden.",
+        "quetsionComplete1":"Sie haben alle Fragen ausgefüllt!",
+        "quetsionComplete2":"Sie werden in Kürze von uns per E-Mail oder Telefon kontaktiert, um die Analysesitzung zu vereinbaren. Ihre Daten sind für die Analyse erforderlich, können aber nur abgerufen werden, wenn Sie die Erlaubnis dazu erteilen. Die Erlaubnis kann per E-Mail (wenn Sie eine Anfrage erhalten) oder durch Vorlage eines QR-Codes an den Analysten erteilt werden, der Sie kontaktieren wird.",
+        "quetsionComplete3":"Sie können Ihren QR-Code jederzeit in der APP oder im WEB unter Menüpunkt: Analyse > QR-Code abrufen",
+        "congratulations":"Herzliche Glückwünsche!"
+    },
+    "tabs": {
+        "tab1": "Dashboard",
+        "tab2": "Shop",
+        "tab3": "Warenkorb",
+        "tab4": "Menü"
+    },
+    "NOTIFICATION": {
+        "title": "Nachrichten",
+        "msg": "Keine neuen Nachrichten"
+    },
+    "MSG": {
+        "deleteConfirm": "Bist Du sicher, dass Du diese Daten löschen möchtest?",
+        "activeConfirm": "Bist Du sicher, dass Du diese Daten löschen möchtest?",
+        "inactiveConfirm": "Bist Du sicher, dass Du diese Daten deaktivieren möchtest?",
+        "required": "Diese Angabe muss gemacht werden",
+        "email": "Bitte eine gültige eMail Adresse eingeben",
+        "facebook": "Please enter valid facebook url",
+        "twitter": "Please enter valid twitter url",
+        "instagram": "Please enter valid instagram url",
+        "linkedin": "Please enter valid linkedin url",
+        "youtube": "Please enter valid youtube url",
+        "pintrest": "Please enter valid pintrest url",
+        "phoneNumber": "Bitte eine gültige Handy Nummer eingeben",
+        "alphabate": "Bitte nur Buchstaben eingeben.",
+        "alphaNumeric": "Bitte nur alphanumerische Zeichen eingeben.",
+        "numeric": "Bitte nur Ziffern eingeben.",
+        "password": "Bitte gib ein Passwort ein, das die folgenden Kriterien erfüllt: <br>1] Mindestens 8 Zeichen. <br>2] Mindestens ein Sonderzeichen. <br>3] Mindestens 1 Ziffer. <br>4] Mindestens ein Großbuchstabe. <br>5] Mindestens ein Kleinbuchstabe.",
+        "confirmPassword": "Passwort und Passwort Bestätigung müssen übereinstimmen.",
+        "acceptTerms": "Bitte die allg. Geschhäftsbedingungen akzeptieren.",
+        "changePassword": "Passwort erfolgreich geändert.",
+        "forgetPassword": "Bitte Deine eMail Eingang prüfen.",
+        "onlyImageType": "Es sind nur folgende Formate erlaubt: jpg, jpeg, gif & png.",
+        "logout_confirmation": "Sicher das Du Dich ausloggen willst?",
+        "NETWORK_CHECK": "Bitte prüf deine Internetverbindung und versuch es nochmal.",
+        "characters": "Zeichen",
+        "maxLength": "Max Eingabe ist",
+        "minLength": "Mindestens enthalten sein muss",
+        "fixLength": "Mindestens enthalten sein muss",
+        "currentlyUnavailable": "Momentan leider niemand verfügbar für diese PLZ.",
+        "stilladded": "Produkt zum Warenkorb zugefügt",
+        "zipcode": "Bitte PLZ Deines Heimatortes eingeben.",
+        "invalidZip": "Ungültige Postleitzahl,Produkt wurde trotzdem zum Warenkorb hinzugefügt",
+        "productadded": "Produkt zum Warenkorb zugefügt",
+        "activationCode": "Wenn du keinen Aktivierungscode erhalten hast - gib bitte eine 0 ein."
+    },
+    "MENU":{
+        "menu1":"Dashboard",
+        "menu2":"Mein Sponsor",
+        "menu3":"Mein iPro",
+        "menu4":"Meine Produkte",
+        "menu5":"Interessenten<br>Verwaltung",
+        "menu6":"Mitgliederverwaltung",
+        "menu7":"Mitgliederplatzierung",
+        "menu8":"Einstellungen",
+        "menu9":"Passwort ändern",
+        "menu10":"Sprache ändern",
+        "menu11":"Dashboard ändern",
+        "menu12":"Rabatt festlegen",
+        "menu13":"Abo-Zahlungsoptionen",
+        "menu14":"Provisionszahlung",
+        "menu15":"Rechtliches",
+        "menu16":"Impressum",
+        "menu17":"Datenschutz",
+        "menu18":"Allgemeine Geschäftsbedingungen",
+        "menu19":"Meine Analysedaten",
+        "menu20":"QR Code",
+        "menu21":"Ausloggen",
+        "menu22":"My Profile"
+
+    },
+    "Agreement":{
+        "title": "Partner Agreement",
+        "german":{
+            "title":"ERKLÄRUNG ÜBER DIE UMSATZSTEUERRECHTLICHE UNTERNEHMEREIGENSCHAFT",
+            "line1":"Kein Unternehmer im Sinne des §2 Umsatzsteuergesetz tätig und somit nicht umsatzsteuerpflichtig bin",
+            "line2":"momentan als Kleinunternehmer nach §19 Abs. 1 uns 2 Umsatzsteuergesetz tätig und somit nicht umsatzsteuerpflichtig bin ",
+            "line3":"im Sinne des §2 Umsatzsteuergesetz tätig und umsatzsteuerpflichtig bin. Laut Umsatzsteuergesetz falle ich unter die Normalbesteuerung mit zurzeit 19% Umsatzsteuer (Ausnahme: 16% vom 1.Juli 2020 bis 31.Dez2020) ",
+            "line3.1":"Die mit der Gutschrift für die Provision(en) ausgezahlte Umsatzsteuer führe ich an das Finanzamt ab",
+            "line3.2":"Nur auszufüllen wenn Option 3 zutrifft",
+            "input1":"Zuständiges Finanzamt",
+            "input2":"Steuer ID oder Steuernummer",
+            "input3":"Ust-ID",
+            "btn":"WEITER"
+        },
+        "all-partner":{
+            "title":"Partner Vereinbarung",
+            "line1":"Textline 1",
+            "line2":"Textline 2",
+            "line3":"Textline 3",
+            "line4":"Textline 4",
+            "line5":"Textline 5",
+            "sub-text":"Mit meiner elektronischen Unterschrift bestätige ich, dass alle Angaben korrekt gemacht wurden und  der Partner Vereinbarung zugestimmt wird.",
+            "btn":"ABSCHICKEN"
+        }
+    }
+}

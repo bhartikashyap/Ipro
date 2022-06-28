@@ -127,6 +127,10 @@ const routes: Routes = [
       {
         path: 'partner-agreement',
         loadChildren: () => import('../../pages/partner-agreement/partner-agreement.module').then( m => m.PartnerAgreementPageModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('../../pages/profile/profile.module').then( m => m.ProfilePageModule)
       }
     
     

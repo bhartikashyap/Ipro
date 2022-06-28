@@ -16,14 +16,7 @@ import { DatePipe } from '@angular/common';
 import { Browser } from '@capacitor/browser';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 import { Platform } from '@ionic/angular';
-// import { CalendarModal, CalendarModalOptions } from 'ion2-calendar';
-// import { formatDate } from '@angular/common';
-// import { CalendarMode } from 'ionic2-calendar/calendar';
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbInputDatepickerConfig, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
-
-// import { DatePicker } from '@capacitor-community/date-picker';
-// import type { DatePickerTheme } from '@capacitor-community/date-picker/';
-// const selectedTheme: DatePickerTheme = 'light';
 @Component({
   selector: "app-book-analysis",
   templateUrl: "./book-analysis.page.html",
@@ -67,7 +60,6 @@ export class BookAnalysisPage implements OnInit {
   };
   openPage: any;
   mydob: any;
-  yearValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
   get formControl() {
     return this.form.controls;
   }
@@ -107,20 +99,7 @@ export class BookAnalysisPage implements OnInit {
   @ViewChild('dp') dp;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
-  // dateRange: {
-  //   from: Date;
-  //   to: Date
-  // } = {
-  //     from: new Date(Date.now() + 24 * 60 * 60 * 1000 * 2),
-  //     to: new Date(Date.now() + 24 * 60 * 60 * 1000 * 90)
-  //   };
-
-  // option: CalendarModalOptions = {
-  //   pickMode: 'range',
-  //   title: 'RANGE',
-  //   defaultDateRange: this.dateRange
-  // };
-
+ 
 
   constructor(
     private router: Router,
@@ -133,58 +112,16 @@ export class BookAnalysisPage implements OnInit {
     public datepipe: DatePipe,
     private theInAppBrowser: InAppBrowser,
     private platform: Platform,
-    // @Inject(LOCALE_ID) private locale: string,
     public config: NgbInputDatepickerConfig,
     public calendars: NgbCalendar,
     private dateAdapter: NgbDateAdapter<string>
-    // private iab: InAppBrowser
-    // private datePicker: DatePicker
   ) {
-    // this.minAge();
 
 
 
 
   }
-  // onViewTitleChanged(title) {
-  //   this.viewTitle = title;
-  // }
-  // async openCalendar() {
-  //   const options: CalendarModalOptions = {
-  //     canBackwardsSelected: true,
-  //     pickMode: 'basic',
-  //     title: '',
-  //     color: 'danger',
-  //     from: this.minDobString,
-  //     to: this.maxDobString,
-  //     monthFormat: 'MMM YYYY',
-
-
-  //   };
-  //   let myCalendar = await this.modalController.create({
-  //     component: CalendarModal,
-  //     componentProps: { options }
-  //   });
-
-  //   myCalendar.present();
-  // }
-
-
-  // onChange($event) {
-  //   console.log($event)
-  // }
-
-
-  // async onEventSelected(event) {
-  //   // Use Angular date pipe for conversion
-  //   let start = formatDate(event.startTime, 'medium', this.locale);
-  //   let end = formatDate(event.endTime, 'medium', this.locale);
-
-  //   const alert = await this.utility.presentAlert(event.title, event.desc,
-  //     'From: ' + start + '<br><br>To: ' + end,
-  //     ['OK'], '')
-
-  // }
+  
 
   async ngOnInit() {
     this.initForm();

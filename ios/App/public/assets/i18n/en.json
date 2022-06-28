@@ -1,0 +1,468 @@
+{
+    "MODALS": {
+        "DASHBOARD": {
+            "title": "Select Default Dashboard ",
+            "PROSPECT": "Partner Dashboard",
+            "MEMBER": "Member Dashboard"
+        },
+        "LANGUAGE": {
+            "title": "Change Language",
+            "ENGLISH": "English",
+            "GERMANY": "German"
+        },
+        "PAYMENT": {
+            "title": "Please select how you want to pay!",
+            "ONETIME": "One Time Payment",
+            "EMI": "Payment in 2-12 monthly installments"
+        },
+        "PLACEMEMBER": {
+            "title": "Member Placement",
+            "NO_USER_ERROR": "Nobody to place."
+        },
+        "RECONFIRM": {
+            "title": "Confirmation",
+            "RECONFIRM_MSG": "Are you sure you want to place here?",
+            "NO_REPLACE": "(No replacement possible!)"
+        },
+        "USERSEARCH": {
+            "title": "Search",
+            "SEARCH_PALCEHOLDER": "Please enter member ID or user name",
+            "BLANK_ERROR": "Please select Member to be placed"
+        },
+        "ERROR": {
+            "title": "Error",
+            "ERROR_MSG": "Oops, something went wrong.Please try again."
+        },
+        "SPONSOR": {
+            "title": " Sponsor Detail",
+            "NAME": "Name",
+            "EMAIL": "Email",
+            "PHONE": "Phone"
+        },
+        "DISCOUNT": {
+            "title": "Set Default Discount",
+            "LABEL": "Please select default discount to be offered for  all new Prospects/ Members/ Partners you recommended directly ",
+            "PERCENTAGE": "Percentage",
+            "PHONE": "Phone",
+            "DISCOUNT_SET_MSG": "Default discount updated successfully."
+        },
+        "BUTTONS": {
+            "CANCEL": "Cancel",
+            "CLOSE": "Close",
+            "YES": "Yes",
+            "PLACE": "Place",
+            "SEARCH": "Search",
+            "GO_HOME": "Go Home",
+            "NO": "No",
+            "OK": "OK",
+            "GO_TO_SHOP": "Go To Shop",
+            "zipcode": "Zip Code",
+            "CONTINUE":"Continue"
+        }
+    },
+    "LOGIN": {
+        "TITLE": "LOGIN",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "FORGOT_PASSWORD": "Forgot Password?",
+        "DONT_HAVE_ACCOUNT": "Don't have an account?",
+        "SIGNUP": "Sign up"
+    },
+    "FORGOT_PASSWORD": {
+        "TITLE": "Forgot Password",
+        "EMAIL": "Email",
+        "SUBMIT_BTN": "RESET NOW",
+        "ALREADY_REGISTERED": "Already Registered?",
+        "LOGIN": "Login"
+    },
+    "AREA_OF_INTEREST": {
+        "TITLE": "Area of Interest",
+        "PERSONALIZED_TEXT": "ENG Text Personalised Micronutrition",
+        "PERSONALIZED_BTN": "Personalised Micronutrition",
+        "INTELIGENT_TEXT": "ENG text Intelligent Trading",
+        "INTELIGENT_BTN": "Intelligent Trading",
+        "PARTNERSHIP_TEXT": "ENG Text iPro Partnership",
+        "PARTNERSHIP_BTN": "iPro Partnership"
+    },
+    "INTELIGENT_TRADING": {
+        "TITLE": "Intelligent Trading",
+        "GET_TRADE_TXT": "Video ENG GET Trade text",
+        "GET_TRADE": "Get iTrade",
+        "type": "itrade",
+        "initPlayer": "A4HAcLOLOO68!AcKDfHlT5Nbx",
+        "id": "cincopa_16381961901701"
+    },
+    "IPRO_PARTNERSHIP": {
+        "TITLE": "iPro Partner",
+        "BECOME_PARTNER_TXT": "Video ENG Text Partner",
+        "BECOME_PARTNER": "Become Partner",
+        "type": "partnership",
+        "initPlayer": "A4HAcLOLOO68!AcODu5kSqv52",
+        "id": "cincopa_16381961901702"
+    },
+    "PERSONALIZED_MICRO": {
+        "TITLE": "Personalised Micronutrition",
+        "PERSONALIZED_MICRO_TXT1": "Video ENG text 1 Micronutrition",
+        "PERSONALIZED_MICRO_BTN": "BOOK ANALYSIS",
+        "PERSONALIZED_MICRO_TXT2": "Video ENG text 2 Analysis",
+        "type": "bodyAnlaysis",
+        "initPlayer": "A4HAcLOLOO68!AgMDkHFzzsRA",
+        "id": "cincopa_1638196190170"
+    },
+    "BOOKING_ANALYSIS": {
+        "HEADER_TITLE": "Book Analysis",
+        "TITLE": "Billing Details",
+        "PRIVATE": "Private",
+        "COMPANY": "Company",
+        "EMAIL": "Email",
+        "MOBILE": "Mobile",
+        "BIRTHDAY": "Birthday",
+        "STREET_NAME": "Street Name",
+        "HOUSE_NUMBER": "House number",
+        "ADDITION_ADDRESS": "Additional address info",
+        "ZIP": "Zip",
+        "CITY": "City",
+        "DELIVERY_ADDRESS_SAME": "Delivery Address same as billing address",
+        "SUBMIT_BUTTON": "Book Analysis",
+        "AGE_ERROR": "You must be min 18 Years old",
+        "NO_BOOKING": "Booking detail not found",
+        "CHECK_ZIP": "Check ZIP",
+        "Profile_updated":"Profile Updated Successfully.",
+        "profile_btn":"Update Profile"
+    },
+    "REGISTER": {
+        "TITLE": "REGISTER",
+        "LANGUAGE": "Language",
+        "COUNTRY": "Country",
+        "PROFILE": "Mr/Mrs",
+        "FIRSTNAME": "Firstname",
+        "LASTNAME": "Lastname",
+        "EMAIL": "Email",
+        "MOBILE": "Mobile",
+        "ACTIVATION_CODE": "Activation Code",
+        "AGREE": "I Agree to the Privacy Policy",
+        "REGISTER_BTN": "REGISTER",
+        "LOGIN_BTN": "LOGIN"
+    },
+    "PRODUCT": {
+        "ADDTOCART": "ADD TO CART ",
+        "REMOVE": "REMOVE FROM CART"
+    },
+    "CART": {
+        "TITLE": "CART",
+        "BUYNOW": "BUY NOW",
+        "Item": "Item",
+        "NettoAmount": "Net Amount",
+        "Remove": "Remove",
+        "TotalNetAmount": "Total Net Amount",
+        "VAT": "VAT",
+        "Total": "Total",
+        "Agree": "By selecting BUY NOW I Agree to",
+        "TNC": "Terms and Conditions",
+        "PP": "the Privacy Policy",
+        "RFW": "RULES OF WITHDRAWAL",
+        "NOITEM": " No item in the cart",
+        "REMOVE": "Remove",
+        "ITEM_SELECTED": "Selected Item",
+        "APPLY": "Apply",
+        "PROMO": "Promo code (If available)",
+        "DELIVERYCHARGES": "Delivery Charges"
+    },
+    "PAGES": {
+        "DASHBOARD": "Dashboard",
+        "CART": "CART",
+        "BOOKANALYSIS": "Book Analysis",
+        "CHECKZIP": "Check Zip",
+        "FORGOTPASSWORD": "Forget Password",
+        "SHOP": "Shop",
+        "LOGIN": "Login",
+        "REGISTER": "Register",
+        "QUESTION": "Questions",
+        "PRODUCTDETAIL": "Product Details",
+        "QUESTIONARE": "Questionnaire",
+        "ITRADE": "iTrade",
+        "PARTNERSHIP": "PARTNERSHIP",
+        "PAYMENT_ABO": "Abo Payment Options",
+        "PAYMENT_COMMISSION": "Commission Payment ",
+        "PROFILE": "My Profile"
+    },
+    "ICON": {
+        "BELL": "bell.png",
+        "CALLING": "calling.png"
+    },
+    "SHOP": {
+        "All": "All",
+        "Filter": "Filter",
+        "NP": "No products for now.",
+        "SD": "Standard Duration",
+        "DSTD": "4 Weeks",
+        "SP": "Standard Price",
+        "YP": "Your Price",
+        "VAT": "VAT"
+    },
+    "CHANGEPASS": {
+        "title": "CHANGE PASSWORD",
+        "OLDPASS": "Current Password",
+        "NEWPASS": "New Password",
+        "CONFIRMPASS": "Confirm Password"
+    },
+    "PROSPECT_MANAGEMENT": {
+        "title": "PROSPECT",
+        "subtitle": "Detail",
+        "tableHeader": {
+            "userId": "ID",
+            "name": "Name",
+            "register": "Registered",
+            "percentage": "%"
+        }
+    },
+    "MEMBER_MANAGEMENT": {
+        "title": "MEMBER"
+    },
+    "DETAIL": {
+        "title": "Details  ",
+        "id": "ID",
+        "name": "Name",
+        "company": "Company",
+        "discount": "Discount",
+        "videoProg": "Video Progress",
+        "iM": "iM",
+        "iP": "iP",
+        "contact": "Contact",
+        "email": "Email",
+        "phone": "Phone",
+        "status": "Status",
+        "yourrank": "Your Rank",
+        "gvcounting": "GV Counting",
+        "dv": "DV",
+        "rrc": "Rank Reward Cycle",
+        "lbd": "Leader Bonus Days",
+        "notes": "Notes",
+        "btn": "Save Notes",
+        "error": "Please enter some text",
+        "save_note": "Notes saved successfully."
+    },
+    "DASHBAORD": {
+        "title": "Dashboard",
+        "status": "My Status",
+        "openaction": {
+            "title": "Open Actions",
+            "action1": " MEMBER(s) TO PLACE",
+            "action2": "Activate Subscription!",
+            "action3": "Add Commission Payment ",
+            "action4": "Sign Partner Agreement"
+        },
+        "referral": {
+            "title_pros": "iPro Prospect Management",
+            "title_mem": "iPro Member Management",
+            "prospect": "Manage your Prospects",
+            "member": "Manage your Members"
+        },
+        "referral_link": " My referral link",
+        "no_action":"No actions",
+        "your_link": "My referral ID is",
+        "yourrank": {
+            "title": "My Rank",
+            "gvcounting": "GV Counting",
+            "dv": "DV",
+            "rrc": "Rank Reward Cycle",
+            "lbd": "Leader Bonus Days",
+            "nextrank": "Next Rank",
+            "dvReq": "DV Required",
+            "gvcountingReq": "GV Counting Required",
+            "memReq": "Members Required "
+        },
+        "line": {
+            "title": "Lines",
+            "gv": "GV",
+            "gvcounting": "GV Counting",
+            "members": "Members",
+            "pv":"PV"
+        },
+        "products": {
+            "title": "My Products",
+            "expiry": "Expires in",
+            "btn": " Manage Products"
+        },
+        "member-placement":{
+            "click":"Click here",
+            "to-place":"to Place a new member",
+            "lowest-level":"Go To Lowest Level Line",
+            "sponsor":"Sponsor",
+            "ID":"ID",
+            "click-to-select":"Click to select",
+            "user-to-place":"Please select user to place",
+            "free":"Free"
+        }
+    },
+    "MYPRODUCT": {
+        "title": "My Products",
+        "productDetail": {
+            "title": "Product Name",
+            "expiry": "Expires In",
+            "status": "Status"
+        },
+        "btns": {
+            "subs": "Subscribe",
+            "buy": "Buy Again",
+            "cancel": "Cancel"
+        }
+    },
+    "EMAIL": {
+        "BODY": "Thank you for contacting iPro Team",
+        "CC": "",
+        "SUBJECT": "iPro Team"
+    },
+    "PAYMENT_OPTON": {
+        "Activate": "Activate",
+        "Deactivate": "Deactivate",
+        "method": {
+            "credit": "Credit Card",
+            "IBAN": "IBAN"
+        },
+        "inprogress": "Updating Registration.....",
+        "btns": {
+            "add": "Add/Change ",
+            "delete": " Delete",
+            "save": "Save",
+            "getone": "Get One here"
+        },
+        "msg": {
+            "addcard": "Card added successfully.",
+            "validIBAN": "Please enter valid IBAN",
+            "reqIBAN": "Please enter IBAN",
+            "walletAdd": "Please enter wallet address.",
+            "payment": "Payment method added successfully.",
+            "deleteCard": "Card deleted successfully",
+            "deleteWarning": "Are you sure you want the delete this card?"
+        },
+        "SEPA": "SEPA BANK Details(only SEPA accounts allowed)",
+        "countrycode": "Country Code IBAN",
+        "validate": "Validate IBAN",
+        "Bic": "BIC",
+        "freeaccount": "Need a free of charge SEPA account?",
+        "BITCOIN": "BITCOIN",
+        "wallet": "Enter Wallet Address"
+    },
+    "QUESTIONNAIRE": {
+        "line1": "We need some data to create the recipe. Please answer all questions, it only takes 3 minutes!",
+        "line2": "The safety of your data is important to us. Our data protection are in accordance with the EU General Data Protection Regulation. The data are required for the purpose only to complete the high quality body analysis. Data will and can be used with your prior permission only (Password provided after completion of questions)",
+        "terms": "I did read and agree to the Privacy terms",
+        "msg": "Please agree to the privacy terms.",
+        "btn": {
+            "complete": "Complete",
+            "next": "Next",
+            "back": "Back"
+        },
+        "digitalSign": "With my digital signature I confirm that all the questions have been answered truthfully and completely.",
+        "acceptedBy": "Accepted By",
+        "firstNameError": "First Name should match",
+        "lastNameError": "Family Name should match",
+        "completeSign": "Please Provide the complete sign",
+        "ansSubmitted": "Answers submitted successfully",
+        "noAns": "Please select an answer",
+        "QR1":" Please present this QR code to analyst.",
+        "QR2":"Scanning the QR code with the analysis software will provide permission to load your data for the analysis.",
+        "quetsionComplete1":"You have completed all the questions!",
+        "quetsionComplete2":"You will be contacted by us shortly bt eMail or phone to schedule the analysis session. Your date are required for the analysis but can be accessed only if you give permission for it.Permission can be granted bt eMail (if you recieve a request) or by presenting a QR code to the Analyst who will contact you.",
+        "quetsionComplete3":"You can get your QR code any time in the APP or on the WEB under Menu Option: Analysis > QR Code",
+        "congratulations":"Congratulations!"
+    },
+    "tabs": {
+        "tab1": "Dashboard",
+        "tab2": "Shop",
+        "tab3": "Cart",
+        "tab4": "Menu"
+    },
+    "NOTIFICATION": {
+        "title": "Notification",
+        "msg": "No Notification"
+    },
+    "MSG": {
+        "deleteConfirm": "Are you sure that you want to delete this data?",
+        "activeConfirm": "Are you sure that you want to active this data?",
+        "inactiveConfirm": "Are you sure that you want to set this data inactive?",
+        "required": "This field is required",
+        "email": "Please enter valid email address",
+        "facebook": "Please enter valid facebook url",
+        "twitter": "Please enter valid twitter url",
+        "instagram": "Please enter valid instagram url",
+        "linkedin": "Please enter valid linkedin url",
+        "youtube": "Please enter valid youtube url",
+        "pintrest": "Please enter valid pintrest url",
+        "phoneNumber": "Please enter valid phone number.",
+        "alphabate": "Please enter only alphabate.",
+        "alphaNumeric": "Please enter only alphanumeric.",
+        "numeric": "Please enter only numeric.",
+        "password": "Please define a password that meets the following criteria: <br>1] At least 8 characters in total. <br>2] At least 1 special character. <br>3] At least 1 number. <br>4] At least 1 upper case alphabet. <br>5] At least 1 lower case alphabet.",
+        "confirmPassword": "Password & Confirm Password must be same.",
+        "acceptTerms": "Please accpet terms and conditions.",
+        "changePassword": "Password changed successfully.",
+        "forgetPassword": "Please check your email.",
+        "onlyImageType": "Only allow jpg, jpeg, gif & png.",
+        "logout_confirmation": "Are you sure you want to logout?",
+        "NETWORK_CHECK": "Please check your network connection and then try again.",
+        "characters": "characters",
+        "maxLength": "You cannot enter more than",
+        "minLength": "This must contain at least ",
+        "fixLength": "This must contain",
+        "currentlyUnavailable": "Currently no one available in this ZIP code.",
+        "stilladded": "Still Product added to cart",
+        "zipcode": "Enter the ZIP code.",
+        "invalidZip": "Invalid ZIP code,still product has been added to CART",
+        "productadded": "Product added to CART",
+        "activationCode": "If you don't have an activation code please enter 0"
+    },
+    "MENU":{
+        "menu1":"Dashboard",
+        "menu2":"My Sponsor",
+        "menu3":"My iPro",
+        "menu4":"My Products",
+        "menu5":"Prospect Management",
+        "menu6":"Member Management",
+        "menu7":"Member placement",
+        "menu8":"Settings",
+        "menu9":"Change Password",
+        "menu10":"Change Language",
+        "menu11":"Change Dashboard",
+        "menu12":"Set Default Discount",
+        "menu13":"Abo Payment Options",
+        "menu14":"Commission Payment",
+        "menu15":"Legal",
+        "menu16":"Legal Notice",
+        "menu17":"Privacy Policy",
+        "menu18":"Term & Conditions",
+        "menu19":"My Analysis Data",
+        "menu20":"QR Code",
+        "menu21":"Logout",
+        "menu22":"My Profile"
+
+    },
+    "Agreement":{
+        "title": "Partner Agreement",
+        "german":{
+            "title":"DECLARATION OF THE VAT ENTREPRENEURIAL PROPERTY",
+            "line1":"I am not an entrepreneur within the meaning of Section 2 of the Sales Tax Act and am therefore not subject to sales tax",
+            "line2":"currently working as a small business owner according to §19 paragraph 1 and 2 sales tax law and am therefore not subject to sales tax ",
+            "line3":"I am active within the meaning of Section 2 of the Sales Tax Act and am subject to sales tax. According to the sales tax law, I am subject to normal taxation with currently 19% sales tax ",
+            "line3.1":"I pay the sales tax paid with the credit for the commission(s) to the tax office",
+            "line3.2":"To be completed only if option 3 applies",
+            "input1":"My local tax office is:",
+            "input2":"TAX ID or TAX Number",
+            "input3":"Ust-ID",
+            "btn":"CONTINUE"
+        },
+        "all-partner":{
+            "title":"Partner Agreement",
+            "line1":"Textline 1",
+            "line2":"Textline 2",
+            "line3":"Textline 3",
+            "line4":"Textline 4",
+            "line5":"Textline 5",
+            "sub-text":"With my electronic signature, I confirm that all information has been entered correctly and that the partner agreement is accepted.",
+            "btn":"SUBMIT"
+        }
+    }
+}
+
+

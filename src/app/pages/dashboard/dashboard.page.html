@@ -31,7 +31,7 @@
         <ion-button class="card-btn" color="danger" expand="block" (click)="utility.goNext('/tabs/commission-option')" *ngIf="details?.dashboard_data?.show_commission_payment_link == 'yes'">
           {{'DASHBAORD.openaction.action3' | translate }}</ion-button>
 
-          <ion-button class="card-btn" color="danger" expand="block" *ngIf="details?.dashboard_data?.show_tax_form == 'yes'">
+          <ion-button class="card-btn" color="danger" expand="block" *ngIf="details?.dashboard_data?.show_tax_form == 'yes'" (click)="utility.goNext('/tabs/partner-agreement')">
             {{'DASHBAORD.openaction.action4' | translate }}</ion-button>
             <!-- (click)="utility.goNext('/tabs/partner-agreement')"  -->
         

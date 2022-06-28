@@ -10,14 +10,14 @@ import { session } from 'src/app/utility/message';
 import { Router } from '@angular/router';
 import { ApiService } from './services/api.service';
 import { Plugins } from '@capacitor/core';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { Capacitor } from '@capacitor/core';
-const { App, BackgroundTask } = Plugins;
+import { Market } from '@ionic-native/market/ngx';
+const { App } = Plugins;
 import { Platform } from '@ionic/angular';
 import { VideoService } from './services/video.service';
 import { EnvironmentService } from 'src/app/services/environment.service';
 import { ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
-
+import { initializeApp } from 'firebase/app';
 import { ModalController } from '@ionic/angular';
 import { UserModalPage } from '../app/components/user-modal/user-modal.page';
 //  import { Events } from '@ionic/angular';
@@ -30,10 +30,11 @@ import {
 import { FcmService } from './services/fcm.service';
 import { SetdicountPage } from './pages/setdicount/setdicount.page';
 import { MySponsorPage } from './pages/my-sponsor/my-sponsor.page';
-import { NavigationStart } from '@angular/router';
-import { filter } from 'rxjs/operators';
-
-
+import { AppVersion } from '@awesome-cordova-plugins/app-version/ngx';
+const firebaseConfig = {
+  //...
+};
+const firebasApp = initializeApp(firebaseConfig);
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -42,55 +43,9 @@ import { filter } from 'rxjs/operators';
 
 export class AppComponent implements OnInit {
   sessionRes: any;
-  // public memberPage = [
-
-  //   { title: 'Dashboard', url: '/tabs/dashboard', icon: '../assets/img/dashboard.png', subPages: null, role: "Member" },
-  //   { title: 'Prospect management', url: '', icon: '../assets/img/sponser.png', subPages: null },
-  //   { title: 'Member management', url: '', icon: '../assets/img/sponser.png', subPages: null },
-  //   { title: 'Member placement', url: '', icon: '../assets/img/sponser.png', subPages: null },
-  //   { title: 'Manage products', url: '', icon: '../assets/img/sponser.png', subPages: null },
-
-
-  //   {
-  //     title: 'Settings', url: 'tabs/notification', icon: '../assets/img/setting.png', subPages: [
-  //       { title1: 'Change Password', id: "nested-button1", component: '', name1: 'about1', url: "/tabs/changepassword" },
-  //       { title1: 'Change Language', id: "nested-button", component: '', name1: 'about2', url: "" },
-  //     ]
-  //   },
-  //   {
-  //     ///tabs/member-managment'
-  //     title: 'Legal', url: 'tabs/member-managment', icon: '../assets/img/legal.png', subPages: [
-  //       { title1: 'Legal Notice', component: '', name1: 'about1' },
-  //       { title1: 'Private Policy', component: '', name1: 'about2' },
-  //       { title1: 'Term & Conditions', component: '', name1: 'about3' },
-  //     ]
-  //   },
-  //   { title: 'Logout', url: '', icon: '../assets/img/legal.png', subPages: null }
-  // ];
-  // public prospectPage = [
-  //   { title: 'Dashboard', url: '/tabs/area-interest', icon: '../assets/img/dashboard.png', subPages: null, role: "Prospect" },
-  //   { title: 'My Sponser', url: '', icon: '../assets/img/sponser.png', subPages: null, role: "Prospect" },
-  //   {
-  //     title: 'Settings', url: 'tabs/notification', icon: '../assets/img/setting.png', subPages: [
-  //       { title1: 'Change Password', id: "nested-button1", component: '', name1: 'about1', url: "/tabs/changepassword" },
-  //       { title1: 'Change Language', id: "nested-button", component: '', name1: 'about2', url: "" },
-  //     ]
-  //   },
-  //   {
-  //     ///tabs/member-managment'
-  //     title: 'Legal', url: 'tabs/member-managment', icon: '../assets/img/legal.png', subPages: [
-  //       { title1: 'Legal Notice', component: '', name1: 'about1' },
-  //       { title1: 'Private Policy', component: '', name1: 'about2' },
-  //       { title1: 'Term & Conditions', component: '', name1: 'about3' },
-  //     ]
-  //   },
-  //   { title: 'Logout', url: '', icon: '../assets/img/legal.png', subPages: null }
-  // ];
-  // public appPages = this.prospectPage;
-  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   language: string;
   isAppInstalled: any;
-  dashboard:any;
+  dashboard: any;
 
 
   constructor(
@@ -100,7 +55,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private menuCtrl: MenuController,
     private apiSer: ApiService,
-    private backgroundMode: BackgroundMode,
     private platform: Platform,
     private navCtrl: NavController,
     public popoverController: PopoverController,
@@ -108,25 +62,26 @@ export class AppComponent implements OnInit {
     public envr: EnvironmentService,
     public fcmSer: FcmService,
     public cdr: ChangeDetectorRef,
-    private modalController:ModalController,
+    private modalController: ModalController,
     private screenOrientation: ScreenOrientation,
+    private appVersion: AppVersion,
+    private market: Market
   ) {
-    
+    console.log(firebasApp)
     this.videoSer.videoType = this.envr.videosEnglish;
     if (Capacitor.isNativePlatform()) {
-
       this.fcmSer.pushRegister();
 
       this.platform.pause.subscribe(() => {
         console.log('Pause subscribe was called');
         this.utility.setStorage("isAppInstalled", "yes");
-     
+
       });
       this.platform.resume.subscribe(() => {
-        if(this.utility.userRole == 'Prospect' && this.utility.quetionaireComplete == true){
+        if (this.utility.userRole == 'Prospect' && this.utility.quetionaireComplete == true) {
           this.utility.checkQuestionaire();
         }
-       // this.fcmSer.catchPushRecieve();
+        // this.fcmSer.catchPushRecieve();
         console.log('resume subscribe was called');
 
       });
@@ -134,24 +89,24 @@ export class AppComponent implements OnInit {
         console.log(event)
         console.log(this.router.getCurrentNavigation)
         console.log(this.router.url)
-        if(this.router.url == '/member-replacement' || this.router.url.indexOf('/tabs/dashboard') > -1 || this.router.url == '/tabs/area-of-interest'){
-           // this.utility.changeMenu();
-            this.platform.backButton.subscribeWithPriority(9999, () => {
-              // do nothing
-            });
+        if (this.router.url == '/member-replacement' || this.router.url.indexOf('/tabs/dashboard') > -1 || this.router.url == '/tabs/area-of-interest') {
+          // this.utility.changeMenu();
+          this.platform.backButton.subscribeWithPriority(9999, () => {
+            // do nothing
+          });
         }
-        else{
+        else {
           // if (this.sessionRes) {
-            this.navCtrl.back();
+          this.navCtrl.back();
           // }
           this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
         }
-       
+
 
       })
-     
-      
+
+
 
     }
 
@@ -160,34 +115,87 @@ export class AppComponent implements OnInit {
     }, 1000);
   }
 
+  async launcApp() {
+    let appversion: any = await this.appVersion.getVersionNumber();
+    appversion = parseFloat(appversion);
+    let packageName = await this.appVersion.getPackageName();
+    this.apiSer.appVersion().then((res: any) => {
+      let appVersionNotmatch = false;
+      console.log(res)
+      if (res.status) {
+        if (this.platform.is('android')) {
+          let androisVersion = parseFloat(res.data.android);
+          if (appversion != androisVersion) {
+            appVersionNotmatch = true;
+          }
 
-  
+        }
+        else if (this.platform.is('ios')) {
+          let iosVersion = parseFloat(res.data.ios);
+
+          if (appversion != iosVersion) {
+            appVersionNotmatch = true;
+          }
+        }
+        if (appVersionNotmatch) {
+          this.utility.presentAlert(
+            "Warning",
+            "",
+            [],
+            this.utility.translateText('MSG').app_update,
+            [{
+              text: this.utility.translateText("MODALS").BUTTONS.VERSION_UPDATE,
+              cssClass: 'secondary',
+              handler: async () => {
+
+                this.market.open(packageName);
+
+              }
+            }
+
+            ]
+          );
+
+        }
+
+      }
+    })
+  }
+
   async ngOnInit() {
+    //     let appversion= await this.appVersion.getVersionNumber()
+    // let packageName =  await this.appVersion.getPackageName();
+
     this.sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
 
     if (Capacitor.isNativePlatform()) {
+      console.log(await this.appVersion.getAppName());
+      console.log(await this.appVersion.getPackageName());
+      console.log(await this.appVersion.getVersionCode());
+      console.log(await this.appVersion.getVersionNumber());
+      this.launcApp();
       // this.utility.removeAuth();
-     // if( this.sessionRes){
-        // this.utility.silentLogout();
-        // let token =await this.utility.getFCMToken()
-        // let fcmToken = {
-        //   "notificationToken":await this.utility.getFCMToken()
-        // }
-        
-        // console.log("logout",fcmToken);
-        // this.apiSer.logoutUser(fcmToken).then((res: any) => {
-        //   this.utility.removeAuth();
-        //   this.sessionRes = 0;
-        //   this.router.navigate(['/login']);
-        // });
-    //  }
-      let storageNotifications :any= await this.utility.getStorage('notification');
-      if(storageNotifications){
+      // if( this.sessionRes){
+      // this.utility.silentLogout();
+      // let token =await this.utility.getFCMToken()
+      // let fcmToken = {
+      //   "notificationToken":await this.utility.getFCMToken()
+      // }
+
+      // console.log("logout",fcmToken);
+      // this.apiSer.logoutUser(fcmToken).then((res: any) => {
+      //   this.utility.removeAuth();
+      //   this.sessionRes = 0;
+      //   this.router.navigate(['/login']);
+      // });
+      //  }
+      let storageNotifications: any = await this.utility.getStorage('notification');
+      if (storageNotifications) {
         this.utility.removeStorage('notification');
       }
     }
 
-    this.getDeviceLanguage(); 
+    this.getDeviceLanguage();
     this.menuCtrl.enable(false);
     let firstLogin = await this.utility.getStorage('firstLogin');
     var landingPage;
@@ -198,14 +206,15 @@ export class AppComponent implements OnInit {
       landingPage = ['/login']
     }
 
+
     // let data = {"badge":new Date().getSeconds(),"title":"hii","body":"test"+new Date().getSeconds()} ;
     // this.fcmSer.savePush(data,"navigate");
     let dashboard = await this.utility.changeMenu();
     console.log(dashboard);
     setTimeout(() => {
       console.log(dashboard);
-     // this.router.navigate(['/questionare'])
-  // this.router.navigate(['/tabs/book-analysis'])
+      // this.router.navigate(['/questionare'])
+      // this.router.navigate(['/tabs/book-analysis'])
 
 
       if (this.sessionRes) {
@@ -213,6 +222,7 @@ export class AppComponent implements OnInit {
       } else {
         this.router.navigate(landingPage);
       }
+
     }, 1000);
   }
 
@@ -225,10 +235,10 @@ export class AppComponent implements OnInit {
           console.log(res);
           if (res.value.indexOf("en") != -1) {
             this.utility._initTranslate("en");
-            this.language='en';
+            this.language = 'en';
           } else {
             this.utility._initTranslate("de");
-            this.language='de';
+            this.language = 'de';
           }
 
         })
@@ -241,6 +251,7 @@ export class AppComponent implements OnInit {
     else {
       this.utility._initTranslate('en');
     }
+
   }
 
   menu(tab) {
@@ -252,37 +263,33 @@ export class AppComponent implements OnInit {
 
 
     }
-    else if (selectedTab=='sponsor'){
-      this.utility.openPopup(MySponsorPage,selectedTab,'sponsor-class',true);
+    else if (selectedTab == 'sponsor') {
+      this.utility.openPopup(MySponsorPage, selectedTab, 'sponsor-class', true);
     }
-    else if (selectedTab=='language'){
-      this.utility.openPopup(UserModalPage,selectedTab,'modal-class' ,true);
+    else if (selectedTab == 'language') {
+      this.utility.openPopup(UserModalPage, selectedTab, 'modal-class', true);
     }
-    else if (selectedTab=='dashboard'){
-      this.utility.openPopup(UserModalPage,selectedTab,'modal-class' ,true);
+    else if (selectedTab == 'dashboard') {
+      this.utility.openPopup(UserModalPage, selectedTab, 'modal-class', true);
     }
-    else if (selectedTab=='discount'){
-      this.utility.openPopup(SetdicountPage,selectedTab,'discount',true);
+    else if (selectedTab == 'discount') {
+      this.utility.openPopup(SetdicountPage, selectedTab, 'discount', true);
     }
-    else if (selectedTab=='privacy'){
-       this.utility.openPdfLinks(this.utility.pdfLink[2].link,'');
-     // this.utility.openPopup(UserModalPage,'pdf','modal-question' ,true);
+    else if (selectedTab == 'privacy') {
+      this.utility.openPdfLinks(this.utility.pdfLink[2].link, '');
+      // this.utility.openPopup(UserModalPage,'pdf','modal-question' ,true);
     }
-    else if (selectedTab=='notice'){
+    else if (selectedTab == 'notice') {
       console.log(this.utility.pdfLink[1].link)
-      this.utility.openPdfLinks(this.utility.pdfLink[1].link,'Legal Notice');
+      this.utility.openPdfLinks(this.utility.pdfLink[1].link, 'Legal Notice');
     }
-    else if (selectedTab=='tnc'){
+    else if (selectedTab == 'tnc') {
       console.log(this.utility.pdfLink[0].link)
-      this.utility.openPdfLinks(this.utility.pdfLink[3].link,'Term & Condition');
+      this.utility.openPdfLinks(this.utility.pdfLink[3].link, 'Term & Condition');
     }
-    else if (selectedTab=='analysis'){
-      this.utility.openPopup(UserModalPage,selectedTab,'modal-question' ,true);
+    else if (selectedTab == 'analysis') {
+      this.utility.openPopup(UserModalPage, selectedTab, 'modal-question', true);
     }
-
-    
-
-    
   }
 
   async logout() {
@@ -301,7 +308,7 @@ export class AppComponent implements OnInit {
             var loading = await this.utility.presentLoading();
             var firstLogin = await this.utility.getStorage('firstLogin');
             let fcmToken = {
-              "notificationToken":await this.utility.getFCMToken()
+              "notificationToken": await this.utility.getFCMToken()
             }
             //console.log(firstLogin);
             this.apiSer.logoutUser(fcmToken).then((res: any) => {
@@ -334,8 +341,8 @@ export class AppComponent implements OnInit {
 
   }
 
-  
 
-  
+
+
 
 }

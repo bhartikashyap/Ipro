@@ -13,11 +13,9 @@ import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { ModalController } from '@ionic/angular';
 import { Browser } from '@capacitor/browser';
-import { DocumentViewer, DocumentViewerOptions } from '@awesome-cordova-plugins/document-viewer/ngx';
 import { UserModalPage } from '../components/user-modal/user-modal.page';
 import { DomSanitizer } from '@angular/platform-browser';
 import { session } from 'src/app/utility/message';
-// import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Platform } from '@ionic/angular';
 @Injectable({
@@ -42,11 +40,11 @@ export class UtilService {
   paymnetType:any='one';
   public memberPage = [
 
-    { title: 'Dashboard', url: '/tabs/dashboard/defaultDash', icon: '../assets/img/dashboard.png', subPages: null, role: "Member", name: '', menu: "menu1" },
-    { title: 'My Sponser', url: "", icon: '../assets/img/sponser.png', subPages: null, role: "Member", name: 'sponsor', menu: "menu2" },
+    { title: 'Dashboard', url: '/tabs/dashboard/defaultDash', icon: 'grid-outline', subPages: null, role: "Member", name: '', menu: "menu1" },
+    { title: 'My Sponser', url: "", icon: 'person-circle-outline', subPages: null, role: "Member", name: 'sponsor', menu: "menu2" },
 
     {
-      title: 'My iPro', url: "", icon: '../assets/img/setting.png', menu: "menu3", subPages: [
+      title: 'My iPro', url: "", icon: 'information-circle-outline', menu: "menu3", subPages: [
         { title1: 'My Products', menu: "menu4", url: '/tabs/myproducts', id: "nested-button5", component: '', name: 'about1' },
         { title1: 'Prospect Management', menu: "menu5", url: '/tabs/user-managment/prospect', id: "nested-button2", component: '', name: 'about1' },
         { title1: 'Member Management', menu: "menu6", url: '/tabs/user-managment/member', id: "nested-button3", component: '', name: 'about1' },
@@ -54,10 +52,11 @@ export class UtilService {
       ], name: ''
     },
     {
-      title: 'Settings', menu: "menu8", url: "", icon: '../assets/img/setting.png', subPages: [
+      title: 'Settings', menu: "menu8", url: "", icon: 'settings-outline', subPages: [
         { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
         { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
         { title1: 'Change Dashboard', menu: "menu11", id: "dashboard", component: '', name: 'dashboard', url: "", },
+        { title1: 'Profile', menu: "menu22", url: "/tabs/profile", id: "nested-button012", component: '', name: 'about3' },
         { title1: 'Set Default Discount', menu: "menu12", id: "discount", component: '', name: 'discount', url: "" },
         { title1: 'Abo Payment Options', menu: "menu13", url: "/tabs/paymnet-option", id: "nested-button01", component: '', name: 'about2' },
         { title1: 'Commission Payment ', menu: "menu14", url: "/tabs/commission-option", id: "nested-button011", component: '', name: 'about21' },
@@ -66,7 +65,7 @@ export class UtilService {
 
     {
       ///tabs/member-managment'
-      title: 'Legal', menu: "menu15", url: "", icon: '../assets/img/legal.png', subPages: [
+      title: 'Legal', menu: "menu15", url: "", icon: 'ribbon-outline', subPages: [
         { title1: 'Legal Notice', menu: "menu16", component: '', name: 'notice', url: "" },
         { title1: 'Private Policy', menu: "menu17", component: '', name: 'privacy', url: "" },
         { title1: 'Term & Conditions', menu: "menu18", component: '', name: 'tnc', url: "" },
@@ -74,24 +73,26 @@ export class UtilService {
     },
     {
       ///tabs/member-managment'
-      title: 'My Analysis Data', menu: "menu19", url: "", icon: '../assets/img/legal.png', subPages: [
+      title: 'My Analysis Data', menu: "menu19", url: "", icon: 'analytics-outline', subPages: [
         { title1: 'QR Code', menu: "menu20", component: '', name: 'analysis', url: "" }
       ], name: ''
     },
-    { title: 'Logout', menu: "menu21", url: "", icon: '../assets/img/legal.png', subPages: null, name: 'logout' }
+    { title: 'Logout', menu: "menu21", url: "", icon: 'log-out-outline', subPages: null, name: 'logout' }
   ];
+  
   public prospectPage = [
-    { title: 'Dashboard', menu: "menu1", url: '/tabs/area-of-interest', icon: '../assets/img/dashboard.png', subPages: null, role: "Prospect", name: '' },
-    { title: 'My Sponser', menu: "menu2", url: "", icon: '../assets/img/sponser.png', subPages: null, role: "Prospect", name: 'sponsor' },
+    { title: 'Dashboard', menu: "menu1", url: '/tabs/area-of-interest', icon: 'grid-outline', subPages: null, role: "Prospect", name: '' },
+    { title: 'My Sponser', menu: "menu2", url: "", icon: 'person-circle-outline', subPages: null, role: "Prospect", name: 'sponsor' },
     {
-      title: 'Settings', menu: "menu8", url: "", icon: '../assets/img/setting.png', subPages: [
+      title: 'Settings', menu: "menu8", url: "", icon: 'settings-outline', subPages: [
         { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
         { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
+        { title1: 'Profile', menu: "menu22", url: "/tabs/profile", id: "nested-button012", component: '', name: 'about3' },
       ], name: ''
     },
     {
       ///tabs/member-managment'
-      title: 'Legal', menu: "menu15", url: "", icon: '../assets/img/legal.png', subPages: [
+      title: 'Legal', menu: "menu15", url: "", icon: 'ribbon-outline', subPages: [
         { title1: 'Legal Notice', menu: "menu16", component: '', name: 'notice', url: "" },
         { title1: 'Private Policy', menu: "menu17", component: '', name: 'privacy', url: "" },
         { title1: 'Term & Conditions', menu: "menu18", component: '', name: 'tnc', url: "" },
@@ -99,11 +100,11 @@ export class UtilService {
     },
     {
       ///tabs/member-managment'
-      title: 'My Analysis Data', menu: "menu19", url: "", icon: '../assets/img/legal.png', subPages: [
+      title: 'My Analysis Data', menu: "menu19", url: "", icon: 'analytics-outline', subPages: [
         { title1: 'QR Code', menu: "menu20", component: '', name: 'analysis', url: "" }
       ], name: ''
     },
-    { title: 'Logout', menu: "menu21", url: '', icon: '../assets/img/legal.png', subPages: null, name: 'logout' }
+    { title: 'Logout', menu: "menu21", url: '', icon: 'log-out-outline', subPages: null, name: 'logout' }
   ];
   public appPages = this.prospectPage;
   // options: InAppBrowserOptions = {
@@ -138,7 +139,6 @@ export class UtilService {
     private emailComposer: EmailComposer,
     private callNumber: CallNumber,
     private modalController: ModalController,
-    private document: DocumentViewer,
     private domSanit: DomSanitizer,
     private theInAppBrowser: InAppBrowser,
     private platform: Platform
@@ -154,8 +154,9 @@ export class UtilService {
     const toast = await this.toastController.create({
       message: message,
       duration: 3000,
-      position: postion ? postion : 'top'
+      position:  'top'
     });
+    // postion ? postion :
     toast.present();
   }
 
@@ -291,6 +292,10 @@ export class UtilService {
     if (response.status == 1) {
       this.navCtrl.navigateForward(["/tabs/basket"]);
     }
+  }
+
+  goBack(){
+   this.navCtrl.back();
   }
 
   setName = async () => {

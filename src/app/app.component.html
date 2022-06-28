@@ -3,19 +3,29 @@
     <ion-menu menuId="first" contentId="main-content">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of utility.appPages; let i = index">
-            <ion-item class="menu-label"  routerDirection="root" [routerLink]="[p.url]"
-              (click)="menu(p)" lines="none" detail="false" routerLinkActive="selected">
-              <img src={{p.icon}}>
+          <div  *ngFor="let p of utility.appPages; let i = index">
+           
+
+            <ion-menu-toggle auto-hide="false">
+            <ion-item class="menu-label" *ngIf="p.url != '' || p.menu == 'menu2' || p.menu == 'menu21'" routerDirection="root" [routerLink]="[p.url]"
+              (click)="menu(p);selectedMenu = p.menu" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon name="{{p.icon}}"></ion-icon>
+              <!-- <img src={{p.icon}}> -->
               <ion-label>{{'MENU.'+p.menu | translate}}</ion-label>
+             
             </ion-item>
-            <!-- <ion-item class="menu-label" *ngIf="p.url == ''" routerDirection="root" (click)="menu(p)" lines="none"
+          </ion-menu-toggle>
+
+            <ion-item class="menu-label" *ngIf="p.url == '' && p.menu != 'menu2' && p.menu != 'menu21'" routerDirection="root" (click)="menu(p);" lines="none"
               detail="false" routerLinkActive="selected">
-              <img src={{p.icon}}>
-              <ion-label>{{'MENU.'+p.menu | translate}}</ion-label>
-            </ion-item> -->
-            <div class="sub-menu" *ngIf="p.subPages != null">
-              <p *ngFor="let subP of p.subPages"  (click)="menu(subP)">
+              <ion-icon name="{{p.icon}}" (click)="selectedMenu = p.menu"></ion-icon>
+              <!-- <img src={{p.icon}}> -->
+              <ion-label (click)="selectedMenu = p.menu">{{'MENU.'+p.menu | translate}}</ion-label>
+              <ion-icon style="font-size: 16px !important;" name="caret-up-outline" slot="end" *ngIf="selectedMenu == p.menu" (click)="selectedMenu = ''"></ion-icon>
+              <ion-icon style="font-size: 16px !important;" name="caret-down-outline" slot="end" *ngIf="selectedMenu != p.menu"  (click)="selectedMenu = p.menu"></ion-icon>
+            </ion-item>
+            <ion-menu-toggle auto-hide="false" [ngClass]=" {'selected-sub': selectedMenu == p.menu}" class="sub-menu"  *ngIf="p.subPages != null">
+              <p auto-hide="false" *ngFor="let subP of p.subPages"  (click)="menu(subP)">
                 <span  *ngIf="subP.url != ''"  id="{{subP.id}}" 
                 routerDirection="root"  [routerLink]="[subP.url]">
 
@@ -30,8 +40,8 @@
 
                 </span>
               </p>
-            </div>
-          </ion-menu-toggle>
+            </ion-menu-toggle>
+          </div>
         </ion-list>
       </ion-content>
     </ion-menu>

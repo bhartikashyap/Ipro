@@ -14,10 +14,7 @@ import { RegisterPageModule } from "../register/register.module";
 import { IonicSelectableModule } from 'ionic-selectable';
 import {ShareComponentModule} from '../../components/share-component-module';
 import { InAppBrowser , InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
-import { CalendarModule } from 'ion2-calendar';
-import { NgCalendarModule  } from 'ionic2-calendar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { DatePickerModule } from 'ionic-calendar-date-picker';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -27,8 +24,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     IonicSelectableModule,
     ShareComponentModule,
-    CalendarModule,
-    NgCalendarModule,
     NgbModule,
     TranslateModule.forChild({
       loader: {
