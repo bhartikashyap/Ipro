@@ -4,9 +4,10 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UtilService } from './util.service';
 import { Storage } from "@capacitor/storage";
+import { Router } from '@angular/router';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: UtilService) { }
+  constructor(private authenticationService: UtilService, private router: Router) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = this.authenticationService.getToken();
     console.log(token);
@@ -51,6 +52,9 @@ export class TokenInterceptor implements HttpInterceptor {
       // })
       return next.handle(cloned);
       
+    }
+    else{
+      this.router.navigate(['/login']);
     }
     return next.handle(request);
   }

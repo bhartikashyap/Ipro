@@ -64,6 +64,18 @@ export class DashboardPage implements OnInit {
     }
     else {
       this.details = {}
+      if(details.msg == 'Unauthorized'){
+        let fcmToken = {
+          "notificationToken": await this.utility.getFCMToken()
+        }
+        //console.log(firstLogin);
+        this.apiSer.logoutUser(fcmToken).then((res: any) => {
+          loading.dismiss();
+          this.utility.removeAuth();
+          // this.router.navigate(['/login']);
+        });
+
+      }
     }
     loading.dismiss();
 

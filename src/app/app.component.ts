@@ -19,6 +19,7 @@ import { EnvironmentService } from 'src/app/services/environment.service';
 import { ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserModalPage } from '../app/components/user-modal/user-modal.page';
+
 //  import { Events } from '@ionic/angular';
 import {
   ActionPerformed,
@@ -72,6 +73,7 @@ export class AppComponent implements OnInit {
         this.utility.setStorage("isAppInstalled", "yes");
 
       });
+                      
       this.platform.resume.subscribe(() => {
         if (this.utility.userRole == 'Prospect' && this.utility.quetionaireComplete == true) {
           this.utility.checkQuestionaire();
@@ -163,27 +165,16 @@ export class AppComponent implements OnInit {
 
     this.sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
 
+
+    
+
     if (Capacitor.isNativePlatform()) {
       console.log(await this.appVersion.getAppName());
       console.log(await this.appVersion.getPackageName());
       console.log(await this.appVersion.getVersionCode());
       console.log(await this.appVersion.getVersionNumber());
       this.launcApp();
-      // this.utility.removeAuth();
-      // if( this.sessionRes){
-      // this.utility.silentLogout();
-      // let token =await this.utility.getFCMToken()
-      // let fcmToken = {
-      //   "notificationToken":await this.utility.getFCMToken()
-      // }
 
-      // console.log("logout",fcmToken);
-      // this.apiSer.logoutUser(fcmToken).then((res: any) => {
-      //   this.utility.removeAuth();
-      //   this.sessionRes = 0;
-      //   this.router.navigate(['/login']);
-      // });
-      //  }
       let storageNotifications: any = await this.utility.getStorage('notification');
       if (storageNotifications) {
         this.utility.removeStorage('notification');
@@ -201,24 +192,18 @@ export class AppComponent implements OnInit {
       landingPage = ['/login']
     }
 
-
-    // let data = {"badge":new Date().getSeconds(),"title":"hii","body":"test"+new Date().getSeconds()} ;
-    // this.fcmSer.savePush(data,"navigate");
     let dashboard = await this.utility.changeMenu();
     console.log(dashboard);
-    setTimeout(() => {
+    // setTimeout(() => {
       console.log(dashboard);
-      // this.router.navigate(['/questionare'])
-      // this.router.navigate(['/tabs/book-analysis'])
-
-
+     
       if (this.sessionRes) {
         this.router.navigate([dashboard]);
       } else {
         this.router.navigate(landingPage);
       }
 
-    }, 1000);
+    // }, 1000);
   }
 
 

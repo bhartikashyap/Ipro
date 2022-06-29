@@ -65,19 +65,29 @@ export class AreaOfInterestPage implements OnInit {
 
   async getDashboard(){
     let loading = await this.utility.presentLoading();
-    this.apiSer
-      .prospectDashboard() 
-      .then((res: any) => {
+    let result:any= await this.apiSer.prospectDashboard() 
+      // .then((res: any) => {
         loading.dismiss();
-        let result=res;
+        // let result=res;
         if(result.status){
-          this.dashboardData = res.data;
+          this.dashboardData = result.data;
         }
         else{
           this.dashboardData = [];
+          if(result.msg == 'Unauthorized'){
+            let fcmToken = {
+              "notificationToken": await this.utility.getFCMToken()
+            }
+            this.apiSer.logoutUser(fcmToken).then((res: any) => {
+              loading.dismiss();
+              this.utility.removeAuth();
+              // this.router.navigate(['/login']);
+            });
+    
+          }
         }
-        console.log(res)
-      })
+        // console.log(res)
+      // })
     
   }
 
