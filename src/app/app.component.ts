@@ -75,6 +75,8 @@ export class AppComponent implements OnInit {
       });
                       
       this.platform.resume.subscribe(() => {
+        this.launcApp();
+
         if (this.utility.userRole == 'Prospect' && this.utility.quetionaireComplete == true) {
           this.utility.checkQuestionaire();
         }
@@ -124,6 +126,7 @@ export class AppComponent implements OnInit {
           let androisVersion = parseFloat(res.data.android);
           if (appversion != androisVersion) {
             appVersionNotmatch = true;
+           
           }
 
         }
@@ -146,6 +149,8 @@ export class AppComponent implements OnInit {
               handler: async () => {
 
                 this.market.open(packageName);
+            return false;
+
 
               }
             }
@@ -173,8 +178,7 @@ export class AppComponent implements OnInit {
       console.log(await this.appVersion.getPackageName());
       console.log(await this.appVersion.getVersionCode());
       console.log(await this.appVersion.getVersionNumber());
-      this.launcApp();
-
+      
       let storageNotifications: any = await this.utility.getStorage('notification');
       if (storageNotifications) {
         this.utility.removeStorage('notification');
@@ -182,6 +186,7 @@ export class AppComponent implements OnInit {
     }
 
     this.getDeviceLanguage();
+
     this.menuCtrl.enable(false);
     let firstLogin = await this.utility.getStorage('firstLogin');
     var landingPage;
@@ -191,6 +196,7 @@ export class AppComponent implements OnInit {
     else {
       landingPage = ['/login']
     }
+
 
     let dashboard = await this.utility.changeMenu();
     console.log(dashboard);
@@ -202,6 +208,7 @@ export class AppComponent implements OnInit {
       } else {
         this.router.navigate(landingPage);
       }
+    this.launcApp();
 
     // }, 1000);
   }
