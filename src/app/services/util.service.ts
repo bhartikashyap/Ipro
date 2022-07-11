@@ -38,6 +38,7 @@ export class UtilService {
   pdfLink: any = this.envr.pdfEnglish;;
   pdf: any;
   paymnetType:any='one';
+  upadteApp:any=true;
   public memberPage = [
 
     { title: 'Dashboard', url: '/tabs/dashboard/defaultDash', icon: 'grid-outline', subPages: null, role: "Member", name: '', menu: "menu1" },
@@ -258,7 +259,7 @@ export class UtilService {
   }
 
   goNext(url: any) {
-
+     this.upadteApp = true;
     this.navCtrl.navigateForward(url)
   }
   openPdfLinks(pdfUrl, pdfName) {
@@ -401,11 +402,11 @@ export class UtilService {
         loading.dismiss();
         if (page != 'register') {
           if (res.status == 1) {
-            this.presentToast(res.msg, "top");
+            this.presentToast(this.translateText('MSG').language, "top");
             this.closeModal();
 
           } else {
-            this.presentToast(res.msg, "bottom");
+            this.presentToast(this.translateText('MSG').someissueInNetwork, "bottom");
           }
         }
 
@@ -572,7 +573,7 @@ export class UtilService {
       .then((res: any) => {
         loading.dismiss();
         if (res.status == 1) {
-          this.presentToast("Default discount updated successfully.", 'top')
+          this.presentToast(this.translateText('MSG').defaultDiscount, 'top')
           // this.goNext(["/tabs/area-of-interest"]);
 
         }

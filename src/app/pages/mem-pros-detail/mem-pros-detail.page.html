@@ -22,10 +22,9 @@
       <ion-item>
         <ion-label>{{'DETAIL.discount' | translate }} :</ion-label>
 
-        <ion-select
+        <ion-select *ngIf="data?.customizeRole != 'MEMBER'"
         [(ngModel)]="discount"
         (ionChange)="saveDsicount($event)"
-        [disabled]="data?.customizeRole == 'MEMBER'"
       >
       <ion-select-option value="0" >0% </ion-select-option>
       <ion-select-option value='5'>5%</ion-select-option>
@@ -33,9 +32,12 @@
         <ion-select-option value="15">15%</ion-select-option>
         <ion-select-option value="20">20%</ion-select-option>
         <ion-select-option value="25">25%</ion-select-option>
-        <ion-select-option value="30">30%</ion-select-option>
+
+        <!-- [disabled]="data?.customizeRole == 'MEMBER'" -->
+
+        <!-- <ion-select-option value="30">30%</ion-select-option>
         <ion-select-option value="35">35%</ion-select-option>
-        <ion-select-option value="40">40%</ion-select-option>
+        <ion-select-option value="40">40%</ion-select-option> -->
         </ion-select>
         <!-- <span><ion-input type="number" value="5" min="1" max="9"></ion-input></span> -->
       </ion-item>

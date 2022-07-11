@@ -412,7 +412,19 @@
         "zipcode": "Bitte PLZ Deines Heimatortes eingeben.",
         "invalidZip": "Ungültige Postleitzahl,Produkt wurde trotzdem zum Warenkorb hinzugefügt",
         "productadded": "Produkt zum Warenkorb zugefügt",
-        "activationCode": "Wenn du keinen Aktivierungscode erhalten hast - gib bitte eine 0 ein."
+        "activationCode": "Wenn du keinen Aktivierungscode erhalten hast - gib bitte eine 1 ein.",
+        "someissueInNetwork":"Something went wrong.",
+        "language":"Language changed",
+        "defaultDiscount":"Default discount updated successfully.",
+        "productAdded":"Product Added",
+        "productCancelled":"Product cancelled",
+        "productSubsc":"Product Subscribed",
+        "productRemoved":"Product removed from cart",
+        "memberPlace":"Member placed successfully.",
+        "paswordUpdated":"Password updated.",
+        "paymentIntiated":"Paymnet Intiated please wait.",
+        "passwordChanged":"Password changed sucessfully",
+        "agreementSaved":"Agreement saved successfully."
     },
     "MENU":{
         "menu1":"Dashboard",

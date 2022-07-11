@@ -121,7 +121,7 @@ let onlyDevice =0 ;
       this.profile.paymentId = this.paymentId;
       let data: any = await this.apiService.proceedRegistration(this.profile);
       this.router.navigate(["/tabs/area-of-interest"])
-      if (data.status == 1) {
+      if (data.status) {
         this.utility.presentToast(result.msg, "bottom");
         //this.navController.
         if (data.redirect_to_questionnaire.toLowerCase() == 'no') {
@@ -132,7 +132,7 @@ let onlyDevice =0 ;
         }
 
       } else {
-        this.utility.presentToast(result.msg, "bottom");
+        this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork, "bottom");
         return false;
       }
     }

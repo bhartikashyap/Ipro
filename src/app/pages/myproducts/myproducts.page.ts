@@ -54,10 +54,10 @@ paymnetOption:any;
       let result :any = res;
       if(result.status){
         if(action == 'cancel'){
-          this.utliSer.presentToast("Product cancelled","top");
+          this.utliSer.presentToast(this.utliSer.translateText('MSG').productCancelled,"top");
         }
         else{
-          this.utliSer.presentToast("Product Subscribed","top");
+          this.utliSer.presentToast(this.utliSer.translateText('MSG').productSubsc,"top");
         }
         this.getProducts();
 
@@ -95,7 +95,7 @@ paymnetOption:any;
     this.apiSer.addToCart(data).then((res)=>{
       let result :any = res;
       if(result.status){
-        this.utliSer.presentToast("Product Added","bottom");
+        this.utliSer.presentToast(this.utliSer.translateText('MSG').productAdded,"top");
         this.utliSer.getCart('cart');
         this.getProducts();
       }

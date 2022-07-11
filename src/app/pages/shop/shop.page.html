@@ -35,22 +35,18 @@
         </div>
      
     <div  class="detail">
-      <!-- <div class=""> -->
             <h2 style="margin:0px">{{prod.packageName}}</h2>
             <p> {{'SHOP.SD' | translate}}:{{prod.avail_runtime[1]}} </p>
             <p > {{'SHOP.SP' | translate}}: <span><strong>&euro; {{prod.standard_price}} + {{'SHOP.VAT' | translate}}</strong></span></p>
             <p *ngIf="prod.your_price != 0"> {{'SHOP.YP' | translate}}: <span><strong> &euro; {{prod.your_price}} + VAT</strong></span></p>
-          <!-- *ngFor="let img of images" -->
-          
-        <!-- </div> -->
-       
     </div>
    
     <div>
 
   </div>
     </ion-item>
-    <p class="product-details" *ngIf="prod.productDescriptionDE"> {{prod.productDescriptionDE}}</p>
+    <p class="product-details" *ngIf="prod.productDescription && utility.deviceLang == 'en'"> {{prod.productDescription}}</p>
+    <p class="product-details" *ngIf="prod.productDescriptionDE && utility.deviceLang == 'de'"> {{prod.productDescriptionDE}}</p>
 
   </div>
 

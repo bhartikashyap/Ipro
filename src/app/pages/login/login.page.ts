@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
         .loginUser(params) 
         .then((res: any) => {
           loading.dismiss();
-          if (res.status == 1) {
+          if (res.status) {
             let token = res.jwt;
             let data = res.data;
             this.utility.setStorage(session.AUTH_STATUS, 1);
@@ -113,7 +113,7 @@ export class LoginPage implements OnInit {
               this.utility.goNext(["/tabs/dashboard/"+dash])
             }
           } else {
-            this.utility.presentToast(res.msg,"bottom");
+            this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
           }
         })
         .catch((err: any) => {

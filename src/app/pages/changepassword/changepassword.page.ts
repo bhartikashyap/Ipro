@@ -99,15 +99,15 @@ export class ChangepasswordPage implements OnInit {
           if (res.status == 1) {
             // let token = res.jwt;
             // let data = res.data;
-            this.utility.presentToast("Password changed sucessfully","top");
-            this.utility.presentToast(res.msg,"top");
+            this.utility.presentToast(this.utility.translateText('MSG').passwordChanged,"top");
+            // this.utility.presentToast(res.msg,"top");
             this.form.reset();
             // this.utility.setStorage(session.AUTH_STATUS, 1);
             // this.utility.setStorage(session.AUTH_TOKEN, token);
             // this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
             this.router.navigate(["/tabs/area-of-interest"]);
           } else {
-            this.utility.presentToast(res.msg,"bottom");
+            this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
           }
         })
         .catch((err: any) => {

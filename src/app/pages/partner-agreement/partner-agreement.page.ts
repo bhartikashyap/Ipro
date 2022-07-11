@@ -107,7 +107,7 @@ export class PartnerAgreementPage implements OnInit {
       console.log(result)
       if(result.status){
         console.log(result)
-        this.utility.presentToast("Agreement saved successfully.","top")
+        this.utility.presentToast(this.utility.translateText('MSG').agreementSaved,"top")
         this.utility.goBack();
       }
 
@@ -125,9 +125,12 @@ export class PartnerAgreementPage implements OnInit {
     if (this.selected_option == undefined || this.selected_option == null) {
       this.errorText = "Please select atleast one option.";
     }
-    if (this.taxId == undefined || this.taxId == null) {
-      this.taxIderror = "Please enter tax id.";
+    if(this.selected_option == 'check3'){
+      if (this.taxId == undefined || this.taxId == null) {
+        this.taxIderror = "Please enter tax id.";
+      }
     }
+   
     if (this.errorText == '' && this.taxIderror == '') {
       this.next = !this.next;
     }

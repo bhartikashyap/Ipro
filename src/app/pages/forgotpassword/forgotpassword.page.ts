@@ -68,10 +68,10 @@ export class ForgotpasswordPage implements OnInit {
           loading.dismiss();
           if (res.status) {
             
-            this.utility.presentToast(res.msg,"bottom");
+            this.utility.presentToast(this.utility.translateText('MSG').paswordUpdated,"bottom");
             this.form.reset();
           } else {
-            this.utility.presentToast(res.msg,"bottom");
+            this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
           }
         })
         .catch((err: any) => {

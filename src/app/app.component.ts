@@ -70,12 +70,17 @@ export class AppComponent implements OnInit {
 
       this.platform.pause.subscribe(() => {
         console.log('Pause subscribe was called');
+        
+
         this.utility.setStorage("isAppInstalled", "yes");
 
       });
                       
       this.platform.resume.subscribe(() => {
-        this.launcApp();
+        if(this.utility.upadteApp){
+          this.launcApp();
+
+        }
 
         if (this.utility.userRole == 'Prospect' && this.utility.quetionaireComplete == true) {
           this.utility.checkQuestionaire();
@@ -149,7 +154,6 @@ export class AppComponent implements OnInit {
               handler: async () => {
 
                 this.market.open(packageName);
-            return false;
 
 
               }
@@ -169,23 +173,24 @@ export class AppComponent implements OnInit {
     // let packageName =  await this.appVersion.getPackageName();
 
     this.sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
+    this.getDeviceLanguage();
 
 
     
 
     if (Capacitor.isNativePlatform()) {
-      console.log(await this.appVersion.getAppName());
-      console.log(await this.appVersion.getPackageName());
-      console.log(await this.appVersion.getVersionCode());
-      console.log(await this.appVersion.getVersionNumber());
+    
       
       let storageNotifications: any = await this.utility.getStorage('notification');
       if (storageNotifications) {
         this.utility.removeStorage('notification');
       }
+      setTimeout(() => { 
+        this.launcApp();
+    }, 3000);
+    
     }
 
-    this.getDeviceLanguage();
 
     this.menuCtrl.enable(false);
     let firstLogin = await this.utility.getStorage('firstLogin');
@@ -200,7 +205,7 @@ export class AppComponent implements OnInit {
 
     let dashboard = await this.utility.changeMenu();
     console.log(dashboard);
-    // setTimeout(() => {
+     setTimeout(() => {
       console.log(dashboard);
      
       if (this.sessionRes) {
@@ -208,9 +213,9 @@ export class AppComponent implements OnInit {
       } else {
         this.router.navigate(landingPage);
       }
-    this.launcApp();
+     
 
-    // }, 1000);
+     }, 1000);
   }
 
 

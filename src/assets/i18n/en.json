@@ -413,7 +413,19 @@
         "zipcode": "Enter the ZIP code.",
         "invalidZip": "Invalid ZIP code,still product has been added to CART",
         "productadded": "Product added to CART",
-        "activationCode": "If you don't have an activation code please enter 0"
+        "activationCode": "If you don't have an activation code please enter 1",
+        "someissueInNetwork":"Something went wrong.",
+        "language":"Language changed",
+        "defaultDiscount":"Default discount updated successfully.",
+        "productAdded":"Product Added",
+        "productCancelled":"Product cancelled",
+        "productSubsc":"Product Subscribed",
+        "productRemoved":"Product removed from cart",
+        "memberPlace":"Member placed successfully.",
+        "paswordUpdated":"Password updated.",
+        "paymentIntiated":"Paymnet Intiated please wait.",
+        "passwordChanged":"Password changed sucessfully",
+        "agreementSaved":"Agreement saved successfully."
     },
     "MENU":{
         "menu1":"Dashboard",

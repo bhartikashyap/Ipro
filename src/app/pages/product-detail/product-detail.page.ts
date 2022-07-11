@@ -85,7 +85,7 @@ slideOpts = {
     loading.dismiss();
     if(response.status == 1){
       this.detail["disableCart"]=false;
-      this.utility.presentToast("Product removed from cart","top");
+      this.utility.presentToast(this.utility.translateText('MSG').productRemoved,"top");
        this.utility.getCart('cart');
     }
    }

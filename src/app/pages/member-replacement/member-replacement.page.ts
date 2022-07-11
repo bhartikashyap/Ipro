@@ -167,8 +167,8 @@ export class MemberReplacementPage implements OnInit {
     }
     let response: any = await this.apiSer.placeMember(placeMem);
     loading.dismiss();
-    if (response.status == 1) {
-      this.utilSer.presentToast("Member placed successfully.", "top");
+    if (response.status) {
+      this.utilSer.presentToast(this.utilSer.translateText('MSG').memberPlace, "top");
       this.getPlacementTree('tree', '', memberId);
       // if(this.searchItem != ''){
       //   this.getPlacementTree('search','');
@@ -179,7 +179,7 @@ export class MemberReplacementPage implements OnInit {
       //this.placementTree = response.data
     }
     else {
-      this.utilSer.presentToast(response.msg, "top");
+      this.utilSer.presentToast(this.utilSer.translateText('MSG').someissueInNetwork, "top");
     }
   }
 
@@ -193,13 +193,13 @@ export class MemberReplacementPage implements OnInit {
       }
       let response: any = await this.apiSer.getLowLevel(lowest);
       loading.dismiss();
-      if (response.status == 1) {
+      if (response.status) {
         this.placementTree = response;
         /// this.utilSer.presentToast("Member placed successfully.","top");
 
       }
       else {
-        this.utilSer.presentToast(response.msg, "top");
+        this.utilSer.presentToast(this.utilSer.translateText('MSG').someissueInNetwork, "top");
       }
 
     }

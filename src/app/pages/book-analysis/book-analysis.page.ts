@@ -696,6 +696,7 @@ export class BookAnalysisPage implements OnInit {
 
 
       let res: any = await this.apiService.cartPayment(params);
+      this.utility.upadteApp = false;
 
       if (res.status) {
 
@@ -712,7 +713,7 @@ export class BookAnalysisPage implements OnInit {
 
       }
       else {
-        this.utility.presentToast(res.msg, "bottom");
+        this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork, "bottom");
         return false;
       }
 
@@ -828,9 +829,10 @@ export class BookAnalysisPage implements OnInit {
       console.log(params, "finalData");
       let data: any = await this.apiService.buyNow(params);
       if (data.status == 1) {
+        this.utility.upadteApp = true;
         this.paymentInti = false;
         this.utility.cartNo =0;
-        this.utility.presentToast(result.msg, "bottom");
+        this.utility.presentToast(this.utility.translateText('MSG').paymentIntiated, "bottom");
         //this.navController.
         if (data.redirect_to_questionnaire.toLowerCase() == 'no') {
           let result: any = await this.apiService.getProfile();
@@ -852,7 +854,7 @@ export class BookAnalysisPage implements OnInit {
         }
 
       } else {
-        this.utility.presentToast(result.msg, "bottom");
+        this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork, "bottom");
         return false;
       }
     }

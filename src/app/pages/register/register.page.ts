@@ -195,10 +195,10 @@ export class RegisterPage implements OnInit {
             this.router.navigate(["/tabs/area-of-interest"]);
           } else {
             if(res.msg == 'Sponsor does not exist'){
-              this.utility.presentAlert('Alert','', [],res.msg+this.utility.translateText('MSG').activationCode, [this.utility.translateText("MODALS").BUTTONS.OK])
+              this.utility.presentAlert('Alert','', [],this.utility.translateText('MSG').activationCode, [this.utility.translateText("MODALS").BUTTONS.OK])
             }
             else{
-               this.utility.presentToast(res.msg,"bottom");
+               this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
               
             }
           }
@@ -217,7 +217,7 @@ export class RegisterPage implements OnInit {
       firstName: ["", [Validators.required, Validators.maxLength(100)]],
       lastName: ["", [Validators.required, Validators.maxLength(100)]],
       honor: ["", []],
-      sponsorId: ["", [Validators.required, Validators.maxLength(6), Validators.minLength(4)]],
+      sponsorId: ["", [Validators.required, Validators.maxLength(6), Validators.minLength(1)]],
       email: ["", [Validators.required, Validators.pattern(pattern.email)]],
       language: ["", [Validators.required]],
       country: ["", [Validators.required]],
@@ -242,7 +242,7 @@ export class RegisterPage implements OnInit {
       sponsorId: [
         { type: "required", message: messages.required },
         { type: "maxlength", message: message.maxLength(6,messages.maxLength,messages.characters) },
-        { type: "minlength", message: message.minLength(4,messages.minLength,messages.characters) },
+        { type: "minlength", message: message.minLength(1,messages.minLength,messages.characters) },
       ],
       email: [
         { type: "required", message: messages.required },
