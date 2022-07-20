@@ -6,7 +6,8 @@
   "plugins": {
     "SplashScreen": {
       "launchAutoHide": false,
-      "showSpinner": false
+      "showSpinner": false,
+      "androidScaleType": "CENTER_CROP"
     },
     "PushNotifications": {
       "presentationOptions": [
