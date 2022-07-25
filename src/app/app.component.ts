@@ -19,7 +19,7 @@ import { EnvironmentService } from 'src/app/services/environment.service';
 import { ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserModalPage } from '../app/components/user-modal/user-modal.page';
-
+const { capacitorSplashScreen } = Plugins;
 //  import { Events } from '@ionic/angular';
 import {
   ActionPerformed,
@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
     private appVersion: AppVersion,
     private market: Market
   ) {
+   
     this.videoSer.videoType = this.envr.videosEnglish;
     if (Capacitor.isNativePlatform()) {
       this.fcmSer.pushRegister();
@@ -116,7 +117,7 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       SplashScreen.hide();
-    }, 1000);
+    }, 3000);
   }
 
   async launcApp() {
@@ -175,7 +176,7 @@ export class AppComponent implements OnInit {
     this.sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
     this.getDeviceLanguage();
 
-
+     this.router.navigate(["/splash"]);
     
 
     if (Capacitor.isNativePlatform()) {
@@ -206,7 +207,7 @@ export class AppComponent implements OnInit {
     let dashboard = await this.utility.changeMenu();
     console.log(dashboard);
      setTimeout(() => {
-      console.log(dashboard);
+      console.log(dashboard,"dashboard");
      
       if (this.sessionRes) {
         this.router.navigate([dashboard]);
@@ -215,7 +216,7 @@ export class AppComponent implements OnInit {
       }
      
 
-     }, 1000);
+     }, 3000);
   }
 
 

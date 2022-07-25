@@ -15,14 +15,14 @@ export class SplashPage implements OnInit {
 
   async ngOnInit() {
     this.menuCtrl.enable(false);
-    let sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
-    setTimeout(() => {
-      if (sessionRes) {
-        this.router.navigate(["/tabs/area-of-interest"]);
-      } else {
-        this.router.navigate(['/login']);
-      }
-    }, 1000);
+    //let sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
+    // setTimeout(() => {
+    //   if (sessionRes) {
+    //     this.router.navigate(["/tabs/area-of-interest"]);
+    //   } else {
+    //     this.router.navigate(['/login']);
+    //   }
+    // }, 1000);
   }
 
 }

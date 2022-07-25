@@ -5,7 +5,9 @@
 	"bundledWebRuntime": false,
 	"plugins": {
 		"SplashScreen": {
-			"launchAutoHide": false,
+			"launchShowDuration": 0,
+			"launchAutoHide": true,
+			"backgroundColor": "#041934",
 			"showSpinner": false
 		},
 		"PushNotifications": {
