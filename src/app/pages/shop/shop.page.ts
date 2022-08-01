@@ -47,8 +47,12 @@ export class ShopPage implements OnInit {
        loading.dismiss();
         // console.log(res);
         this.allProducts = res.data;
+
         this.allProducts.map((item,index)=>{
-          console.log(item.packageId,index)
+          console.log(item.packageId,index);
+          item["avail_runtime_default"] = item.avail_runtime[Object.keys(item.avail_runtime)[0]];
+          console.log(item.avail_runtime[Object.keys(item.avail_runtime)[0]])
+          // item.productDescription =  item.productDescription+" <br> hjdscbhjdsbc <br>hjsbgxhsvsv<br>hjbhjcbdsc"
        })
      })
   }

@@ -7,7 +7,7 @@
       <ion-header>
         <ion-toolbar style="--background:#fff !important">
 
-          <ion-title slot="end" (click)="ionModelOpen=false;slideOpts['zoom']={}"> <ion-icon name="close"></ion-icon></ion-title>
+             <ion-icon slot="end" name="close-circle" (click)="ionModelOpen=false;slideOpts['zoom']={}"></ion-icon>
   </ion-toolbar>
 </ion-header>
       <ion-content>
@@ -75,12 +75,12 @@
 <h1 class="price"><strong> &euro; {{detail.changedPrice}} + {{'CART.VAT' | translate}}</strong></h1>
 
 <div class="content-wrap" *ngIf="!detail.disableCart">
-  <ion-button class="btn" color="danger" expand="block" disabled="{{detail.disableCart}}" (click)="addTobasket()">
+  <ion-button class="btn" color="danger" expand="block" [disabled]="detail.disableCart" (click)="addTobasket()">
     {{'PRODUCT.ADDTOCART' | translate}}
   </ion-button>
 </div>
-<div class="content-wrap" *ngIf="detail.disableCart">
-  <ion-button class="btn" color="danger" expand="block" (click)="removeItem()">
+<div class="content-wrap" >
+  <ion-button class="btn" color="danger" expand="block" (click)="removeItem()" [disabled]="detail.make_disable == 'yes'">
     {{'PRODUCT.REMOVE' | translate}}
   </ion-button>
 </div>

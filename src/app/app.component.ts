@@ -14,6 +14,7 @@ import { Capacitor } from '@capacitor/core';
 import { Market } from '@ionic-native/market/ngx';
 const { App } = Plugins;
 import { Platform } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar';
 import { VideoService } from './services/video.service';
 import { EnvironmentService } from 'src/app/services/environment.service';
 import { ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
@@ -63,6 +64,7 @@ export class AppComponent implements OnInit {
     private screenOrientation: ScreenOrientation,
     private appVersion: AppVersion,
     private market: Market
+    // private status: StatusBar
   ) {
    
     this.videoSer.videoType = this.envr.videosEnglish;
@@ -116,6 +118,7 @@ export class AppComponent implements OnInit {
     }
 
     setTimeout(() => {
+      // statusBar.backgroundColorByHexString('#457492');
       SplashScreen.hide();
     }, 3000);
   }
@@ -176,7 +179,7 @@ export class AppComponent implements OnInit {
     this.sessionRes = await this.utility.getStorage(session.AUTH_STATUS);
     this.getDeviceLanguage();
 
-     this.router.navigate(["/splash"]);
+    //  this.router.navigate(["/splash"]);
     
 
     if (Capacitor.isNativePlatform()) {
@@ -216,7 +219,7 @@ export class AppComponent implements OnInit {
       }
      
 
-     }, 3000);
+     }, 1000);
   }
 
 

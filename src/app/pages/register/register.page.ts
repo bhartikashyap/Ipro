@@ -173,11 +173,14 @@ export class RegisterPage implements OnInit {
     console.log(this.form.valid)
     if (this.form.valid) {
       this.submitted = false;
+      if(this.form.get("sponsorId").value == '0'){
+        this.form.get("sponsorId").setValue("1");
+      }
       let params: any = this.form.getRawValue();
       let loading = await this.utility.presentLoading();
       params.notificationToken =  this.utility.FCMToken;
       delete params.agree;
-      // console.log(params);
+       console.log(params);
       this.apiService
         .registerUser(params)
         .then((res: any) => {
@@ -198,7 +201,7 @@ export class RegisterPage implements OnInit {
               this.utility.presentAlert('Alert','', [],this.utility.translateText('MSG').activationCode, [this.utility.translateText("MODALS").BUTTONS.OK])
             }
             else{
-               this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
+               this.utility.presentToast(res.msg,"top");
               
             }
           }

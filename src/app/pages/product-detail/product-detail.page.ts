@@ -43,7 +43,8 @@ slideOpts = {
   async getProd(){
     this.detail = '';
     this.detail = JSON.parse(await this.utility.getStorage('Prod'));
-    this.detail["availTymSelected"] = "1";
+    this.detail["availTymSelected"] =   Object.keys( this.detail.avail_runtime)[0];
+    console.log(this.detail["availTymSelected"] ,this.detail.avail_runtime);
     this.changeDuration("");
 
     // console.log( this.detail);

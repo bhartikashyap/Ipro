@@ -101,3 +101,32 @@ ion-label{
     border-radius: 7px !important;
     height: 15px !important;
 }
+.sign{
+    padding: 10px;
+}
+.question{
+    display:flex;
+    padding-left:20px
+}
+.sign-error{
+    padding-left:20px;
+}
+.next{
+    width: 100%;
+    text-align: center;
+}
+
+.error-text{
+    color: red;
+    padding: 5px 10px;
+}
+.partner-warn{
+    border: solid #000 2px;
+      padding: 15%;
+      font-size: 18px;
+}
+
+.partner-frame{
+    height:400px;border: solid 1px #ccc;
+        border-radius: 2px;
+}
