@@ -5,9 +5,11 @@
   <h1>{{'IPRO_PARTNERSHIP.TITLE' | translate}}</h1>
   <div id="cincopa_16381961901702" style="width: 90% !important;"></div>
   <div class="content-wrap">
-    <p class="mb30">{{dashboardData[1]?.firstEN}}</p>
+    <p class="mb30" *ngIf="utility.deviceLang == 'de'"  innerHTML="{{dashboardData[1]?.firstDE}}"></p>
+  <p class="mb30" *ngIf="utility.deviceLang == 'en'"  innerHTML="{{dashboardData[1]?.firstEN}}"></p>
     <ion-button class="btn" color="danger" expand="block" (click)="goNext()"> {{'IPRO_PARTNERSHIP.BECOME_PARTNER' | translate}}
     </ion-button> 
-    <p class="mb30">{{dashboardData[1]?.secondEN}}</p>
+    <p class="mb30" *ngIf="utility.deviceLang == 'de'"  innerHTML="{{dashboardData[1]?.secondDE}}"></p>
+    <p class="mb30" *ngIf="utility.deviceLang == 'en'" innerHTML="{{dashboardData[1]?.secondEN}}"></p>
   </div>
 </ion-content>

@@ -8,6 +8,7 @@ import { VideoService } from 'src/app/services/video.service';
 import { ApiService } from 'src/app/services/api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ChangeDetectorRef,ChangeDetectionStrategy, Component, HostListener, OnInit,SimpleChanges } from '@angular/core';
+import { CheckZipPage } from '../check-zip/check-zip.page';
 
 declare let _cpmp: any;
 declare let cincopa: any;
@@ -86,7 +87,7 @@ export class PersonalizedMicronutritionPage implements OnInit {
   }
 
   ngOnInit() {
-
+  console.log( this.envr)
     this.platform.ready().then(async () => {
       console.log("Width: " + this.platform.width());
       this.width = this.platform.width();
@@ -96,14 +97,7 @@ export class PersonalizedMicronutritionPage implements OnInit {
     });
   }
  
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
-  }
-
-  
-
-
-
+ 
  
  async saveVideoDur() {
   this.videoSer.saveVideoDur( this.videoSer.videoId)
@@ -117,7 +111,8 @@ export class PersonalizedMicronutritionPage implements OnInit {
   }
 
   openBookingAnalysis() {
-    this.utility.goNext("/tabs/check-zip")
+    // this.utility.goNext("/tabs/check-zip");
+    this.utility.openPopup(CheckZipPage, "selectedTab", 'check-zip', true);
   }
 
 }

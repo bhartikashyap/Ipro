@@ -55,6 +55,12 @@ export class HeaderComponent implements OnInit {
     //  console.log(this.route.url.indexOf('area-of-interest'))
     //  if(this.utilSer.userRole == 'Prospect'){
     //   if(this.route.url.indexOf('dashboard') <= -1 || this.route.url.indexOf('area-of-interest') <= -1){
+   
+    if(this.utilSer.ismodalActive){
+      this.utilSer.closeModal();
+      this.utilSer.ismodalActive = false;
+      return;
+    }
     this.utilSer.upadteApp =true;  
     this.navCtrl.back();
   

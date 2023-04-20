@@ -24,7 +24,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
+@import "~animate.css/animate.css";
 * {
   //font-family: "Poppins", sans-serif !important;
   //font-family: 'UniNeue' !important;
@@ -97,7 +97,10 @@ ion-content {
   --padding-bottom: 60px;
   --padding-end: 10px;
   --padding-start: 10px;
-  --padding-top: 60px;
+  --padding-top: 65px;
+}
+ion-content.ios{
+  --padding-top: 90px !important;
 }
 
 ion-item {
@@ -165,12 +168,13 @@ ion-modal {
 }
 
 ion-modal.discount {
-  --min-height: 375px !important;
+  --min-height: 300px !important;
   --width: 80% !important;
   --height: auto;
 
   ion-content {
-    --padding-bottom: 30px
+    --padding-bottom: 30px;
+    --padding-top: 50px !important;
   }
 
   ion-header {
@@ -194,6 +198,10 @@ ion-modal.discount {
     --border-radius: 5px;
   }
 }
+
+
+
+
 
 ion-modal.modal-class {
   --width: 80% !important;
@@ -223,7 +231,8 @@ ion-modal.sponsor-class {
   --height: auto;
 
   ion-content {
-    --padding-bottom: 30px
+    --padding-bottom: 30px !important;
+    --padding-top: 50px !important;
   }
 
   ion-header {
@@ -253,12 +262,12 @@ ion-modal.sponsor-class {
     ion-modal.modal-question{
 
       --width: 90% !important;
-      --min-height: 500px;
+      --min-height:650px;
       --height: auto;
     
       ion-content {
         --padding-bottom: 30px;
-        --padding-top: 20px
+        --padding-top: 20px !important;
       }
       ion-item{
         display: inline !important;
@@ -276,7 +285,8 @@ ion-modal.modal-member-place {
   --height: auto;
 
   ion-content {
-    --padding-bottom: 30px
+    --padding-bottom: 30px !important;
+    --padding-top: 50px !important;
   }
 
   ion-header {
@@ -311,7 +321,8 @@ ion-modal.reconfirm {
   --height: auto;
 
   ion-content {
-    --padding-bottom: 30px
+    --padding-bottom: 30px !important;
+    --padding-top: 50px !important;
   }
 
   ion-header {
@@ -908,6 +919,35 @@ input[type="submit"].btn-block {
 .fade {
   transition: opacity 0.15s linear;
 }
+
+ion-item-group{
+  padding-top:50px !important;
+}
+
+app-header .header-ios ion-toolbar:first-of-type {
+  padding-top: 40px !important;
+  }
+ 
+.action-sheet-button-inner {
+color:#000 !important
+}
+
+ion-modal.check-zip {
+  --width: 95% !important;
+  --min-height: 320px;
+  --height: auto;
+
+  ion-content {
+    --padding-bottom: 30px !important;
+    --padding-top: 50px !important;
+  }
+  ion-item{
+    display: inline !important;
+  }
+  ion-item div.input-wrapper{
+    display: inline !important;
+  }
+}
  
 // .mejs-video-jump-left button{
 //   // color: transparent;
@@ -915,3 +955,7 @@ input[type="submit"].btn-block {
 // .mejs-video-jump-right button{
 //   // color: transparent;
 // }
+
+ion-button.ion-color-danger {
+ // --ion-color-base: radial-gradient(red,#eb8844) !important;
+}

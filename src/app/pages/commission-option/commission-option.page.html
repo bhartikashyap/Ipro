@@ -54,11 +54,11 @@
             [ngClass]="{'green': ibanCheck == 'pass', 'red': ibanCheck == 'fail','blue': ibanCheck == 'notchecked'}">
             {{'PAYMENT_OPTON.validate' | translate}}</p> -->
 
-          <ion-item lines="none">
+          <!-- <ion-item lines="none" >
 
-            <span style="font-size:12px;">{{'PAYMENT_OPTON.Bic' | translate}}:{{cardPaymentoption.bic!= '' ?cardPaymentoption.bic:'--'}}</span>
+            <span style="font-size:12px;" *ngIf="cardPaymentoption?.bic != '' ">{{'PAYMENT_OPTON.Bic' | translate}}:{{cardPaymentoption.bic!= '' ?cardPaymentoption.bic:'--'}}</span>
 
-          </ion-item>
+          </ion-item> -->
           <p style="font-size:12px;" class="red">{{erroriban}}</p>
 
 
@@ -71,7 +71,7 @@
               {{'PAYMENT_OPTON.btns.save' | translate}}
             </ion-button>
             <p style="color: #666666;font-size:12px">{{'PAYMENT_OPTON.freeaccount' | translate}}</p>
-            <ion-button class="card-btn" color="danger" expand="" (click)="savePayment('ibanss')">
+            <ion-button class="card-btn" color="danger" expand="" (click)="getOnthelink()">
               {{'PAYMENT_OPTON.btns.getone' | translate}}
             </ion-button>
           </div>

@@ -13,13 +13,15 @@
   <form *ngIf="products_data.length > 0">
     <ion-row>
       <ion-col>
-        <ion-input type="number" id="promocode" placeholder="{{'CART.PROMO' | translate}}" autocapitalize="off">
+        <ion-input type="text" [(ngModel)]="promoCode" name="promoCode" id="promocode" placeholder="{{'CART.PROMO' | translate}}" autocapitalize="off">
       </ion-input>
     </ion-col>
       <ion-col>
-        <ion-button (click)="closeModal()" class="btn" color="danger" expand="block">{{'CART.APPLY' | translate}}</ion-button>
+        <ion-button (click)="checkPromoCode(promoCode)" class="btn" color="danger" expand="block">{{'CART.APPLY' | translate}}</ion-button>
       </ion-col>
-    
+      
+      <div  class="error-message " *ngIf="promoCodeError != ''">{{'MSG.promocodeerror' | translate}}</div>
+      
     </ion-row>
   </form>
   <div class="form-cart" *ngIf="products_data.length > 0">
@@ -45,7 +47,7 @@
        
         <ion-col class="formcart-value admssion-fee-value">
          
-          {{item?.total ? item?.total : 0}} €
+          {{utility.convertBacktoString(item?.total ? item?.total : 0,2,',','.')  }}  &euro;
          
 
         </ion-col>
@@ -55,20 +57,20 @@
    
       <ion-row class="vat-box-wrap">
         <ion-col class="formcart-title vat-title">{{'CART.DELIVERYCHARGES' | translate}}</ion-col>
-        <ion-col class="formcart-value vat-value">{{totalAmt?.deliveryCharges ? totalAmt?.deliveryCharges : 0}} €</ion-col>
+        <ion-col class="formcart-value vat-value">{{utility.convertBacktoString(totalAmt?.deliveryCharges ? totalAmt?.deliveryCharges:0,2,',','.')  }} &euro;</ion-col>
       </ion-row>
     <ion-row class="total net-box-wrap">
       <ion-col class="formcart-title total net-title"> {{'CART.TotalNetAmount' | translate}}</ion-col>
-      <ion-col class="formcart-value total net-value">{{totalAmt?.totalNet ? totalAmt?.totalNet : 0}} €</ion-col>
+      <ion-col class="formcart-value total net-value">{{utility.convertBacktoString(totalAmt?.totalNet ? totalAmt?.totalNet:0,2,',','.')}} &euro;</ion-col>
     </ion-row>
     <ion-row class="vat-box-wrap">
       <ion-col class="formcart-title vat-title">{{'CART.VAT' | translate}}</ion-col>
-      <ion-col class="formcart-value vat-value">{{totalAmt?.totalVat ? totalAmt?.totalVat : 0}} €</ion-col>
+      <ion-col class="formcart-value vat-value">{{utility.convertBacktoString(totalAmt?.totalVat ? totalAmt?.totalVat:0,2,',','.') }}  &euro;</ion-col>
     </ion-row>
    
     <ion-row class="total-box-wrap">
       <ion-col class="formcart-title total-title">{{'CART.Total' | translate}}</ion-col>
-      <ion-col class="formcart-value total-value">{{totalAmt?.totalAmount ? totalAmt?.totalAmount : 0}} €</ion-col>
+      <ion-col class="formcart-value total-value">{{utility.convertBacktoString(totalAmt?.totalAmount ? totalAmt?.totalAmount:0,2,',','.') }} &euro;</ion-col>
     </ion-row>
 
     <ion-item lines="none" class="form-group ion-no-padding">

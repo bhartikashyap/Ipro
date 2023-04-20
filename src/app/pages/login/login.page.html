@@ -1,6 +1,8 @@
 <ion-content>
+  <!-- <div *ngIf="val <= 0" class="animate__animated  animate__faster"> -->
+
   <div class="login-img-layer">
-    <img src="assets/img/logo.png" />
+    <img src="assets/img/logo.svg" />
   </div>
   <div class="login-header">
     <h1>{{'LOGIN.TITLE' | translate}}</h1>
@@ -12,7 +14,7 @@
         type="text"
         id="email"
         formControlName="email"
-        placeholder="{{'LOGIN.EMAIL' | translate}}"
+        placeholder="{{'LOGIN.EMAIL' | translate}}/{{'LOGIN.USERNAME' | translate}}"
         autocapitalize="off"
       >
       </ion-input>
@@ -69,8 +71,10 @@
     <a class="forgot-password" [routerLink]="['/forgotpassword']"
       >{{'LOGIN.FORGOT_PASSWORD' | translate}}</a
     >
-    <ion-button class="btn" (click)="login()" color="danger" expand="block"
+    <ion-button  class="btn "  (click)="login()" color="danger" expand="block"
       >{{'LOGIN.TITLE' | translate}}
+
+      <!-- [ngClass]="loginAnimation"  -->
     </ion-button>
     <a class="dont-know"
       >{{'LOGIN.DONT_HAVE_ACCOUNT' | translate}}
@@ -78,8 +82,21 @@
         >{{'LOGIN.SIGNUP' | translate}}</span
       > -->
     </a>
+   
     <ion-button class="btn" (click)="signup()" color="danger" expand="block"
       >{{'LOGIN.SIGNUP' | translate}}
     </ion-button>
+    <!-- <ion-button  class="btn " (click)="animation()" color="danger"  expand="block"
+    >Go to Animation
+  </ion-button> -->
   </form>
+
+  <!-- </div> -->
+ 
 </ion-content>
+<!-- <ion-footer>
+  <div class="splash-img-layer" [ngClass]="customClas1">
+    <img [ngClass]="customClas"  src="assets/img/animation/logo1.png" >
+
+  </div>
+</ion-footer> -->

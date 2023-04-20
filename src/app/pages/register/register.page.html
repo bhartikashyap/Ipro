@@ -6,7 +6,7 @@
     <ion-button expand="block" color="danger" (click)="closeVideoPlayer()">Close Video Player</ion-button>
   </div> -->
   <div class="register-img-layer">
-    <img src="assets/img/logo.png" />
+    <img src="assets/img/logo.svg" />
     
   </div>
   <div style="margin:15px !important;">
@@ -53,7 +53,7 @@
        <ng-template ionicSelectableItemTemplate let-con="item" >
         <span
         class="flag-icon flag-icon-{{ con.countryCode.toLowerCase() }}"
-        style="font-size: 17px; top: 0px"
+        style="font-size: 15px; top: 0px;padding-right: 30px;"
       ></span>
         {{con.countryName}} 
       </ng-template>
@@ -304,16 +304,32 @@
         </div>
       </div>
      
-    
-    <ion-item lines="none" class="form-group ion-no-padding">
-      <ion-checkbox
-        slot="start"
-        mode="md"
-        formControlName="agree"
-        (ionChange)="addPopUp()"
-      ></ion-checkbox>
-      <ion-label class="ion-text-wrap">{{'REGISTER.AGREE' | translate}}</ion-label>
-    </ion-item>
+    <div>
+
+      <ion-row>
+        <ion-col col-1 style="margin: 0px;padding:0px;">
+            <ion-item lines="none" class="form-group ion-no-padding">
+              <ion-checkbox
+              slot="start"
+              mode="md"
+              formControlName="agree"
+              (ionChange)="addPopUp()"
+              class="form-group ion-no-padding"
+           ></ion-checkbox>
+
+            </ion-item>
+        </ion-col>
+        <ion-col col-11 style="margin-left:-72%">
+
+          <ion-item lines="none" class="form-group ion-no-padding"> 
+        
+          <ion-label class="ion-text-wrap">{{'REGISTER.AGREE' | translate}}  <span class="tnc"  (click)="utility.openPdfLinks(utility.pdfLink[2].link,'Term & Condition')">{{'CART.PP' | translate}}</span> </ion-label>
+
+        </ion-item>
+        </ion-col>
+       
+    </ion-row>
+   
       <div *ngFor="let validation of validationMessage.agree">
         <div
           *ngIf="submitted && formControls['agree'].errors"
@@ -327,7 +343,7 @@
           </div>
         </div>
       </div>
-   
+    </div>
 
     <ion-button class="btn" color="danger" expand="block" (click)="submit()"
       >{{'REGISTER.REGISTER_BTN' | translate}}

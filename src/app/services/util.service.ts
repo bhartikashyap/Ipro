@@ -16,8 +16,9 @@ import { Browser } from '@capacitor/browser';
 import { UserModalPage } from '../components/user-modal/user-modal.page';
 import { DomSanitizer } from '@angular/platform-browser';
 import { session } from 'src/app/utility/message';
-import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Platform } from '@ionic/angular';
+import { es } from 'date-fns/locale';
 @Injectable({
   providedIn: "root",
 })
@@ -37,8 +38,11 @@ export class UtilService {
   memberPlacedUuserId; any;
   pdfLink: any = this.envr.pdfEnglish;;
   pdf: any;
-  paymnetType:any='one';
-  upadteApp:any=true;
+  paymnetType: any = 'one';
+  upadteApp: any = true;
+  ismodalActive: boolean = false;
+  paymnetCompleted: boolean = true;
+  public getLastPayments:any=[];
   public memberPage = [
 
     { title: 'Dashboard', url: '/tabs/dashboard/defaultDash', icon: 'grid-outline', subPages: null, role: "Member", name: '', menu: "menu1" },
@@ -54,13 +58,15 @@ export class UtilService {
     },
     {
       title: 'Settings', menu: "menu8", url: "", icon: 'settings-outline', subPages: [
-        { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
-        { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
-        { title1: 'Change Dashboard', menu: "menu11", id: "dashboard", component: '', name: 'dashboard', url: "", },
         { title1: 'Profile', menu: "menu22", url: "/tabs/profile", id: "nested-button012", component: '', name: 'about3' },
-        { title1: 'Set Default Discount', menu: "menu12", id: "discount", component: '', name: 'discount', url: "" },
+        { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
+        { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
+        { title1: 'Change Dashboard', menu: "menu11", id: "dashboard", component: '', name: 'dashboard', url: "", },
         { title1: 'Abo Payment Options', menu: "menu13", url: "/tabs/paymnet-option", id: "nested-button01", component: '', name: 'about2' },
         { title1: 'Commission Payment ', menu: "menu14", url: "/tabs/commission-option", id: "nested-button011", component: '', name: 'about21' },
+        { title1: 'Set Default Discount', menu: "menu12", id: "discount", component: '', name: 'discount', url: "" },
+        { title1: 'Support ', menu: "menu23", url: "/tabs/support", id: "nested-button011", component: '', name: 'about21' },
+
       ], name: ''
     },
 
@@ -80,15 +86,17 @@ export class UtilService {
     },
     { title: 'Logout', menu: "menu21", url: "", icon: 'log-out-outline', subPages: null, name: 'logout' }
   ];
-  
+
   public prospectPage = [
     { title: 'Dashboard', menu: "menu1", url: '/tabs/area-of-interest', icon: 'grid-outline', subPages: null, role: "Prospect", name: '' },
     { title: 'My Sponser', menu: "menu2", url: "", icon: 'person-circle-outline', subPages: null, role: "Prospect", name: 'sponsor' },
     {
       title: 'Settings', menu: "menu8", url: "", icon: 'settings-outline', subPages: [
-        { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
-        { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
         { title1: 'Profile', menu: "menu22", url: "/tabs/profile", id: "nested-button012", component: '', name: 'about3' },
+        { title1: 'Change Language', menu: "menu10", id: "language", component: '', name: 'language', url: "" },
+
+        { title1: 'Change Password', menu: "menu9", id: "nested-button1", component: '', name: 'about1', url: "/tabs/changepassword" },
+        { title1: 'Support ', menu: "menu23", url: "/tabs/support", id: "nested-button011", component: '', name: 'about21' },
       ], name: ''
     },
     {
@@ -108,23 +116,23 @@ export class UtilService {
     { title: 'Logout', menu: "menu21", url: '', icon: 'log-out-outline', subPages: null, name: 'logout' }
   ];
   public appPages = this.prospectPage;
-  // options: InAppBrowserOptions = {
-  //   location: 'yes',//Or 'no' 
-  //   hidden: 'no', //Or  'yes'
-  //   clearcache: 'yes',
-  //   clearsessioncache: 'yes',
-  //   zoom: 'yes',//Android only ,shows browser zoom controls 
-  //   hardwareback: 'yes',
-  //   mediaPlaybackRequiresUserAction: 'no',
-  //   shouldPauseOnSuspend: 'no', //Android only 
-  //   closebuttoncaption: 'Close', //iOS only
-  //   disallowoverscroll: 'no', //iOS only 
-  //   toolbar: 'yes', //iOS only 
-  //   enableViewportScale: 'no', //iOS only 
-  //   allowInlineMediaPlayback: 'no',//iOS only 
-  //   presentationstyle: 'pagesheet',//iOS only 
-  //   fullscreen: 'yes',//Windows only    
-  // };
+  options: InAppBrowserOptions = {
+    location: 'yes',//Or 'no' 
+    hidden: 'no', //Or  'yes'
+    clearcache: 'yes',
+    clearsessioncache: 'yes',
+    zoom: 'yes',//Android only ,shows browser zoom controls 
+    hardwareback: 'yes',
+    mediaPlaybackRequiresUserAction: 'no',
+    shouldPauseOnSuspend: 'no', //Android only 
+    closebuttoncaption: 'Close', //iOS only
+    disallowoverscroll: 'no', //iOS only 
+    toolbar: 'yes', //iOS only 
+    enableViewportScale: 'no', //iOS only 
+    allowInlineMediaPlayback: 'no',//iOS only 
+    presentationstyle: 'pagesheet',//iOS only 
+    fullscreen: 'yes',//Windows only    
+  };
   openPage: any;
 
   constructor(
@@ -155,7 +163,7 @@ export class UtilService {
     const toast = await this.toastController.create({
       message: message,
       duration: 3000,
-      position:  'top'
+      position: 'top'
     });
     // postion ? postion :
     toast.present();
@@ -175,14 +183,39 @@ export class UtilService {
 
   }
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: "Please wait...",
-      translucent: true,
-      cssClass: "custom-class custom-loading",
-    });
-    loading.present();
-    return await loading;
+  async presentLoading(requiredLoader: any = '') {
+
+    if (requiredLoader == 'yes') {
+
+      const loading = await this.loadingController.create({
+        message: "Please wait...",
+        translucent: true,
+        cssClass: "custom-class custom-loading",
+
+      });
+      loading.present();
+      return await loading;
+
+
+
+    }
+
+
+
+
+    else {
+
+      const loading = await this.loadingController.create({
+        //  message: "Please wait...",
+        // translucent: true,
+        // cssClass: "custom-class custom-loading",
+      });
+      // loading.present();
+      return await loading;
+
+
+    }
+
   }
 
   setStorage = async (key: string, data: any) => {
@@ -253,36 +286,27 @@ export class UtilService {
   }, arrayList, columName) {
     let filteredData = [];
     filteredData = arrayList.filter(data => {
-      return data[columName].toLowerCase().indexOf(event.text.toLowerCase()) !== -1
+      console.log(data[columName].toLowerCase().includes(event.text.toLowerCase()));
+      return data[columName].toLowerCase().includes(event.text.toLowerCase());
+      // return data[columName].toLowerCase().indexOf(event.text.toLowerCase()) !== -1
     });
+    console.log(filteredData)
     event.component.items = filteredData;
   }
 
   goNext(url: any) {
-     this.upadteApp = true;
+    this.upadteApp = true;
     this.navCtrl.navigateForward(url)
   }
   openPdfLinks(pdfUrl, pdfName) {
     console.log(pdfUrl)
     this.pdf = this.domSanit.bypassSecurityTrustResourceUrl(pdfUrl)
-    console.log(this.pdf)
-    // if (pdfName == '') {
-      this.openPopup(UserModalPage, 'pdf', '', true);
-      // this.document
-      // this.document.viewDocument(pdfUrl, 'application/pdf', {title: pdfName});
-    // }
-    // else {
-      // this.document.viewDocument(pdfUrl, 'application/pdf', {title: pdfName});
-      // if (this.platform.is('android')) {
-      //   const browser = this.theInAppBrowser.create(pdfUrl);
-
-        // this.openPage = this.theInAppBrowser.create(pdfUrl, "_blank", this.options);
-     // } else {
-        // Browser.open({ url: pdfUrl });
-
-
-    //  }
-    // }
+    if (this.platform.is('android')) {
+      const browser = this.theInAppBrowser.create(pdfUrl);
+      this.openPage = this.theInAppBrowser.create(pdfUrl, "_blank", this.options);
+    } else {
+      Browser.open({ url: pdfUrl });
+    }
   }
 
   async getPlanDetail(plan) {
@@ -295,8 +319,8 @@ export class UtilService {
     }
   }
 
-  goBack(){
-   this.navCtrl.back();
+  goBack() {
+    this.navCtrl.back();
   }
 
   setName = async () => {
@@ -332,6 +356,7 @@ export class UtilService {
   }
 
   async openPopup(component, title, cssClass, backdrop) {
+    this.ismodalActive = true;
     const modal = await this.modalController.create({
       component: component,
       componentProps: {
@@ -341,7 +366,9 @@ export class UtilService {
       backdropDismiss: backdrop
     });
 
+
     modal.onDidDismiss().then((dataReturned) => {
+      this.ismodalActive = false;
       if (dataReturned !== null) {
         console.log(dataReturned, "dataReturned")
         this.getpoUpData(dataReturned);
@@ -358,10 +385,12 @@ export class UtilService {
     return data
   }
   async closeModal() {
+    this.ismodalActive = false;
     this.modalController.dismiss({
       dismissed: true,
     });
   }
+
 
 
 
@@ -381,7 +410,7 @@ export class UtilService {
         "language": 'english'
       }
     }
-    else  if (lan == 'de' || lan == 'german') {
+    else if (lan == 'de' || lan == 'german') {
       this.videoSer.videoType = this.envr.videosGerman;
       this.pdfLink = this.envr.pdfGerman;
       this.deviceLang = 'de'
@@ -509,9 +538,7 @@ export class UtilService {
         if (res.status == 1) {
           this.goNext(["/questionare"]);
         }
-        else {
-          this.goNext(["/tabs/area-of-interest"]);
-        }
+
 
       })
       .catch((err: any) => {
@@ -593,7 +620,7 @@ export class UtilService {
   async getCart(type) {
     let response: any = await this.apiSer.getCart();
     let products_data: any;
-    if (response.status == 1) {
+    if (response.status) {
       products_data = response ? response : [];
       if (products_data) {
         products_data = products_data.data ? products_data.data : [];
@@ -609,6 +636,11 @@ export class UtilService {
     }
     else {
       products_data = null;
+      if (response.msg == "Unauthorized") {
+        this.removeAuth();
+        this.router.navigate(['/login']);
+
+      }
     }
     return products_data
   }
@@ -670,6 +702,48 @@ export class UtilService {
       this.removeAuth();
       this.router.navigate(['/login']);
     });
+
+  }
+
+  convertToFloat(amt: any) {
+    let covertedAmt;
+    if (amt) {
+      if (amt.indexOf('.') > -1) {
+        covertedAmt = amt.split('.').join("");
+      }
+      else {
+        covertedAmt = amt;
+      }
+      if (amt.indexOf(',') > -1) {
+        covertedAmt = covertedAmt.replaceAll(',', '.');
+      }
+
+      covertedAmt = parseFloat(covertedAmt).toFixed(2);
+    }
+    return covertedAmt;
+  }
+  convertBacktoString(number, decimals, dec_point, thousands_sep) {
+    // Strip all characters but numerical ones.
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    let n = !isFinite(+number) ? 0 : +number,
+      prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+      sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+      dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+      s: any = '',
+      toFixedFix = function (n, prec) {
+        var k = Math.pow(10, prec);
+        return '' + Math.round(n * k) / k;
+      };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+      s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+      s[1] = s[1] || '';
+      s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
 
   }
 

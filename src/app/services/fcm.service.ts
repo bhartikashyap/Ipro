@@ -11,12 +11,13 @@ import {
   PushNotifications,
   PushNotificationActionPerformed,
   Token,
+  
 } from '@capacitor/push-notifications';
 @Injectable({
   providedIn: "root",
 })
 export class FcmService {
-subs:any;
+  subs: any;
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController,
@@ -31,45 +32,49 @@ subs:any;
 
   /*Notification code*/
 
-async  pushRegister() {
+  async pushRegister() {
 
     PushNotifications.requestPermissions().then(result => {
       if (result.receive === 'granted') {
         // Register with Apple / Google to receive push via APNS/FCM
         PushNotifications.register();
+        // On success, we should be able to receive notifications
+        PushNotifications.addListener('registration',
+          (token: Token) => {
+            console.log('Push registration success, token: ' + token.value)
+            console.log('Push registration success, token: ' + token.value);
+            //this.utility.getFCMToken(token.value)
+            this.utility.FCMToken = token.value;
+            
+            this.utility.setStorage("FCMToken", token.value)
+          }
+        );
+
+        // Some issue with our setup and push will not work
+        PushNotifications.addListener('registrationError',
+          (error: any) => {
+            // console.log('Push registration success, token: ' + token.value)
+            console.log('Error on registration: ' + JSON.stringify(error));
+          }
+        );
+
       } else {
         // Show some error
         console.log("here")
       }
     });
 
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
-      (token: Token) => {
-        console.log('Push registration success, token: ' + token.value)
-        console.log('Push registration success, token: ' + token.value);
-        //this.utility.getFCMToken(token.value)
-        this.utility.FCMToken = token.value;
-        this.utility.setStorage("FCMToken",token.value)
-      }
-    );
 
-    // Some issue with our setup and push will not work
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        // console.log('Push registration success, token: ' + token.value)
-        console.log('Error on registration: ' + JSON.stringify(error));
-      }
-    );
+
 
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-       this.utility.newNotification += 1;
-         this.utility.changeMessage("Push Notification");
-        console.log('Push received: ' + JSON.stringify(notification.data));
-        this.savePush(notification.data, "no-navigate");
-      //  this.utility.getCart('notification');
+        this.utility.newNotification += 1;
+        this.utility.changeMessage("Push Notification");
+        console.log('Push received: ' + JSON.stringify(notification));
+        this.savePush(notification, "no-navigate");
+        //  this.utility.getCart('notification');
       }
     );
 
@@ -79,11 +84,11 @@ async  pushRegister() {
         const data = notification.notification.data;
         console.log('Push action performed: ' + data);
         console.log('Push action performed: ' + JSON.stringify(data));
-        this.savePush(data, "navigate")   
+        this.savePush("", "navigate")
       }
     );
 
-  
+
     // await PushNotifications.addListener('pushNotificationActionPerformed', notification => {
     //   console.log('Push notification action performed', notification.actionId, notification.inputValue);
     //   const data = notification.notification.data;
@@ -98,26 +103,46 @@ async  pushRegister() {
 
   pushReceived(noti) {
     this.utility.setStorage('notification', noti);
-   
+
   }
 
-  catchPushRecieve(){
-   
-      PushNotifications.addListener('pushNotificationReceived',
+  catchPushRecieve() {
+
+    PushNotifications.addListener('pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-       this.utility.newNotification += 1;
-         this.utility.changeMessage("Push Notification");
+        this.utility.newNotification += 1;
+        this.utility.changeMessage("Push Notification");
         console.log('Push received: ' + JSON.stringify(notification));
         this.savePush(notification, "no-navigate");
-      //  this.utility.getCart('notification');
+        //  this.utility.getCart('notification');
 
-        
+
       }
     );
-     
-    
-  
+
+   
+
+
   }
+
+  async getDeliverMsg(){
+   // const getDeliveredNotifications = async () => {
+      let notificationList:any = await PushNotifications.getDeliveredNotifications();
+      console.log('delivered notifications', notificationList);
+      if(notificationList.notifications.length > 0){
+        notificationList.notifications.forEach(element => {
+          if(element?.title){
+            element['data']={};
+            this.savePush(element, "no-navigate");
+          }
+        });
+      let remove:any=  await PushNotifications.removeAllDeliveredNotifications();
+      }
+
+    //}
+  }
+
+
 
 
 
@@ -125,35 +150,50 @@ async  pushRegister() {
 
 
   async savePush(notification, action) {
-   
+    if (action == 'navigate') {
+      this.utility.goNext('/tabs/notification');
+      this.getDeliverMsg();
+      return false;
+    }
     // if (action == 'navigate') {
     //   this.utility.goNext('/tabs/notification');
     // }
     // else{
-      let notifications = [];
+    let notifications = [];
 
-      let prevNot: any = await this.utility.getStorage('notification');
-      // notifications = await this.utility.getStorage('notification');
-  
-      console.log(prevNot)
-      if (!prevNot) {
-        notifications.push(notification);
+    let prevNot: any = await this.utility.getStorage('notification');
+    // notifications = await this.utility.getStorage('notification');
+
+    console.log(prevNot)
+    let checkedNotification:any;
+    if(Object.keys(notification.data).length === 0){
+      checkedNotification= {
+        "body":notification.body,
+        "titile":notification.title,
+        "id":notification.id,
       }
-      else {
-        prevNot = JSON.parse(prevNot);                           
-        if (prevNot.length == 15) {
-          prevNot.splice(0, 1);
-        }
-        prevNot.push(notification)
-        notifications = prevNot;   
-  
-      }   
-  console.log(notifications,"notificationsnotificationsnotificationsnotificationsnotifications")
-      // notifications.push(notification);
-      this.utility.setStorage('notification', JSON.stringify(notifications));
-      if (action == 'navigate') {
-        this.utility.goNext('/tabs/notification');
+    }
+    else{
+      checkedNotification = notification.data
+    }
+    
+    if (!prevNot) {
+    
+      notifications.push(checkedNotification);
+    }
+    else {
+      prevNot = JSON.parse(prevNot);
+      if (prevNot.length == 15) {
+        prevNot.splice(0, 1);
       }
+      prevNot.push(checkedNotification)
+      notifications = prevNot;
+
+    }
+    console.log(notifications, "notificationsnotificationsnotificationsnotificationsnotifications")
+    // notifications.push(notification);
+    this.utility.setStorage('notification', JSON.stringify(notifications));
+   
     // }
   }
 

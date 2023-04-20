@@ -18,6 +18,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+    ShareComponentModule,
      TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -25,9 +28,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    ReactiveFormsModule,
-    IonicModule,
-    ShareComponentModule,
     CheckZipPageRoutingModule
   ],
   declarations: [CheckZipPage]

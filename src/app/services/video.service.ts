@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ToastController,NavController } from '@ionic/angular';
-import { Network } from '@capacitor/network';
 import { Router } from '@angular/router';
-import { IonicSelectableComponent } from "@ionic-selectable/angular";
-import { Storage } from '@capacitor/storage';
 import { ApiService } from './api.service';
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 import { Platform } from '@ionic/angular';
-import { Device } from '@capacitor/device';
 declare let _cpmp: any;
 declare let cincopa: any;
 
@@ -24,23 +20,24 @@ export class VideoService {
   showUpdate = false;
   currentProgress: any = {
     completion_percent: 0,
-    completion_sec: 17,
-    current_completion_percent: 10,
-    current_progress_sec: 14,
-    duration_sec: 164,
+    completion_sec: 0,
+    current_completion_percent: 0,
+    current_progress_sec: 0,
+    duration_sec: 0,
     hm_range: '0-7:2,8-13:3,14:2,15-16',
   };
   tmpCurrentProgress: any = {
     completion_percent: 0,
-    completion_sec: 17,
-    current_completion_percent: 10,
-    current_progress_sec: 14,
-    duration_sec: 164,
+    completion_sec: 0,
+    current_completion_percent: 0,
+    current_progress_sec: 0,
+    duration_sec: 0,
     hm_range: '0-7:2,8-13:3,14:2,15-16',
   };
   info: any;
   videoType:any;
   videoId:any
+  videoWatchedCompletely:any=false;
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController,
@@ -107,6 +104,8 @@ export class VideoService {
   }
   initPlayer(id,playerId,cdr) {
     this.playerId = playerId;
+    let samePageVideo = false;
+    this.videoWatchedCompletely = false;
     let that = this;
     cincopa =  {};
     cincopa.analytics_persistent = { mode: "localstorage" };
@@ -116,14 +115,21 @@ export class VideoService {
         const stats = gallery.get_video_play_stats(data);
         that.tmpCurrentProgress = stats;
         cdr.detectChanges();
+        let onelessSec = parseInt(that.tmpCurrentProgress.current_progress_sec) +1 ;
+        // if(that.tmpCurrentProgress.current_progress_sec == that.tmpCurrentProgress.duration_sec || onelessSec == that.tmpCurrentProgress.duration_sec ){
+        //   that.pauseVideo();
+        // }
+        if(that.tmpCurrentProgress.current_progress_sec == 100  ){
+           that.videoWatchedCompletely = true;
+        }
       },
       filter: "video.timeupdate",
     });
     cincopa.registeredFunctions.push({
       func(name, data, gallery) {
-        if (that.info.model === "iPad") {
-          gallery.args.fullscreen_button = false;
-        }
+        // if (that.info.model === "iPad") {
+        //   gallery.args.fullscreen_button = false;
+        // }
         gallery.args.gear_button = false;
         const stats = gallery.get_video_play_stats(data);
         that.getCurrent(stats);
@@ -132,19 +138,21 @@ export class VideoService {
     });
     cincopa.registeredFunctions.push({
       func(name, data, gallery) {
-        console.log("i am ready");
-        that.getVideoDur(that.videoId);
+        
         const stats = gallery.get_video_play_stats(data);
         that.getCurrent(stats);
+        // if(stats.current_completion_percent != 100){
+        //   that.getVideoDur(that.videoId);
+        // }
+        samePageVideo = false;
+        // console.log("load",stats)
       },
       filter: "video.load",
     });
     cincopa.registeredFunctions.push({
       func(name, data, gallery) {
-        console.log("Change detect");
          const stats = gallery.get_video_play_stats(data);
         that.getCurrent(stats);
-        console.log(gallery);
       },
       filter: "video.change",
     });
@@ -153,18 +161,25 @@ export class VideoService {
         const stats = gallery.get_video_play_stats(data);
         that.currentProgress = stats;
         that.getCurrent(stats);
-         that.saveVideoDur(this.videoId);
+          that.saveVideoDur(that.videoId);
         that.showUpdate = true;
         cdr.detectChanges();
+         console.log("pause",stats)
       },
       filter: "video.pause",
     });
     cincopa.registeredFunctions.push({
       func(name, data, gallery) {
         const stats = gallery.get_video_play_stats(data);
+        that.videoWatchedCompletely = false;
+
         that.getCurrent(stats);
         cdr.detectChanges();
-        console.log("Change detect");
+        if(stats.current_completion_percent != 100 && !samePageVideo ){
+          that.getVideoDur(that.videoId);
+        }
+        samePageVideo = true;
+        console.log("play",stats)
       },
       filter: "video.play",
     });
@@ -197,62 +212,78 @@ export class VideoService {
   }
 
   pauseVideo() {
-    this.playerAPI() && this.playerAPI().pause();
-    console.log(this.currentProgress);
-    this.saveVideoDur(this.videoId);
+    if(!this.videoWatchedCompletely){
+      this.playerAPI() && this.playerAPI().pause();
+      this.videoWatchedCompletely=false;
+    }
+   //  this.saveVideoDur(this.videoId);
   }
   
  async saveVideoDur(id) {
-  let seconds = this.convertIntoSec()
-    console.log(seconds);
+    let seconds = this.convertIntoSec();
     let data = {
       "videoId": id,
       "duration": seconds
     }
 
-    
    await this.apiSer.saveVideo(data);
+
+ 
   }
   async getVideoDur(id) {
+    if(!this.videoWatchedCompletely){
+
     let result: any = await this.apiSer.getVideo();
     if (result.status) {
       let timeString = result?.data[id-1].duration; // input string
+      
       let arr = timeString.split(":"); // splitting the string by colon
-      // Number(arr[0]) * 3600 + 
-      const secondsSting = Number(arr[0]) * 3600 +Number(arr[1]) * 60 + (+Number(arr[2]));
+      let secondsSting = Number(arr[0]) * 3600 +Number(arr[1]) * 60 + (+Number(arr[2]));
+      let arr2 = result?.data[id-1].videoLength.split(":");
+      let videoLengthSec = Number(arr2[0]) * 3600 +Number(arr2[1]) * 60 + (+Number(arr2[2]));
+      if(secondsSting >= videoLengthSec){
+        this.videoWatchedCompletely = true;
+         this.pauseVideo();
+         secondsSting = 0;
+       // this.playerAPI() && this.playerAPI().play();
+      }
+      else{
+        this.videoWatchedCompletely = false;
+      }
       this.specificTime(secondsSting);
 
     }
     else {
-     // let seconds = this.convertIntoSec()
-     // const formatedTime = new Date(seconds * 1000).toISOString().slice(11, 19);
-      this.specificTime(0);
+     
     }
 
+  }
 
   }
 
   getCurrent(stats) {
     this.currentProgress = stats;
-    console.log(stats)
   }
 
   convertIntoSec(){
     let seconds;
-    if(this.currentProgress?.current_progress_sec>0){
-       seconds = this.currentProgress?.current_progress_sec;
+  if(this.videoWatchedCompletely){
+    seconds = parseInt(this.currentProgress?.duration_sec) -1;
 
-    }
-    else{
-      seconds = 0;
-    }
+  }
+  else{
+    seconds = this.currentProgress?.current_progress_sec;
+
+  }
+    
+
+      //seconds = currenttime;
      return new Date(seconds * 1000).toISOString().slice(11, 19);
   }
 
   langChange(lan,cdr){
     if(this.videoId != undefined){
         this.initPlayer(this.videoType[this.videoId].initPlayer,this.videoType[this.videoId].id,cdr);
-        console.log(this.videoType[this.videoId].initPlayer)
     
     }
    

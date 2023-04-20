@@ -33,7 +33,11 @@ export class BasketPage implements OnInit {
   paymentUrl: any;
   paymentId: any;
   ionModelOpen = false
+  promoCode:any='';
+  promocodeApplicable:any=false;
+  promoCodeError:any=''
   ngOnInit() {
+    
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
@@ -43,7 +47,15 @@ export class BasketPage implements OnInit {
     });
   }
 
-  ionViewWillEnter() {
+  
+
+ async  ionViewWillEnter() {
+
+  let promoCode = await this.utility.getStorage('promocode');
+if(promoCode == null || promoCode == undefined){
+  this.promoCode='';
+
+}
     if (this.previousUrl == '/tabs/product-detail') {
       this.backBtn = true;
     }
@@ -54,10 +66,19 @@ export class BasketPage implements OnInit {
   }
 
   async getCart() {
-    let loading = await this.utility.presentLoading();
-    let response: any = await this.apiService.getCart();
+  
+    let data :any='';
+    let loading = await this.utility.presentLoading('yes');
+    if(this.promocodeApplicable){
+       data = {
+        "promoCode":this.promoCode
+      }
+    }
+    let response: any = await this.apiService.getCart(data);
+ 
     loading.dismiss();
     if (response.status == 1) {
+
       this.products_data = response ? response : [];
       if (this.products_data) {
         this.totalAmt = response ? response : [];
@@ -72,7 +93,7 @@ export class BasketPage implements OnInit {
   }
 
   async removeItem(item) {
-    let loading = await this.utility.presentLoading();
+    let loading = await this.utility.presentLoading('yes');
     let packageId = {
       packageId: item.packageId
     }
@@ -87,17 +108,23 @@ export class BasketPage implements OnInit {
 
   async buyCart() {
 let onlyDevice =0 ;
-    // this.products_data.map((item)=>{
-    //   console.log(item.details)
-    //   let packageId = parseInt(item.details.packageId)
-    //   if(packageId >= 244 && packageId <= 252) {
-    //     onlyDevice++;
-    //   }
-    //   else{
-    //     onlyDevice-- ;
-    //   }
 
-    // })
+this.utility.setStorage("memberShipPurachsed",false);
+    this.products_data.map((item)=>{
+      console.log(item.details)
+      let packageId = parseInt(item.details.packageId)
+      if(packageId == 243 || packageId == 253) {
+          this.utility.setStorage("memberShipPurachsed",true);
+      }
+      // if(packageId >= 244 && packageId <= 252) {
+      //   onlyDevice++;
+      // }
+      // else{
+      //   onlyDevice-- ;
+      // }
+      
+
+    })
     // console.log(onlyDevice,this.products_data.length)
     // if(this.products_data.length == onlyDevice){
     //   this.utility.openPopup(UserModalPage,'payment','sponsor-class',true);
@@ -108,34 +135,23 @@ let onlyDevice =0 ;
     // }
   }
 
-  async validatePayment() {
-    let result: any = await this.apiService.paymentStatus({
-      paymentId: this.paymentId
-    });
-    if (result.status == 0) {
-      setTimeout(() => {
-        this.validatePayment();
-      }, 2000);
-    } else {
-      this.ionModelOpen = false;
-      this.profile.paymentId = this.paymentId;
-      let data: any = await this.apiService.proceedRegistration(this.profile);
-      this.router.navigate(["/tabs/area-of-interest"])
-      if (data.status) {
-        this.utility.presentToast(result.msg, "bottom");
-        //this.navController.
-        if (data.redirect_to_questionnaire.toLowerCase() == 'no') {
-          this.router.navigate(["/tabs/area-of-interest"])
 
-        } else {
-          this.router.navigate(["/questionare"])
-        }
-
-      } else {
-        this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork, "bottom");
-        return false;
-      }
+  async checkPromoCode(){
+    let data = {
+      "promoCode":this.promoCode
     }
+    let response: any = await this.apiService.promoCode(data);
+    if (response.status == 1) {
+      this.promocodeApplicable = true;
+       this.promoCodeError = '';
+       this.utility.setStorage("promocode",this.promoCode)
+      this.getCart();
+    }else{
+      this.promocodeApplicable=false;
+       this.promoCodeError = this.utility.translateText('MSG').promocodeerror;
+    }
+
   }
+ 
 
 }

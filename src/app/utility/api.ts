@@ -54,3 +54,15 @@ export const LOGOUT ='ipro_logout';
 export const DELETE_PAYMENT_OPTION ='ipro_remove_payment_option';
 export const PARTNER_AGREEMENT ='ipro_save_tax_form';
 export const APP_VERSION="getAppVersion";
+export const TAX_ID="ipro_validate_ust_id";
+export const GET_SUPPORT_CATEGORY="ipro_get_support_categories";
+export const SUBMIT_SUPPORT="ipro_send_support_ticket";
+
+export const LIST_OF_ANALYSTS="ipro_get_analysts";
+export const BOOK_ANALYSIS="ipro_book_analysis";
+export const PROMO_CODE="ipro_check_promo_code";
+
+export const CHECK_VOUCHER="ipro_check_free_membership_voucher";
+export const FREE_MEMBERSHIP="ipro_get_free_membership";
+
+export const GET_LAST_PAYMENTS = "ipro_get_last_payments"

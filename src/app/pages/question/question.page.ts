@@ -81,13 +81,23 @@ export class QuestionPage implements OnInit {
     let result: any = await this.apiService.getQuestions();
     this.questions = result.questions ? result.questions : null;
     this.questions.map((item) => {
-      item['answer'] = '';
+      if(item.possibleAnswers == 'multiple'){
+        item['answer'] = [];
+        item['answer'].push(item.selected_answer);
+      }
+      else{
+
+      item['answer'] = item.selected_answer;
+    }
     })
-    // console.log(result);
+     console.log(  this.checkboxAnswer );
+     this.formData.answer = this.questions[0]['answer'];
   };
 
   selectCheckbox(id, item, index) {
-    if (index != this.checkboxIndex) {
+    console.log(this.checkboxAnswer)
+    console.log(this.checkboxAnswer.length);
+    if (index != this.checkboxIndex ) {
       this.checkboxAnswer = [];
     }
     // this.checkboxAnswer = this.formData.answer
@@ -119,6 +129,17 @@ export class QuestionPage implements OnInit {
       return false;
 
     }
+    if(this.questions.length != this.questionIndex+1){
+    if (this.questions[this.questionIndex+1].possibleAnswers == 'multiple') {
+      if(this.questions[this.questionIndex+1]['selected_answer'] != ''){
+        this.checkboxAnswer = [];
+        this.checkboxAnswer.push(this.questions[this.questionIndex+1]['selected_answer']);
+       this.checkboxIndex = this.questions[this.questionIndex+1].questionId;
+      }
+     
+
+    }
+  }
    
    
     if (direction == 'next') {
@@ -148,7 +169,8 @@ export class QuestionPage implements OnInit {
       if ((this.formData.answer == null || this.formData.answer == '') && this.questions[this.questionIndex].possibleAnswers === 'multiple') {
         this.formData.answer = [];
       }
-      this.questions[this.questionIndex]['answer'] = this.formData.answer
+      this.questions[this.questionIndex]['answer'] = this.formData.answer;
+     
       console.log(this.questions);
 
       let question = this.questions[this.questionIndex];
@@ -168,7 +190,7 @@ export class QuestionPage implements OnInit {
         return false;
       }
       this.questions[this.questionIndex]['answer'] = this.formData.answer;
-      if (this.gender == 'Male' && this.questionIndex == 40) {
+      if ((this.gender == 'Männlich' || this.gender == 'Male') && this.questionIndex == 40) {
         this.questionIndex -= 5;
       }
       else {
@@ -181,6 +203,8 @@ export class QuestionPage implements OnInit {
       this.formData.answer = this.questions[this.questionIndex]['answer'];
 
     }
+
+   
   };
 
   resetForm() {
@@ -202,7 +226,7 @@ export class QuestionPage implements OnInit {
       if (result.status == 1) {
         this.resetForm();
 
-        if (this.gender == 'Male' && this.questionIndex == 35) {
+        if ((this.gender == 'Männlich' || this.gender == 'Male')  && this.questionIndex == 35) {
           this.questionIndex += 5;
         }
         else {

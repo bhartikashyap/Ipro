@@ -12,71 +12,147 @@
 </ion-header>
 <ion-content>
   <form class="form form1" *ngIf="questions.length > 0 &&  !questionComplete" >
-    <h6 class="question-text">{{questions[questionIndex].question}} <span *ngIf="questions[questionIndex].mandatory == 'y'"> *</span></h6>
+  
+    <h6 class="question-text" *ngIf="utility.deviceLang == 'en'">  <strong> {{questions[questionIndex].questionId}}. </strong>{{questions[questionIndex].question}} 
+      <span *ngIf="questions[questionIndex].mandatory == 'y'"> *</span>
+    </h6>
+    <h6 class="question-text" *ngIf="utility.deviceLang == 'de'"> <strong>{{questions[questionIndex].questionId}}.  </strong> {{questions[questionIndex].questionDE}} 
+      <span *ngIf="questions[questionIndex].mandatory == 'y'"> *</span>
+    </h6>
+    
     <img src="{{questions[questionIndex].show_image}}"  style="padding: 29px;" *ngIf="questions[questionIndex].show_image != ''" />
+ <div *ngIf="utility.deviceLang == 'de'">
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'one'">
 
-    <div *ngIf="questions[questionIndex].possibleAnswers === 'one'">
+    <div
+      class="form-group"
+      [ngClass]="{'active-q': formData.answer == item.value}"
+      *ngFor="let item of questions[questionIndex].answersDE | keyvalue;let i=index;"
+    >
 
-      <div
-        class="form-group"
-        [ngClass]="{'active-q': formData.answer == item.value}"
-        *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
-      >
-
-        <div class="custom-control custom-radio">
-          <input
-            type="radio"
-            [(ngModel)]="formData.answer"
-            class="custom-control-input"
-            name="radio"
-            id="radio{{i}}"
-            value="{{item.value}}"
-          />
-          <label class="custom-control-label" for="radio{{i}}">
-            <span class="num">{{(i + 1)}}</span> {{item.value}}
-          </label>
-        </div>
+      <div class="custom-control custom-radio">
+        <input
+          type="radio"
+          [(ngModel)]="formData.answer"
+          class="custom-control-input"
+          name="radio"
+          id="radio{{i}}"
+          value="{{item.value}}"
+        />
+        <label class="custom-control-label" for="radio{{i}}">
+          <span class="num">{{(i + 1)}}</span> {{item.value}}
+        </label>
       </div>
     </div>
-    <div *ngIf="questions[questionIndex].possibleAnswers === 'multiple'">
-      <div
-        class="form-group"
-        *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
-      >
-        <div class="custom-control custom-radio custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            name="checkbox"
-            [value]="item.selected"
-            id="checkbox{{i}}"
-            [attr.checked]="questions[questionIndex].answer.indexOf(item.value) > -1 ? true : null"
-            (click)="selectCheckbox(i, item,questions[questionIndex])"
-          />
-          <label class="custom-control-label" for="checkbox{{i}}">
-            <span class="num">{{(i + 1)}}</span> {{item.value}}
-          </label>
-        </div>
+  </div>
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'multiple'">
+    <div
+      class="form-group"
+      *ngFor="let item of questions[questionIndex].answersDE | keyvalue;let i=index;"
+    >
+      <div class="custom-control custom-radio custom-checkbox">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          name="checkbox"
+          [value]="item.selected"
+          id="checkbox{{i}}"
+          [attr.checked]="questions[questionIndex].answer.indexOf(item.value) > -1 ? true : null"
+          (click)="selectCheckbox(i, item,questions[questionIndex].questionId)"
+        />
+        <label class="custom-control-label" for="checkbox{{i}}">
+          <span class="num">{{(i + 1)}}</span> {{item.value}}
+        </label>
       </div>
     </div>
-    <div *ngIf="questions[questionIndex].possibleAnswers === 'text' ">
-      <input
-        type="text"
-        [(ngModel)]="formData.answer"
-        name="text"
-        placeholder=" Please specify here"
-        class="form-control"
-      />
+  </div>
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'text' ">
+    <input
+      type="text"
+      [(ngModel)]="formData.answer"
+      name="text"
+      placeholder=" {{'QUESTIONNAIRE.ansPlaceholder' | translate}}"
+      class="form-control"
+    />
+  </div>
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'float' || questions[questionIndex].possibleAnswers === 'int'">
+    <input
+      type="text"
+      [(ngModel)]="formData.answer"
+      name="number"
+      placeholder="{{'QUESTIONNAIRE.ansPlaceholder' | translate}} "
+      class="form-control"
+    />
+  </div>
+
+ </div>
+ <div *ngIf="utility.deviceLang == 'en'">
+  
+
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'one'">
+
+    <div
+      class="form-group"
+      [ngClass]="{'active-q': formData.answer == item.value}"
+      *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
+    >
+
+      <div class="custom-control custom-radio">
+        <input
+          type="radio"
+          [(ngModel)]="formData.answer"
+          class="custom-control-input"
+          name="radio"
+          id="radio{{i}}"
+          value="{{item.value}}"
+        />
+        <label class="custom-control-label" for="radio{{i}}">
+          <span class="num">{{(i + 1)}}</span> {{item.value}}
+        </label>
+      </div>
     </div>
-    <div *ngIf="questions[questionIndex].possibleAnswers === 'float' || questions[questionIndex].possibleAnswers === 'int'">
-      <input
-        type="text"
-        [(ngModel)]="formData.answer"
-        name="number"
-        placeholder=" Please specify here"
-        class="form-control"
-      />
+  </div>
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'multiple'">
+    <div
+      class="form-group"
+      *ngFor="let item of questions[questionIndex].answers | keyvalue;let i=index;"
+    >
+      <div class="custom-control custom-radio custom-checkbox">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          name="checkbox"
+          [value]="item.selected"
+          id="checkbox{{i}}"
+          [attr.checked]="questions[questionIndex].answer.indexOf(item.value) > -1 ? true : null"
+          (click)="selectCheckbox(i, item,questions[questionIndex].questionId)"
+        />
+        <label class="custom-control-label" for="checkbox{{i}}">
+          <span class="num">{{(i + 1)}}</span> {{item.value}}
+        </label>
+      </div>
     </div>
+  </div>
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'text' ">
+    <input
+      type="text"
+      [(ngModel)]="formData.answer"
+      name="text"
+      placeholder=" {{'QUESTIONNAIRE.ansPlaceholder' | translate}}"
+      class="form-control"
+    />
+  </div>
+  <div *ngIf="questions[questionIndex].possibleAnswers === 'float' || questions[questionIndex].possibleAnswers === 'int'">
+    <input
+      type="text"
+      [(ngModel)]="formData.answer"
+      name="number"
+      placeholder="{{'QUESTIONNAIRE.ansPlaceholder' | translate}} "
+      class="form-control"
+    />
+  </div>
+</div>
+   
     <div *ngIf="errorMessage" style="color: red">{{errorMessage}}</div>
    
     
@@ -116,8 +192,11 @@
       <a class="btn btn2" (click)="nextQuestion(questions[questionIndex],'back')" *ngIf="questionIndex > 0 ">
         {{'QUESTIONNAIRE.btn.back' | translate}}
       </a>
-      <a class="btn btn1" (click)="nextQuestion(questions[questionIndex],'next')">
-        {{submitStatus ? 'QUESTIONNAIRE.btn.complete' | translate : 'QUESTIONNAIRE..btn.next' | translate}}
+      <a class="btn btn1" (click)="nextQuestion(questions[questionIndex],'next')" *ngIf="submitStatus">
+        {{ 'QUESTIONNAIRE.btn.complete' | translate }}
+      </a>
+      <a class="btn btn1" (click)="nextQuestion(questions[questionIndex],'next')" *ngIf="!submitStatus">
+        {{ 'QUESTIONNAIRE.btn.next' | translate}}
       </a>
     </div>
 </ion-content>

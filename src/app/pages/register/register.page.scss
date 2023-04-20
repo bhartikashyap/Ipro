@@ -59,7 +59,7 @@ form {
   ionic-selectable {
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 15px;
     border: 1px solid #d6d6d6 !important;
     height: 45px;
     width: 100%;
@@ -76,7 +76,7 @@ form {
   ion-intl-tel-input {
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 15px;
     border: 1px solid #d6d6d6 !important;
     height: 40px;
     width: 100%;
@@ -103,7 +103,7 @@ form {
     position: relative;
     top: 3px;
     left: 10px;
-    font-size: 12px !important;
+    font-size: 15px !important;
     color: gray !important;
   }
   .password-input {
@@ -124,13 +124,13 @@ form {
   }
   .forgot-password {
     color: #6d6d6d;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 400;
     text-decoration: none;
   }
   .dont-know {
     color: #6d6d6d;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 400;
     text-decoration: none;
     text-align: center;
@@ -155,7 +155,7 @@ form {
        height: 40px;
        border-radius: 4px;
        color: #727272;
-       font-size: 12px;
+       font-size: 14px;
        top: 7px;
        .country-icon {
          top: -2px;
@@ -206,5 +206,22 @@ form {
    display:none !important;
  }
   
+}
+.tnc{
+  color: #ff6629;
+  text-decoration: underline;
+  font-size: 12px;
+  text-transform: uppercase;
+
+ }
+ .item-input ion-label{
+  pointer-events:all!important;
+}
+.item-cover{
+  display:none;
+}
+
+ion-checkbox:label{
+  display:inline!important;
 }
 

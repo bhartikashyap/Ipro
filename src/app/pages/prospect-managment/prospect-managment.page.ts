@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ProspectManagmentPage implements OnInit {
   userData: any=[];
   title:any="";
+  noRecords:any;''
   constructor(private utiSer: UtilService,
     private apiSer: ApiService,
     private router: Router,
@@ -32,7 +33,7 @@ console.log(this.transSer)
           console.log(text)
           this.title=text;
         });
-       
+        this.noRecords = this.utiSer.translateText("SHOP").NP;       
       }
       else {
         this.getMembers();
@@ -40,6 +41,7 @@ console.log(this.transSer)
           console.log(text)
           this.title=text;
         });
+        this.noRecords = this.utiSer.translateText("SHOP").NM;    
        
       }
 

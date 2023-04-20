@@ -1,5 +1,4 @@
-
-<app-header  [headerTitle]="'PAGES.SHOP' | translate"  [headerBack]=false  ></app-header>
+<app-header [headerTitle]="'PAGES.SHOP' | translate" [headerBack]=false></app-header>
 
 <ion-content>
   <ion-item *ngIf="allProducts != null && allProducts.length > 0">
@@ -11,47 +10,57 @@
     </ion-select>
   </ion-item>
 
-  <ion-item *ngIf=" allProducts.length == 0">
-      <p class="product-detail">{{'SHOP.NP' | translate}}</p>
-  </ion-item>
+
   <div *ngIf="allProducts != null && allProducts.length > 0">
-    <div *ngFor="let prod of allProducts" style="border-bottom: solid #ccc 1px;
-    padding: 10px 0px;"  (click)="openDetailsWithQueryParams(prod)" class="item">
+    <div *ngFor="let prod of allProducts" >
 
-  
-    <ion-item   lines="none" class="ion-no-padding">
+      <div *ngIf="prod.packageId != '1'" style="border-bottom: solid #ccc 1px;
+      padding: 10px 0px;" (click)="openDetailsWithQueryParams(prod)"  class="item">
+        <ion-item lines="none" class="ion-no-padding">
 
-     
-      <div class="zoom-box">
-        <ion-slides  pager="true" [options]="slideOpts">
-          <ion-slide *ngFor="let packageImage of prod.packageImages">
-            <!-- <div class="swiper-zoom-container"> -->
-              <img src="{{packageImage}}" />
-            <!-- </div> -->
-            
-          </ion-slide>
-         
-        </ion-slides>
-        </div>
-     
-    <div  class="detail">
+
+          <div class="zoom-box">
+            <ion-slides pager="true" [options]="slideOpts">
+              <ion-slide *ngFor="let packageImage of prod.packageImages">
+                <!-- <div class="swiper-zoom-container"> -->
+                <img src="{{packageImage}}" />
+                <!-- </div> -->
+
+              </ion-slide>
+
+            </ion-slides>
+          </div>
+
+          <div class="detail">
             <h2 style="margin:0px">{{prod.packageName}}</h2>
-           <!-- {{prod.avail_runtime[Object.keys(prod.avail_runtime)]}} -->
+            <p class="product-detail" *ngIf="prod.productNameLongEN && utility.deviceLang == 'en'">
+              {{prod.productNameLongEN}}</p>
+            <p class="product-detail" *ngIf="prod.productNameLongDE && utility.deviceLang == 'de'">
+              {{prod.productNameLongDE}}</p>
+            <!-- {{prod.avail_runtime[Object.keys(prod.avail_runtime)]}} -->
             <!-- <p> {{'SHOP.SD' | translate}}:{{prod.avail_runtime[0]}} </p> -->
             <p> {{'SHOP.SD' | translate}}:{{prod.avail_runtime_default}} </p>
-            <p > {{'SHOP.SP' | translate}}: <span><strong>&euro; {{prod.standard_price}} + {{'SHOP.VAT' | translate}}</strong></span></p>
-            <p *ngIf="prod.your_price != 0"> {{'SHOP.YP' | translate}}: <span><strong> &euro; {{prod.your_price}} + VAT</strong></span></p>
+            <p> {{'SHOP.SP' | translate}}: <span><strong>{{prod.standard_price}} &euro; + {{'SHOP.VAT' |
+                  translate}}  </strong></span></p>
+            <p *ngIf="prod.your_price != 0"> {{'SHOP.YP' | translate}}: <span><strong>  {{prod.changedPrice }}  &euro; +
+              {{'SHOP.VAT' |
+              translate}} </strong></span></p>
+          </div>
+
+          <div>
+
+          </div>
+        </ion-item>
+        <p class="product-details" *ngIf="prod.shortDescriptionEN && utility.deviceLang == 'en'"
+          innerHTML="{{prod.shortDescriptionEN}}"> </p>
+        <p class="product-details" *ngIf="prod.shortDescriptionDE && utility.deviceLang == 'de'"
+          innerHTML="{{prod.shortDescriptionDE}}"> </p>
+
+      </div>
     </div>
-   
-    <div>
-
   </div>
-    </ion-item>
-    <p class="product-details" *ngIf="prod.productDescription && utility.deviceLang == 'en'" innerHTML="{{prod.productDescription}}"> </p>
-    <p class="product-details" *ngIf="prod.productDescriptionDE && utility.deviceLang == 'de'"  innerHTML="{{prod.productDescriptionDE}}"> </p>
+  <ion-item *ngIf=" allProducts.length == 0">
+    <p class="product-detail">{{'SHOP.NP' | translate}}</p>
+  </ion-item>
 
-  </div>
-
-  </div>
- 
-</ion-content> 
+</ion-content>

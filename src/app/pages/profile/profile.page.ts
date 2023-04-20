@@ -130,6 +130,7 @@ export class ProfilePage implements OnInit {
         this.form.get("nr").setValue(this.profile.nr);
         this.form.get("city").setValue(this.profile.city);
         this.form.get("zipCode").setValue(this.profile.zipCode);
+        this.form.get("companyName").setValue(this.profile.companyName);
         // var date: NgbDateStruct = { year: 1789, month: 7, day: 14 };
         // console.log(date, "date");
         this.form.get('dob').setValue({ year: 1989, month: 7, day: 14 });
@@ -224,6 +225,7 @@ export class ProfilePage implements OnInit {
       phoneCode: ["", [Validators.required]],
       dob: ["", [Validators.required]],
       additionalAddressInfo: ["", [Validators.maxLength(200)]],
+      companyName: [""]
     });
     this.submitted = false;
     console.log(this.form);
@@ -273,7 +275,10 @@ export class ProfilePage implements OnInit {
         { type: "required", message: messages.required },
         { type: "maxlength", message: message.maxLength(200,messages.maxLength,messages.characters) },
       ],
-     
+      companyName: [
+        { type: "required", message: messages.required },
+        { type: "maxlength", message: message.maxLength(200,messages.maxLength,messages.characters) },
+      ],
     };
   }
 

@@ -6,12 +6,13 @@
     <div id="cincopa_1638196190170"  style="width: 90% !important;"></div>
   
   <div class="content-wrap">
-   
-  <p class="mb30" >{{ dashboardDatas[0]?.firstEN }}</p>
+  <p class="mb30" *ngIf="utility.deviceLang == 'de'"  innerHTML="{{ dashboardDatas[0]?.firstDE }}"></p>
+  <p class="mb30" *ngIf="utility.deviceLang == 'en'"  innerHTML="{{ dashboardDatas[0]?.firstEN }}"></p>
   <ion-button class="btn" color="danger" expand="block" (click)="openBookingAnalysis()">
     {{'PERSONALIZED_MICRO.PERSONALIZED_MICRO_BTN' | translate}}
   </ion-button>
-  <p class="mt30 mb30">{{ dashboardDatas[0]?.secondEN }}</p>
+  <p class="mt30 mb30"  *ngIf="utility.deviceLang == 'de'"  innerHTML="{{ dashboardDatas[0]?.secondDE }}"></p>
+  <p class="mt30 mb30"  *ngIf="utility.deviceLang == 'en'"  innerHTML="{{ dashboardDatas[0]?.secondEN }}"></p>
   </div>
 
   

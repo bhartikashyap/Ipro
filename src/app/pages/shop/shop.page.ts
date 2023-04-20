@@ -51,7 +51,11 @@ export class ShopPage implements OnInit {
         this.allProducts.map((item,index)=>{
           console.log(item.packageId,index);
           item["avail_runtime_default"] = item.avail_runtime[Object.keys(item.avail_runtime)[0]];
-          console.log(item.avail_runtime[Object.keys(item.avail_runtime)[0]])
+          item["changedPrice"] = parseInt(Object.keys(item.avail_runtime)[0]) * item.your_price;
+          item.changedPrice = this.utility.convertBacktoString(item.changedPrice,2, ',', '.');
+          item.standard_price = parseInt(Object.keys(item.avail_runtime)[0]) *  item.standard_price;
+          item.standard_price = this.utility.convertBacktoString(item.standard_price,2, ',', '.');
+          console.log(item.productCatId)
           // item.productDescription =  item.productDescription+" <br> hjdscbhjdsbc <br>hjsbgxhsvsv<br>hjbhjcbdsc"
        })
      })
@@ -72,6 +76,8 @@ export class ShopPage implements OnInit {
   openDetailsWithQueryParams(item) {
     this.utility.setStorage('Prod', JSON.stringify(item));
     this.router.navigate(["/tabs/product-detail"]);
+    
   }
 
+  
 }

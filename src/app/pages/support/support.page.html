@@ -1,0 +1,39 @@
+<app-header [headerTitle]="'SUPPORT.Title' | translate" [headerBack]=false></app-header>
+
+<ion-content>
+  <div style="padding-top:20px;"></div>
+  <ion-list>
+  <ion-item *ngIf="allCategories != null && allCategories.length > 0">
+    <ion-label>{{'SUPPORT.TOPIC' | translate}}:</ion-label>
+    <ion-select [(ngModel)]="selectedOption" interface="action-sheet" (ionChange)="changeCategory($event)">
+     <div *ngIf="utility.deviceLang == 'de'">
+
+      <ion-select-option *ngFor="let cat of allCategories" [value]="cat.supportCatId">{{cat.supportCat_DE}}
+      </ion-select-option>
+
+     </div>
+      
+     <div *ngIf="utility.deviceLang == 'en'">
+
+      <ion-select-option *ngFor="let cat of allCategories" [value]="cat.supportCatId">{{cat.supportCat_EN}}
+      </ion-select-option>
+
+     </div>
+      
+    </ion-select>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-textarea rows="6" cols="10" placeholder="{{'SUPPORT.MSG_PLCEHOLDER' | translate}}"  [(ngModel)]="message"  id="message" autocapitalize="off"></ion-textarea>
+  </ion-item>
+  
+  <div class="error-message text-red"  *ngIf="errorText != ''">
+    {{errorText}}
+  </div>
+  
+    <ion-button class="btn" color="danger" expand="block" margin (click)="submitTicket()">
+      {{'SUPPORT.BTN' | translate}}
+    </ion-button>
+ 
+</ion-list>
+  </ion-content>

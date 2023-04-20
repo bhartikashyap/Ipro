@@ -57,6 +57,18 @@
           </div>
         </div>
       </div>
+      <ion-item lines="none" class="form-group ion-no-padding" >
+        <ion-input type="text" placeholder="Company Name" formControlName="companyName" id="companyName"
+          autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <div *ngFor="let validation of validationMessage.companyName">
+        <div *ngIf="submitted && formControl['companyName'].errors" class="validation-message">
+          <div class="error-message text-red" *ngIf="formControl['companyName'].errors[validation.type]">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
   
 
     <ion-item lines="none" class="form-group ion-no-padding">

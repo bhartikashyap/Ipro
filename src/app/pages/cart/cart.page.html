@@ -40,22 +40,22 @@
         <ion-col class="formcart-value admssion-fee-value">
           <!-- <span class="remove-span" *ngIf="indexOfelement > 0" >Remove</span> -->
 
-          {{item?.packageAmount ? item?.packageAmount : 0}} €
+          {{item?.packageAmount ? item?.packageAmount : 0}}  &euro;
         </ion-col>
       </ion-row>
     <!-- </div> -->
 
     <ion-row class="total net-box-wrap">
       <ion-col class="formcart-title total net-title">Total Net Amount</ion-col>
-      <ion-col class="formcart-value total net-value">{{vat?.totalNet ? vat?.totalNet : 0}} €</ion-col>
+      <ion-col class="formcart-value total net-value">{{vat?.totalNet ? vat?.totalNet : 0}} &euro;</ion-col>
     </ion-row>
     <ion-row class="vat-box-wrap">
       <ion-col class="formcart-title vat-title">VAT</ion-col>
-      <ion-col class="formcart-value vat-value">{{vat?.totalVat ? vat?.totalVat : 0}} €</ion-col>
+      <ion-col class="formcart-value vat-value">{{vat?.totalVat ? vat?.totalVat : 0}} &euro;</ion-col>
     </ion-row>
     <ion-row class="total-box-wrap">
       <ion-col class="formcart-title total-title">Total</ion-col>
-      <ion-col class="formcart-value total-value">{{vat?.totalAmount ? vat?.totalAmount : 0}} €</ion-col>
+      <ion-col class="formcart-value total-value">{{vat?.totalAmount ? vat?.totalAmount : 0}} &euro;</ion-col>
     </ion-row>
 
     <ion-item lines="none" class="form-group ion-no-padding">

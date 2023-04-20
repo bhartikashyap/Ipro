@@ -213,10 +213,41 @@ export class ApiService extends EnvironmentService {
     return await this.http.post(this.apiUrl + api.APP_VERSION, body).toPromise();
   }
 
+  async validateTaxID(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.TAX_ID, body).toPromise();
+  }
 
+  async getSupportCategory(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.GET_SUPPORT_CATEGORY, body).toPromise();
+  }
+
+
+  async submitSupport(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.SUBMIT_SUPPORT, body).toPromise();
+  }
+
+  async listOfAnalaysts(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.LIST_OF_ANALYSTS, body).toPromise();
+  }
+
+  async bookAnlaysis(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.BOOK_ANALYSIS, body).toPromise();
+  }
 
   
+  async promoCode(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.PROMO_CODE, body).toPromise();
+  }
 
+  async checkVoucher(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.CHECK_VOUCHER, body).toPromise();
+  }
+  async freeMembership(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.FREE_MEMBERSHIP, body).toPromise();
+  }
+  async getLastPayments(body: any = {}) {
+    return await this.http.post(this.apiUrl + api.GET_LAST_PAYMENTS, body).toPromise();
+  }
 
   
   

@@ -3,7 +3,7 @@ export var pattern = {
   indiaPhoneNumber: '^((\\+91-?)|0)?[6-9][0-9]{9}$',
   password:
     '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.* ).{6,50}$',
-  email: '[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}',
+  email: '[A-Za-z0-9._%-+]+@[A-Za-z0-9._%-]+\\.[a-z]{2,20}',
   alphabate: '[a-zA-Z ]*$',
   alphabateSpace: '^[a-zA-Z s.-]+$',
   nickName: '^(?=.*[a-zA-Z])([a-zA-Z0-9 s]+)$',

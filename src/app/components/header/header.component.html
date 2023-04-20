@@ -4,14 +4,15 @@
     <ion-buttons slot="start" *ngIf="headerBack">
       <img (click)="back()" class="back-icon" src="assets/img/back.png">
     </ion-buttons>
-    <ion-title>{{headerTitle}}</ion-title>
-   
-      <ion-buttons slot="end" (click)="utilSer.goNext('/tabs/notification')">
-          <ion-icon color="danger" name="notifications-outline"></ion-icon>
+    <ion-title  *ngIf="headerTitle != 'pdf'">{{headerTitle}}</ion-title>
+  
+      <ion-buttons slot="end" (click)="utilSer.goNext('/tabs/notification')" *ngIf="headerTitle != 'pdf'">
+         
+        <ion-icon color="danger" name="notifications-outline"></ion-icon>
           <ion-badge color="danger" *ngIf="utilSer.newNotification > 0" style="    margin-top: -22px;
             margin-left: -10px;">{{utilSer.newNotification}}</ion-badge>
       </ion-buttons>
-      <ion-buttons slot="end">
+      <ion-buttons slot="end" *ngIf="headerTitle != 'pdf'">
         <ion-icon (click)="openPopup()" color="danger" name="call-outline" class="call-icon"></ion-icon>
       </ion-buttons>
   </ion-toolbar>

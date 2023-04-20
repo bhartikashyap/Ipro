@@ -119,27 +119,50 @@ export class PartnerAgreementPage implements OnInit {
 
   }
 
-  goForSign() {
+ async  goForSign() {
     console.log(this.selected_option);
     console.log(this.taxId);
     this.errorText = '';
     this.taxIderror = '';
 
     if (this.profile.countryId == "84") {
-      if (this.selected_option == undefined || this.selected_option == null) {
+      if (this.selected_option == undefined || this.selected_option == null || this.selected_option == "") {
         this.errorText = this.utility.translateText('Agreement').error ;
       }
     }
 
     if (this.selected_option == 'check3') {
-      if (this.taxId == undefined || this.taxId == null) {
+      if (this.taxId == undefined || this.taxId == null|| this.taxId == "") {
         this.taxIderror =this.utility.translateText('Agreement').taxerror ;
       }
+      else{
+       
+      }
+    }
+    if (this.VATId != undefined && this.VATId != null && this.VATId != "") {
+      this.errorText = ".........";
+      let loading = await this.utility.presentLoading();
+      let result: any = await this.apiService.validateTaxID({"VATId":this.VATId});
+      loading.dismiss();
+      if(result.status ){
+        this.errorText =  "";
+        this.taxIderror = "";
+        // this.next = true;
+      }
+      else{ 
+        this.taxIderror = this.utility.translateText('Agreement').UIDerror;
+      }
+      
     }
 
     if (this.errorText == '' && this.taxIderror == '') {
       this.next = !this.next;
     }
   }
+
+  async openBrowser(link){
+  this.utility.openPdfLinks(this.utility.pdfLink[4].link,'partner')
+  }
+  
 
 }

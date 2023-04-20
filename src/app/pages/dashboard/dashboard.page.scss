@@ -66,3 +66,34 @@ ion-card-title{
 ion-card{
     border-radius: 15px;
 }
+
+.pending{
+    background-color: yellow;
+    ion-list   ion-item{
+        --background: yellow;
+    }
+    p{
+        font-size: 16px;
+        color:#000;
+    }
+}
+.failed{
+    background-color: red;
+  ion-list  ion-item{
+        --background: red;
+    }
+    p{
+        font-size: 16px;
+        color:#000;
+    }
+}
+.completed{
+    background-color: green;
+    ion-list   ion-item{
+        --background: green;
+    }
+    p{
+        font-size: 16px;
+        color:#000;
+    }
+}

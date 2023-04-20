@@ -1,14 +1,21 @@
 
-<app-header  [headerTitle]="'PAGES.CHECKZIP' | translate"  [headerBack]=true  ></app-header>
 
-
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="!zipCodeFilled">{{'PAGES.CHECKZIP' | translate}}</ion-title>
+    <ion-title *ngIf="zipCodeFilled">{{'PAGES.ANLAYST' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
+  <div class="main-div">
+
+  <div *ngIf="!zipCodeFilled">
   <div class="register-header">
     <h1>{{'BOOKING_ANALYSIS.CHECK_ZIP' | translate}} </h1>
   </div>
   <form  [formGroup]="form">
     <ion-item lines="none" class="form-group ion-no-padding"> 
-      <ion-input type="text" id="zip" formControlName="zip" placeholder="Zip" autocapitalize="off"></ion-input>
+      <ion-input type="number" id="zip" formControlName="zip" placeholder="Zip" autocapitalize="off"></ion-input>
     </ion-item>
     <div *ngFor="let validation of validationMessage.zip">
       <div *ngIf="submitted && formControls['zip'].errors" class="validation-message">
@@ -17,7 +24,60 @@
         </div>
       </div>
     </div>
-    <ion-button (click)="submit()" class="btn" color="danger" expand="block">
-      {{'BOOKING_ANALYSIS.SUBMIT_BUTTON' | translate}}</ion-button>
+    <ion-button (click)="submit()" class="btn" color="secondary" expand="block">
+      {{'BOOKING_ANALYSIS.NEXT' | translate}}</ion-button>
   </form>
+</div>
+<div *ngIf="zipCodeFilled">
+  <div class="register-header">
+    <h1>{{'BOOKING_ANALYSIS.SELECT_ANLAYSIST' | translate}} </h1>
+  </div>
+    <ion-item lines="none" class="form-group ion-no-padding"> 
+      <ion-select
+          [(ngModel)]="analyst"
+          (ionChange)="changeAnlayst($event)"
+          class="analyst-select"
+          interface="action-sheet"
+        >
+        <ion-select-option value="" >   {{'BOOKING_ANALYSIS.please_select' | translate}}</ion-select-option>
+        <ion-select-option  *ngFor="let list of analystList  " [value]="list.id"   >
+          {{list.updatedName}}  <br> {{list.updatedNames}}
+          
+        
+         
+        </ion-select-option>
+        
+    </ion-select>
+
+    </ion-item>
+    <ion-item lines="none" class="form-group ion-no-padding"> 
+      <ion-checkbox slot="start" [(ngModel)]="lightAnlysis" (ionChange)="changeAnlayst($event)" mode="md"
+      ></ion-checkbox>
+    <ion-label class="ion-text-wrap check-label">{{'BOOKING_ANALYSIS.LIGHT_ANALYSIS' | translate}}</ion-label>
+    </ion-item>
+
+   
+        <div class="error-message text-red " *ngIf="errorMsg != ''">
+          {{ errorMsg}}
+        </div>
+     
+    <div class="text-center next" *ngIf="role == 'Prospect'">
+      <a class="btn btn2" (click)="confirmSubmission()">
+        {{'BOOKING_ANALYSIS.CONFIRM' | translate}}
+      </a>
+      <a class="btn btn2"  (click)="zipCodeFilled = !zipCodeFilled" >
+        {{'BOOKING_ANALYSIS.BACK' | translate}}
+      </a>
+    </div>
+    <div class="text-center next" *ngIf="role != 'Prospect'" style="text-align: center;">
+      <a class="btn btn2" (click)="confirmSubmission()" >
+        {{'BOOKING_ANALYSIS.CONFIRM' | translate}}
+      </a>
+      
+    </div>
+    
+  <!-- </form> -->
+</div>
+</div>
+
 </ion-content>

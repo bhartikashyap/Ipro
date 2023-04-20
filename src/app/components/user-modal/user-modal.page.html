@@ -1,4 +1,4 @@
-<ion-header *ngIf="title != 'question-complete' && title !='analysis'">
+<ion-header *ngIf="title != 'question-complete' && title !='analysis' && title != 'pdf'">
   <ion-toolbar>
     <ion-title *ngIf="title == 'dashboard'">{{'MODALS.DASHBOARD.title' | translate}}</ion-title>
     <ion-title *ngIf="title == 'language'">{{'MODALS.LANGUAGE.title' | translate}}</ion-title>
@@ -7,15 +7,14 @@
     <ion-title *ngIf="title == 'search'">{{'MODALS.USERSEARCH.title' | translate}}</ion-title>
     <ion-title *ngIf="title == 'error'"> {{'MODALS.ERROR.title' | translate}}</ion-title>
     <ion-title *ngIf="title == 'payment'"> {{'MODALS.PAYMENT.title' | translate}}</ion-title>
-    <ion-title *ngIf="title == 'pdf'" (click)="closeModal()"> Done</ion-title>
+    <!-- <ion-title *ngIf="title == 'pdf'" (click)="closeModal()"> Done</ion-title> -->
   </ion-toolbar>
 </ion-header>
+<app-header  *ngIf="title == 'pdf'" [headerTitle]="'pdf'" [headerBack]=true></app-header>
 
 <ion-content *ngIf="title == 'pdf'" class="ion-content-iframe">
   <div *ngIf="title == 'pdf'" style="height: 100%;">
-
-
-    <iframe class="webPage" style="height:100%;" frameborder="0" name="eventsPage" [src]="utiSer.pdf">
+    <iframe class="webPage" style="height:100%;" frameborder="0" name="eventsPage" [src]="utiSer.pdf" zooming="true" >
     </iframe>
 
   </div>
@@ -36,6 +35,7 @@
           translate}}</strong><br>
         {{'QUESTIONNAIRE.quetsionComplete2' | translate}}
         <br>{{'QUESTIONNAIRE.quetsionComplete3' | translate}}
+        <br>{{'QUESTIONNAIRE.quetsionComplete4' | translate}}
       </p>
     </ion-item>
 

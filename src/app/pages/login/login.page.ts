@@ -7,7 +7,7 @@ import { ApiService } from "src/app/services/api.service";
 import { UtilService } from "src/app/services/util.service";
 import { message, session } from "src/app/utility/message";
 import { pattern } from "src/app/utility/pattern";
-
+import { timer } from 'rxjs';
 @Component({
   selector: "app-login",
   templateUrl: "./login.page.html",
@@ -20,7 +20,10 @@ export class LoginPage implements OnInit {
   }
   submitted = false;
   validationMessage: any;
-
+//   public customClas:any='logo1 animate__animated animate__slideInUp animate__slow';
+//   public customClas1:any='';
+//   public loginAnimation:any='';
+//  public val=10;
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
@@ -28,10 +31,18 @@ export class LoginPage implements OnInit {
     private utility: UtilService,
     private formBuilder: FormBuilder,
     private apiService: ApiService
-  ) {}
+  ) {
+
+  }
   type = "password";
   ionViewDidEnter() {
     this.menuCtrl.enable(false);
+   // this.val=10;
+//timer(3000).subscribe(() => (this.val = -1));
+
+    // this.customClas='logo1 animate__animated animate__slideInUp animate__slow';
+    // this.customClas1='';
+    // this.loginAnimation=''
   }
   initForm() {
     this.form = this.formBuilder.group({
@@ -62,6 +73,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.initForm();
     this.menuCtrl.enable(false);
+   
   }
 
   changeType() {
@@ -72,7 +84,16 @@ export class LoginPage implements OnInit {
     }
   }
   signup() {
+
     this.router.navigate(["/register"]);
+  //   this.customClas='logo1 animate__animated animate__rotateIn animate__slow';
+    
+  //   this.customClas1='change'
+  //   setTimeout(
+  //     ()=>{
+  //       this.router.navigate(["/register"]);
+
+  // },1000)
   }
   async login() {
     this.submitted = true;
@@ -86,19 +107,33 @@ export class LoginPage implements OnInit {
         .loginUser(params) 
         .then((res: any) => {
           loading.dismiss();
-          if (res.status) {
+          if (res.status == 1) {
             let token = res.jwt;
             let data = res.data;
+            this.utility.checkQuestionaire();
             this.utility.setStorage(session.AUTH_STATUS, 1);
             this.utility.setStorage(session.AUTH_TOKEN, token);
             this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
             this.utility.userRole=data.userRole;
             this.utility.setStorage('userRole',data.userLevelStatus);
             this.utility.setStorage('firstLogin', new Date());
+            // this.customClas='logo1 animate__animated animate__flip animate__slow';
+            // this.customClas1='change';
+            // this.loginAnimation = 'animate__animated  animate__fast animate__fadeOutUp';
             if(data.userRole == 'Prospect'){
-                   this.utility.checkQuestionaire();
-             // this.utility.goNext(["/tabs/area-of-interest"]);
-             // this.router.navigate(["/tabs/area-of-interest"]);
+              ///animation
+            //   setTimeout(
+            //     ()=>{
+            //   this.val = 10;
+
+            //     },500)
+            //   setTimeout(
+            //     ()=>{
+            //       this.utility.goNext(["/tabs/area-of-interest"]);
+            // },1000)
+
+            ///animation
+              this.router.navigate(["/tabs/area-of-interest"]);
             }
             else{
               let dash;
@@ -111,9 +146,25 @@ export class LoginPage implements OnInit {
               // }
               this.utility.setStorage('CHANGE_DASH',dash);
               this.utility.goNext(["/tabs/dashboard/"+dash])
+              
+            //   setTimeout(
+            //     ()=>{
+            //       this.utility.goNext(["/tabs/dashboard/"+dash])
+
+          
+            // },1000)
             }
-          } else {
-            this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
+
+          } else if(res.status == 2){
+           
+              this.utility.presentToast(this.utility.translateText('MSG').verifyEmail,"bottom");
+
+            }
+            else{
+              this.utility.presentToast(res?.msg,"bottom");
+              //this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
+
+           
           }
         })
         .catch((err: any) => {
@@ -122,6 +173,19 @@ export class LoginPage implements OnInit {
         });
       console.log(params);
     }
+  }
+
+  animation(){
+    // this.customClas='logo1 animate__animated animate__flip animate__slow';
+    // this.customClas1='change'
+    // this.utility.goNext(["/splash"]);
+
+  }
+
+  ngOnDestroy() {
+   
+    // this.customClas='logo1 animate__animated animate__flip animate__slow';
+    // this.customClas1='change'
   }
 
 }

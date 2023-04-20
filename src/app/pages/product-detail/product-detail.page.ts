@@ -4,6 +4,7 @@ import { ApiService } from "src/app/services/api.service";
 import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
 import { session } from 'src/app/utility/message';
+import { CheckZipPage } from '../check-zip/check-zip.page';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.page.html',
@@ -37,15 +38,21 @@ slideOpts = {
   
   ionViewWillEnter(){
     this.getProd();
+    // this.detail["availTymSelected"] = "0";
     //this.utility.setStorage(session.SELECTED_PLAN,'');
 
   }
   async getProd(){
     this.detail = '';
     this.detail = JSON.parse(await this.utility.getStorage('Prod'));
-    this.detail["availTymSelected"] =   Object.keys( this.detail.avail_runtime)[0];
-    console.log(this.detail["availTymSelected"] ,this.detail.avail_runtime);
-    this.changeDuration("");
+    // this.detail.availTymSelected = '';
+    // this.detail["availTymSelected"] =   Object.keys( this.detail.avail_runtime)[0];
+    // availTym[key] === value
+    this.detail["availTymSelected"]  =   Object.keys(this.detail.avail_runtime).find(key => this.detail.avail_runtime[key] === this.detail.avail_runtime_default);
+    console.log(this.detail);
+    // this.detail.changedPrice = this.detail.your_price * parseInt( this.detail.availTymSelected);
+   
+   // this.changeDuration( Object.keys( this.detail.avail_runtime)[0],Object.keys( this.detail.avail_runtime)[0]);
 
     // console.log( this.detail);
     //this.detail.avail_runtime =  this.detail.avail_runtime.filter(avtym => console.log(avtym))
@@ -85,22 +92,28 @@ slideOpts = {
     let response: any = await this.apiService.removeFromCart(packageId);
     loading.dismiss();
     if(response.status == 1){
-      this.detail["disableCart"]=false;
+      this.detail["added_to_cart"]='no';
       this.utility.presentToast(this.utility.translateText('MSG').productRemoved,"top");
        this.utility.getCart('cart');
+      //  this.utility.goBack();
     }
    }
 
 
-  changeDuration(event){
+  changeDuration(event,availTym){
+// availTym[key] === value
+this.detail.availTymSelected =   Object.keys(availTym).find(key => availTym[key] === event.detail.value);
+// this.detail.availTymSelected = availTym;
     if(this.detail.your_price != 0){
-      this.detail.changedPrice = this.detail.your_price * parseInt( this.detail.availTymSelected);
+      this.detail.changedPrice = ( this.detail.your_price * parseInt(this.detail.availTymSelected));
+      this.detail.changedPrice = this.utility.convertBacktoString( this.detail.changedPrice,2,',','.');
      }
      else{
-      this.detail.changedPrice = this.detail.standard_price * parseInt( this.detail.availTymSelected);
-     }
+      this.detail.changedPrice = this.utility.convertToFloat(this.detail.standard_price) * parseInt(this.detail.availTymSelected);
+      this.detail.changedPrice = this.utility.convertBacktoString( this.detail.changedPrice,2,',','.');
+    }
+     availTym =   this.detail.changedPrice;
      console.log(this.detail);
-
    // this.detail.changedPrice = this.detail.changedPrice * parseInt( this.detail.availTymSelected);
   }
 
@@ -117,8 +130,10 @@ let loading = await this.utility.presentLoading();
     loading.dismiss();
     if(res.status){
       this.detail["disableCart"] = true;
+      this.detail["added_to_cart"]='yes';
       this.utility.presentToast(this.utility.translateText('MSG').productadded,"top");
       this.utility.getCart('cart');
+      // this.utility.goBack();
       
     }
     else{
@@ -142,44 +157,46 @@ let loading = await this.utility.presentLoading();
   }
   async addTobasket(){
     //checing before adding to cart
-     if(this.detail.packageId == '5'  ){
+     if(this.detail.productCatId == '6'  ){
       //this.addToCart();
 
-      if(this.profile != null && this.profile.zipCode != ''){
-         this.checkZipcode(this.profile.zipCode);
-      //  this.checkZipcode('99999999');
-      }
-      else{
-        this.utility.presentAlert(
-          "Alert",
-          "",
-          [
-            {
-              name: 'zipcode',
-              type: 'number',
-              id: 'zipcode',
-              value: '',
-              placeholder: this.utility.translateText("MODALS").BUTTONS.zipcode
-            }
-          ],
-          this.utility.translateText("MSG").zipcode,
-           [{
-              text: this.utility.translateText("MODALS").BUTTONS.OK,
-              handler: async(event) => {
-                console.log(event);
-                if(event.zipcode != ''){
-                  this.checkZipcode(event.zipcode);
-                }
-                else{
-                  this.utility.presentToast( this.utility.translateText("MSG").invalidZip,"top");
-                  this.addToCart();
-                  return false;
-                }
-              }
-            }]
-        );
+      this.utility.openPopup(CheckZipPage, "selectedTab", 'check-zip', true);
+     
+      // if(this.profile != null && this.profile.zipCode != ''){
+      //    this.checkZipcode(this.profile.zipCode);
+      // //  this.checkZipcode('99999999');
+      // }
+      // else{
+      //   this.utility.presentAlert(
+      //     "Alert",
+      //     "",
+      //     [
+      //       {
+      //         name: 'zipcode',
+      //         type: 'number',
+      //         id: 'zipcode',
+      //         value: '',
+      //         placeholder: this.utility.translateText("MODALS").BUTTONS.zipcode
+      //       }
+      //     ],
+      //     this.utility.translateText("MSG").zipcode,
+      //      [{
+      //         text: this.utility.translateText("MODALS").BUTTONS.OK,
+      //         handler: async(event) => {
+      //           console.log(event);
+      //           if(event.zipcode != ''){
+      //             this.checkZipcode(event.zipcode);
+      //           }
+      //           else{
+      //             this.utility.presentToast( this.utility.translateText("MSG").invalidZip,"top");
+      //             this.addToCart();
+      //             return false;
+      //           }
+      //         }
+      //       }]
+      //   );
        
-      }
+      // }
      
      }
      else{
@@ -221,6 +238,10 @@ let loading = await this.utility.presentLoading();
         loading.dismiss();
       });
    }
+
+   ionViewDidLeave() {
+    this.utility.setStorage('Prod', JSON.stringify(this.detail));
+  }
 
 }
  

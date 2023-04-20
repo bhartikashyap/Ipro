@@ -92,20 +92,17 @@ export class ChangepasswordPage implements OnInit {
       console.log(params);
       
       let loading = await this.utility.presentLoading();
-      this.apiService
+      let url:any = await this.utility.changeMenu();
+     this.apiService
           .changePassword(params)
           .then((res: any) => {
           loading.dismiss();
           if (res.status == 1) {
-            // let token = res.jwt;
-            // let data = res.data;
+           
             this.utility.presentToast(this.utility.translateText('MSG').passwordChanged,"top");
-            // this.utility.presentToast(res.msg,"top");
             this.form.reset();
-            // this.utility.setStorage(session.AUTH_STATUS, 1);
-            // this.utility.setStorage(session.AUTH_TOKEN, token);
-            // this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
-            this.router.navigate(["/tabs/area-of-interest"]);
+           
+            this.router.navigate([url])
           } else {
             this.utility.presentToast(this.utility.translateText('MSG').someissueInNetwork,"bottom");
           }

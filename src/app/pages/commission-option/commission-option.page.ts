@@ -4,6 +4,10 @@ import { ApiService } from 'src/app/services/api.service';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { pattern } from "src/app/utility/pattern";
 import { message, session } from "src/app/utility/message";
+
+import { Browser } from '@capacitor/browser';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { Platform } from '@ionic/angular';
 @Component({
   selector: 'app-commission-option',
   templateUrl: './commission-option.page.html',
@@ -22,7 +26,27 @@ export class CommissionOptionPage implements OnInit {
   maxLength: any;
   erroriban: any;
   bic: any;
-  constructor(public utilSer: UtilService, private apiSer: ApiService, private fb: FormBuilder) { }
+  browser: any;
+  options: InAppBrowserOptions = {
+    location: 'yes',//Or 'no' 
+    hidden: 'no', //Or  'yes'
+    clearcache: 'yes',
+    clearsessioncache: 'yes',
+    zoom: 'yes',//Android only ,shows browser zoom controls 
+    hardwareback: 'yes',
+    mediaPlaybackRequiresUserAction: 'no',
+    shouldPauseOnSuspend: 'no', //Android only 
+    closebuttoncaption: 'Close', //iOS only
+    disallowoverscroll: 'no', //iOS only 
+    toolbar: 'yes', //iOS only 
+    enableViewportScale: 'no', //iOS only 
+    allowInlineMediaPlayback: 'no',//iOS only 
+    presentationstyle: 'pagesheet',//iOS only 
+    fullscreen: 'yes',//Windows only    
+  };
+  openPage: any;
+  constructor(public utilSer: UtilService, private apiSer: ApiService, private fb: FormBuilder, private theInAppBrowser: InAppBrowser,
+    private platform: Platform,) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -52,6 +76,7 @@ export class CommissionOptionPage implements OnInit {
 
   ionViewWillEnter() {
     this.getPaymentoption();
+    this.cardPaymentoption.commissionPaymentOption = 'Bank Transfer';
 
   }
   async getPaymentoption() {
@@ -158,6 +183,18 @@ export class CommissionOptionPage implements OnInit {
 
   async changeCode(event) {
     console.log(event)
+    let selectedCountry = this.countries.filter(item => item.IBAN == event.detail.value)
+
+
+
+
+    console.log(selectedCountry);
+    if (selectedCountry != undefined && selectedCountry.length >= 0) {
+      // selectedCountry = selectedCountry[0].countryCode;
+      this.maxLength = selectedCountry[0].totalLength;
+      this.form.get("ibancode").setValue(selectedCountry[0].IBAN);
+
+    }
 
   }
 
@@ -195,10 +232,11 @@ export class CommissionOptionPage implements OnInit {
 
 
   }
+  
 
   async checkIban(ibanNos) {
     this.erroriban = ''
-    let iban = this.form.get("ibanNo").value
+    let iban = this.form.get("ibancode").value+this.form.get("ibanNo").value
 
     // if(iban.match(pattern.alphaNumeric) ){
     //   this.error = "Please enter valid IBAN no."
@@ -212,13 +250,11 @@ export class CommissionOptionPage implements OnInit {
 
     }
     else if (iban.length > this.maxLength) {
-      this.erroriban = 'IBAN length is gretaer than expected.';
-      //this.utilSer.translateText('PAYMENT_OPTON').msg.reqIBAN; 
+     this.erroriban = this.utilSer.translateText('PAYMENT_OPTON').msg.greaterIban; 
       return false;
     }
     else if (iban.length < this.maxLength) {
-      this.erroriban = 'IBAN length is smaller than expected.'
-      // this.erroriban = this.utilSer.translateText('PAYMENT_OPTON').msg.reqIBAN; 
+      this.erroriban = this.utilSer.translateText('PAYMENT_OPTON').msg.smallerIban; 
       return false;
     }
     else {
@@ -231,6 +267,7 @@ export class CommissionOptionPage implements OnInit {
       loading.dismiss();
       let selectedCountry;
       if (result.status == 1) {
+        this.utilSer.presentToast(this.utilSer.translateText('PAYMENT_OPTON').msg.ibanCheck, 'top');
         this.ibanCheck = 'pass';
         this.bic = result.bic;
         this.cardPaymentoption.bic = result.bic;
@@ -268,47 +305,52 @@ export class CommissionOptionPage implements OnInit {
   async savePayment(type) {
     console.log(this.form)
     console.log(this.form.valid)
-    // let data = {};
     this.error = '';
     let iban = this.form.get("ibancode").value + "" + this.form.get("ibanNo").value;
     this.checkIban(iban);
-    // if (type == 'bitcoin') {
-    //   if (this.form.get("wallet").value != '' && this.form.get("wallet").value != undefined) {
-    //     data = {
-    //       'bitcoinAddress': this.form.get("wallet").value
-    //     }
-    //   }
-    //   else {
-    //     this.error = this.utilSer.translateText('PAYMENT_OPTON').msg.walletAdd;
-    //     return false;
-    //   }
-    // }
-    // else if (type == 'iban') {
-     
-      // if (!this.checkIban(iban)) {
-      //   return false;
-      // }
-
-    // let  data = {
-    //     'iban': this.form.get("ibancode").value + "" + this.form.get("ibanNo").value,
-    //     'bic': this.cardPaymentoption.bic
-    //   }
-    //   data['commissionPaymentOption'] = this.cardPaymentoption.commissionPaymentOption;
-    //   let loading = await this.utilSer.presentLoading();
-    //   let result: any = await this.apiSer.commissionPayment(data);
-    //   loading.dismiss();
-    //   if (result.status == 1) {
-    //     this.utilSer.presentToast(this.utilSer.translateText('PAYMENT_OPTON').msg.payment, 'top');
-    //     this.getPaymentoption()
-    //   }
-    //   this.error = '';
-
-    // }
-
-  
-
-
-
    }
+
+   getOnthelink(){
+    this.inAppBrowser('https://wise.com/register')
+   }
+
+   async inAppBrowser(paymentUrl) {
+
+
+    if (this.platform.is('android')) {
+      let target = "_blank";
+      this.openPage = this.theInAppBrowser.create(paymentUrl, target, this.options);
+
+      this.openPage.on('exit').subscribe(event => {
+        console.log(event, 'exit');
+      })
+    } else {
+      Browser.open({ url: paymentUrl });
+
+      Browser.addListener('browserPageLoaded', () => { }).then((info) => {
+        console.log(info);
+      })
+
+      Browser.addListener('browserFinished', () => { }).then((info) => {
+        console.log(info);
+      })
+    }
+  }
+
+ 
+  async closeBrowser() {
+    if (this.platform.is('android')) {
+      this.openPage.close()
+
+
+    } else {
+      Browser.close()
+
+
+    }
+  }
+
+ 
+
 
 }

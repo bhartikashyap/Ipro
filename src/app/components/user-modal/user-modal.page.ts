@@ -5,7 +5,7 @@ import {
 } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { UtilService } from 'src/app/services/util.service';
-
+import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 @Component({
@@ -27,12 +27,10 @@ export class UserModalPage implements OnInit {
     private navParams: NavParams,
     private utiSer: UtilService,
     private apiSer: ApiService,
+    private router:Router,
     public cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    console.log(this.utiSer.translateText('MODALS').USERSEARCH)
-    console.log(this.navParams);
-    // this.getSponsors();
     this.title = this.navParams.data.paramTitle;
     if (this.title == "member-place") {
       this.getMemberToPlace();
@@ -110,8 +108,12 @@ export class UserModalPage implements OnInit {
 
   }
 
-  navigateHome(){
-    this.utiSer.goNext(["/tabs/area-of-interest"]);
+ async navigateHome(){
+   
+    let url:any = await this.utiSer.changeMenu();
+    // this.utiSer.goNext([url]);
+
+    this.router.navigate([url])
     this.closeModal();
   }
 

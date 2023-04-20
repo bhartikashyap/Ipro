@@ -132,7 +132,11 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('../../pages/profile/profile.module').then( m => m.ProfilePageModule)
       }
-    
+      ,
+      {
+        path: 'support',
+        loadChildren: () => import('../../pages/support/support.module').then( m => m.SupportPageModule)
+      }
     
       // {
       //   path: "",

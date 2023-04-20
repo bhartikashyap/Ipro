@@ -69,10 +69,12 @@ export class RegisterPage implements OnInit {
   ngAfterViewInit() {
     this.videoSer.initPlayer(this.videoSer.videoType[0].initPlayer,this.videoSer.videoType[0].id,this.cdr);
    // this.videoSer.initPlayer("A4HAcLOLOO68!AkADF107s8tQ",this.playerId);
+  
   }
 
   async changeLan(event){
-    console.log(this.form.get("language").value)
+    console.log(this.form.get("language").value);
+    this.utility.changeLan(this.form.get("language").value,'register');
    
   }
 
@@ -161,11 +163,13 @@ export class RegisterPage implements OnInit {
 
   
 
-  addPopUp(){
-    console.log("hiii")
+  addPopUp(event){
+    console.log(event)
    if(this.form.get("agree").value && this.form.get("sponsorId").value == ''){
     this.utility.presentAlert('Alert','',[],this.utility.translateText('MSG').activationCode, [this.utility.translateText("MODALS").BUTTONS.OK])
    }
+
+   //this.utility.openPdfLinks(this.utility.pdfLink[2].link,'Term & Condition')
   }
 
   async submit() {
@@ -195,6 +199,7 @@ export class RegisterPage implements OnInit {
             this.utility.setStorage(session.AUTH_TOKEN, token);
             this.utility.setStorage(session.AUTH_USER, JSON.stringify(data));
             this.utility.setStorage('userRole','Prospect');
+            this.utility.presentAlert('Alert','', [],this.utility.translateText('MSG').loginCredentialsMailed, [this.utility.translateText("MODALS").BUTTONS.OK])
             this.router.navigate(["/tabs/area-of-interest"]);
           } else {
             if(res.msg == 'Sponsor does not exist'){
@@ -258,6 +263,7 @@ export class RegisterPage implements OnInit {
         { type: "wrongNumber", message: messages.phoneNumber },
       ],
     };
+    this.form.get("language").setValue(this.utility.deviceLang);
   }
 
   ionViewDidLeave() {

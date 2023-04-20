@@ -56,13 +56,13 @@ export class IproPartnershipPage implements OnInit {
   ionViewWillEnter(){
     this.videoSer.videoId = 2
    this.utility.setStorage(session.SELECTED_PLAN,this.envr.plans.partnership);
-   //this.videoSer.initPlayer(this.videoSer.videoType[2].initPlayer,this.videoSer.videoType[2].id,this.cdr);
    this.getDashboard();
 
   }
 
   async getDashboard(){
     let loading = await this.utility.presentLoading();
+   
     this.apiSer
       .prospectDashboard() 
       .then((res: any) => {
@@ -99,8 +99,6 @@ export class IproPartnershipPage implements OnInit {
   this.utility.getPlanDetail(this.envr.plans.partnership);
 
   }
- 
-  
   saveVideoDur() {
     this.videoSer.saveVideoDur( this.videoSer.videoId)
   }

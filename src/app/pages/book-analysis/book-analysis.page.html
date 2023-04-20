@@ -29,7 +29,7 @@
     <div class="register-header">
       <h1>{{'BOOKING_ANALYSIS.TITLE' | translate}}</h1>
     </div>
-    <ion-item lines="none" class="form-group ion-no-padding">
+    <ion-item lines="none" class="form-group ion-no-padding" >
       <div class="check-div">
         <ion-checkbox (ionChange)="companyChange($event)" [(ngModel)]="private" slot="start" formControlName="private">
         </ion-checkbox>
@@ -49,7 +49,9 @@
         </div>
       </div>
     </div>
-    <ion-item lines="none" class="form-group ion-no-padding" *ngIf="company">
+
+    <p style="padding: 0px 25px; margin:0px;">{{profile?.firstName}} {{profile?.lastName}}</p>
+    <ion-item lines="none" class="form-group ion-no-padding"*ngIf="company" >
       <ion-input type="text" placeholder="Company" formControlName="companyName" id="companyName" autocapitalize="off">
       </ion-input>
     </ion-item>
@@ -115,41 +117,74 @@
         </div>
       </div>
     </div>
-      <div style="display: flex;"  *ngIf="!company" class="form-group ion-no-padding">
-        <ion-button fill="clear" (click)="d.toggle()">
+      <div >
+        <!-- <ion-button fill="clear" style="width:20%">
           <ion-icon icon="calendar"></ion-icon>
-        </ion-button>
+        </ion-button> -->
+        <!-- (click)="d.toggle()" -->
+        <ion-row style="padding:0px 10px">
+          <ion-col>
+            {{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}
+            </ion-col>
+          </ion-row>
 
-      <input  style="margin:7px 15px;"  class="form-control"  (click)="d.toggle();onDateChange(dob)"  placeholder="{{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}"
-      name="dp"  ngbDatepicker  [readonly]="true"  [footerTemplate]="footerTemplate" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}" [minDate]="minDobString" [maxDate]="maxDobString" [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
-  
 
-      <ng-template #footerTemplate>
-        <hr class="my-0">
-        <ion-button class="btn-bootstrap danger" (click)="d.close()">Close</ion-button>
-      </ng-template>
+        <ion-row style="padding:0px 10px">
+          
 
-        <!-- <ion-button style="margin: 10px !important;" fill="clear"  (click)="d.toggle()" class="btn btn-outline-secondary calendar" slot="start" >
-          <ion-icon icon="calendar"></ion-icon>
-        </ion-button>
-              <input style="margin:7px 17px;"  class="form-control" (click)="d.toggle()" formControlName="dob" placeholder="{{'BOOKING_ANALYSIS.BIRTHDAY' | translate}}"
-              name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" [ngModelOptions]="{standalone: true}" [minDate]="minDobString" [maxDate]="maxDobString"> -->
-           
+          <ion-col class="col-2">
+            <ion-input type="number"  id="dd" autocapitalize="off"
+            placeholder="dd"  formControlName="dd" autofocus="false" maxlength="2" name="dd" ></ion-input>
+            <div *ngFor="let validation of validationMessage.dd">
+              <div *ngIf="submitted && formControl['dd'].errors" class="validation-message">
+                <div class="error-message text-red" *ngIf="formControl['dd'].errors[validation.type]">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+            <div class="error-message text-red" *ngIf="(formControl['dd'].value < 1 || formControl['dd'].value > 31) &&  formControl['dd'].touched">
+              {{'BOOKING_ANALYSIS.dateError' | translate}}
+             </div>
+          </ion-col>
+          <ion-col>
+            <ion-input type="number"   id="mm" autocapitalize="off"
+            placeholder="mm"  formControlName="mm" autofocus="false" maxlength="2"  name="mm" ></ion-input>
+            <div *ngFor="let validation of validationMessage.dd">
+              <div *ngIf="submitted && formControl['mm'].errors" class="validation-message">
+                <div class="error-message text-red" *ngIf="formControl['mm'].errors[validation.type]">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+            <div class="error-message text-red" *ngIf="(formControl['mm'].value  < 1 || formControl['mm'].value  > 12 ) &&  formControl['mm'].touched">
+              {{'BOOKING_ANALYSIS.monthError' | translate}}
+             </div>
+          </ion-col>
+          <ion-col>
+            <ion-input type="number"  id="yyyy" autocapitalize="off"
+        placeholder="yyyy"  formControlName="yyyy" autofocus="false"  maxlength="4" name="yyyy" ></ion-input>
+        <div *ngFor="let validation of validationMessage.yyyy">
+          <div *ngIf="submitted && formControl['yyyy'].errors" class="validation-message">
+            <div class="error-message text-red" *ngIf="formControl['yyyy'].errors[validation.type]">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>  
+        <div class="error-message text-red" *ngIf="(formControl['yyyy'].value  < 1922 || formControl['yyyy'].value  > 2005) &&  formControl['yyyy'].touched">
+          {{'BOOKING_ANALYSIS.yearError' | translate}}
+         </div>
+      </ion-col>
+     
+        </ion-row>
+       
+       
            
       </div>
-      <div *ngIf="doberror != ''" class="validation-message">
-        <div class="error-message text-red" >
-          {{ doberror }}
-        </div>
-      </div>
+    
    
-    <div *ngFor="let validation of validationMessage.dob">
-      <div *ngIf="submitted && formControl['dob'].errors" class="validation-message">
-        <div class="error-message text-red" *ngIf="formControl['dob'].errors[validation.type]">
-          {{ validation.message }}
-        </div>
-      </div>
-    </div>
+   
+   
+  
     <ion-item lines="none" class="form-group ion-no-padding">
     
       <ion-input type="text" id="street name" autofocus="on" formControlName="streetname"
@@ -231,12 +266,12 @@
     </div>
   </div>
   <div class="filled-data" *ngIf="profile?.city != '' && profile?.nr != '' &&  profile?.phone != '' && profile?.streetname != '' && profile?.zipCode != '' ">
-   <h3>Main/Billing Address</h3>
-   <p><strong>Name:</strong>{{profile?.firstName}} {{profile?.lastName}}</p>
-   <p><span>Address:</span>{{profile?.nr}},{{profile?.streetname}}</p>
-   <p>Zipcode:{{profile?.zipCode}} </p>
-   <p>City:{{profile?.city}} </p>
-   <p>Country:{{profile?.countryName}} </p>
+   <h3><strong>{{'BOOKING_ANALYSIS.billingAddress' | translate}}</strong></h3>
+   <p><strong>{{'BOOKING_ANALYSIS.NAME' | translate}} :</strong><span *ngIf="profile?.companyName == ''">{{profile?.firstName}} {{profile?.lastName}}</span> <span *ngIf="profile?.companyName != ''">{{profile?.companyName}} </span></p>
+   <p><strong>{{'BOOKING_ANALYSIS.ADDRESS' | translate}} :</strong>{{profile?.nr}},{{profile?.streetname}}</p>
+   <p><strong>{{'BOOKING_ANALYSIS.ZIP' | translate}} :</strong>{{profile?.zipCode}} </p>
+   <p><strong>{{'BOOKING_ANALYSIS.CITY' | translate}}: </strong>{{profile?.city}} </p>
+   <p><strong>{{'BOOKING_ANALYSIS.COUNTRY' | translate}}: </strong>{{profile?.countryName}} </p>
    <!-- <p><strong>Edit Address</strong></p> -->
   </div>
 
@@ -270,6 +305,18 @@
       <div *ngFor="let validation of validationMessage.deliveryLastName">
         <div *ngIf="submitted && formControl['deliveryLastName'].errors" class="validation-message">
           <div class="error-message text-red" *ngIf="formControl['deliveryLastName'].errors[validation.type]">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
+      <ion-item lines="none" class="form-group ion-no-padding" >
+        <ion-input type="text" placeholder="Company Name" formControlName="deliveryCompanyName" id="deliveryCompanyName"
+          autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <div *ngFor="let validation of validationMessage.deliveryCompanyName">
+        <div *ngIf="submitted && formControl['deliveryCompanyName'].errors" class="validation-message">
+          <div class="error-message text-red" *ngIf="formControl['deliveryCompanyName'].errors[validation.type]">
             {{ validation.message }}
           </div>
         </div>

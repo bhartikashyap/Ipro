@@ -14,14 +14,14 @@ import { Capacitor } from '@capacitor/core';
 import { Market } from '@ionic-native/market/ngx';
 const { App } = Plugins;
 import { Platform } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar';
+import { StatusBar, SetOverlaysWebViewOptions } from '@capacitor/status-bar';
 import { VideoService } from './services/video.service';
 import { EnvironmentService } from 'src/app/services/environment.service';
 import { ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserModalPage } from '../app/components/user-modal/user-modal.page';
+import { Browser } from '@capacitor/browser';
 const { capacitorSplashScreen } = Plugins;
-//  import { Events } from '@ionic/angular';
 import {
   ActionPerformed,
   PushNotificationSchema,
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
   language: string;
   isAppInstalled: any;
   dashboard: any;
+  AppVersion:any;
 
 
   constructor(
@@ -64,12 +65,16 @@ export class AppComponent implements OnInit {
     private screenOrientation: ScreenOrientation,
     private appVersion: AppVersion,
     private market: Market
-    // private status: StatusBar
   ) {
-   
+    let authToken =  this.utility.getToken();
+    if(authToken){
+     // this.utility.checkQuestionaire();
+    }
+    
     this.videoSer.videoType = this.envr.videosEnglish;
     if (Capacitor.isNativePlatform()) {
       this.fcmSer.pushRegister();
+       StatusBar.hide();
 
       this.platform.pause.subscribe(() => {
         console.log('Pause subscribe was called');
@@ -82,20 +87,19 @@ export class AppComponent implements OnInit {
       this.platform.resume.subscribe(() => {
         if(this.utility.upadteApp){
           this.launcApp();
-
         }
-
-        if (this.utility.userRole == 'Prospect' && this.utility.quetionaireComplete == true) {
-          this.utility.checkQuestionaire();
-        }
+      
+      if(authToken){
+        this.utility.checkQuestionaire();
+      }
+      this.fcmSer.getDeliverMsg();
+        // if (this.utility.userRole == 'Prospect' && this.utility.quetionaireComplete == true) {
+        // }
         // this.fcmSer.catchPushRecieve();
         console.log('resume subscribe was called');
 
       });
       this.platform.backButton.subscribe((event) => {
-        console.log(event)
-        console.log(this.router.getCurrentNavigation)
-        console.log(this.router.url)
         if (this.router.url == '/member-replacement' || this.router.url.indexOf('/tabs/dashboard') > -1 || this.router.url == '/tabs/area-of-interest') {
           // this.utility.changeMenu();
           this.platform.backButton.subscribeWithPriority(9999, () => {
@@ -118,14 +122,17 @@ export class AppComponent implements OnInit {
     }
 
     setTimeout(() => {
-      // statusBar.backgroundColorByHexString('#457492');
       SplashScreen.hide();
     }, 3000);
   }
 
   async launcApp() {
+    
     let appversion: any = await this.appVersion.getVersionNumber();
+    this.AppVersion = await this.appVersion.getVersionNumber();
     appversion = parseFloat(appversion);
+    console.log(this.appVersion)
+    console.log(await this.appVersion.getAppName())
     let packageName = await this.appVersion.getPackageName();
     this.apiSer.appVersion().then((res: any) => {
       let appVersionNotmatch = false;
@@ -137,6 +144,7 @@ export class AppComponent implements OnInit {
             appVersionNotmatch = true;
            
           }
+
 
         }
         else if (this.platform.is('ios')) {
@@ -156,8 +164,15 @@ export class AppComponent implements OnInit {
               text: this.utility.translateText("MODALS").BUTTONS.VERSION_UPDATE,
               cssClass: 'secondary',
               handler: async () => {
+                console.log(packageName);
+                let iosUrl = "https://apps.apple.com/us/app/ipro/id1644742652"
+                if (this.platform.is('android')) {
+                  this.market.open(packageName);
 
-                this.market.open(packageName);
+                }
+                else{
+                  Browser.open({ url: iosUrl });
+                }
 
 
               }
@@ -185,10 +200,10 @@ export class AppComponent implements OnInit {
     if (Capacitor.isNativePlatform()) {
     
       
-      let storageNotifications: any = await this.utility.getStorage('notification');
-      if (storageNotifications) {
-        this.utility.removeStorage('notification');
-      }
+     // let storageNotifications: any = await this.utility.getStorage('notification');
+      // if (storageNotifications) {
+      //   this.utility.removeStorage('notification');
+      // }
       setTimeout(() => { 
         this.launcApp();
     }, 3000);
@@ -211,19 +226,21 @@ export class AppComponent implements OnInit {
     console.log(dashboard);
      setTimeout(() => {
       console.log(dashboard,"dashboard");
+      // dashboard = '/questionare'
      
       if (this.sessionRes) {
         this.router.navigate([dashboard]);
       } else {
         this.router.navigate(landingPage);
       }
-     
+      this.utility.checkQuestionaire();
 
-     }, 1000);
+     }, 2000);
   }
 
 
   getDeviceLanguage() {
+    // this.utility._initTranslate('de');
     if (Capacitor.isNativePlatform()) {
       this.globalization
         .getPreferredLanguage()
@@ -232,20 +249,28 @@ export class AppComponent implements OnInit {
           if (res.value.indexOf("en") != -1) {
             this.utility._initTranslate("en");
             this.language = 'en';
+            this.utility.deviceLang = 'en';
+            this.videoSer.videoType = this.envr.videosEnglish;
           } else {
             this.utility._initTranslate("de");
             this.language = 'de';
+            this.utility.deviceLang = 'de';
+            this.videoSer.videoType = this.envr.videosGerman;
           }
 
         })
         .catch((e) => {
           console.log(e);
           this.utility._initTranslate('en');
+          this.utility.deviceLang = 'en';
+          this.videoSer.videoType = this.envr.videosEnglish;
         });
 
     }
     else {
       this.utility._initTranslate('en');
+      this.utility.deviceLang = 'en';
+      this.videoSer.videoType = this.envr.videosEnglish;
     }
 
   }

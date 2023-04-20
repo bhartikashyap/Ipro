@@ -81,13 +81,19 @@
    
    
     <div *ngIf="next">
-     
+      <ion-item lines="none" >
+        <a  (click)="openBrowser(partner)" slot="end" >
+          <!-- {{'Agreement.german.btn' | translate}} -->
+          Open In Browser
+        </a>
+      </ion-item>
       <ion-item lines="none" style="height: 400px; ">
         <!-- <div  style="height: 100%; border: solid 1px #ccc;
       border-radius: 2px;"> -->
-        <iframe class="webPage" class="partner-frame" frameborder="0" name="eventsPage" [src]="partner">
+   
+        <iframe class="webPage" class="partner-frame" frameborder="0" name="eventsPage" [src]="partner" (click)="openBrowser(partner)">
         </iframe>
-
+       
         <!-- </div> -->
 
       </ion-item>

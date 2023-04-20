@@ -14,11 +14,17 @@ import { EnvironmentService } from 'src/app/services/environment.service';
 })
 export class CheckZipPage implements OnInit {
   form: FormGroup;
+  role:any;
   get formControls() {
     return this.form.controls;
   }
   submitted = false;
   validationMessage: any;
+  zipCodeFilled:any=false;
+  analystList:any=[];
+  lightAnlysis:any=false;
+  analyst:any="";
+  errorMsg:any;
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
@@ -32,6 +38,7 @@ export class CheckZipPage implements OnInit {
   ) {}
   ionViewDidEnter() {
     this.menuCtrl.enable(false);
+    this.getProfile();
     console.log( this.utility.translateText('MSG').currentlyUnavailable)
   }
   initForm() {
@@ -51,35 +58,80 @@ export class CheckZipPage implements OnInit {
     this.menuCtrl.enable(false);
   }
 
+
+  async getProfile(){
+    this.zipCodeFilled = false;
+    let result: any = await this.apiService.getProfile();
+    if(result && result?.data?.profile?.zipCode){
+     
+      this.role = result?.data?.profile?.role
+      if(result?.data?.profile?.role != 'Prospect'){
+        this.zipCodeFilled = true;
+        this.form.get("zip").setValue(result?.data?.profile?.zipCode);
+        this.submit();
+
+      }
+      else{
+        this.zipCodeFilled = false;
+        this.form.get("zip").setValue("");
+      }
+    }
+
+   
+  }
   async submit() {
     this.submitted = true;
-    if (this.form.valid && this.utility.checkNetwork()) {
+    if (this.form.valid ) {
       this.submitted = false;
+      this.zipCodeFilled = true;
       let loading = await this.utility.presentLoading();
       this.apiService
-        .checkZip({
+        .listOfAnalaysts({
           zipCode: this.form.value.zip,
         })
         .then((res: any) => {
           loading.dismiss();
-          if (res.status === 0) {
-            this.utility.presentAlert(
-              "Alert",
-              "",
-              [],
-              this.utility.translateText('MSG').currentlyUnavailable, [
-                {
-                  text: this.utility.translateText("MODALS").BUTTONS.OK,
-                  handler: async() => {
-                    this.utility.getPlanDetail(this.envr.plans.bodyAnlaysis);
-                   // this.router.navigate(["/tabs/book-analysis"]);
-                  }
-                }]
-            );
-          } else {
-           // this.router.navigate(["/tabs/book-analysis"]);
-           this.utility.getPlanDetail(this.envr.plans.bodyAnlaysis);
-          }
+          if (!res.status) {
+          //   this.utility.presentAlert(
+          //     "Alert",
+          //     "",
+          //     [],
+          //     this.utility.translateText('MSG').currentlyUnavailable, [
+          //       {
+          //         text: this.utility.translateText("MODALS").BUTTONS.OK,
+          //         handler: async() => {
+          //           //this.utility.getPlanDetail(this.envr.plans.bodyAnlaysis);
+          //         }
+          //       }]
+          //   );
+           } 
+        
+           if(res.analysts_list != undefined && res.analysts_list != null){
+           
+            this.analystList = res?.analysts_list
+            this.analystList.forEach(element => {
+              console.log(element)
+              if(element.name != '' && element.name.indexOf('-')> -1 && element.name.indexOf(',')> -1){
+                console.log(element)
+                let nameSplited = element.name.split('-');
+                let completeName =nameSplited[0];
+               
+                let splitfromSpace = nameSplited[1].split(" ");
+                let zipCode = splitfromSpace[1]
+                //nameSplited[1].substring( 0, nameSplited[1].indexOf(","));
+                console.log(splitfromSpace);
+
+                let city =  splitfromSpace[2]
+                //nameSplited[1].substring( 0, nameSplited[1].indexOf(","));[1].split(' ')[1];
+                let distance = splitfromSpace[3] +splitfromSpace[4]
+                //nameSplited[1].substring( 0, nameSplited[1].indexOf(","));[1].split(' ')[2]+splitfromComma[1].split(' ')[3];
+                element['updatedName'] = " "+completeName +"  "+  distance ;
+                element['updatedNames'] =zipCode +" "+ city;
+              }
+            });
+            console.log(this.analystList)
+           }
+         
         })
         .catch((err) => {
           loading.dismiss();
@@ -87,7 +139,44 @@ export class CheckZipPage implements OnInit {
     }
   }
 
-  // goBack() {
-  //   this.navController.back();
-  // }
+
+  async changeAnlayst(event){
+    console.log(event)
+
+  }
+
+ async  confirmSubmission() {
+    console.log(this.lightAnlysis,this.analyst)
+    if(this.analyst == '' && !this.lightAnlysis){
+     this.errorMsg = this.utility.translateText("BOOKING_ANALYSIS").errorMsg;
+    }
+    else{
+      this.errorMsg = "";
+      let data ={
+        zipCode :this.form.value.zip,
+        
+      }
+      // if(this.lightAnlysis){
+        data["select_analysis_light"] = this.lightAnlysis
+      // }
+      // else{
+        data["analyst"] = this.analyst
+     // }
+       
+     let result:any = await this.apiService.bookAnlaysis(data);
+     if(result?.status){
+      // this.utility.getCart("");
+      let detail  = await this.utility.getStorage('Prod')
+      if(detail != undefined && detail != null){
+        detail = JSON.parse(detail);
+        detail["disableCart"] = true;
+        detail["added_to_cart"]='yes';
+        this.utility.setStorage('Prod',JSON.stringify(detail))
+      }
+      
+    this.utility.closeModal();
+    this.utility.goNext('tabs/basket')
+     }
+    }
+  }
 }

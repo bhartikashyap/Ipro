@@ -19,6 +19,7 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
  import { AppVersion } from '@awesome-cordova-plugins/app-version/ngx';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Market } from '@ionic-native/market/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -31,6 +32,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(),
     IonicSelectableModule,
     HttpClientModule,

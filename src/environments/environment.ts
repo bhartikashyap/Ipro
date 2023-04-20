@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseurl: 'https://bitbusinesstest.de/mobile/api/',
+   baseurl: 'https://bitbusinesstest.de/mobile/api/',
+//  baseurl: 'https://myipro.family/mobile/api/',        //live url
   fileurl: '',
   plans: {
     bodyAnlaysis: 'body analysis',
@@ -39,7 +40,7 @@ export const environment = {
   },
   {
     type: "bodyAnlaysis",
-    initPlayer: "A4HAcLOLOO68!AcIDg-U_HQmk",
+    initPlayer: "A4HAcLOLOO68!A4MDJ1lNmnjV",
     id: "cincopa_1638196190170"
   },
   {
